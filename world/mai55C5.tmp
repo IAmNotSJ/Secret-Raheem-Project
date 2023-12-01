@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://duipwhxvx2swn"]
+
+[ext_resource type="Texture2D" uid="uid://chkk8j4e3fge6" path="res://world/world map.png" id="1_opfm0"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://characters/wibr/wibr.tscn" id="1_xtcna"]
+[ext_resource type="PackedScene" uid="uid://deevmhy44a624" path="res://world/overworld chars/sj/sj.tscn" id="3_oxiew"]
+[ext_resource type="PackedScene" uid="uid://s1mwetd24s7k" path="res://dialogue/dialogue box.tscn" id="4_w5yqf"]
+
+[node name="Main World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="WorldMap" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(25, -35)
+texture = ExtResource("1_opfm0")
+
+[node name="Wibr" parent="." instance=ExtResource("1_xtcna")]
+position = Vector2(3, -15)
+
+[node name="Camera2D" type="Camera2D" parent="Wibr"]
+position = Vector2(-3, 15)
+
+[node name="SJ" parent="." instance=ExtResource("3_oxiew")]
+position = Vector2(550, -300)
+
+[node name="Control" parent="." instance=ExtResource("4_w5yqf")]

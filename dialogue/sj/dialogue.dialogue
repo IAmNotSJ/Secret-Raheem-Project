@@ -1,0 +1,13 @@
+~ start
+
+if global.sj_cool
+	sj: youre cool
+else
+	sj: yo
+	- goodbye.
+		sj: bye
+		wibr: ajsfajksf
+		=> END
+	- hello!
+		sj: i want to kill a family
+		=> END
