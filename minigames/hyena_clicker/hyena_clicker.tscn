@@ -1,0 +1,183 @@
+[gd_scene load_steps=14 format=3 uid="uid://cfhlqxfmnum6b"]
+
+[ext_resource type="Texture2D" uid="uid://cxhis5pct8sqc" path="res://minigames/hyena_clicker/assets/hyena.png" id="1_hg4bv"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/hyena_clicker.gd" id="1_kgkef"]
+[ext_resource type="Texture2D" uid="uid://b3bu8cjwnvxg4" path="res://minigames/hyena_clicker/assets/bg.png" id="2_2fknm"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/Shop Button.gd" id="3_jn6em"]
+[ext_resource type="Texture2D" uid="uid://cvuur7cwuh158" path="res://minigames/hyena_clicker/assets/buttons/shop_bg.png" id="4_7n8bv"]
+[ext_resource type="Texture2D" uid="uid://chq8yfe8r8qbq" path="res://minigames/hyena_clicker/assets/buttons/shop.png" id="5_bg0w1"]
+[ext_resource type="AudioStream" uid="uid://dudbqkfhupefp" path="res://minigames/hyena_clicker/music/Lets Get Together Now!.ogg" id="5_lhup0"]
+[ext_resource type="Texture2D" uid="uid://cyxybltj4ln1h" path="res://minigames/hyena_clicker/assets/buttons/shop_selected.png" id="7_75pcy"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="8_lw0ot"]
+[ext_resource type="Texture2D" uid="uid://d2dpkmakgcty4" path="res://minigames/hyena_clicker/assets/the creature.png" id="10_qah46"]
+
+[sub_resource type="Animation" id="Animation_nkdv5"]
+resource_name = "creature_run"
+length = 0.666671
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 30), Vector2(0, 0), Vector2(0, 25), Vector2(0, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2s6dx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r42ab"]
+_data = {
+"RESET": SubResource("Animation_2s6dx"),
+"creature_run": SubResource("Animation_nkdv5")
+}
+
+[node name="HyenaClicker" type="Node2D"]
+script = ExtResource("1_kgkef")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("2_2fknm")
+centered = false
+
+[node name="Hyena" type="TextureRect" parent="."]
+offset_left = 418.0
+offset_top = 165.0
+offset_right = 949.0
+offset_bottom = 583.0
+texture = ExtResource("1_hg4bv")
+
+[node name="ShopMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 191.0
+offset_top = 5.0
+offset_right = 1110.0
+offset_bottom = 671.0
+
+[node name="ShopBg" type="Sprite2D" parent="ShopMenu"]
+position = Vector2(442, 332)
+scale = Vector2(1, 0.8)
+texture = ExtResource("4_7n8bv")
+
+[node name="Net Button" type="Button" parent="ShopMenu" groups=["hyena buttons"]]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 114.0
+offset_right = 289.0
+offset_bottom = 145.0
+text = "Hyena Net
+"
+script = ExtResource("3_jn6em")
+price = 25
+price_multiplier = 2
+
+[node name="Shop Button2" type="Button" parent="ShopMenu" groups=["hyena buttons"]]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 175.0
+offset_right = 289.0
+offset_bottom = 206.0
+text = "SHOP NUMBER 2"
+script = ExtResource("3_jn6em")
+
+[node name="Shop Button3" type="Button" parent="ShopMenu" groups=["hyena buttons"]]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 233.0
+offset_right = 289.0
+offset_bottom = 264.0
+text = "SHOP NUMBER 3
+"
+script = ExtResource("3_jn6em")
+
+[node name="Shop Button4" type="Button" parent="ShopMenu" groups=["hyena buttons"]]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 290.0
+offset_right = 289.0
+offset_bottom = 321.0
+text = "SHOP NUMBER 4"
+script = ExtResource("3_jn6em")
+
+[node name="ShopButton" type="TextureButton" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 653.0
+offset_right = 261.0
+offset_bottom = 698.0
+grow_vertical = 0
+texture_normal = ExtResource("5_bg0w1")
+texture_hover = ExtResource("7_75pcy")
+
+[node name="Counter" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1278.0
+offset_bottom = 74.0
+theme_override_fonts/normal_font = ExtResource("8_lw0ot")
+theme_override_font_sizes/normal_font_size = 51
+text = "HYENAS:"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lhup0")
+autoplay = true
+
+[node name="TheCreature" type="Sprite2D" parent="."]
+position = Vector2(1385, 613)
+texture = ExtResource("10_qah46")
+offset = Vector2(0, 25)
+
+[node name="IdleAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r42ab")
+}
+
+[connection signal="mouse_entered" from="Hyena" to="." method="_on_hyena_mouse_entered"]
+[connection signal="mouse_exited" from="Hyena" to="." method="_on_hyena_mouse_exited"]
+[connection signal="pressed" from="ShopMenu/Net Button" to="." method="_on_net_button_pressed"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
