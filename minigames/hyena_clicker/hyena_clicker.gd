@@ -7,6 +7,8 @@ extends Node2D
 
 @onready var musicPlayer = $AudioStreamPlayer
 
+@onready var netButton = $"ShopMenu/Net Button"
+
 const SAVE_PATH: String = "user://hyena.bin"
 
 var rng = RandomNumberGenerator.new()
@@ -90,7 +92,8 @@ func save():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data:Dictionary = {
 		"Hyenas": hyenas,
-		"Nets": nets
+		"Nets": nets,
+		"Net Price": netButton.price
 	}
 	var jstr = JSON.stringify(data)
 	
@@ -111,8 +114,7 @@ func load_save():
 			if current_line:
 				hyenas = current_line["Hyenas"]
 				nets = current_line["Nets"]
-				$"ShopMenu/Net Button".price_multiplier = $"ShopMenu/Net Button".price_multiplier * nets
-				$"ShopMenu/Net Button".price *= $"ShopMenu/Net Button".price_multiplier
+				netButton.price = current_line["Net Price"]
 
 
 
@@ -127,12 +129,13 @@ func _on_shop_button_pressed():
 
 
 func _on_net_button_pressed():
-	if hyenas >= $"ShopMenu/Net Button".price:
-		remove_hyenas($"ShopMenu/Net Button".price)
-		print('BOUGHT NET FOR: ' + str($"ShopMenu/Net Button".price) + ' HYENAS')
+	if hyenas >= netButton.price:
+		remove_hyenas(netButton.price)
+		print('BOUGHT NET FOR: ' + str(netButton.price) + ' HYENAS')
 		print('NETS: ' + str(nets))
-		$"ShopMenu/Net Button".price *= $"ShopMenu/Net Button".price_multiplier
+		netButton.price *= netButton.price_multiplier
 		nets += 1
+		print('net cost:' + str(netButton.price))
 		
 
 
