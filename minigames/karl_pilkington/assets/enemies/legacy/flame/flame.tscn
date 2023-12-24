@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3vyi7qoq7iy6"]
+
+[ext_resource type="Texture2D" uid="uid://ctveo6rl1h4i" path="res://minigames/karl_pilkington/assets/enemies/legacy/flame/flame.png" id="1_eipcf"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/flame/flame.gd" id="1_qav1g"]
+[ext_resource type="Texture2D" uid="uid://bsq7636sam4ex" path="res://minigames/karl_pilkington/assets/enemies/legacy/pupil.png" id="2_5c60o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28i28"]
+radius = 37.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hca1j"]
+size = Vector2(11, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2vxw"]
+size = Vector2(63, 13)
+
+[sub_resource type="Animation" id="Animation_l542j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gg4v8"]
+resource_name = "hurt"
+length = 0.0833375
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.54902, 0.54902, 0.54902, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6jb76"]
+_data = {
+"RESET": SubResource("Animation_l542j"),
+"hurt": SubResource("Animation_gg4v8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f86o2"]
+
+[node name="Flame" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 20
+script = ExtResource("1_qav1g")
+SPEED = 250
+eyeradius = 5
+ATTACK_TIMER = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_eipcf")
+
+[node name="Pupil" type="Sprite2D" parent="."]
+position = Vector2(8, -12)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5c60o")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(10, -18)
+shape = SubResource("CircleShape2D_28i28")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(7.5, 49.5)
+shape = SubResource("RectangleShape2D_hca1j")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(-18.5, 76.5)
+shape = SubResource("RectangleShape2D_u2vxw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(10, -18)
+shape = SubResource("CircleShape2D_28i28")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.5, 49.5)
+shape = SubResource("RectangleShape2D_hca1j")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-18.5, 76.5)
+shape = SubResource("RectangleShape2D_u2vxw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6jb76")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f86o2")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, -12)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

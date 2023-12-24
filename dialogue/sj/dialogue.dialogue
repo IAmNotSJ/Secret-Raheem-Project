@@ -1,13 +1,13 @@
 ~ start
 
-if global.sj_cool
-	sj: youre cool
-else
-	sj: yo
-	- goodbye.
-		sj: bye
-		wibr: ajsfajksf
-		=> END
-	- hello!
-		sj: i want to kill a family
-		=> END
+sj: Yo. 
+wibr: Hello...
+- Dapper
+	sj: HUH, WHAT ABOUT HIM?
+	sj: I haven't the slightest idea who would do anything to him, let alone who would get someone to fake being his fake girlfriend and break up with him!
+	wibr: SJ I only said his name.
+	=> END
+- Pizza Hut
+	sj: Yeah, welcome to my humble abode! 
+	sj: I got locked out.
+	=> END

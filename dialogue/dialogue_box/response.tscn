@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3nlbk5oqxtah"]
+
+[ext_resource type="Texture2D" uid="uid://cb106giwmtky8" path="res://dialogue/dialogue_box/box option.png" id="1_s5okr"]
+[ext_resource type="Script" path="res://dialogue/dialogue_box/response.gd" id="2_st1tv"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_t2qp7"]
+
+[node name="ResponseExample" type="TextureButton"]
+texture_normal = ExtResource("1_s5okr")
+script = ExtResource("2_st1tv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 4.0
+offset_right = 846.0
+offset_bottom = 51.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.0235294, 0.0156863, 0.105882, 1)
+theme_override_fonts/normal_font = ExtResource("2_t2qp7")
+theme_override_font_sizes/normal_font_size = 32
+text = "Response Text Goes Here"

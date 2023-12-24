@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://j2h1wh63pbow"
+path="res://.godot/imported/Bubblegloop Swamp.ogg-c9a622c1d45d5f3e3e639bf254fe450b.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/karl_pilkington/music/Bubblegloop Swamp.ogg"
+dest_files=["res://.godot/imported/Bubblegloop Swamp.ogg-c9a622c1d45d5f3e3e639bf254fe450b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

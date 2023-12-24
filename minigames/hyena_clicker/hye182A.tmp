@@ -1,0 +1,442 @@
+[gd_scene load_steps=25 format=3 uid="uid://cfhlqxfmnum6b"]
+
+[ext_resource type="Script" path="res://minigames/hyena_clicker/hyena_clicker.gd" id="1_kgkef"]
+[ext_resource type="Texture2D" uid="uid://b3bu8cjwnvxg4" path="res://minigames/hyena_clicker/assets/bg.png" id="2_2fknm"]
+[ext_resource type="Texture2D" uid="uid://c5jhqsvm435tj" path="res://minigames/hyena_clicker/assets/hyenas/stage1.png" id="3_phvbr"]
+[ext_resource type="Texture2D" uid="uid://cvuur7cwuh158" path="res://minigames/hyena_clicker/assets/buttons/shop_bg.png" id="4_7n8bv"]
+[ext_resource type="PackedScene" uid="uid://b18kcqwgc04vf" path="res://minigames/hyena_clicker/shop_button.tscn" id="5_58qgn"]
+[ext_resource type="Texture2D" uid="uid://chq8yfe8r8qbq" path="res://minigames/hyena_clicker/assets/buttons/shop.png" id="5_bg0w1"]
+[ext_resource type="Texture2D" uid="uid://bvtuobstgk7nb" path="res://minigames/hyena_clicker/assets/the grhgh.png" id="6_ynl5j"]
+[ext_resource type="Texture2D" uid="uid://cyxybltj4ln1h" path="res://minigames/hyena_clicker/assets/buttons/shop_selected.png" id="7_75pcy"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="8_lw0ot"]
+[ext_resource type="Texture2D" uid="uid://d2dpkmakgcty4" path="res://minigames/hyena_clicker/assets/the creature.png" id="10_qah46"]
+[ext_resource type="Texture2D" uid="uid://bb6e4t60h2m32" path="res://minigames/hyena_clicker/assets/hyenas/stage2.png" id="11_0ubtd"]
+[ext_resource type="Texture2D" uid="uid://bgogkqoselfkq" path="res://minigames/hyena_clicker/assets/hyenas/stage3.png" id="12_8ql1q"]
+[ext_resource type="AudioStream" uid="uid://5n42ul18n0nv" path="res://minigames/hyena_clicker/sound effects/caching.ogg" id="12_xchj4"]
+[ext_resource type="Texture2D" uid="uid://bbdwkxfkutnto" path="res://minigames/hyena_clicker/assets/hyenas/stage4.png" id="13_foudm"]
+
+[sub_resource type="Animation" id="Animation_2s6dx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Popup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(456, -92)]
+}
+
+[sub_resource type="Animation" id="Animation_nkdv5"]
+resource_name = "creature_run"
+length = 0.666671
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 30), Vector2(0, 0), Vector2(0, 25), Vector2(0, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_rd0qe"]
+resource_name = "popup"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Popup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, -92), Vector2(456, 36), Vector2(456, -92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r42ab"]
+_data = {
+"RESET": SubResource("Animation_2s6dx"),
+"creature_run": SubResource("Animation_nkdv5"),
+"popup": SubResource("Animation_rd0qe")
+}
+
+[sub_resource type="Animation" id="Animation_hf81j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_phvbr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 344)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_82ktv"]
+resource_name = "stage 1"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_phvbr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 344)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_waatv"]
+resource_name = "stage 2"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_0ubtd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 373)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(465, 196)]
+}
+
+[sub_resource type="Animation" id="Animation_fx1c5"]
+resource_name = "stage 3"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_8ql1q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 373)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, 196)]
+}
+
+[sub_resource type="Animation" id="Animation_r0ftp"]
+resource_name = "stage 4"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_foudm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 489)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(470, 133)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkhf"]
+_data = {
+"RESET": SubResource("Animation_hf81j"),
+"stage 1": SubResource("Animation_82ktv"),
+"stage 2": SubResource("Animation_waatv"),
+"stage 3": SubResource("Animation_fx1c5"),
+"stage 4": SubResource("Animation_r0ftp")
+}
+
+[node name="HyenaClicker" type="Node2D"]
+script = ExtResource("1_kgkef")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("2_2fknm")
+centered = false
+
+[node name="Hyena" type="TextureRect" parent="."]
+offset_left = 419.0
+offset_top = 206.0
+offset_right = 867.0
+offset_bottom = 550.0
+texture = ExtResource("3_phvbr")
+
+[node name="ShopMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 191.0
+offset_top = 5.0
+offset_right = 1110.0
+offset_bottom = 671.0
+
+[node name="ShopBg" type="Sprite2D" parent="ShopMenu"]
+position = Vector2(442, 332)
+scale = Vector2(1, 0.8)
+texture = ExtResource("4_7n8bv")
+
+[node name="Net Button" parent="ShopMenu" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 202.0
+offset_right = 331.0
+offset_bottom = 284.0
+price = 500
+price_multiplier = 1.5
+item = "HYENA NET"
+
+[node name="Trap Button" parent="ShopMenu" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 106.0
+offset_right = 331.0
+offset_bottom = 188.0
+price = 150
+price_multiplier = 1.5
+item = "HYENA TRAP"
+
+[node name="Drone Button" parent="ShopMenu" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 300.0
+offset_right = 331.0
+offset_bottom = 382.0
+price = 1500
+price_multiplier = 1.5
+item = "HYENA DRONE"
+
+[node name="Meat Button" parent="ShopMenu" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 396.0
+offset_right = 331.0
+offset_bottom = 478.0
+price = 5000
+price_multiplier = 1.5
+item = "HYENA MEAT"
+
+[node name="Popup" type="Sprite2D" parent="."]
+position = Vector2(456, -92)
+texture = ExtResource("6_ynl5j")
+offset = Vector2(0, 25)
+flip_h = true
+flip_v = true
+
+[node name="TheCreature" type="Sprite2D" parent="."]
+position = Vector2(1385, 613)
+texture = ExtResource("10_qah46")
+offset = Vector2(0, 25)
+
+[node name="ShopButton" type="TextureButton" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 904.0
+offset_top = 627.0
+offset_right = 1249.0
+offset_bottom = 708.0
+grow_vertical = 0
+texture_normal = ExtResource("5_bg0w1")
+texture_hover = ExtResource("7_75pcy")
+
+[node name="Counter" type="RichTextLabel" parent="."]
+offset_left = 14.0
+offset_top = 646.0
+offset_right = 851.0
+offset_bottom = 718.0
+theme_override_fonts/normal_font = ExtResource("8_lw0ot")
+theme_override_font_sizes/normal_font_size = 51
+text = "0 HYENAS"
+
+[node name="IdleAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r42ab")
+}
+
+[node name="HyenaPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eqkhf")
+}
+
+[node name="KaChing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_xchj4")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[connection signal="mouse_entered" from="Hyena" to="." method="_on_hyena_mouse_entered"]
+[connection signal="mouse_exited" from="Hyena" to="." method="_on_hyena_mouse_exited"]
+[connection signal="clicked" from="ShopMenu/Net Button" to="." method="on_item_button_clicked"]
+[connection signal="pressed" from="ShopMenu/Net Button" to="." method="_on_net_button_pressed"]
+[connection signal="clicked" from="ShopMenu/Trap Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/Drone Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/Meat Button" to="." method="on_item_button_clicked"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

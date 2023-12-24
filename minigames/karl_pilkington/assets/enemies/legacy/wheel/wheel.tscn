@@ -1,0 +1,139 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmywaef2ljfmv"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/wheel/wheel.gd" id="1_yc7qg"]
+[ext_resource type="Texture2D" uid="uid://ccdy85le2t2yw" path="res://minigames/karl_pilkington/assets/enemies/legacy/wheel/wheel.png" id="2_2qm2k"]
+[ext_resource type="Texture2D" uid="uid://bsq7636sam4ex" path="res://minigames/karl_pilkington/assets/enemies/legacy/pupil.png" id="3_m1m4w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3i1m"]
+radius = 42.0119
+
+[sub_resource type="Animation" id="Animation_ap0fx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m4lxa"]
+resource_name = "hurt"
+length = 0.0833375
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.54902, 0.54902, 0.54902, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2j6ke"]
+_data = {
+"RESET": SubResource("Animation_ap0fx"),
+"hurt": SubResource("Animation_m4lxa")
+}
+
+[sub_resource type="Animation" id="Animation_dv6dm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2e6kr"]
+resource_name = "spin"
+length = 0.500004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.26573]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67uiq"]
+_data = {
+"RESET": SubResource("Animation_dv6dm"),
+"spin": SubResource("Animation_2e6kr")
+}
+
+[node name="Wheel" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_yc7qg")
+health = 15
+SPEED = 500
+eyeradius = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_2qm2k")
+
+[node name="Pupil" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("3_m1m4w")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_f3i1m")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_f3i1m")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_f3i1m")
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Animationplayer")
+libraries = {
+"": SubResource("AnimationLibrary_2j6ke")
+}
+
+[node name="Animationplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_67uiq")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

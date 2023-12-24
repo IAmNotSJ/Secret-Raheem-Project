@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://clih358eyatli"]
+
+[ext_resource type="Texture2D" uid="uid://bcrqek2qg2cgm" path="res://minigames/karl_pilkington/assets/enemies/legacy/sand/bullet.png" id="1_bu3a5"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/basic_bullet.gd" id="2_5w8q6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brqil"]
+radius = 3.33333
+
+[node name="Bullet" type="Sprite2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_bu3a5")
+script = ExtResource("2_5w8q6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_brqil")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

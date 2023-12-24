@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c4h6ahx6waxuw"
+path="res://.godot/imported/koopa freerunning.ogg-39c585f3a095303873dfc58fc9b05a7b.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/karl_pilkington/music/koopa freerunning.ogg"
+dest_files=["res://.godot/imported/koopa freerunning.ogg-39c585f3a095303873dfc58fc9b05a7b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

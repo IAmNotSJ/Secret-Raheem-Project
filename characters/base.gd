@@ -23,11 +23,15 @@ func _unhandled_input(_event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("ui_accept") and characters_in_range:
 		if characters_in_range[0] != null:
-			characters_in_range[0].openDialogue()
+			characters_in_range[0].interact(self)
 			stop_movement()
 	
 	if Input.is_action_just_pressed("hyena"):
-		get_tree().change_scene_to_file("res://minigames/hyena_clicker/hyena_clicker.tscn")
+		Transition.change_scene_to_file("res://minigames/hyena_clicker/hyena_clicker.tscn")
+	if Input.is_action_just_pressed("fish"):
+		Transition.change_scene_to_file("res://minigames/fishing/fishing_minigame.tscn")
+	if Input.is_action_just_pressed("karl"):
+		Transition.change_scene_to_file("res://minigames/karl_pilkington/karl pilkington.tscn")
 
 func _physics_process(_delta):
 	if input_vector != Vector2.ZERO:

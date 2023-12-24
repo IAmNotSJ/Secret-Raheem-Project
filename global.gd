@@ -1,3 +1,3 @@
 extends Node
 
-var sj_cool = false
+@onready var music = $Music

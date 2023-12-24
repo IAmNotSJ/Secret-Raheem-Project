@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdnle58xygrdb"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/legacies.gd" id="1_nvv2b"]
+[ext_resource type="PackedScene" uid="uid://wkkfcjlxycnh" path="res://minigames/karl_pilkington/assets/enemies/legacy/sand/sand.tscn" id="2_axdr4"]
+[ext_resource type="AudioStream" uid="uid://c4h6ahx6waxuw" path="res://minigames/karl_pilkington/music/koopa freerunning.ogg" id="2_vliu7"]
+[ext_resource type="PackedScene" uid="uid://bmywaef2ljfmv" path="res://minigames/karl_pilkington/assets/enemies/legacy/wheel/wheel.tscn" id="3_76wmv"]
+[ext_resource type="PackedScene" uid="uid://c1sv0dgi5hdm5" path="res://minigames/karl_pilkington/assets/enemies/legacy/block/block.tscn" id="4_bmsmb"]
+[ext_resource type="PackedScene" uid="uid://b3vyi7qoq7iy6" path="res://minigames/karl_pilkington/assets/enemies/legacy/flame/flame.tscn" id="5_45vkh"]
+
+[node name="Lazy League" type="Node2D"]
+script = ExtResource("1_nvv2b")
+song = ExtResource("2_vliu7")
+
+[node name="Sand" parent="." instance=ExtResource("2_axdr4")]
+position = Vector2(-83, 128)
+
+[node name="Wheel" parent="." instance=ExtResource("3_76wmv")]
+position = Vector2(1404, 296)
+
+[node name="Block" parent="." instance=ExtResource("4_bmsmb")]
+position = Vector2(-85, 776)
+health = 10
+
+[node name="Flame" parent="." instance=ExtResource("5_45vkh")]
+position = Vector2(640, 870)

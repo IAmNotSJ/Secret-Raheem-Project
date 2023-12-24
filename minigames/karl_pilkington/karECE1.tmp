@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://boai058oocco0"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/karl pilkington.gd" id="1_g1iqv"]
+[ext_resource type="PackedScene" uid="uid://cfo0m80tnv3n6" path="res://minigames/karl_pilkington/assets/karl/pilkington.tscn" id="1_i7lbx"]
+[ext_resource type="Texture2D" uid="uid://dsocb3ls4r5ua" path="res://minigames/karl_pilkington/assets/bg/bg.png" id="2_csjmh"]
+[ext_resource type="PackedScene" uid="uid://41v41iabaatk" path="res://minigames/karl_pilkington/assets/ui/UI.tscn" id="4_gqpxn"]
+
+[node name="KarlPilkington" type="Node2D"]
+script = ExtResource("1_g1iqv")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(680, 374)
+scale = Vector2(7, 7)
+texture = ExtResource("2_csjmh")
+
+[node name="Pilkington" parent="." instance=ExtResource("1_i7lbx")]
+position = Vector2(666, 379)
+
+[node name="Container" parent="." instance=ExtResource("4_gqpxn")]

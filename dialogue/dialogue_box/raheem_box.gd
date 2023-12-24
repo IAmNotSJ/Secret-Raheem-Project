@@ -8,6 +8,9 @@ extends CanvasLayer
 
 @onready var mainScene = get_tree().current_scene
 
+@onready var portrait1 = $Portrait1
+@onready var portrait2 = $Portrait2
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -33,8 +36,8 @@ var dialogue_line: DialogueLine:
 		dialogue_line = next_dialogue_line
 
 		character_label.visible = not dialogue_line.character.is_empty()
-		character_label.texture = ResourceLoader.load("res://dialogue/dialogue_box/" + dialogue_line.character + " title.png")
-		print ("res://dialogue/dialogue_box/" + dialogue_line.character + " title.png")
+		if not dialogue_line.character.is_empty():
+			character_label.texture = ResourceLoader.load("res://dialogue/dialogue_box/" + dialogue_line.character + " title.png")
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line
@@ -83,13 +86,12 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
-	$AnimationPlayer.play("intro")
+	$AnimationPlayer.play("bounce")
 
 
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-
 
 ### Signals
 
@@ -102,7 +104,6 @@ func _on_mutated(_mutation: Dictionary) -> void:
 			will_hide_balloon = false
 			balloon.hide()
 	)
-
 
 func _on_balloon_gui_input(event: InputEvent) -> void:
 	# If the user clicks on the balloon while it's typing then skip typing

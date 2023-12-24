@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://41v41iabaatk"]
+
+[ext_resource type="Texture2D" uid="uid://qb2j02yt8pt5" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_empty.png" id="1_7s053"]
+[ext_resource type="Texture2D" uid="uid://dar6td7eekyv3" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_4.png" id="2_0d3w0"]
+[ext_resource type="Texture2D" uid="uid://cfiunwcxfas6x" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_3.png" id="3_h01vf"]
+[ext_resource type="Texture2D" uid="uid://cpm2a6c615c1g" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_2.png" id="4_k3n5v"]
+[ext_resource type="Texture2D" uid="uid://fjvayfhlqh1o" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_1.png" id="5_f3rni"]
+[ext_resource type="Texture2D" uid="uid://cyigbruovs1k2" path="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_full.png" id="6_73aih"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0xad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7s053")
+}],
+"loop": true,
+"name": &"health 0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0d3w0")
+}],
+"loop": true,
+"name": &"health 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h01vf")
+}],
+"loop": true,
+"name": &"health 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_k3n5v")
+}],
+"loop": true,
+"name": &"health 3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_f3rni")
+}],
+"loop": true,
+"name": &"health 4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_73aih")
+}],
+"loop": true,
+"name": &"health 5",
+"speed": 5.0
+}]
+
+[node name="Container" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1286.0
+offset_bottom = 718.0
+
+[node name="HealthBar" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(168, 56)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_j0xad")
+animation = &"health 0"

@@ -44,12 +44,19 @@ func set_responses(next_responses: Array) -> void:
 				item = response_template.duplicate(DUPLICATE_GROUPS | DUPLICATE_SCRIPTS | DUPLICATE_SIGNALS)
 				item.show()
 			else:
-				item = Button.new()
+				item = TextureButton.new()
 			item.name = "Response%d" % get_child_count()
 			if not response.is_allowed:
 				item.name = String(item.name) + "Disallowed"
 				item.disabled = true
-			item.text = response.text
+
+			# If the item has a response property then use that
+			if "response" in item:
+				item.response = response
+			# Otherwise assume we can just set the text
+			else:
+				item.changeText(response.text)
+
 			add_child(item)
 
 		_configure_focus()
