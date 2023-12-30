@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn2a340lfvqk2"
-path="res://.godot/imported/blade.png-820556e7479e5aaeae04b7c1f27c2068.ctex"
+uid="uid://cuqn7r5riy5kb"
+path="res://.godot/imported/scaletop.png-c69a38ceab829208ea2d197baee8c8c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/karl_pilkington/assets/enemies/legacy/sprites/blade.png"
-dest_files=["res://.godot/imported/blade.png-820556e7479e5aaeae04b7c1f27c2068.ctex"]
+source_file="res://minigames/karl_pilkington/assets/enemies/legacy/scale/scaletop.png"
+dest_files=["res://.godot/imported/scaletop.png-c69a38ceab829208ea2d197baee8c8c1.ctex"]
 
 [params]
 

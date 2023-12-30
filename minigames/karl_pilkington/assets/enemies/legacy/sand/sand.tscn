@@ -53,10 +53,10 @@ _data = {
 
 [node name="Sand" type="CharacterBody2D"]
 collision_layer = 16
-collision_mask = 20
+collision_mask = 4
 script = ExtResource("1_ck55r")
 health = 15
-SPEED = 300
+SPEED = 500
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
 position = Vector2(0, -30)

@@ -1,0 +1,30 @@
+extends LegacyMember
+
+@onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/pill.tscn")
+
+@onready var pupil = $Node2D/Pupil
+@onready var marker = $Node2D/Marker2D
+
+var pos = Vector2(80, 334)
+func _process(delta):
+	if active:
+		global_position = global_position.move_toward(pos, SPEED * delta)
+		look_at_target(target, pupil, marker)
+		attackTimer -= delta
+		if attackTimer <= 0:
+			attackTimer = ATTACK_TIMER
+			$AnimationPlayer.play('jump')
+			spawn_pill()
+
+func spawn_pill():
+	var pill = pillScene.instantiate()
+	var angle = target.global_position - global_position
+	pill.initialize(angle.angle(), false)
+	pill.global_position = pupil.global_position
+	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", pill)
+
+
+func _on_hitbox_area_entered(_area):
+	print('yeouch')
+	hurt()
+	$EffectsPlayer.play('hit')

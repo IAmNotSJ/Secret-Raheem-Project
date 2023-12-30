@@ -7,10 +7,16 @@ signal clicked(button:ShopButton)
 
 @export var item:String = ''
 
+@export_multiline var description:String = ''
+
 var bigPrice : Big
 
 func _ready():
 	bigPrice = Big.new(price)
+	if item.length() >= 12:
+		$Title.add_theme_font_size_override("normal_font_size", 20)
+	else:
+		$Title.add_theme_font_size_override("normal", 24)
 	$Title.text = item
 
 func update_price():
@@ -37,3 +43,12 @@ func multiply_price(val):
 
 func _on_pressed():
 	clicked.emit(self)
+
+
+func _on_mouse_entered():
+	get_tree().root.get_node("HyenaClicker").mouseWindow.visible = true
+	get_tree().root.get_node("HyenaClicker").mouseWindow.set_text(item, description, '')
+	get_tree().root.get_node("HyenaClicker").mouseWindow.rightOfMouse = true
+
+func _on_mouse_exited():
+	get_tree().root.get_node("HyenaClicker").mouseWindow.visible = false

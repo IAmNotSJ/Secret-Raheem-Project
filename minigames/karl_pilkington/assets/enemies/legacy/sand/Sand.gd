@@ -9,9 +9,14 @@ extends LegacyMember
 
 var pos = Vector2(1280/2, 75)
 
+var fakeBoost:bool
+
 func _process(delta):
 	if active:
-		attackTimer -= delta
+		if mainScene.boosted:
+			attackTimer -= delta * 3
+		else:
+			attackTimer -= delta
 		if attackTimer <= 0:
 			attackTimer = ATTACK_TIMER
 			shoot()

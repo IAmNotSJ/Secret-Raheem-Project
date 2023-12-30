@@ -2,15 +2,21 @@ class_name LegacyMember extends CharacterBody2D
 
 signal died
 
+@onready var mainScene = get_tree().root.get_node("KarlPilkington")
+
 @export var health = 20
 @export var SPEED = 100
 @export var eyeradius = 4
 
 @export var ATTACK_TIMER = 3
 
+
+
 var rng = RandomNumberGenerator.new()
 
 var attackTimer = ATTACK_TIMER
+
+var boosted:bool = false
 
 var active
 
@@ -42,3 +48,6 @@ func hurt():
 func die():
 	died.emit()
 	queue_free()
+
+func change_boost(val:bool):
+	boosted = val

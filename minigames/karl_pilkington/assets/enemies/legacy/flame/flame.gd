@@ -14,7 +14,11 @@ func _process(delta):
 		attackTimer -= delta
 		if attackTimer <= 0:
 			attackTimer = ATTACK_TIMER
-			spawn_fire(3)
+			if mainScene.boosted:
+				spawn_fire(4)
+			else:
+				print('WHY')
+				spawn_fire(3)
 		
 		global_position = global_position.move_toward(pos, delta * SPEED)
 

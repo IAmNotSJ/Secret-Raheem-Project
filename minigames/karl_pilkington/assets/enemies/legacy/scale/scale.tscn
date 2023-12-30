@@ -1,0 +1,362 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdssp6j1wnw4q"]
+
+[ext_resource type="Texture2D" uid="uid://cuqn7r5riy5kb" path="res://minigames/karl_pilkington/assets/enemies/legacy/scale/scaletop.png" id="1_qie4d"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/scale/scale.gd" id="1_r4r4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wq0u"]
+size = Vector2(47, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4cj2y"]
+size = Vector2(14, 72)
+
+[sub_resource type="Animation" id="Animation_i7gvs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8wea"]
+resource_name = "hit"
+length = 0.0833375
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.811765, 0.811765, 0.811765, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yw1q"]
+_data = {
+"RESET": SubResource("Animation_i7gvs"),
+"hit": SubResource("Animation_a8wea")
+}
+
+[sub_resource type="Animation" id="Animation_3vn72"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1298, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24.5, 3.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 7)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(665.5, 3.5)]
+}
+
+[sub_resource type="Animation" id="Animation_ortus"]
+resource_name = "idle"
+length = 0.001
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1298, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24.5, 3.5)]
+}
+
+[sub_resource type="Animation" id="Animation_8irm0"]
+resource_name = "retract"
+length = 0.375004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1331, 7), Vector2(1341, 7), Vector2(51, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 37), Vector2(5, 37), Vector2(1295, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(666, 3.5), Vector2(671, 3.5), Vector2(26, 3.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1330, 7), Vector2(1340, 7), Vector2(50, 7)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(666, 3.5), Vector2(671, 3.5), Vector2(26, 3.5)]
+}
+
+[sub_resource type="Animation" id="Animation_3dx0y"]
+resource_name = "shoot"
+length = 1.125
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.08333, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 7), Vector2(1358, 7), Vector2(1321, 7), Vector2(1331, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/ColorRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.08333, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1298, 37), Vector2(-12, 37), Vector2(25, 37), Vector2(15, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.08333, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 7), Vector2(1358, 7), Vector2(1321, 7), Vector2(1331, 7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.08333, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(24, 3.5), Vector2(679, 3.5), Vector2(660.5, 3.5), Vector2(665.5, 3.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.08333, 1.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(24, 3.5), Vector2(679, 3.5), Vector2(660.001, 3.5), Vector2(665, 3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulwvx"]
+_data = {
+"RESET": SubResource("Animation_3vn72"),
+"idle": SubResource("Animation_ortus"),
+"retract": SubResource("Animation_8irm0"),
+"shoot": SubResource("Animation_3dx0y")
+}
+
+[node name="Scale" type="CharacterBody2D"]
+position = Vector2(0, 646)
+script = ExtResource("1_r4r4n")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(1280, 0)
+scale = Vector2(-1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+offset_left = 1298.0
+offset_top = 37.0
+offset_right = 1346.0
+offset_bottom = 44.0
+color = Color(0.588235, 0.588235, 0.588235, 1)
+
+[node name="Hurtbox" type="Area2D" parent="CanvasGroup/ColorRect"]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
+position = Vector2(24.5, 3.5)
+shape = SubResource("RectangleShape2D_4wq0u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
+position = Vector2(-6, 1)
+shape = SubResource("RectangleShape2D_4cj2y")
+
+[node name="Hitbox" type="Area2D" parent="CanvasGroup/ColorRect"]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
+position = Vector2(665.5, 3.5)
+shape = SubResource("RectangleShape2D_4wq0u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
+position = Vector2(-6, 1)
+shape = SubResource("RectangleShape2D_4cj2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/ColorRect"]
+position = Vector2(-6, 1)
+rotation = -1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("1_qie4d")
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="CanvasGroup"]
+root_node = NodePath("../AnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_7yw1q")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasGroup"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ulwvx")
+}
+
+[connection signal="area_entered" from="CanvasGroup/ColorRect/Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="CanvasGroup/ColorRect/Hitbox" to="." method="_on_hitbox_area_entered"]

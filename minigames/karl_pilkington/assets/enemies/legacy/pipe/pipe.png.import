@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f4y1wr00q45r"
-path="res://.godot/imported/spark.png-8d26c47486330ef3ffb3b6d8bceaf76b.ctex"
+uid="uid://bhsp3nixm3lw3"
+path="res://.godot/imported/pipe.png-e75c403bf2ce49a897bbabc033808ef8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/karl_pilkington/assets/enemies/legacy/sprites/spark.png"
-dest_files=["res://.godot/imported/spark.png-8d26c47486330ef3ffb3b6d8bceaf76b.ctex"]
+source_file="res://minigames/karl_pilkington/assets/enemies/legacy/pipe/pipe.png"
+dest_files=["res://.godot/imported/pipe.png-e75c403bf2ce49a897bbabc033808ef8.ctex"]
 
 [params]
 

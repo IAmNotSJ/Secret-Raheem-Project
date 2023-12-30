@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqabgqcksv660"]
+
+[ext_resource type="Texture2D" uid="uid://dwg4uwehx0mqv" path="res://minigames/karl_pilkington/assets/enemies/legacy/gas/gas.png" id="1_ahcrl"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/gas/gas.gd" id="1_jgqal"]
+[ext_resource type="Texture2D" uid="uid://bsq7636sam4ex" path="res://minigames/karl_pilkington/assets/enemies/legacy/pupil.png" id="2_dm5eg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qxyao"]
+radius = 51.3517
+
+[node name="Gas" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_jgqal")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_ahcrl")
+
+[node name="Pupil" type="Sprite2D" parent="."]
+position = Vector2(1, -19)
+scale = Vector2(3, 3)
+texture = ExtResource("2_dm5eg")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, -19)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, -19)
+shape = SubResource("CircleShape2D_qxyao")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -19)
+shape = SubResource("CircleShape2D_qxyao")

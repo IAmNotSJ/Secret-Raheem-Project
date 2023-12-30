@@ -1,0 +1,35 @@
+extends Sprite2D
+
+var SPEED = 300
+const SHOOT_TIME = 0.5
+
+enum {
+	GAIN,
+	SHOOT
+}
+
+var state = GAIN
+
+var target
+
+
+func _ready():
+	modulate.a = 0
+func _process(delta):
+	match state:
+		GAIN:
+			if get_tree().root.get_node("KarlPilkington").boosted:
+				position = position.move_toward(target.position, SPEED * 1.2 * delta)
+			else:
+				position = position.move_toward(target.position, SPEED * delta)
+			modulate.a += delta / 5
+			
+			if modulate.a >= 1:
+				state = SHOOT
+				print('shoot state')
+				$LightningPlayer.play('strike')
+		SHOOT:
+			if $Area2D.get_overlapping_areas() != []:
+				target.hit()
+			if !$LightningPlayer.is_playing():
+				queue_free()

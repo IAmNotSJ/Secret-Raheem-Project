@@ -598,7 +598,7 @@ func toMetricSymbol(no_decimals_on_small_values = false) -> String:
 	else:
 		return toPrefix(no_decimals_on_small_values) + other.postfix_separator + postfixes_metric_symbol[str(target)]
 		
-func getMetricSymbol(no_decimals_on_small_values = false) -> String:
+func getMetricSymbol(_no_decimals_on_small_values = false) -> String:
 	var target = int(exponent / 3)
 
 	if not postfixes_metric_symbol.has(str(target)):

@@ -14,7 +14,6 @@ extends LegacyMember
 
 var pos = Vector2(50, 644)
 
-
 func _process(delta):
 	if active:
 		look_at_target(target, pupil, marker)
@@ -24,10 +23,10 @@ func _process(delta):
 			shoot()
 			attackTimer = ATTACK_TIMER
 
-func replicate_bullet(daPos:Vector2):
+func replicate_bullet(daPos:Vector2, angleOffset = 0):
 	var bullet = bullet_scene.instantiate()
 	var dir = target.global_position - daPos
-	bullet.start(daPos, dir.angle())
+	bullet.start(daPos, dir.angle() + angleOffset)
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
 
 func shoot():
@@ -43,7 +42,11 @@ func _on_area_2d_area_entered(area):
 		match random:
 			0:
 				$AnimationPlayer.play('block')
-				replicate_bullet(area.owner.global_position)
+				if mainScene.boosted:
+					for i in range(-1, 2):
+						replicate_bullet(area.owner.global_position, (30 * i))
+				else:
+					replicate_bullet(area.owner.global_position)
 			1:
 				$AnimationPlayer.play('hit')
 				hurt()

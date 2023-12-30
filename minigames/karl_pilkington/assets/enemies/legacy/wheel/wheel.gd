@@ -20,12 +20,17 @@ var dash_timer = DASH_TIMER
 
 const FRICTION = 300
 
+var fakeBoost:bool
+
 func _process(delta):
 	if active:
 		match state:
 			IDLE:
 				look_at_target(target, pupil, marker)
-				attackTimer -= delta
+				if mainScene.boosted:
+					attackTimer -= delta * 5
+				else:
+					attackTimer -= delta
 				if attackTimer <= 0:
 					attackTimer = ATTACK_TIMER
 					state = SPIN
@@ -38,8 +43,11 @@ func _process(delta):
 					state = DASH
 					angleToPlayer = angleToTarget(target, marker)
 			DASH:
-				velocity.x += SPEED * cos(angleToPlayer) * delta
-				velocity.y += SPEED * sin(angleToPlayer) * delta
+				var boostModifier:int = 1
+				if mainScene.boosted:
+					boostModifier = 2
+				velocity.x += SPEED * boostModifier * cos(angleToPlayer) * delta
+				velocity.y += SPEED * boostModifier * sin(angleToPlayer) * delta
 				
 				move_and_slide()
 				

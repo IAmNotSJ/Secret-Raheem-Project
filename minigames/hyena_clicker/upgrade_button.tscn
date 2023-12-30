@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj6q6oggoibr8"]
+
+[ext_resource type="Texture2D" uid="uid://dxvw4jix2asdy" path="res://minigames/hyena_clicker/assets/upgraeds/base.png" id="1_b7yti"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/upgrade_button.gd" id="2_stem2"]
+
+[node name="UpgradeButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_b7yti")
+script = ExtResource("2_stem2")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

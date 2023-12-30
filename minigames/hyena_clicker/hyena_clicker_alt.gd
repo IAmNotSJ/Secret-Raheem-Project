@@ -1,17 +1,41 @@
 extends Node2D
 
+@onready var mouseWindow = $MouseWindow
+
 @onready var hyena = $Hyena
 @onready var counter = $"Hyena Counter"
 @onready var cpsCounter = $"CPS Counter"
+@onready var hpsCounter = $"HPS Counter"
 @onready var shopButton = $ShopButton
 @onready var shopMenu = $ShopMenu
+@onready var upgradeContainer = $"ShopMenu/Upgrade Container/VBoxContainer"
 
-@onready var netButton = $"ShopMenu/Net Button"
-@onready var trapButton = $"ShopMenu/Trap Button"
-@onready var droneButton = $"ShopMenu/Drone Button"
-@onready var meatButton = $"ShopMenu/Meat Button"
+@onready var snackButton = $"ShopMenu/IdleContainer/VBoxContainer/Snack Button"
+@onready var netButton = $"ShopMenu/IdleContainer/VBoxContainer/Net Button"
+@onready var trapButton = $"ShopMenu/IdleContainer/VBoxContainer/Trap Button"
+@onready var droneButton = $"ShopMenu/IdleContainer/VBoxContainer/Drone Button"
+@onready var meatButton = $"ShopMenu/IdleContainer/VBoxContainer/Meat Button"
+@onready var enclosureButton = $"ShopMenu/IdleContainer/VBoxContainer/Enclosure Button"
+@onready var zooButton = $"ShopMenu/IdleContainer/VBoxContainer/Zoo Button"
+@onready var sanctuaryButton = $"ShopMenu/IdleContainer/VBoxContainer/Sanctuary Button"
 
 @onready var musicPlayer = $Music
+
+var curClick:int = 0
+@onready var clickUpgradePaths = [
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Novice",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Beginner",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Casual",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Proficient",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Expert",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena Master",
+	$"ShopMenu/Upgrade Container/VBoxContainer/Hyena God"
+]
+
+var snackUpgrades:Dictionary = {
+	"Natural Ingredients": false,
+	"Field Testing": false,
+}
 
 var counterScene = preload("res://minigames/hyena_clicker/Counter.tscn")
 
@@ -26,12 +50,23 @@ var can_click:bool = false
 var hyena_rotation:int = 8
 
 var hyenas:Big = Big.new(0)
-var nets:int = 0
+
+var snacks:int = 0
 var traps:int = 0
 var drones:int = 0
-var meat:int = 0
+var enclosures:int = 0
+var zoos:int = 0
+var sanctuaries:int = 0
 
+var nets:int = 0
+var meat:int = 0
+var encyclopedias:int = 0 
+
+var HPS:Big = Big.new(0)
+
+const MAX_IDLE:int = 1
 var idle_timer:float = 3
+var idle_loop:int = 1
 
 const maxCPSTimer = 2
 var cpsTimer = maxCPSTimer
@@ -57,8 +92,13 @@ func _ready():
 		play_random_song()
 	shopMenu.visible = false
 	
+	for upgrade in upgradeContainer.get_children():
+		upgrade.pressed.connect(on_upgrade_pressed.bind(upgrade))
+		upgrade.visible = false
+	
 	update_counter()
 	update_yena()
+	check_upgrade_availabiliy()
 	get_tree().call_group("hyena buttons", "update_price")
 
 func _process(delta):
@@ -80,13 +120,14 @@ func _process(delta):
 	hyena.rotation_degrees += hyena_rotation * delta
 	hyena.scale = hyena.scale.lerp(Vector2(1, 1), delta * 5)
 	
-	if (traps > 0):
-		idle_timer -= delta * traps
-		#print("TIMER: " + str(idle_timer))
-		if idle_timer <= 0:
-			idle_timer = 3
-			add_hyenas(false)
-			
+	idle_timer -= delta
+	#print("TIMER: " + str(idle_timer))
+	if idle_timer <= 0:
+		idle_timer = MAX_IDLE
+		add_hyenas(false)
+		idle_loop += 1
+		if idle_loop > 10:
+			idle_loop = 1
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") && can_click:
@@ -96,10 +137,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func get_CPS(clicks):
 	var result:float = clicks / maxCPSTimer
-	$"CPS Counter".text = str(result) + " CLICKS PER SECOND"
+	cpsCounter.text = str(result) + " CLICKS PER SECOND"
+
+func update_HPS():
+	hpsCounter.text = HPS.toString() + " HYENAS PER SECOND"
 
 func click():
 	add_hyenas(true)
+	$Click.play()
 	hyena.scale = Vector2(1.1, 1.1)
 	cpsData += 1
 	
@@ -148,14 +193,19 @@ func hyenaInRange(val1:int, val2:int):
 		return false
 
 func hyena_calculation():
-	var hyena_num:Big = Big.new(100)
-	if (nets != 0):
-		hyena_num.plus(nets)
-	if (meat != 0):
-		hyena_num.plus(meat * 5)
+	var hyena_num:Big = Big.new(1)
+	if curClick > 0:
+		hyena_num.multiply(2 * (curClick))
 	return hyena_num
+
 func idle_calculation():
-	var hyena_num:Big = Big.new(1 * (drones + 1))
+	var hyena_num:Big = Big.new(0)
+	if idle_loop == 10:
+		hyena_num.plus(snacks)
+	hyena_num.plus(traps)
+	hyena_num.plus(nets * 3)
+	hyena_num.plus(drones * 7)
+	hyena_num.plus(meat * 12)
 	return hyena_num
 
 func spawn_easter_egg():
@@ -175,14 +225,20 @@ func _on_hyena_mouse_exited():
 
 func save():
 	var hyenaString = hyenas.toString()
+	var snackString = snackButton.bigPrice.toString()
 	var netString = netButton.bigPrice.toString()
 	var trapString = trapButton.bigPrice.toString()
 	var droneString = droneButton.bigPrice.toString()
 	var meatString = meatButton.bigPrice.toString()
+	var enclosureString = enclosureButton.bigPrice.toString()
+	var zooString = zooButton.bigPrice.toString()
+	var sanctuaryString = sanctuaryButton.bigPrice.toString()
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data:Dictionary = {
 		"FirstTime": first_opened,
 		"Hyenas": hyenaString,
+		"Snacks": snacks,
+		"Snack Price": snackString,
 		"Nets": nets,
 		"Net Price": netString,
 		"Traps": traps,
@@ -191,6 +247,12 @@ func save():
 		"Drone Price": droneString,
 		"Meat": meat,
 		"Meat Price": meatString,
+		"Enclosures": enclosures,
+		"Enclosure Price": enclosureString,
+		"Zoos": zoos,
+		"Zoo Price": zooString,
+		"Sanctuaries": sanctuaries,
+		"Sanctuary Price": sanctuaryString,
 	}
 	var jstr = JSON.stringify(data)
 	
@@ -210,6 +272,8 @@ func load_save():
 			if current_line:
 				first_opened = current_line["FirstTime"]
 				hyenas = Big.new(current_line["Hyenas"])
+				snacks = current_line["Snacks"]
+				snackButton.bigPrice = Big.new(current_line["Snack Price"])
 				nets = current_line["Nets"]
 				netButton.bigPrice = Big.new(current_line["Net Price"])
 				traps = current_line["Traps"]
@@ -218,6 +282,17 @@ func load_save():
 				droneButton.bigPrice = Big.new(current_line["Drone Price"])
 				meat = current_line["Meat"]
 				meatButton.bigPrice = Big.new(current_line["Meat Price"])
+				enclosures = current_line["Enclosures"]
+				enclosureButton.bigPrice = Big.new(current_line["Enclosure Price"])
+				zoos = current_line["Zoos"]
+				zooButton.bigPrice = Big.new(current_line["Zoo Price"])
+				sanctuaries = current_line["Sanctuaries"]
+				sanctuaryButton.bigPrice = Big.new(current_line["Sanctuary Price"])
+				#upgrades = current_line["Upgrades"]
+	HPS.plus(snacks * 0.1)
+	HPS.plus(traps * 1)
+	HPS.plus(meat * 10)
+	update_HPS()
 
 func _on_shop_button_pressed():
 	print('whar')
@@ -231,20 +306,41 @@ func on_item_button_clicked(button):
 	if hyenas.isLargerThanOrEqualTo(button.bigPrice):
 		remove_hyenas(button.bigPrice)
 		button.multiply_price(button.price_multiplier)
-		print('net cost:' + button.bigPrice.toString())
 		button.update_price()
 		
 		$KaChing.play()
 		
 		match (button.item):
+			"HYENA SNACK":
+				snacks += 1
+				HPS.plus(0.1)
 			"HYENA NET":
 				nets += 1
+				HPS.plus(1)
 			"HYENA TRAP":
 				traps += 1
 			"HYENA DRONE":
 				drones += 1
 			"HYENA MEAT":
 				meat += 1
+				HPS.plus(10)
+		update_HPS()
+func on_upgrade_pressed(button):
+	if hyenas.isLargerThanOrEqualTo(button.bigPrice):
+		remove_hyenas(button.bigPrice)
+		match button.line:
+			"Click":
+				curClick += 1
+		check_upgrade_availabiliy()
+		
+		$KaChing.play()
+
+func check_upgrade_availabiliy():
+	for i in clickUpgradePaths.size():
+		if i == curClick:
+			clickUpgradePaths[i].visible = true
+		else:
+			clickUpgradePaths[i].visible = false
 
 func play_random_song():
 	trackList.shuffle()

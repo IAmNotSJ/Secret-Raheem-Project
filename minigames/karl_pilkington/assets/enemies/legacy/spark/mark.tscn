@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpnrer06ix504"]
+
+[ext_resource type="Texture2D" uid="uid://rmus384v7iuq" path="res://minigames/karl_pilkington/assets/enemies/legacy/spark/mark.png" id="1_qqi8m"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/spark/mark.gd" id="2_0u16w"]
+[ext_resource type="Texture2D" uid="uid://bxqoa38gqynwb" path="res://minigames/karl_pilkington/assets/enemies/legacy/spark/lightning.png" id="3_5yqlx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p502"]
+radius = 6.66667
+height = 35.3333
+
+[sub_resource type="Animation" id="Animation_pcrva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_014rq"]
+resource_name = "norm"
+length = 0.250004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0i3vs"]
+_data = {
+"RESET": SubResource("Animation_pcrva"),
+"norm": SubResource("Animation_014rq")
+}
+
+[sub_resource type="Animation" id="Animation_kex8a"]
+resource_name = "strike"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lightning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lightning:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_medee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lightning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Lightning:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1muyi"]
+_data = {
+"RESET": SubResource("Animation_medee"),
+"strike": SubResource("Animation_kex8a")
+}
+
+[node name="Mark" type="Sprite2D"]
+z_index = -1
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("1_qqi8m")
+hframes = 3
+script = ExtResource("2_0u16w")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6p502")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0i3vs")
+}
+autoplay = "norm"
+
+[node name="Lightning" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_5yqlx")
+offset = Vector2(0, -90)
+hframes = 4
+
+[node name="LightningPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1muyi")
+}

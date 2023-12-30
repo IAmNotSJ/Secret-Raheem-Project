@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cfhlqxfmnum6b"]
+[gd_scene load_steps=34 format=3 uid="uid://cfhlqxfmnum6b"]
 
 [ext_resource type="Script" path="res://minigames/hyena_clicker/hyena_clicker_alt.gd" id="1_u7ey2"]
 [ext_resource type="Texture2D" uid="uid://b3bu8cjwnvxg4" path="res://minigames/hyena_clicker/assets/bg.png" id="2_2fknm"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://chq8yfe8r8qbq" path="res://minigames/hyena_clicker/assets/buttons/shop.png" id="5_bg0w1"]
 [ext_resource type="PackedScene" uid="uid://cj6q6oggoibr8" path="res://minigames/hyena_clicker/upgrade_button.tscn" id="6_8cn6s"]
 [ext_resource type="Texture2D" uid="uid://bvtuobstgk7nb" path="res://minigames/hyena_clicker/assets/the grhgh.png" id="6_ynl5j"]
-[ext_resource type="Texture2D" uid="uid://dj4tcyjoivygh" path="res://minigames/hyena_clicker/assets/upgraeds/crazy.png" id="7_7af0x"]
 [ext_resource type="Texture2D" uid="uid://cyxybltj4ln1h" path="res://minigames/hyena_clicker/assets/buttons/shop_selected.png" id="7_75pcy"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="8_lw0ot"]
 [ext_resource type="Texture2D" uid="uid://d2dpkmakgcty4" path="res://minigames/hyena_clicker/assets/the creature.png" id="10_qah46"]
@@ -390,7 +389,7 @@ A delicious treat for all hyenas of the world! This will be the first in many’
 
 [node name="Trap Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
-price = 150
+price = 500
 price_multiplier = 1.5
 item = "HYENA TRAP"
 description = "Traps [b]1[/b] Hyena Per Second
@@ -409,7 +408,7 @@ Ah, the best part of any greater hyena catcher, trusty elbow grease! You must wo
 
 [node name="Drone Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
-price = 1150
+price = 1500
 price_multiplier = 1.5
 item = "HYENA DRONE"
 description = "Beckons [b]7[/b] Hyenas Per Second
@@ -461,61 +460,39 @@ layout_direction = 3
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Hyena Novice" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+[node name="UpgradeButton" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
 layout_mode = 2
 upgrade = "Hyena Novice"
 description = "[b]Doubles Hyenas Per Click[/b]
 
 Ah! It truly is good to start your journey! I do remember my first time. Many trials and tribulations await you on your quest to become The Ultimate Hyena Fan, but with enough dedication, you, too, can succeed. 
 [i]And perhaps rise to the top[/i]"
-price = "150"
-line = "Click"
-texture = ExtResource("7_7af0x")
 
-[node name="Hyena Beginner" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena Beginner"
-price = "1000"
-stage = 1
-line = "Click"
-
-[node name="Hyena Casual" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena Casual"
-stage = 2
-line = "Click"
-
-[node name="Hyena Proficient" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena Proficient"
-stage = 3
-line = "Click"
-
-[node name="Hyena Expert" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena Expert"
-stage = 4
-line = "Click"
-
-[node name="Hyena Master" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena Master"
-stage = 5
-line = "Click"
-
-[node name="Hyena God" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
-layout_mode = 2
-upgrade = "Hyena God"
-stage = 6
-line = "Click"
-
-[node name="Natural Ingredients" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+[node name="UpgradeButton2" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
 layout_mode = 2
 
-[node name="Field Testing" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+[node name="UpgradeButton3" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
 layout_mode = 2
 
-[node name="Delicious Additives" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+[node name="UpgradeButton4" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton5" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton6" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton7" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton8" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton9" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
+layout_mode = 2
+
+[node name="UpgradeButton10" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]
 layout_mode = 2
 
 [node name="UpgradeButton11" parent="ShopMenu/Upgrade Container/VBoxContainer" instance=ExtResource("6_8cn6s")]

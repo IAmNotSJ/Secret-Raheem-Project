@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ok505jvvjii"
-path="res://.godot/imported/alloy.png-bd066f1ac50385b5feccf093bc089e25.ctex"
+uid="uid://de6503ajp5rhn"
+path="res://.godot/imported/mouse_window.png-8f13d6613b01f54c7fbce78e0cfc5cc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/karl_pilkington/assets/enemies/legacy/sprites/alloy.png"
-dest_files=["res://.godot/imported/alloy.png-bd066f1ac50385b5feccf093bc089e25.ctex"]
+source_file="res://minigames/hyena_clicker/assets/mouse_window.png"
+dest_files=["res://.godot/imported/mouse_window.png-8f13d6613b01f54c7fbce78e0cfc5cc7.ctex"]
 
 [params]
 

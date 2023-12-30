@@ -136,4 +136,4 @@ libraries = {
 }
 autoplay = "comein"
 
-[connection signal="area_entered" from="Fire/Area2D" to="Fire" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Fire/Area2D" to="." method="_on_area_2d_area_entered"]

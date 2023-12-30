@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdnle58xygrdb"]
+[gd_scene load_steps=13 format=3 uid="uid://bdnle58xygrdb"]
 
 [ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/legacy/legacies.gd" id="1_nvv2b"]
 [ext_resource type="PackedScene" uid="uid://wkkfcjlxycnh" path="res://minigames/karl_pilkington/assets/enemies/legacy/sand/sand.tscn" id="2_axdr4"]
@@ -6,16 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://bmywaef2ljfmv" path="res://minigames/karl_pilkington/assets/enemies/legacy/wheel/wheel.tscn" id="3_76wmv"]
 [ext_resource type="PackedScene" uid="uid://c1sv0dgi5hdm5" path="res://minigames/karl_pilkington/assets/enemies/legacy/block/block.tscn" id="4_bmsmb"]
 [ext_resource type="PackedScene" uid="uid://b3vyi7qoq7iy6" path="res://minigames/karl_pilkington/assets/enemies/legacy/flame/flame.tscn" id="5_45vkh"]
+[ext_resource type="PackedScene" uid="uid://cdssp6j1wnw4q" path="res://minigames/karl_pilkington/assets/enemies/legacy/scale/scale.tscn" id="7_e3t5l"]
+[ext_resource type="PackedScene" uid="uid://c2mxq47sqjdqx" path="res://minigames/karl_pilkington/assets/enemies/legacy/pipe/pipe.tscn" id="8_7s8ip"]
+[ext_resource type="PackedScene" uid="uid://ds31ydc02yykh" path="res://minigames/karl_pilkington/assets/enemies/legacy/spark/spark.tscn" id="9_grr6f"]
+[ext_resource type="PackedScene" uid="uid://bk2yyyrjb8pul" path="res://minigames/karl_pilkington/assets/enemies/legacy/alloy/alloy.tscn" id="10_68vqj"]
+[ext_resource type="PackedScene" uid="uid://sqrbp0w5778c" path="res://minigames/karl_pilkington/assets/enemies/legacy/blade/blade.tscn" id="11_4a1sf"]
+[ext_resource type="PackedScene" uid="uid://bqabgqcksv660" path="res://minigames/karl_pilkington/assets/enemies/legacy/gas/gas.tscn" id="12_fegwr"]
 
 [node name="Lazy League" type="Node2D"]
 script = ExtResource("1_nvv2b")
 song = ExtResource("2_vliu7")
 
 [node name="Sand" parent="." instance=ExtResource("2_axdr4")]
-position = Vector2(-83, 128)
+position = Vector2(696, -90)
 
 [node name="Wheel" parent="." instance=ExtResource("3_76wmv")]
-position = Vector2(1404, 296)
+position = Vector2(1380, 533)
 
 [node name="Block" parent="." instance=ExtResource("4_bmsmb")]
 position = Vector2(-85, 776)
@@ -23,3 +29,19 @@ health = 10
 
 [node name="Flame" parent="." instance=ExtResource("5_45vkh")]
 position = Vector2(640, 870)
+
+[node name="Scale" parent="." instance=ExtResource("7_e3t5l")]
+
+[node name="Pipe" parent="." instance=ExtResource("8_7s8ip")]
+
+[node name="Spark" parent="." instance=ExtResource("9_grr6f")]
+position = Vector2(1409, 811)
+
+[node name="Alloy" parent="." instance=ExtResource("10_68vqj")]
+position = Vector2(-58, 348)
+
+[node name="Blade" parent="." instance=ExtResource("11_4a1sf")]
+position = Vector2(1390, 345)
+
+[node name="Gas" parent="." instance=ExtResource("12_fegwr")]
+position = Vector2(-63, -92)

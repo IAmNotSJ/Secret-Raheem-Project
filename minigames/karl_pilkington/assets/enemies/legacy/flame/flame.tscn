@@ -55,7 +55,7 @@ _data = {
 
 [node name="Flame" type="CharacterBody2D"]
 collision_layer = 16
-collision_mask = 20
+collision_mask = 4
 script = ExtResource("1_qav1g")
 SPEED = 250
 eyeradius = 5

@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name BasicBullet extends Sprite2D
 
 var SPEED = 400
 

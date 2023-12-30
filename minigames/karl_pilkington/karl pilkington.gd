@@ -8,7 +8,7 @@ extends Node2D
 @onready var chefScene = preload("res://minigames/karl_pilkington/assets/enemies/the chef/the chef.tscn")
 @onready var legacyScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/legacies.tscn")
 
-@onready var enemyArray = [cleftScene, chefScene, legacyScene]
+@onready var enemyArray = [legacyScene]
 
 const max_enemy_spawn = 7
 var enemy_spawn_timer = max_enemy_spawn
@@ -16,17 +16,23 @@ var enemy_spawn_timer = max_enemy_spawn
 var rng = RandomNumberGenerator.new()
 var curEnemy
 
+var boosted = false
+
 func _ready():
 	update_health()
 	music.play()
 	spawn_enemy()
+	
+	while is_instance_valid(curEnemy):
+		await curEnemy.died
+		$EffectsPlayer.play('flash')
+		music.stop()
 
 
 func _process(delta):
 	if curEnemy == null:
 		enemy_spawn_timer -= delta
 		if enemy_spawn_timer <= 0:
-			$EffectsPlayer.play('flash')
 			spawn_enemy()
 func spawn_enemy(path = -1, erase:bool = true):
 	if path == -1:
@@ -49,6 +55,10 @@ func _on_pilkington_hurt():
 func changeMusic(daMusic):
 	music.stream = daMusic
 	music.play()
+
+func speedMusic(speed:float):
+	var tween = get_tree().create_tween()
+	tween.tween_property(music, "pitch_scale", speed, 0.2)
 
 func _on_audio_stream_player_finished():
 	music.play()
