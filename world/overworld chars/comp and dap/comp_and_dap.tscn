@@ -55,7 +55,7 @@ texture = ExtResource("1_enxk5")
 offset = Vector2(0, 10)
 hframes = 2
 script = ExtResource("2_4hfw1")
-interaction_dialogue = "res://dialogue/comp and dap/comp and dap.dialogue"
+interaction_dialogue = "res://dialogue/scripts/comp and dap.dialogue"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

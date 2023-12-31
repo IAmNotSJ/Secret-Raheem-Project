@@ -53,7 +53,7 @@ func _physics_process(delta):
 		timer_disappear_timer -= delta
 		if timer_disappear_timer <= 0:
 			$TextureProgressBar.modulate.a -= delta
-		if Input.is_action_just_pressed('click'):
+		if Input.is_action_pressed('click'):
 			timer_disappear_timer = max_timer_disappear_timer
 			$TextureProgressBar.modulate.a = 1
 			shoot()

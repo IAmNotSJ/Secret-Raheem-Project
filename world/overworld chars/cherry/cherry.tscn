@@ -11,7 +11,7 @@ height = 142.0
 texture = ExtResource("1_870gj")
 offset = Vector2(0, -80.135)
 script = ExtResource("2_7we26")
-interaction_dialogue = "res://dialogue/cherry/dialogue.dialogue"
+interaction_dialogue = "res://dialogue/scripts/cherry.dialogue"
 
 [node name="Interaction" type="Area2D" parent="."]
 collision_layer = 2

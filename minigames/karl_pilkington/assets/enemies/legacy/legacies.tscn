@@ -44,4 +44,4 @@ position = Vector2(-58, 348)
 position = Vector2(1390, 345)
 
 [node name="Gas" parent="." instance=ExtResource("12_fegwr")]
-position = Vector2(-63, -92)
+position = Vector2(-102, -130)

@@ -56,7 +56,7 @@ offset = Vector2(0, -97.045)
 hframes = 2
 script = ExtResource("2_o3ohy")
 character_name = "fountain"
-interaction_dialogue = "res://dialogue/fountain/fountain.dialogue"
+interaction_dialogue = "res://dialogue/scripts/fountain.dialogue"
 
 [node name="Dialogue Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -100)

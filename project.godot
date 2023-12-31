@@ -23,7 +23,6 @@ config/size/window_height_override=0
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Transition="*res://transition/transition.tscn"
 global="*res://global.tscn"
-DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/discord_autoload.gd"
 
 [debug]
 
@@ -114,7 +113,7 @@ scroll_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/sj/dialogue.dialogue", "res://dialogue/fountain/fountain.dialogue", "res://dialogue/cherry/dialogue.dialogue", "res://dialogue/comp and dap/comp and dap.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/scripts/fountain.dialogue", "res://dialogue/scripts/comp and dap.dialogue", "res://dialogue/scripts/cherry.dialogue", "res://dialogue/scripts/sj.dialogue")
 
 [layer_names]
 

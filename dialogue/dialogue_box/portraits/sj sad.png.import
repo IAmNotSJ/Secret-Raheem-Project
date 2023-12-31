@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7lhhangnkb48"
-path="res://.godot/imported/sj idle.png-dcfc8e65cffed1d33180142fc741586e.ctex"
+uid="uid://brkcxrfdujgj0"
+path="res://.godot/imported/sj sad.png-9d3c16e275015fa7d7c64bbc095b645e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/dialogue_box/portraits/sj/sj idle.png"
-dest_files=["res://.godot/imported/sj idle.png-dcfc8e65cffed1d33180142fc741586e.ctex"]
+source_file="res://dialogue/dialogue_box/portraits/sj sad.png"
+dest_files=["res://.godot/imported/sj sad.png-9d3c16e275015fa7d7c64bbc095b645e.ctex"]
 
 [params]
 

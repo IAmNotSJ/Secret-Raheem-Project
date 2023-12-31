@@ -19,10 +19,11 @@ func _process(delta):
 
 func slice():
 	print('le slice!')
-	var slice = sliceScene.instantiate()
-	slice.global_position.x = target.global_position.x
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", slice)
+	var leSlice = sliceScene.instantiate()
+	leSlice.global_position.x = target.global_position.x
+	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", leSlice)
 
 
 func _on_area_2d_area_entered(_area):
 	hurt()
+	$AnimationPlayer.play('hit')

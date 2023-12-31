@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc735mkr2qpud"
-path="res://.godot/imported/wibr idle.png-c1d8bd3acef90a4b96dae0f838c438b9.ctex"
+uid="uid://b0hxq17bri1w2"
+path="res://.godot/imported/gas_bullet.png-c9357dfb9777efc976fbbc8c5feea7c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/dialogue_box/portraits/wibr/wibr idle.png"
-dest_files=["res://.godot/imported/wibr idle.png-c1d8bd3acef90a4b96dae0f838c438b9.ctex"]
+source_file="res://minigames/karl_pilkington/assets/enemies/legacy/gas/gas_bullet.png"
+dest_files=["res://.godot/imported/gas_bullet.png-c9357dfb9777efc976fbbc8c5feea7c7.ctex"]
 
 [params]
 

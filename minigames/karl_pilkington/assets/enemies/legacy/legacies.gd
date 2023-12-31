@@ -10,13 +10,14 @@ extends Node2D
 @onready var spark = $Spark
 @onready var alloy = $Alloy
 @onready var blade = $Blade
+@onready var gas = $Gas
 var target
 
 var rng = RandomNumberGenerator.new()
 
 signal died
 
-@onready var members = [wheel, block, flame, sand, scaleLol, pipe, spark, alloy, blade]
+@onready var members = [wheel, block, flame, sand, scaleLol, pipe, spark, alloy, blade, gas]
 
 var membersAlive = []
 func _ready():
@@ -31,6 +32,7 @@ func _ready():
 	spark.died.connect(on_legacy_died.bind(spark))
 	alloy.died.connect(on_legacy_died.bind(alloy))
 	blade.died.connect(on_legacy_died.bind(blade))
+	gas.died.connect(on_legacy_died.bind(gas))
 
 func spawn_new_legacy():
 	members.shuffle()

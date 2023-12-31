@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw3tivmwapih3"
-path="res://.godot/imported/neutral.png-5f4e8ff4ce8d480819e17747515b6e1c.ctex"
+uid="uid://bcs4k0f6aiq7a"
+path="res://.godot/imported/sj neutral.png-b295390482b0b6a809a97c09dbddf71f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/wibr/portrait/neutral.png"
-dest_files=["res://.godot/imported/neutral.png-5f4e8ff4ce8d480819e17747515b6e1c.ctex"]
+source_file="res://dialogue/dialogue_box/portraits/sj neutral.png"
+dest_files=["res://.godot/imported/sj neutral.png-b295390482b0b6a809a97c09dbddf71f.ctex"]
 
 [params]
 

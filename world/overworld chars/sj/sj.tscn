@@ -52,7 +52,7 @@ offset = Vector2(0, -20.055)
 hframes = 2
 script = ExtResource("2_js1gb")
 character_name = "sj"
-interaction_dialogue = "res://dialogue/sj/dialogue.dialogue"
+interaction_dialogue = "res://dialogue/scripts/sj.dialogue"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
