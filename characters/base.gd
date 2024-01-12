@@ -9,6 +9,7 @@ class_name CharacterBase extends CharacterBody2D
 var pause_inputs:bool = false
 
 var characters_in_range = []
+var interaction_in_range = []
 
 var input_vector:Vector2 = Vector2.ZERO
 
@@ -31,7 +32,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("fish"):
 		Transition.change_scene_to_file("res://minigames/fishing/fishing_minigame.tscn")
 	if Input.is_action_just_pressed("karl"):
-		Transition.change_scene_to_file("res://minigames/karl_pilkington/karl pilkington.tscn")
+		Transition.change_scene_to_file("res://minigames/karl_pilkington/pilkington menu.tscn")
 
 func _physics_process(_delta):
 	if input_vector != Vector2.ZERO:
@@ -51,6 +52,7 @@ func stop_movement():
 	input_vector = Vector2.ZERO
 
 func _on_interaction_area_entered(area):
+	print("AAAAAAAA")
 	characters_in_range.append(area.owner)
 
 

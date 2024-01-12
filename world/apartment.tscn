@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://blo7dyahtbbgk"]
+
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://characters/wibr/wibr.tscn" id="1_ch1n1"]
+[ext_resource type="PackedScene" uid="uid://bx22uw381rhu0" path="res://world/apartment_props.tscn" id="2_guycm"]
+
+[node name="Apartment" type="Node2D"]
+y_sort_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Wibr" parent="." instance=ExtResource("1_ch1n1")]
+position = Vector2(640, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Wibr"]
+
+[node name="ColorRect" type="ColorRect" parent="Wibr/Camera2D"]
+z_index = -1
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Apartment Props" parent="." instance=ExtResource("2_guycm")]

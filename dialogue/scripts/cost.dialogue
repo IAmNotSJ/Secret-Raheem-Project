@@ -1,0 +1,23 @@
+~ start
+
+if global.characterInteractions["Cost"] == 0
+	wibr: .
+	cost: .
+	wibr: .
+	cost: Hi
+	wibr: Where the fuck am i???
+	cost: This is my apartment...
+	wibr: This place reminds me of something...
+	wibr: But I can't put my finger on it...
+	cost: LOL
+elif global.characterInteractions["Cost"] == 1
+	cost: Oh hi
+	wibr: ????
+elif global.characterInteractions["Cost"] == 2
+	cost: My TV is a few more yards away
+elif global.characterInteractions["Cost"] > 2:
+	cost: You'll find something soon.
+	cost: maybe
+
+do global.add_interaction("Cost")
+=> END

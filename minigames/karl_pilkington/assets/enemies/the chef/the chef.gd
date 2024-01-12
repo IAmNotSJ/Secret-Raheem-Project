@@ -9,8 +9,6 @@ extends EnemyBase
 const max_teleport_timer = 3
 const max_attack_timer = 5
 
-var rng = RandomNumberGenerator.new()
-
 var teleport_timer = 0.1
 
 var phase:int = 1
@@ -38,11 +36,11 @@ func teleport():
 	position = Vector2(rng.randi_range(100, 1100), rng.randi_range(50, 600))
 	teleport_timer = max_teleport_timer
 
-func hurt():
+func hurt(damage):
 	$AnimationPlayer.play('hit')
 	spawn_kraft(5)
 	teleport_timer = .25
-	super()
+	super(damage)
 
 func spawn_kraft(division:int = 5):
 	var offset = rng.randf_range(0,90)
@@ -60,6 +58,3 @@ func spawn_mario():
 	var mario = marioScene.instantiate()
 	killOnDeath.append(mario)
 	get_tree().get_root().get_node("KarlPilkington").call_deferred("add_child", mario)
-
-func _on_hurtbox_area_entered(_area):
-	hurt()

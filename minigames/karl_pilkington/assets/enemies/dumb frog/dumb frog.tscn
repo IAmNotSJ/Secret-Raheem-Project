@@ -327,13 +327,13 @@ _data = {
 "intro": SubResource("Animation_odgcy")
 }
 
-[node name="Cleft" type="CharacterBody2D"]
+[node name="Cleft" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 position = Vector2(638, -103)
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_yxiy0")
-health = 20
 song = ExtResource("2_kraif")
+hitbox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 3.40132)
@@ -347,7 +347,7 @@ scale = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_r2hb1")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 8
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hurtbox"]
@@ -368,5 +368,3 @@ libraries = {
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(26, -65)
-
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_area_2d_area_entered"]

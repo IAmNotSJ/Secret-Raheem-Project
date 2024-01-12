@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://i5qncavij7f5"]
+
+[ext_resource type="Texture2D" uid="uid://bauibm574bx4b" path="res://minigames/karl_pilkington/menu/bg.png" id="1_wnouu"]
+[ext_resource type="Script" path="res://useful shit/parallax_tile.gd" id="2_561n8"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 1480.0
+offset_bottom = 885.0
+texture = ExtResource("1_wnouu")
+stretch_mode = 1
+script = ExtResource("2_561n8")

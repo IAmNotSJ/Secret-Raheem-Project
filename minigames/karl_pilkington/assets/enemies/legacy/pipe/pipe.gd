@@ -19,7 +19,6 @@ func die():
 	mainScene.speedMusic(1)
 	super()
 
-
-func _on_area_2d_area_entered(_area):
-	$AnimationPlayer.play('hit')
-	hurt()
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)

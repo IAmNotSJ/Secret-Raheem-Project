@@ -1,0 +1,15 @@
+~ start
+if global.characterInteractions["Atlas Slime"] == 0
+	slime: Nono, his hair isn't right!
+	slime: This is the part where he points at the prosecution!
+	atlas: I don't know... This story seems a bit long..
+	atlas: I have to get back to drawing my comic! About Raheem!
+if global.characterInteractions["Atlas Slime"] == 1
+	atlas: So then, it cuts away to composty worshipping a shrine of gummy bear...
+if global.characterInteractions["Atlas Slime"] == 2
+	slime: And it turns out, the damage to the book WASN'T from a bite...
+if global.characterInteractions["Atlas Slime"] > 2
+	dile: Hey guys do you want to read Total Pokemon Island
+
+do global.add_interaction("Atlas Slime")
+=> END

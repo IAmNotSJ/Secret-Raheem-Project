@@ -25,6 +25,6 @@ func spawn_bolt():
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", spark)
 
 
-func _on_hitbox_area_entered(_area):
-	hurt()
-	$AnimationPlayer.play('hit')
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)

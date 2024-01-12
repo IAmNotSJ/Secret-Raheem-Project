@@ -23,7 +23,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_m4lxa"]
-resource_name = "hurt"
+resource_name = "hit"
 length = 0.0833375
 step = 0.0416667
 tracks/0/type = "value"
@@ -42,7 +42,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2j6ke"]
 _data = {
 "RESET": SubResource("Animation_ap0fx"),
-"hurt": SubResource("Animation_m4lxa")
+"hit": SubResource("Animation_m4lxa")
 }
 
 [sub_resource type="Animation" id="Animation_dv6dm"]
@@ -84,13 +84,13 @@ _data = {
 "spin": SubResource("Animation_2e6kr")
 }
 
-[node name="Wheel" type="CharacterBody2D"]
+[node name="Wheel" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_yc7qg")
-health = 15
 SPEED = 500
 eyeradius = 5
+hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -135,5 +135,4 @@ libraries = {
 "": SubResource("AnimationLibrary_67uiq")
 }
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

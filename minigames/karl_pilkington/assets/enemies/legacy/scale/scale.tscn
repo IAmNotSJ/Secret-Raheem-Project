@@ -76,7 +76,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -88,7 +88,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -100,7 +100,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -141,7 +141,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -153,7 +153,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -194,7 +194,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -206,7 +206,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -218,7 +218,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -259,7 +259,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -271,7 +271,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
+tracks/3/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -283,7 +283,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CanvasGroup/ColorRect/Hitbox/CollisionShape2D:position")
+tracks/4/path = NodePath("CanvasGroup/ColorRect/Hurtbox/CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -301,9 +301,10 @@ _data = {
 "shoot": SubResource("Animation_3dx0y")
 }
 
-[node name="Scale" type="CharacterBody2D"]
+[node name="Scale" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 position = Vector2(0, 646)
 script = ExtResource("1_r4r4n")
+hitbox = NodePath("CanvasGroup/ColorRect/Hitbox")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 position = Vector2(1280, 0)
@@ -316,27 +317,27 @@ offset_right = 1346.0
 offset_bottom = 44.0
 color = Color(0.588235, 0.588235, 0.588235, 1)
 
-[node name="Hurtbox" type="Area2D" parent="CanvasGroup/ColorRect"]
+[node name="Hitbox" type="Area2D" parent="CanvasGroup/ColorRect"]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
 position = Vector2(24.5, 3.5)
 shape = SubResource("RectangleShape2D_4wq0u")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
 position = Vector2(-6, 1)
 shape = SubResource("RectangleShape2D_4cj2y")
 
-[node name="Hitbox" type="Area2D" parent="CanvasGroup/ColorRect"]
+[node name="Hurtbox" type="Area2D" parent="CanvasGroup/ColorRect"]
 collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
 position = Vector2(665.5, 3.5)
 shape = SubResource("RectangleShape2D_4wq0u")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hitbox"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasGroup/ColorRect/Hurtbox"]
 position = Vector2(-6, 1)
 shape = SubResource("RectangleShape2D_4cj2y")
 
@@ -359,4 +360,3 @@ libraries = {
 }
 
 [connection signal="area_entered" from="CanvasGroup/ColorRect/Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="CanvasGroup/ColorRect/Hitbox" to="." method="_on_hitbox_area_entered"]

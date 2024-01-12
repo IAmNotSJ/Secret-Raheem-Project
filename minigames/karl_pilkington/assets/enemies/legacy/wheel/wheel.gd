@@ -75,11 +75,9 @@ func _process(delta):
 					state = IDLE
 			
 
-func _on_hitbox_area_entered(_area):
-	if active:
-		hurt()
-		$EffectsPlayer.play('hurt')
-
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)
 
 func _on_hurtbox_area_entered(area):
 	area.owner.hit()

@@ -3,12 +3,15 @@ class_name LegacyMember extends CharacterBody2D
 signal died
 
 @onready var mainScene = get_tree().root.get_node("KarlPilkington")
+@onready var legacyScene = get_tree().root.get_node("KarlPilkington").get_node("Lazy League")
 
-@export var health = 20
+@export var health:float = 20
 @export var SPEED = 100
 @export var eyeradius = 4
 
 @export var ATTACK_TIMER = 3
+
+@export var hitbox:Area2D
 
 
 
@@ -21,6 +24,9 @@ var boosted:bool = false
 var active
 
 var target
+
+func _ready():
+	hitbox.area_entered.connect(self._on_hitbox_entered)
 
 func change_active():
 	if active:
@@ -39,8 +45,12 @@ func angleToTarget(daTarget, marker):
 	var angleTo = marker.transform.x.angle_to(direction)
 	return angleTo
 
-func hurt():
-	health -= 1
+func hurt(damage:float = 1):
+	if damage > health:
+		legacyScene.health -= health * 100
+	else:
+		legacyScene.health -= damage * 100
+	health -= damage
 	
 	if health <= 0:
 		die()
@@ -51,3 +61,6 @@ func die():
 
 func change_boost(val:bool):
 	boosted = val
+
+func _on_hitbox_entered(area):
+	hurt(area.owner.damage)

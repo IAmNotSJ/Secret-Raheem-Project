@@ -9,12 +9,12 @@ extends EnemyBase
 
 var shooting_timer
 var slime_timer
-var rng = RandomNumberGenerator.new()
 
 func _ready():
 	shooting_timer = rng.randf_range(5, 17)
 	slime_timer = rng.randf_range(2, 5)
 	gameAnims.play('intro')
+	super()
 
 func _process(delta):
 	shooting_timer -= delta
@@ -26,14 +26,10 @@ func _process(delta):
 		slime_timer = rng.randf_range(5, 9)
 		shoot_slime()
 
-func hurt():
+func hurt(damage):
 	$AnimationPlayer.play("hurt")
 	spawn_frog()
-	super()
-
-func _on_area_2d_area_entered(area):
-	area.owner.queue_free()
-	hurt()
+	super(damage)
 
 func die():
 	$AnimationPlayer.play("dead")

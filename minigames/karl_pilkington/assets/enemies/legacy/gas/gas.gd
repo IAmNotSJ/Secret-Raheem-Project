@@ -19,24 +19,29 @@ const max_shoot = 0.5
 var shoot_timer = max_shoot
 var shootAmnt = 2
 
+var firstSpawn = true
+
 func _ready():
 	posArray.shuffle()
+	super()
 func _process(delta):
 	if active:
 		look_at_target(target, pupil, marker)
 		
 		match tpState:
 			IDLE:
-				shoot_timer-= delta
-				if shoot_timer <= 0 and shootAmnt > 0:
-					shoot_timer = max_shoot
-					shoot()
+				if !firstSpawn:
+					shoot_timer-= delta
+					if shoot_timer <= 0 and shootAmnt > 0:
+						shoot_timer = max_shoot
+						shoot()
 			OUT:
 				modulate.a -= delta * 2.5
 			IN:
 				modulate.a += delta * 2.5
 				
 				if modulate.a >= 1:
+					firstSpawn = false
 					tpState = IDLE
 		
 		attackTimer -= delta
@@ -59,6 +64,6 @@ func shoot():
 	bullet.initialize(angleTo, gasTexture, 600)
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
 
-func _on_area_2d_area_entered(_area):
-	hurt()
-	$AnimationPlayer.play('hurt')
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)

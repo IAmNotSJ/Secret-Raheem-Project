@@ -1,0 +1,1150 @@
+[gd_scene load_steps=52 format=3 uid="uid://cfhlqxfmnum6b"]
+
+[ext_resource type="Script" path="res://minigames/hyena_clicker/hyena_clicker_alt.gd" id="1_u7ey2"]
+[ext_resource type="Texture2D" uid="uid://b3bu8cjwnvxg4" path="res://minigames/hyena_clicker/assets/bg.png" id="2_2fknm"]
+[ext_resource type="Texture2D" uid="uid://c5jhqsvm435tj" path="res://minigames/hyena_clicker/assets/hyenas/stage1.png" id="3_phvbr"]
+[ext_resource type="Texture2D" uid="uid://cvuur7cwuh158" path="res://minigames/hyena_clicker/assets/buttons/shop_bg.png" id="4_7n8bv"]
+[ext_resource type="PackedScene" uid="uid://b18kcqwgc04vf" path="res://minigames/hyena_clicker/shop_button.tscn" id="5_58qgn"]
+[ext_resource type="Texture2D" uid="uid://chq8yfe8r8qbq" path="res://minigames/hyena_clicker/assets/buttons/shop.png" id="5_bg0w1"]
+[ext_resource type="Texture2D" uid="uid://b341nea82ar5m" path="res://minigames/hyena_clicker/assets/businessman.png" id="5_gotn7"]
+[ext_resource type="Texture2D" uid="uid://cxlrasopiys77" path="res://minigames/hyena_clicker/assets/shop.png" id="6_6m1vr"]
+[ext_resource type="Texture2D" uid="uid://bvtuobstgk7nb" path="res://minigames/hyena_clicker/assets/the grhgh.png" id="6_ynl5j"]
+[ext_resource type="Texture2D" uid="uid://cyxybltj4ln1h" path="res://minigames/hyena_clicker/assets/buttons/shop_selected.png" id="7_75pcy"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="8_lw0ot"]
+[ext_resource type="Texture2D" uid="uid://d2dpkmakgcty4" path="res://minigames/hyena_clicker/assets/the creature.png" id="10_qah46"]
+[ext_resource type="Texture2D" uid="uid://bb6e4t60h2m32" path="res://minigames/hyena_clicker/assets/hyenas/stage2.png" id="11_0ubtd"]
+[ext_resource type="PackedScene" uid="uid://cc1so2qeimjbu" path="res://minigames/hyena_clicker/mouse_window.tscn" id="11_ta8ml"]
+[ext_resource type="Texture2D" uid="uid://bgogkqoselfkq" path="res://minigames/hyena_clicker/assets/hyenas/stage3.png" id="12_8ql1q"]
+[ext_resource type="Texture2D" uid="uid://b8udgr1igo75n" path="res://minigames/hyena_clicker/assets/buttons/mute_off.png" id="12_aqdff"]
+[ext_resource type="AudioStream" uid="uid://5n42ul18n0nv" path="res://minigames/hyena_clicker/sound effects/caching.ogg" id="12_xchj4"]
+[ext_resource type="Texture2D" uid="uid://ck20xafmvfefy" path="res://minigames/hyena_clicker/assets/buttons/mute_on.png" id="13_dg3lm"]
+[ext_resource type="Texture2D" uid="uid://bbdwkxfkutnto" path="res://minigames/hyena_clicker/assets/hyenas/stage4.png" id="13_foudm"]
+[ext_resource type="AudioStream" uid="uid://dh4emn4yqkasu" path="res://minigames/hyena_clicker/sound effects/click.ogg" id="15_34rvk"]
+[ext_resource type="AudioStream" uid="uid://bg8qxc7bgaeq0" path="res://minigames/hyena_clicker/sound effects/jumpscare.ogg" id="17_cpso8"]
+[ext_resource type="Texture2D" uid="uid://bpqvdpi2lu2g7" path="res://minigames/hyena_clicker/assets/hyenas/stage7.png" id="19_dnfxr"]
+[ext_resource type="Texture2D" uid="uid://b155du8yl5sra" path="res://minigames/hyena_clicker/assets/jumpscare.png" id="19_fm0yk"]
+[ext_resource type="Texture2D" uid="uid://divgpmlcd17c3" path="res://minigames/hyena_clicker/assets/hyenas/stage5.png" id="20_g3key"]
+[ext_resource type="Texture2D" uid="uid://xj0fvurau6a5" path="res://minigames/hyena_clicker/assets/hyenas/stage6.png" id="21_hfh45"]
+[ext_resource type="Texture2D" uid="uid://dw6avgmeqysxq" path="res://minigames/hyena_clicker/assets/hyenas/stage8.png" id="22_u5jli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mv6v6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np803"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02ruu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8e66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5c2w"]
+
+[sub_resource type="Theme" id="Theme_g462e"]
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_mv6v6")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_np803")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_02ruu")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_d8e66")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_j5c2w")
+
+[sub_resource type="Animation" id="Animation_lpgwb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(433, 395)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y0jc3"]
+resource_name = "bop"
+length = 0.708338
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.291667, 0.375, 0.458333, 0.541667, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(433, 391), Vector2(433, 392), Vector2(433, 395), Vector2(433, 394), Vector2(433, 391), Vector2(433, 393), Vector2(433, 396), Vector2(433, 395)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.375),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5kr5"]
+_data = {
+"RESET": SubResource("Animation_lpgwb"),
+"bop": SubResource("Animation_y0jc3")
+}
+
+[sub_resource type="GDScript" id="GDScript_kfqas"]
+
+[sub_resource type="Animation" id="Animation_2s6dx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Popup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(456, -92)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jumpscare:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_nkdv5"]
+resource_name = "creature_run"
+length = 0.666671
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TheCreature:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 30), Vector2(0, 0), Vector2(0, 25), Vector2(0, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TheCreature:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_7j0pk"]
+resource_name = "jumpscare"
+length = 0.0833375
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jumpscare:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_rd0qe"]
+resource_name = "popup"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Popup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(456, -92), Vector2(456, 36), Vector2(456, -92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r42ab"]
+_data = {
+"RESET": SubResource("Animation_2s6dx"),
+"creature_run": SubResource("Animation_nkdv5"),
+"jumpscare": SubResource("Animation_7j0pk"),
+"popup": SubResource("Animation_rd0qe")
+}
+
+[sub_resource type="Animation" id="Animation_hf81j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_phvbr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 344)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_82ktv"]
+resource_name = "stage 1"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_phvbr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 344)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_waatv"]
+resource_name = "stage 2"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_0ubtd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 373)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(465, 196)]
+}
+
+[sub_resource type="Animation" id="Animation_fx1c5"]
+resource_name = "stage 3"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_8ql1q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 373)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(454, 196)]
+}
+
+[sub_resource type="Animation" id="Animation_r0ftp"]
+resource_name = "stage 4"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_foudm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(387, 489)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(470, 133)]
+}
+
+[sub_resource type="Animation" id="Animation_722p8"]
+resource_name = "stage 5"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_g3key")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 344)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(437, 235)]
+}
+
+[sub_resource type="Animation" id="Animation_dfc8f"]
+resource_name = "stage 6"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_hfh45")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(442, 297)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(402, 263)]
+}
+
+[sub_resource type="Animation" id="Animation_pp1ew"]
+resource_name = "stage 7"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_dnfxr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(340, 525)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(461, 159)]
+}
+
+[sub_resource type="Animation" id="Animation_s74y6"]
+resource_name = "stage 8"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_u5jli")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(270, 434)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(501, 193)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkhf"]
+_data = {
+"RESET": SubResource("Animation_hf81j"),
+"stage 1": SubResource("Animation_82ktv"),
+"stage 2": SubResource("Animation_waatv"),
+"stage 3": SubResource("Animation_fx1c5"),
+"stage 4": SubResource("Animation_r0ftp"),
+"stage 5": SubResource("Animation_722p8"),
+"stage 6": SubResource("Animation_dfc8f"),
+"stage 7": SubResource("Animation_pp1ew"),
+"stage 8": SubResource("Animation_s74y6")
+}
+
+[node name="HyenaClicker" type="Node2D"]
+script = ExtResource("1_u7ey2")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("2_2fknm")
+centered = false
+
+[node name="Hyena" type="TextureRect" parent="."]
+offset_left = 419.0
+offset_top = 206.0
+offset_right = 867.0
+offset_bottom = 550.0
+texture = ExtResource("3_phvbr")
+
+[node name="ShopMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 191.0
+offset_top = 75.0
+offset_right = 1110.0
+offset_bottom = 606.0
+
+[node name="ShopBg" type="Sprite2D" parent="ShopMenu"]
+position = Vector2(442, 266)
+scale = Vector2(1, 0.8)
+texture = ExtResource("4_7n8bv")
+
+[node name="Businessman" type="Sprite2D" parent="ShopMenu"]
+position = Vector2(433, 395)
+scale = Vector2(1.08824, 1.08824)
+texture = ExtResource("5_gotn7")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShopMenu"]
+position = Vector2(435, 483)
+scale = Vector2(1.23905, 1.23905)
+texture = ExtResource("6_6m1vr")
+
+[node name="IdleContainer" type="ScrollContainer" parent="ShopMenu"]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 1.0
+offset_right = 301.0
+offset_bottom = 531.0
+theme = SubResource("Theme_g462e")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenu/IdleContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Gap" type="Control" parent="ShopMenu/IdleContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Snack Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "15"
+price_multiplier = 1.5
+item = "HYENA SNACK"
+description = "Lures [b]0.1[/b] Hyenas Per Second 
+
+A delicious treat for all hyenas of the world! This will be the first in many’s journey to gather the beasts. Many have failed before. 
+[i]Do you have what it takes in order to obtain the folder? [/i]"
+
+[node name="Trap Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "150"
+price_multiplier = 1.5
+item = "HYENA TRAP"
+description = "Traps [b]1[/b] Hyena Per Second
+
+Quite the trusty trap, but not very convincing. Hyenas are keen and smart creatures, filled with mysterious and wacky biological patterns. A simple device such as this will not do to reach for the top."
+
+[node name="Drone Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "1400"
+price_multiplier = 1.5
+item = "HYENA DRONE"
+description = "Beckons [b]7[/b] Hyenas Per Second
+
+It truly is sad, what sacrifices must be made in order to continue on, to grow further, bigger. The body of a once dominator of its food chain now on display to deceive more of its kind. But what they do not know is that this is all for the best.
+[i]Only you know best.[/i]"
+
+[node name="Enclosure Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "12000"
+price_multiplier = 1.5
+item = "HYENA ENCLOSURE"
+description = "Holds [b]54[/b] Hyenas Per Second
+
+It is a good effort, I suppose. To be truthful, these enclosures are not very spacious or well for the hyena’s in the long-run, and as such they do not attract many to live within them. Yet, if anything, it shows your dedication to care for these beasts beyond mere capture. They need you, as you need them. Within the concrete walls of this prison, your care lies.
+[i]Keep going.[/i]"
+
+[node name="Zoo Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "65600"
+price_multiplier = 1.5
+item = "HYENA ZOO"
+description = "Treats [b]94[/b] Hyenas Per Second
+
+A shining example of your pride for the beasts. A complete zoo dedicated to the animals’ likeness. Many hyenas are attracted to be treated by this zoo, as all of their needs will be met within the ability of their caretakers. Unlike before, the confines of these hyenas spans much farther out, and as such they are able to live much happier lives thanks to you. 
+[i]And you only.[/i]"
+
+[node name="Park Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "120000"
+price_multiplier = 1.5
+item = "HYENA PARK"
+description = "Displays [b]140[/b] Hyenas Per Second
+
+Your advances in hyena-related matters have only grown. Millions beckon to see your wonderful creatures. A park made to show off your very own animals, what a wonderful idea. Not many have the privilege to make it this far, consider yourself lucky.
+[i]Keep going.[/i] "
+
+[node name="Sanctuary Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "790000"
+price_multiplier = 1.5
+item = "HYENA SANCTUARY"
+
+[node name="Spell Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "1300000"
+price_multiplier = 1.5
+item = "HYENA SPELL"
+
+[node name="Rocket Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "6750000"
+price_multiplier = 1.5
+item = "HYENA ROCKET"
+
+[node name="Colony Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "13000000"
+price_multiplier = 1.5
+item = "HYENA COLONY"
+
+[node name="Portal Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "83000000"
+price_multiplier = 1.5
+item = "HYENA PORTAL"
+
+[node name="Vortex Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "130000000"
+price_multiplier = 1.5
+item = "HYENA VORTEX"
+
+[node name="Galaxy Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "890000000"
+price_multiplier = 1.5
+item = "HYENA GALAXY"
+
+[node name="Duplicator Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "1230000000"
+price_multiplier = 1.5
+item = "HYENA DUPLICATOR"
+
+[node name="Dyson Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "9990000000"
+price_multiplier = 1.5
+item = "HYENA DYSON SPHERE"
+
+[node name="Black Hole Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "16700000000"
+price_multiplier = 1.5
+item = "HYENA BLACK HOLE"
+
+[node name="Afterlife Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "77700000000"
+price_multiplier = 1.5
+item = "HYENA AFTERLIFE"
+
+[node name="Singularity Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "140000000000"
+price_multiplier = 1.5
+item = "HYENA SINGULARITY"
+
+[node name="Universe Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "490000000000"
+price_multiplier = 1.5
+item = "HYENA UNIVERSE"
+
+[node name="Multiverse Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+price = "1000000000000"
+price_multiplier = 1.5
+item = "HYENA MULTIVERSE"
+
+[node name="Gap2" type="Control" parent="ShopMenu/IdleContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ClickContainer" type="ScrollContainer" parent="ShopMenu"]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 1.0
+offset_right = 925.0
+offset_bottom = 531.0
+theme = SubResource("Theme_g462e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenu/ClickContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="Gap" type="Control" parent="ShopMenu/ClickContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Net Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "150"
+price_multiplier = 1.5
+item = "HYENA NET"
+limit = 2
+description = "Captures [b]3[/b] Hyenas Per Second
+
+Ah, the best part of any greater hyena catcher, trusty elbow grease! You must work hard to tame and rule over these mighty beasts. In order to truly become the hyena master, you must work hard. 
+[i]This is only the start.[/i]"
+
+[node name="Meat Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "1500"
+price_multiplier = 1.5
+item = "HYENA MEAT"
+limit = 3
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Encyclopedia Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "25000"
+price_multiplier = 1.5
+item = "HYENA ENCYCLOPEDIA"
+limit = 2
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Call Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "130000"
+price_multiplier = 1.5
+item = "HYENA CALL"
+limit = 2
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Tome Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "1300000"
+price_multiplier = 1.5
+item = "HYENA TOME"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Time Machine Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "11000000"
+price_multiplier = 1.5
+item = "HYENA TIME MACHINE"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Army Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "200000000"
+price_multiplier = 1.5
+item = "HYENA ARMY"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Dark Art Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "1500000000"
+price_multiplier = 1.5
+item = "HYENA DARK ARTS"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Prism Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "17000000000"
+price_multiplier = 1.5
+item = "HYENA PRISM"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Dark Matter Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "17000000000"
+price_multiplier = 1.5
+item = "HYENA DARK MATTER"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Augmentor Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "130000000000"
+price_multiplier = 1.5
+item = "HYENA AUGMENTOR"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="MultiLevel Quantum Manipulator Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "990000000000"
+price_multiplier = 1.5
+item = "HYENA MULTILEVEL QUANTUM MANIPULATOR"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Yenaforce Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "6700000000000"
+price_multiplier = 1.5
+item = "HYENA FORCE"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Folder Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
+layout_mode = 2
+size_flags_horizontal = 8
+price = "10000000000000"
+price_multiplier = 1.5
+item = "HYENA FOLDER"
+limit = 1
+description = "Attracts [b]12[/b] Hyenas Per Second
+
+Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
+[i]Sounds quite familiar.[/i]"
+
+[node name="Gap2" type="Control" parent="ShopMenu/ClickContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ShopPlayer" type="AnimationPlayer" parent="ShopMenu"]
+root_node = NodePath("../Businessman")
+libraries = {
+"": SubResource("AnimationLibrary_y5kr5")
+}
+autoplay = "bop"
+
+[node name="Popup" type="Sprite2D" parent="."]
+position = Vector2(456, -92)
+texture = ExtResource("6_ynl5j")
+offset = Vector2(0, 25)
+flip_h = true
+flip_v = true
+
+[node name="TheCreature" type="Sprite2D" parent="."]
+position = Vector2(1385, 613)
+texture = ExtResource("10_qah46")
+offset = Vector2(0, 25)
+
+[node name="ShopButton" type="TextureButton" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 904.0
+offset_top = 627.0
+offset_right = 1249.0
+offset_bottom = 708.0
+grow_vertical = 0
+texture_normal = ExtResource("5_bg0w1")
+texture_hover = ExtResource("7_75pcy")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1160.0
+offset_top = 538.0
+offset_right = 1243.0
+offset_bottom = 620.0
+toggle_mode = true
+texture_normal = ExtResource("12_aqdff")
+texture_pressed = ExtResource("13_dg3lm")
+
+[node name="Hyena Counter" type="RichTextLabel" parent="."]
+offset_left = 14.0
+offset_top = 646.0
+offset_right = 851.0
+offset_bottom = 718.0
+theme_override_fonts/normal_font = ExtResource("8_lw0ot")
+theme_override_font_sizes/normal_font_size = 51
+text = "0 HYENAS"
+
+[node name="CPS Counter" type="RichTextLabel" parent="."]
+offset_left = 14.0
+offset_top = 632.0
+offset_right = 851.0
+offset_bottom = 663.0
+theme_override_fonts/normal_font = ExtResource("8_lw0ot")
+theme_override_font_sizes/normal_font_size = 21
+text = "0 CLICKS PER SECOND"
+
+[node name="HPS Counter" type="RichTextLabel" parent="."]
+offset_left = 14.0
+offset_top = 613.0
+offset_right = 851.0
+offset_bottom = 637.0
+theme_override_fonts/normal_font = ExtResource("8_lw0ot")
+theme_override_font_sizes/normal_font_size = 16
+text = "0 HYENAS PER SECOND"
+
+[node name="MusicLinkControl" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 1279.0
+offset_bottom = 40.0
+metadata/_edit_group_ = true
+
+[node name="MusicButton" type="LinkButton" parent="MusicLinkControl"]
+layout_mode = 0
+offset_right = 1296.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("8_lw0ot")
+text = "TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE TRACK GOES HERE "
+underline = 1
+uri = "https://www.youtube.com/watch?v=sLXow8JHCvk&list=PLgwJx3dgtyplKwA5dYYMyrzjFZoJr427c&index=2"
+script = SubResource("GDScript_kfqas")
+
+[node name="MouseWindow" parent="." instance=ExtResource("11_ta8ml")]
+visible = false
+
+[node name="IdleAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r42ab")
+}
+
+[node name="HyenaPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eqkhf")
+}
+
+[node name="JumpscareSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_cpso8")
+
+[node name="KaChing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_xchj4")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_34rvk")
+volume_db = -15.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="Jumpscare" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(640, 360)
+texture = ExtResource("19_fm0yk")
+
+[connection signal="mouse_entered" from="Hyena" to="." method="_on_hyena_mouse_entered"]
+[connection signal="mouse_exited" from="Hyena" to="." method="_on_hyena_mouse_exited"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Snack Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Trap Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Drone Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Enclosure Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Zoo Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Park Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Sanctuary Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Spell Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Rocket Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Colony Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Portal Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Vortex Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Galaxy Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Duplicator Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Dyson Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Black Hole Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Afterlife Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Singularity Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Universe Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/IdleContainer/VBoxContainer/Multiverse Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Net Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Meat Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Encyclopedia Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Call Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Tome Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Time Machine Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Army Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Dark Art Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Prism Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Dark Matter Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Augmentor Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/MultiLevel Quantum Manipulator Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Yenaforce Button" to="." method="on_item_button_clicked"]
+[connection signal="clicked" from="ShopMenu/ClickContainer/VBoxContainer/Folder Button" to="." method="on_item_button_clicked"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="toggled" from="TextureButton" to="." method="_on_texture_button_toggled"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

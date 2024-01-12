@@ -29,7 +29,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_gg4v8"]
-resource_name = "hurt"
+resource_name = "hit"
 length = 0.0833375
 step = 0.0416667
 tracks/0/type = "value"
@@ -48,18 +48,19 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6jb76"]
 _data = {
 "RESET": SubResource("Animation_l542j"),
-"hurt": SubResource("Animation_gg4v8")
+"hit": SubResource("Animation_gg4v8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f86o2"]
 
-[node name="Flame" type="CharacterBody2D"]
+[node name="Flame" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_qav1g")
 SPEED = 250
 eyeradius = 5
 ATTACK_TIMER = 15
+hitbox = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -98,7 +99,7 @@ shape = SubResource("RectangleShape2D_hca1j")
 position = Vector2(-18.5, 76.5)
 shape = SubResource("RectangleShape2D_u2vxw")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6jb76")
 }
@@ -108,5 +109,3 @@ shape = SubResource("RectangleShape2D_f86o2")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(8, -12)
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

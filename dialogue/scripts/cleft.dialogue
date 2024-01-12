@@ -1,0 +1,22 @@
+~ start
+
+if global.characterInteractions["Cleft"] == 0
+	do DialogueManager.changePortrait(0, "cleft", "neutral"):
+	cleft: WHAT DO YOU WANT.
+	cleft: CAN YOU NOT SEE I AM BUSY
+	do DialogueManager.changePortrait(0, "cleft", "angry"):
+	cleft: IN MY HOUSE
+elif global.characterInteractions["Cleft"] == 1
+	cleft: I AM A VERY BUSY PERSON
+	cleft: I NEED TO WORK TO REACH 1K, DO YOU NOT UNDERSTAND
+elif global.characterInteractions["Cleft"] == 2
+	cleft: AND IT DOES NOT HELP WITH ALL THE NOISE AROUND HERE
+	cleft: LIKE DAPPER CRYING AND THE SOUNDS COMING FROM THE PIZZA HUT ALL DAY
+	cleft: THEY WOULD NOT EVEN SELL ME A GALACTOSE PIZZA
+elif global.characterInteractions["Cleft"] == 3
+	cleft: I WILL BE CONTACTING MY PEOPLE TO SORT THIS ISSUE OUT.
+elif global.characterInteractions["Cleft"] > 3
+	cleft: GO AWAY
+
+do global.add_interaction("Cleft")
+=> END

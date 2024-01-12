@@ -18,6 +18,7 @@ var fakeBoost:bool
 
 func _ready():
 	reset()
+	super()
 func _process(delta):
 	if active:
 		match state:
@@ -60,9 +61,9 @@ func change_boost(val):
 	else:
 		animationPlayer.speed_scale = 1
 
-func _on_hitbox_area_entered(area):
+func _on_hurtbox_area_entered(area):
 	area.owner.hit()
 
-func _on_hurtbox_area_entered(_area):
+func _on_hitbox_entered(area):
 	$CanvasGroup/EffectsPlayer.play('hit')
-	hurt()
+	super(area)

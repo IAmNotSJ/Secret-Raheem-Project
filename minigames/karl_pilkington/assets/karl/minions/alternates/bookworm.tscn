@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://de3yn8pbqdq14"]
+
+[ext_resource type="Texture2D" uid="uid://1p7dd1ukhgv5" path="res://minigames/karl_pilkington/assets/karl/minions/alternates/bookworm.png" id="1_477de"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/karl/minions/alternates/bookworm.gd" id="1_umskb"]
+
+[node name="Bookworm" type="CharacterBody2D"]
+script = ExtResource("1_umskb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_477de")

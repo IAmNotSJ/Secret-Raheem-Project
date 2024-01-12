@@ -51,13 +51,14 @@ _data = {
 "hit": SubResource("Animation_hgvly")
 }
 
-[node name="Spark" type="CharacterBody2D"]
+[node name="Spark" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_2km65")
 health = 10
 SPEED = 300
 ATTACK_TIMER = 10
+hitbox = NodePath("Hitbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -99,9 +100,7 @@ shape = SubResource("RectangleShape2D_iyu2f")
 position = Vector2(-26.5, 96)
 shape = SubResource("RectangleShape2D_qhamx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_arw3p")
 }
-
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

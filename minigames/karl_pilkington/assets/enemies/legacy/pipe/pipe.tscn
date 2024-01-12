@@ -51,7 +51,7 @@ _data = {
 "hit": SubResource("Animation_greqa")
 }
 
-[node name="Pipe" type="CharacterBody2D"]
+[node name="Pipe" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 position = Vector2(1337, -73)
 collision_layer = 16
 collision_mask = 4
@@ -59,6 +59,7 @@ script = ExtResource("1_xfdba")
 health = 12
 SPEED = 450
 eyeradius = 2
+hitbox = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -100,9 +101,7 @@ shape = SubResource("RectangleShape2D_flwu3")
 position = Vector2(2, 30)
 shape = SubResource("RectangleShape2D_f0y5y")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_b4t54")
 }
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

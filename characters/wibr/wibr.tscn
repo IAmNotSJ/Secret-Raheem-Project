@@ -560,14 +560,13 @@ height = 76.0
 
 [node name="Wibr" type="CharacterBody2D"]
 script = ExtResource("1_k08co")
-walk_speed = 150
+walk_speed = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pm7ec")
 hframes = 9
 
 [node name="Hitbox" parent="." instance=ExtResource("3_vnmjk")]
-visible = false
 position = Vector2(1, 28)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -5,7 +5,7 @@ extends LegacyMember
 
 @onready var fireScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/flame/fire.tscn")
 
-var pos = Vector2(1280 / 2, 621)
+var pos = Vector2(1011, 100)
 
 func _process(delta):
 	if active:
@@ -31,7 +31,6 @@ func spawn_fire(amount:int):
 		fire.initialize(target, 175, daAngle, -3)
 		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", fire)
 
-func _on_area_2d_area_entered(_area):
-	if active:
-		hurt()
-		$AnimationPlayer.play('hurt')
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)

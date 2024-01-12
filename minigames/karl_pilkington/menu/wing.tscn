@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ydarh33j3hw"]
+
+[ext_resource type="Texture2D" uid="uid://bpkliulkt3re7" path="res://minigames/karl_pilkington/menu/wing.png" id="1_30upw"]
+
+[sub_resource type="Animation" id="Animation_1hca0"]
+resource_name = "flap"
+length = 0.60001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_7xr6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ta5p4"]
+_data = {
+"RESET": SubResource("Animation_7xr6y"),
+"flap": SubResource("Animation_1hca0")
+}
+
+[node name="Wing" type="Sprite2D"]
+texture = ExtResource("1_30upw")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ta5p4")
+}
+autoplay = "flap"

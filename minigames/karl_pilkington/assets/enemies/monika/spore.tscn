@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ice6nekqr1ng"]
+
+[ext_resource type="Texture2D" uid="uid://cj17km6x8qawl" path="res://minigames/karl_pilkington/assets/enemies/monika/bullet.png" id="1_jh6sr"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/monika/spore.gd" id="2_c2gda"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yotoc"]
+radius = 1.5
+height = 5.25
+
+[node name="Spore" type="Sprite2D"]
+scale = Vector2(5, 5)
+texture = ExtResource("1_jh6sr")
+script = ExtResource("2_c2gda")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_yotoc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfo0m80tnv3n6"]
+
+[ext_resource type="Texture2D" uid="uid://8ht1833ml3sd" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/pilkington.png" id="1_eq85j"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/pilkington.gd" id="1_h60mo"]
+[ext_resource type="Texture2D" uid="uid://ca5i0v2vevdmt" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/bar_empty.png" id="3_wm0ir"]
+[ext_resource type="Texture2D" uid="uid://k535a7h6eldm" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/bar_full.png" id="4_a717q"]
+
+[sub_resource type="Animation" id="Animation_p757o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hx06t"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_2xft6"]
+resource_name = "run"
+length = 0.250004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ql68r"]
+_data = {
+"RESET": SubResource("Animation_p757o"),
+"idle": SubResource("Animation_hx06t"),
+"run": SubResource("Animation_2xft6")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t1aud"]
+radius = 26.0
+height = 74.0
+
+[node name="Pilkington" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_h60mo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_eq85j")
+offset = Vector2(0, -11)
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_ql68r")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -14)
+shape = SubResource("CapsuleShape2D_t1aud")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Collision2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -14)
+shape = SubResource("CapsuleShape2D_t1aud")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -95.0
+offset_right = -12.0
+offset_bottom = -88.0
+scale = Vector2(3, 3)
+texture_under = ExtResource("3_wm0ir")
+texture_progress = ExtResource("4_a717q")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

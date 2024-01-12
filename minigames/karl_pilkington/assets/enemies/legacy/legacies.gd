@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var mainScene = get_tree().root.get_node("KarlPilkington")
+
 @export var song:AudioStream
 @onready var sand = $Sand
 @onready var wheel = $Wheel
@@ -11,13 +13,14 @@ extends Node2D
 @onready var alloy = $Alloy
 @onready var blade = $Blade
 @onready var gas = $Gas
+@onready var key = $Key
 var target
 
-var rng = RandomNumberGenerator.new()
+var health:float = 1
 
 signal died
 
-@onready var members = [wheel, block, flame, sand, scaleLol, pipe, spark, alloy, blade, gas]
+@onready var members = [wheel, block, flame, sand, scaleLol, pipe, spark, alloy, blade, gas, key]
 
 var membersAlive = []
 func _ready():
@@ -33,6 +36,12 @@ func _ready():
 	alloy.died.connect(on_legacy_died.bind(alloy))
 	blade.died.connect(on_legacy_died.bind(blade))
 	gas.died.connect(on_legacy_died.bind(gas))
+	key.died.connect(on_legacy_died.bind(key))
+	
+	for i in members.size():
+		health += members[i].health
+	health *= 100
+	mainScene.bossbar.max_value = health * 100
 
 func spawn_new_legacy():
 	members.shuffle()

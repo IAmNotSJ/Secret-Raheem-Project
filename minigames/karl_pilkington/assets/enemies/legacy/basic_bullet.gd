@@ -13,7 +13,6 @@ func _physics_process(delta):
 	position.x += SPEED * cos(angle) * delta
 	position.y += SPEED * sin(angle) * delta
 
-
 func _on_area_2d_area_entered(area):
 	area.owner.hit()
 	queue_free()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://nec57h06g0c5"
+path="res://.godot/imported/The Forest Town.ogg-5fba709eacc7cb042b1b3d4f17f233d7.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/The Forest Town.ogg"
+dest_files=["res://.godot/imported/The Forest Town.ogg-5fba709eacc7cb042b1b3d4f17f233d7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -4,7 +4,6 @@ extends LegacyMember
 @onready var pupil = $Pupil
 @onready var marker = $Marker2D
 
-@onready var hitbox = $Area2D
 @onready var hitboxShape = $Area2D/CollisionShape2D
 
 @onready var bullet_scene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/block/bullet.tscn")
@@ -36,18 +35,18 @@ func shoot():
 	bullet.initialize(angleTo, bullet_texture, 700)
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
 
-func _on_area_2d_area_entered(area):
+func _on_hitbox_entered(area):
 	if active:
 		var random = rng.randi_range(0,1)
 		match random:
 			0:
-				$AnimationPlayer.play('block')
+				$EffectsPlayer.play('block')
 				if mainScene.boosted:
 					for i in range(-1, 2):
 						replicate_bullet(area.owner.global_position, (30 * i))
 				else:
 					replicate_bullet(area.owner.global_position)
 			1:
-				$AnimationPlayer.play('hit')
-				hurt()
+				$EffectsPlayer.play('hit')
+				super(area)
 				print(health)

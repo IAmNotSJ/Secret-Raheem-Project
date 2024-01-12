@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://pgj1570nhq0s"
+path="res://.godot/imported/Cool Cat.ogg-b16a20dfbd6b271f2706f5b08d42e66f.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/Cool Cat.ogg"
+dest_files=["res://.godot/imported/Cool Cat.ogg-b16a20dfbd6b271f2706f5b08d42e66f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

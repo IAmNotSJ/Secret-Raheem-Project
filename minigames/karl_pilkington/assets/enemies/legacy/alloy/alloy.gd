@@ -24,7 +24,6 @@ func spawn_pill():
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", pill)
 
 
-func _on_hitbox_area_entered(_area):
-	print('yeouch')
-	hurt()
+func _on_hitbox_entered(area):
 	$EffectsPlayer.play('hit')
+	super(area)

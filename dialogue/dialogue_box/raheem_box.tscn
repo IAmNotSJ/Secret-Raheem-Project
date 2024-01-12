@@ -250,9 +250,10 @@ texture = ExtResource("2_64r2k")
 
 [node name="CharacterLabel" type="Sprite2D" parent="CutOff/Balloon"]
 unique_name_in_owner = true
-position = Vector2(115, 113)
+position = Vector2(41, 36)
 scale = Vector2(2, 2)
 texture = ExtResource("4_quwum")
+centered = false
 
 [node name="Dialogue" type="MarginContainer" parent="CutOff/Balloon"]
 layout_mode = 1

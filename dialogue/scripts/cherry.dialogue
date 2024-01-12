@@ -1,3 +1,7 @@
 ~ start
+#if global.characterInteractions["Cherry"] == 0
+do DialogueManager.changePortrait(0, "cherry", "wave"):
 cherry: Howdy wibr!
+
+do global.add_interaction("Cherry")
 => END

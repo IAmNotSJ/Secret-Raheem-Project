@@ -9,6 +9,10 @@ var pos = Vector2(1189,345)
 
 func _process(delta):
 	if active:
+		if mainScene.boosted:
+			$EffectsPlayer.speed_scale = 1.5
+		else:
+			$EffectsPlayer.speed_scale = 1.5
 		look_at_target(target, pupil, marker)
 		position = position.move_toward(pos, delta * SPEED)
 		
@@ -24,6 +28,6 @@ func slice():
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", leSlice)
 
 
-func _on_area_2d_area_entered(_area):
-	hurt()
-	$AnimationPlayer.play('hit')
+func _on_hitbox_entered(area):
+	$EffectsPlayer.play('hit')
+	super(area)

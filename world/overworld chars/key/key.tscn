@@ -1,14 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://blcccv0s6u50t"]
+[gd_scene load_steps=6 format=3 uid="uid://blcccv0s6u50t"]
 
 [ext_resource type="Texture2D" uid="uid://xgv0crcwxl32" path="res://world/overworld chars/key/key.png" id="1_da6ms"]
+[ext_resource type="Script" path="res://world/overworld chars/overworld character.gd" id="2_70y11"]
 [ext_resource type="PackedScene" uid="uid://bi1tynwcdpj4d" path="res://world/hitbox.tscn" id="2_ngaq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhnw6"]
 size = Vector2(123, 80)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crjbr"]
+radius = 35.0
+height = 138.0
+
 [node name="Key" type="Sprite2D"]
 texture = ExtResource("1_da6ms")
 offset = Vector2(0, 10.27)
+script = ExtResource("2_70y11")
+interaction_dialogue = "res://dialogue/scripts/cleft.dialogue"
 
 [node name="Area2D" parent="." instance=ExtResource("2_ngaq1")]
 position = Vector2(1, 6)
@@ -16,5 +23,14 @@ position = Vector2(1, 6)
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(12, 9)
 shape = SubResource("RectangleShape2D_rhnw6")
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(3, 50)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_crjbr")
 
 [editable path="Area2D"]

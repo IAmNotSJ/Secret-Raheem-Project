@@ -43,7 +43,7 @@ mouse_cursor/custom_image="res://mouse/mouse.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/discord-sdk-gd/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -113,7 +113,7 @@ scroll_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/scripts/fountain.dialogue", "res://dialogue/scripts/comp and dap.dialogue", "res://dialogue/scripts/cherry.dialogue", "res://dialogue/scripts/sj.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/scripts/fountain.dialogue", "res://dialogue/scripts/comp and dap.dialogue", "res://dialogue/scripts/cherry.dialogue", "res://dialogue/scripts/sj.dialogue", "res://dialogue/scripts/cleft.dialogue", "res://dialogue/scripts/dile.dialogue", "res://dialogue/scripts/atlas and slime.dialogue", "res://dialogue/scripts/dizzy.dialogue", "res://dialogue/scripts/cost.dialogue")
 
 [layer_names]
 

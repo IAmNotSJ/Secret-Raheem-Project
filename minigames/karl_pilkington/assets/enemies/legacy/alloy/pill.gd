@@ -34,8 +34,10 @@ func _physics_process(delta):
 func split():
 	if !isChild:
 		for i in range(-1, 2):
-			var coolAngle = mainScene.pilkington.global_position - global_position
-			spawn_pill(coolAngle.angle() + (i * 120))
+			var coolAngle = 0
+			if mainScene.boosted:
+				coolAngle = (mainScene.pilkington.global_position - global_position).angle()
+			spawn_pill(coolAngle + (i * 120))
 
 func spawn_pill(leAngle):
 	var pill = pillScene.instantiate()

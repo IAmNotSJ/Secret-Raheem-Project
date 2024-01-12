@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://boai058oocco0"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/karl pilkington.gd" id="1_g1iqv"]
+[ext_resource type="PackedScene" uid="uid://cfo0m80tnv3n6" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/pilkington.tscn" id="1_i7lbx"]
+[ext_resource type="Texture2D" uid="uid://dsocb3ls4r5ua" path="res://minigames/karl_pilkington/assets/bg/bg.png" id="2_csjmh"]
+[ext_resource type="PackedScene" uid="uid://41v41iabaatk" path="res://minigames/karl_pilkington/assets/ui/UI.tscn" id="4_gqpxn"]
+
+[sub_resource type="Animation" id="Animation_xfb7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ikdfd"]
+resource_name = "flash"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6est"]
+_data = {
+"RESET": SubResource("Animation_xfb7e"),
+"flash": SubResource("Animation_ikdfd")
+}
+
+[node name="KarlPilkington" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_g1iqv")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(680, 374)
+scale = Vector2(7, 7)
+texture = ExtResource("2_csjmh")
+
+[node name="UI" parent="." instance=ExtResource("4_gqpxn")]
+z_index = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r6est")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Pilkington" parent="." instance=ExtResource("1_i7lbx")]
+position = Vector2(692, 347)
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
