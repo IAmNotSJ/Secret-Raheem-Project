@@ -6,8 +6,8 @@ const SAVE_PATH = "user://overworld.save"
 var characterInteractions:Dictionary = {
 	"Cherry": 0,
 	"SJ": 0,
-	"Dapper": 0,
-	"Composty": 0,
+	"Dapper Composty": 0,
+	"Dile": 0,
 	"Atlas Slime": 0,
 	"Cleft": 0,
 	"Dizzy": 0,

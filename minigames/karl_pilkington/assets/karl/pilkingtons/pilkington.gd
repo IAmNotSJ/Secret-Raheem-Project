@@ -2,6 +2,8 @@ class_name PilkingtonBase extends CharacterBody2D
 
 signal hurt
 
+@export var effectPlayer:AnimationPlayer
+
 var walk_speed = 350
 const max_bullet_timer = 1
 const max_timer_disappear_timer = 1
@@ -77,6 +79,7 @@ func shoot():
 
 func hit():
 	if (cooldown_timer <= 0):
+		effectPlayer.play('hit')
 		health -= 1
 		hurt.emit()
 		cooldown_timer = max_cooldown

@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://o40hqn0xlhq6"]
+
+[ext_resource type="Texture2D" uid="uid://d1nfo3rlwo840" path="res://minigames/karl_pilkington/assets/enemies/monika/flump.png" id="1_cgruc"]
+[ext_resource type="Texture2D" uid="uid://b7cv1crh1fd3b" path="res://minigames/karl_pilkington/assets/enemies/monika/flumpvine.png" id="2_0awci"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/monika/flump.gd" id="2_gtwtw"]
+
+[sub_resource type="Animation" id="Animation_u1tts"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.13253, 0.13253)]
+}
+
+[sub_resource type="Animation" id="Animation_y3j2b"]
+resource_name = "spawn"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.13253, 0.13253), Vector2(0.513, 0.513), Vector2(1.318, 1.318), Vector2(2.2, 2.2), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfhuy"]
+_data = {
+"RESET": SubResource("Animation_u1tts"),
+"spawn": SubResource("Animation_y3j2b")
+}
+
+[node name="Flump" type="Sprite2D"]
+position = Vector2(658, 468)
+scale = Vector2(0.13253, 0.13253)
+texture = ExtResource("1_cgruc")
+script = ExtResource("2_gtwtw")
+
+[node name="Flumpvine" type="Sprite2D" parent="."]
+position = Vector2(3.5, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0awci")
+offset = Vector2(-24.25, -22.5)
+
+[node name="Area2D" type="Area2D" parent="Flumpvine"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flumpvine/Area2D"]
+polygon = PackedVector2Array(-33, -44.75, -42.25, -35.25, -46, -24.5, -43.5, -15.5, -38.5, -9.25, -29, -9.5, -13.5, -15, -7.75, -14.75, -2.25, -12.5, 0.25, -9.25, 0, -0.75, -1.5, -0.75, -1.5, -6.5, -5.5, -12.75, -14.25, -12.75, -26.25, -7.75, -36.75, -7, -40.75, -8.75, -47.25, -16.75, -49, -23.5, -47, -32.75, -36, -44.5)
+
+[node name="Flumpvine2" type="Sprite2D" parent="."]
+position = Vector2(2, 6)
+scale = Vector2(2, 2)
+texture = ExtResource("2_0awci")
+offset = Vector2(24.5, 22.5)
+flip_h = true
+flip_v = true
+
+[node name="Area2D2" type="Area2D" parent="Flumpvine2"]
+position = Vector2(0.75, 1)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flumpvine2/Area2D2"]
+position = Vector2(-0.5, -1)
+scale = Vector2(-1, -1)
+polygon = PackedVector2Array(-33, -44.75, -42.25, -35.25, -46, -24.5, -43.5, -15.5, -38.5, -9.25, -29, -9.5, -13.5, -15, -7.75, -14.75, -2.25, -12.5, 0.25, -9.25, 0, -0.75, -1.5, -0.75, -1.5, -6.5, -5.5, -12.75, -14.25, -12.75, -26.25, -7.75, -36.75, -7, -40.75, -8.75, -47.25, -16.75, -49, -23.5, -47, -32.75, -36, -44.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yfhuy")
+}
+autoplay = "spawn"
+
+[connection signal="area_entered" from="Flumpvine/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Flumpvine2/Area2D2" to="." method="_on_area_2d_area_entered"]

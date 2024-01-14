@@ -1,15 +1,22 @@
 ~ start
 
-do DialogueManager.changePortrait(0, "sj", "neutral"):
-sj: Yo. 
-do DialogueManager.changePortrait(1, "wibr", "neutral"):
-wibr: Hello...
-- Pizza Hut
-	sj: Ah yes, welcome to my humble abode!
+if global.characterInteractions["SJ"] == 0:
+	sj: heyo
+	wibr:  
+	sj: What?
+	wibr: What's with the pizza hut
+	sj: The what?
+	wibr: behind you.
+	sj: Wibr I really don't know what you're talking about
+	wibr: THE BUILDING BEHIND YOU
+	sj: Ohh you mean my house!
 	sj: I got locked out.
-	sj: It seems like maybe, in mayhaps a year, or maybe even more, I may find a way to go in.
-	sj: And see what wacky adventures await inside.
-	=> END
-- Birthday
-	sj: Hm? What are you talking about?
-	sj: I had no idea of any sort of birthday.
+if global.characterInteractions["SJ"] == 1:
+	sj: I bet, in mayhaps a year or so,
+	sj: I may be able to unlock my house
+	sj: And see what crazy things await inside
+if global.characterInteractions["SJ"] > 1:
+	sj: We should bring back the Breaking Wheel.
+
+do global.add_interaction("SJ")
+=> END

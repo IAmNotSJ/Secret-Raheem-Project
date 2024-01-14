@@ -1,7 +1,7 @@
 extends Sprite2D
 
 const SPEED = 300
-var angle = 0
+var angle:float = 0
 
 var spin = false
 const MAX_SPIN_TIMER = 2

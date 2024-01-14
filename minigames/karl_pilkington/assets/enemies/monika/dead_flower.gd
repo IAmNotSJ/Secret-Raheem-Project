@@ -17,9 +17,8 @@ func _process(delta):
 		queue_free()
 
 func explode():
-	var leRange = rng.randi_range(20, 25)
-	var angleDistance = (360 / (leRange - 1))
-	for i in range(leRange):
+	var angleDistance = 14.4
+	for i in range(25):
 		var bullet = bulletScene.instantiate()
 		bullet.angle = i * (angleDistance)
 		bullet.global_position = global_position

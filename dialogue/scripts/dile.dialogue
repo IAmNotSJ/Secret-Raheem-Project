@@ -1,6 +1,12 @@
 ~ start
 
-dile: Hmm..
-dile: I don't think he likes me...
+if global.characterInteractions["Dile"] == 0
+	dile: Hmm..
+	dile: I don't think he likes me...
+elif global.characterInteractions["Dile"] > 0
+	dile: What do you mean? He's clearly real
+	dile: i think...
+
+do global.add_interaction("Dile")
 
 => END

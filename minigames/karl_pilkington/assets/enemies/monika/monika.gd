@@ -3,7 +3,8 @@ extends EnemyBase
 enum {
 	SMALL,
 	TRANSITION,
-	BIG
+	BIG,
+	GROUNDED
 }
 var state = SMALL
 @export var health2:int = 60
@@ -27,6 +28,8 @@ const deadFlowerScene = preload("res://minigames/karl_pilkington/assets/enemies/
 const MAX_DEAD_TIMER = Vector2i(10, 21)
 var dead_timer = rng.randi_range(MAX_DEAD_TIMER.x, MAX_DEAD_TIMER.y)
 var deadFlowerPositions = [[Vector2(225, 193), Vector2(-225, 193)], [Vector2(1055, 193), Vector2(1554, 193)]]
+
+const flumpScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/flump.tscn")
 
 func _ready(): 
 	super()
@@ -53,12 +56,31 @@ func _process(delta):
 			if dead_timer <= 0:
 				dead_timer = rng.randi_range(MAX_DEAD_TIMER.x, MAX_DEAD_TIMER.y)
 				spawn_dead()
+			if health <= 30:
+				$ProgressionPlayer.play('ground')
+				state = GROUNDED
+				spawn_flump()
+		GROUNDED:
+			miniTimer -= delta * 2
+			if miniTimer <= 0:
+				miniTimer = rng.randf_range(MAX_MINI_TIMER.x, MAX_MINI_TIMER.y)
+				spawn_mini()
+			warn_timer -= delta * 5
+			if warn_timer <= 0:
+				warn_timer = rng.randi_range(MAX_WARN_TIMER.x, MAX_WARN_TIMER.y)
+				spawn_warn()
+			dead_timer -= delta
+			if dead_timer <= 0:
+				dead_timer = rng.randi_range(MAX_DEAD_TIMER.x, MAX_DEAD_TIMER.y)
+				spawn_dead(true)
 func hurt(damage):
 	health -= damage
-	if health <= 1:
-		$ProgressionPlayer.play('change')
-	if health <= 0:
-		die()
+	if state == SMALL:
+		if health <= 1:
+			$ProgressionPlayer.play('change')
+	else:
+		if health <= 0:
+			die()
 
 func spawn_mini():
 	var miniKa = miniScene.instantiate()
@@ -72,13 +94,24 @@ func spawn_warn():
 	var warn = warnScene.instantiate()
 	warn.global_position = target.global_position
 	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", warn)
+func spawn_flump():
+	var flump = flumpScene.instantiate()
+	killOnDeath.append(flump)
+	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", flump)
 
-func spawn_dead():
-	var dead = deadFlowerScene.instantiate()
-	deadFlowerPositions.shuffle()
-	dead.global_position = deadFlowerPositions[0][1]
-	dead.targetPos = deadFlowerPositions[0][0]
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", dead)
+func spawn_dead(ground:bool = false):
+	if ground == false:
+		var dead = deadFlowerScene.instantiate()
+		deadFlowerPositions.shuffle()
+		dead.global_position = deadFlowerPositions[0][1]
+		dead.targetPos = deadFlowerPositions[0][0]
+		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", dead)
+	else:
+		for i in range(2):
+			var dead = deadFlowerScene.instantiate()
+			dead.global_position = deadFlowerPositions[i][1]
+			dead.targetPos = deadFlowerPositions[i][0]
+			get_tree().root.get_node("KarlPilkington").call_deferred("add_child", dead)
 
 func spawn_bullet():
 	var bullet = bulletScene.instantiate()
@@ -106,3 +139,7 @@ func change_health():
 	health = health2
 	mainScene.update_max_health(health2)
 	state = BIG
+
+func die():
+	delete()
+	super()

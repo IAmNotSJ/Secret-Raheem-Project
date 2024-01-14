@@ -16,10 +16,10 @@ extends Node2D
 @onready var monikaScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/monika.tscn")
 
 @onready var enemyArray = [
-#legacyScene, 
-#chefScene, 
-#cleftScene,
-#dapperScene,
+legacyScene, 
+chefScene, 
+cleftScene,
+dapperScene,
 monikaScene
 ]
 

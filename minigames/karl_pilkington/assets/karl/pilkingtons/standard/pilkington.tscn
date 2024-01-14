@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfo0m80tnv3n6"]
+[gd_scene load_steps=13 format=3 uid="uid://cfo0m80tnv3n6"]
 
 [ext_resource type="Texture2D" uid="uid://8ht1833ml3sd" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/pilkington.png" id="1_eq85j"]
 [ext_resource type="Script" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/pilkington.gd" id="1_h60mo"]
@@ -67,10 +67,48 @@ _data = {
 radius = 26.0
 height = 74.0
 
-[node name="Pilkington" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_o5hw6"]
+resource_name = "hit"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_f4xkm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ykxti"]
+_data = {
+"RESET": SubResource("Animation_f4xkm"),
+"hit": SubResource("Animation_o5hw6")
+}
+
+[node name="Pilkington" type="CharacterBody2D" node_paths=PackedStringArray("effectPlayer")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_h60mo")
+effectPlayer = NodePath("EffectPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
@@ -85,10 +123,12 @@ libraries = {
 }
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, -14)
 shape = SubResource("CapsuleShape2D_t1aud")
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -104,5 +144,10 @@ offset_bottom = -88.0
 scale = Vector2(3, 3)
 texture_under = ExtResource("3_wm0ir")
 texture_progress = ExtResource("4_a717q")
+
+[node name="EffectPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ykxti")
+}
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

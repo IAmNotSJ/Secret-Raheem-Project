@@ -19,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://ces0aycq6cpvc" path="res://world/props/apartment.tscn" id="16_2s6ls"]
 [ext_resource type="PackedScene" uid="uid://k4t5ibok1pds" path="res://world/props/tree.tscn" id="16_ujt4k"]
 [ext_resource type="PackedScene" uid="uid://be3orsh21kbef" path="res://world/props/bush.tscn" id="18_iv0mn"]
+[ext_resource type="Texture2D" uid="uid://bywm15x0t5oc5" path="res://world/tree bg.png" id="20_8bpxi"]
 [ext_resource type="PackedScene" uid="uid://c4pjdqv57o6f8" path="res://world/props/rec.tscn" id="20_wmapu"]
-[ext_resource type="Texture2D" uid="uid://dslygtwpv1s8" path="res://world/props/bush.png" id="21_7rxyj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8v6"]
 size = Vector2(109, 20)
@@ -42,14 +42,13 @@ y_sort_enabled = true
 position = Vector2(595, 281)
 
 [node name="WorldMap" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 position = Vector2(289, -167)
 texture = ExtResource("1_opfm0")
 metadata/_edit_lock_ = true
 
 [node name="Wibr" parent="." instance=ExtResource("1_xtcna")]
-position = Vector2(47, -658)
+position = Vector2(1, 147)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Wibr"]
@@ -209,12 +208,11 @@ flip_h = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(595, 281)
-motion_scale = Vector2(0.3, 1)
+motion_scale = Vector2(0.3, 1.05)
 
 [node name="Bush" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(106, -854)
-scale = Vector2(5, 5)
-texture = ExtResource("21_7rxyj")
+position = Vector2(102, -760)
+texture = ExtResource("20_8bpxi")
 
 [node name="Rec" parent="." instance=ExtResource("20_wmapu")]
 position = Vector2(1476, 170)

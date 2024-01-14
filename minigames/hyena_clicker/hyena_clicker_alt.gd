@@ -330,7 +330,6 @@ func save():
 	var jstr = JSON.stringify(data)
 	
 	file.store_line(jstr)
-	print('saved!')
 func load_save():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if not file:
@@ -415,25 +414,27 @@ func update_shop_listings():
 func play_random_song():
 	trackList.shuffle()
 	musicPlayer.stream = load(trackList[0]["Path"])
-	update_song_text(trackList[0]["Title"], trackList[0]["Artist"], trackList[0]["Link"])
 	
 	var tween = create_tween()
 	musicPlayer.volume_db = -80
 	tween.tween_property(musicPlayer, "volume_db", 0, 1)
 	
+	update_song_text(trackList[0]["Title"], trackList[0]["Artist"], trackList[0]["Link"])
 	musicPlayer.play()
 func play_specific_song(song:int = 0):
 	musicPlayer.stream = load(trackList[song]["Path"])
 	var tween = create_tween()
 	musicPlayer.volume_db = -80
 	tween.tween_property(musicPlayer, "volume_db", 0, 1)
+	update_song_text(trackList[song]["Title"], trackList[0]["Artist"], trackList[0]["Link"])
 	
 	musicPlayer.play()
 func _on_music_finished():
 	play_random_song()
 
 func update_song_text(title:String, artist:String, link:String):
-	musicButton.text = " "
+	print('hello?')
+	musicButton.text = "       "
 	for i in range(8):
 		musicButton.text += '"' + title + '"' + " : " + artist + "       "
 	musicButton.position.x = -musicButton.size.x
