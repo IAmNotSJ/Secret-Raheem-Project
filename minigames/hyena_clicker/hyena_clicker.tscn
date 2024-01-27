@@ -271,6 +271,46 @@ tracks/2/keys = {
 "values": [Vector2(419, 206)]
 }
 
+[sub_resource type="Animation" id="Animation_etu04"]
+resource_name = "secret"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_0puji")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(647, 548)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(271, 111)]
+}
+
 [sub_resource type="Animation" id="Animation_82ktv"]
 resource_name = "stage 1"
 length = 0.001
@@ -309,6 +349,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_is5o6"]
+resource_name = "stage 10"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25_g1s6q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(438, 452)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(434, 179)]
 }
 
 [sub_resource type="Animation" id="Animation_waatv"]
@@ -591,46 +671,6 @@ tracks/2/keys = {
 "values": [Vector2(501, 193)]
 }
 
-[sub_resource type="Animation" id="Animation_etu04"]
-resource_name = "secret"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hyena:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("23_0puji")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hyena:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(647, 548)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hyena:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(271, 111)]
-}
-
 [sub_resource type="Animation" id="Animation_lmm1t"]
 resource_name = "stage 9"
 length = 0.001
@@ -671,46 +711,6 @@ tracks/2/keys = {
 "values": [Vector2(347, 206)]
 }
 
-[sub_resource type="Animation" id="Animation_is5o6"]
-resource_name = "stage 10"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hyena:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("25_g1s6q")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hyena:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(438, 452)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hyena:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(434, 179)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkhf"]
 _data = {
 "RESET": SubResource("Animation_hf81j"),
@@ -738,7 +738,7 @@ centered = false
 offset_left = 419.0
 offset_top = 206.0
 offset_right = 867.0
-offset_bottom = 658.0
+offset_bottom = 550.0
 texture = ExtResource("3_phvbr")
 
 [node name="ShopMenu" type="Control" parent="."]
@@ -1166,10 +1166,11 @@ price = "1.3e21"
 price_multiplier = 1.5
 item = "HYENA FORCE"
 limit = 1
-description = "Attracts [b]12[/b] Hyenas Per Second
+description = "Controls [b]1Qi[/b] Hyenas Per Click
 
-Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
-[i]Sounds quite familiar.[/i]"
+You are here. All that is left is to unbind the power sealing the folder down and out of this world. Using the ancient hyena force, you may free the accursed prison from its shackles and unleash hyena mayhem. It has all led up to this point. Every trial and every tribulation. You have worked so very hard for this.
+
+[i]Claim the Hyena Folder.[/i] "
 
 [node name="Folder Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
@@ -1178,10 +1179,11 @@ price = "1e24"
 price_multiplier = 1.5
 item = "HYENA FOLDER"
 limit = 1
-description = "Attracts [b]12[/b] Hyenas Per Second
+description = "Controls [b]9.99Sx[/b] Hyenas Per Click
 
-Ah, the final parting goodbye of the start of your journey! Contrary to what many believe regarding this method of attraction, the meat is not hyena meat at all! While many hyenas do participate in cannibalistic practices, they only do it out of necessity to either survive or climb to the top of their respective cackle. The meat can be various other animals, most prominently gazelle! 
-[i]Sounds quite familiar.[/i]"
+The world trembles around you. The folder has been freed. All that remains is the ultimate sacrifice. Offer your hyenas to the folder’s endless terabytes. When you do, you will be freed from the confines of hyena limits. Only infinity awaits you now. End your journey. 
+
+[i]CLAIM THE FOLDER![/i] "
 
 [node name="Gap2" type="Control" parent="ShopMenu/ClickContainer/VBoxContainer"]
 layout_mode = 2
