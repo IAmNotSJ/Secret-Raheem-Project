@@ -57,6 +57,7 @@ _data = {
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_qav1g")
+health = 13.0
 SPEED = 250
 eyeradius = 5
 ATTACK_TIMER = 15

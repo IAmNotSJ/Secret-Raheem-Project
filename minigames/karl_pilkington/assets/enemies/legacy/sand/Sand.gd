@@ -30,8 +30,9 @@ func shoot():
 		sand.global_position = pupil.global_position
 		var angleTo = angleToTarget(target, marker)
 		sand.initialize(angleTo + (i * deg_to_rad(-15)), sand_texture, 600)
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", sand)
+		mainScene.call_deferred("add_child", sand)
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

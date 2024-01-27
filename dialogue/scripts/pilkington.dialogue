@@ -1,0 +1,10 @@
+~ start
+
+It's a rusty arcade machine
+Play it?
+- Yes
+	do Transition.change_scene_to_preset("Pilkington")
+	=> END
+- No
+	=> END
+=> END

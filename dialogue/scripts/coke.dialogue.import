@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://41r1a0rqr1w2"
+path="res://.godot/imported/coke.dialogue-e0dbdb735f212e74f829264ccc4d747a.tres"
+
+[deps]
+
+source_file="res://dialogue/scripts/coke.dialogue"
+dest_files=["res://.godot/imported/coke.dialogue-e0dbdb735f212e74f829264ccc4d747a.tres"]
+
+[params]
+
+defaults=true

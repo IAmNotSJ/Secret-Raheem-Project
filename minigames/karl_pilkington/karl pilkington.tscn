@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://boai058oocco0"]
+[gd_scene load_steps=8 format=3 uid="uid://boai058oocco0"]
 
 [ext_resource type="Script" path="res://minigames/karl_pilkington/karl pilkington.gd" id="1_g1iqv"]
 [ext_resource type="Texture2D" uid="uid://dsocb3ls4r5ua" path="res://minigames/karl_pilkington/assets/bg/bg.png" id="2_csjmh"]
 [ext_resource type="PackedScene" uid="uid://41v41iabaatk" path="res://minigames/karl_pilkington/assets/ui/UI.tscn" id="4_gqpxn"]
+[ext_resource type="Texture2D" uid="uid://dhl8r66w3v0do" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/crosshair.png" id="4_w68jw"]
 
 [sub_resource type="Animation" id="Animation_xfb7e"]
 length = 0.001
@@ -71,5 +72,11 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(745, 240)
+scale = Vector2(4, 4)
+texture = ExtResource("4_w68jw")
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

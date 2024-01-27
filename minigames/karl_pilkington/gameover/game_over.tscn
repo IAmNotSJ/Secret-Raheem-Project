@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://0hky83iufgqf"]
+
+[ext_resource type="Texture2D" uid="uid://bn58u0o3856mx" path="res://minigames/karl_pilkington/gameover/bg.png" id="1_ba425"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/gameover/game_over.gd" id="1_wuja3"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_wuja3")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_ba425")
+centered = false
+
+[node name="Your Fault" type="RichTextLabel" parent="."]
+offset_right = 1278.0
+offset_bottom = 188.0
+theme_override_colors/default_color = Color(1, 0.627451, 0.572549, 1)
+theme_override_font_sizes/normal_font_size = 121
+bbcode_enabled = true
+text = "[center] ALL YOUR FAULT [/center]"
+
+[node name="Retry" type="RichTextLabel" parent="."]
+offset_left = 18.0
+offset_top = 645.0
+offset_right = 564.0
+offset_bottom = 718.0
+theme_override_colors/default_color = Color(1, 0.627451, 0.572549, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Retry[/center]"
+
+[node name="Menu" type="RichTextLabel" parent="."]
+offset_left = 687.0
+offset_top = 648.0
+offset_right = 1233.0
+offset_bottom = 721.0
+theme_override_colors/default_color = Color(1, 0.627451, 0.572549, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Back to Menu[/center]"
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)

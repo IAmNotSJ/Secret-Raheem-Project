@@ -24,7 +24,7 @@ const latin_tens: Array[String] = ["", "dec", "vigin", "trigin", "quadragin", "q
 const latin_hundreds: Array[String] = ["", "cen", "duocen", "trecen", "quadringen", "quingen", "sescen", "septingen", "octingen", "nongen"]
 const latin_special: Array[String] = ["", "mi", "bi", "tri", "quadri", "quin", "sex", "sept", "oct", "non"]
 
-static var other = {"dynamic_decimals":true, "dynamic_numbers":4, "small_decimals":2, "thousand_decimals":2, "big_decimals":2, "scientific_decimals": 2, "logarithmic_decimals":2, "thousand_separator":".", "decimal_separator":".", "postfix_separator":" ", "reading_separator":"", "thousand_name":"thousand"}
+static var other = {"dynamic_decimals":true, "dynamic_numbers":4, "small_decimals":2, "thousand_decimals":2, "big_decimals":2, "scientific_decimals": 6, "logarithmic_decimals":2, "thousand_separator":".", "decimal_separator":".", "postfix_separator":" ", "reading_separator":"", "thousand_name":"thousand"}
 
 const MAX_MANTISSA = 1209600.0
 const MANTISSA_PRECISSION = 0.0000001
@@ -53,7 +53,8 @@ func _init(m, e := 0):
 
 func _sizeCheck(m):
 	if m > MAX_MANTISSA:
-		printerr("BIG ERROR: MANTISSA TOO LARGE, PLEASE USE EXPONENT OR SCIENTIFIC NOTATION")
+		#printerr("BIG ERROR: MANTISSA TOO LARGE, PLEASE USE EXPONENT OR SCIENTIFIC NOTATION")
+		pass
 
 
 static func _typeCheck(n):

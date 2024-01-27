@@ -5,19 +5,23 @@ if global.characterInteractions["Cost"] == 0
 	cost: .
 	wibr: .
 	cost: Hi
-	wibr: Where the fuck am i???
+	wibr: Where the hell am i???
 	cost: This is my apartment...
 	wibr: This place reminds me of something...
 	wibr: But I can't put my finger on it...
 	cost: LOL
-elif global.characterInteractions["Cost"] == 1
+	do global.add_interaction("Cost")
+elif global.characterInteractions["Cost"] == 1 and global.costTeleported
 	cost: Oh hi
 	wibr: ????
-elif global.characterInteractions["Cost"] == 2
+	do global.add_interaction("Cost")
+elif global.characterInteractions["Cost"] == 2 and global.costTeleported
 	cost: My TV is a few more yards away
-elif global.characterInteractions["Cost"] > 2:
+	do global.add_interaction("Cost")
+elif global.characterInteractions["Cost"] > 2 and global.costTeleported
 	cost: You'll find something soon.
 	cost: maybe
-
-do global.add_interaction("Cost")
+	do global.add_interaction("Cost")
+elif global.characterInteractions["Cost"] > 0 and !global.costTeleported
+	cost: I sure am glad I'm not the only one with a limited dialogue tree in this place
 => END

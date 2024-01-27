@@ -1,7 +1,9 @@
 extends Sprite2D
 
+@onready var monika = get_tree().root.get_node("Pilkington").get_node("KarlPilkington").get_node("Monika")
+
 const sporeScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/spore.tscn")
-@export var health = 1
+@export var health:float = 0.5
 
 const MAX_SPORE_TIMER = 2
 var spore_timer = MAX_SPORE_TIMER
@@ -20,10 +22,14 @@ func spawn_spore():
 	var angleTo = $Marker2D.transform.x.angle_to(direction)
 	spore.angle = angleTo
 	spore.global_position = $Marker2D.global_position
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", spore)
+	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", spore)
 
+func hurt(damage):
+	health -= damage
+	if health <= 0:
+		monika.killOnDeath.erase(self)
+		queue_free()
 
 func _on_area_2d_area_entered(area):
-	health -= area.owner.damage
-	if health <= 0:
-		queue_free()
+	hurt(area.owner.damage)
+

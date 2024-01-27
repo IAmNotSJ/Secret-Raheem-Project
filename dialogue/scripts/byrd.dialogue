@@ -1,0 +1,16 @@
+~ start
+if global.characterInteractions["Byrd"] == 0
+	byrd: Keep going bestie! You got this!
+elif global.characterInteractions["Byrd"] == 1
+	byrd: So close!
+elif global.characterInteractions["Byrd"] == 2
+	byrd: This ones the one
+elif global.characterInteractions["Byrd"] == 3
+	byrd: You know what they say
+	byrd: 1038563th times the charm
+elif global.characterInteractions["Byrd"] > 3
+	byrd: almost...
+
+do global.add_interaction("Byrd")
+
+=> END

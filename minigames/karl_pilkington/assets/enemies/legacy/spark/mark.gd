@@ -1,5 +1,6 @@
 extends Sprite2D
 
+@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 var SPEED = 300
 const SHOOT_TIME = 0.5
 
@@ -18,7 +19,7 @@ func _ready():
 func _process(delta):
 	match state:
 		GAIN:
-			if get_tree().root.get_node("KarlPilkington").boosted:
+			if mainScene.boosted:
 				position = position.move_toward(target.position, SPEED * 1.2 * delta)
 			else:
 				position = position.move_toward(target.position, SPEED * delta)

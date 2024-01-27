@@ -1,0 +1,9 @@
+~ start
+
+set global.items["Key"] = true
+do global.save()
+A lone key.
+A familiar engraving sits on top of its golden plated skin.
+You take the key.
+
+=> END

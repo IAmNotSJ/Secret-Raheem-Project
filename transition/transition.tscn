@@ -32,26 +32,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Borders/Top:size")
+tracks/2/path = NodePath("Borders/Bottom:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2450, 672)]
+"values": [Vector2(-637, 1333)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Borders/Top:position")
+tracks/3/path = NodePath("Borders/Left:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-595, -1021)]
+"values": [Vector2(-2452, -1068)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -68,31 +68,31 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Borders/Left:position")
+tracks/5/path = NodePath("Borders/Top:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-2452, -1068)]
+"values": [Vector2(2450, 672)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Borders/Bottom:position")
+tracks/6/path = NodePath("Borders/Top:size")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-637, 1333)]
+"values": [Vector2(-595, -1021)]
 }
 
 [sub_resource type="Animation" id="Animation_gml2u"]
 resource_name = "trans"
-length = 0.958338
+length = 1.00001
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -101,7 +101,7 @@ tracks/0/path = NodePath("RaheemOutline:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.875),
+"times": PackedFloat32Array(0, 0.958333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, 5), Vector2(0.1, 0.1)]
@@ -113,7 +113,7 @@ tracks/1/path = NodePath("RaheemOutline:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.875),
+"times": PackedFloat32Array(0, 0.958333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(623, 171), Vector2(649, 331)]
@@ -121,26 +121,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Borders/Top:size")
+tracks/2/path = NodePath("Borders/Bottom:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.875, 0.916667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.958333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2450, 672), Vector2(2450, 672), Vector2(2450, 1152)]
+"values": [Vector2(-637, 1333), Vector2(-609, 354)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Borders/Top:position")
+tracks/3/path = NodePath("Borders/Left:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.875),
+"times": PackedFloat32Array(0, 0.958333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-547, -1675), Vector2(-532, -364)]
+"values": [Vector2(-1051, -1057), Vector2(-23, -991)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -149,7 +149,7 @@ tracks/4/path = NodePath("Borders/Right:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.875),
+"times": PackedFloat32Array(0, 0.958333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1641, -1051), Vector2(668, -1000)]
@@ -157,26 +157,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Borders/Left:position")
+tracks/5/path = NodePath("Borders/Top:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.875),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.958334, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-1051, -1057), Vector2(-23, -991)]
+"values": [Vector2(-547, -1365), Vector2(134, -115), Vector2(134, -65)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Borders/Bottom:position")
+tracks/6/path = NodePath("Borders/Top:size")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.875),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.958334, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-637, 1333), Vector2(-609, 354)]
+"values": [Vector2(2491, 402), Vector2(1032, 423), Vector2(1032, 423)]
 }
 
 [sub_resource type="Animation" id="Animation_e5yi2"]
@@ -210,26 +210,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Borders/Top:size")
+tracks/2/path = NodePath("Borders/Bottom:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0416667, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.541667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2450, 1152), Vector2(2450, 672), Vector2(2450, 672)]
+"values": [Vector2(-609, 354), Vector2(-637, 1333)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Borders/Top:position")
+tracks/3/path = NodePath("Borders/Left:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.541667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-532, -364), Vector2(-547, -1675)]
+"values": [Vector2(-23, -991), Vector2(-1051, -1057)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -246,26 +246,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Borders/Left:position")
+tracks/5/path = NodePath("Borders/Top:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.541667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-23, -991), Vector2(-1051, -1057)]
+"values": [Vector2(370, 12), Vector2(-728, -1299)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Borders/Bottom:position")
+tracks/6/path = NodePath("Borders/Top:size")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.541667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-609, 354), Vector2(-637, 1333)]
+"values": [Vector2(555, 296), Vector2(2731, 296)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jkvu5"]
@@ -291,10 +291,10 @@ libraries = {
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="Top" type="ColorRect" parent="Borders"]
-offset_left = -595.0
-offset_top = -1021.0
-offset_right = 1855.0
-offset_bottom = -349.0
+offset_left = 2450.0
+offset_top = 672.0
+offset_right = 2450.0
+offset_bottom = 672.0
 color = Color(0, 0, 0, 1)
 
 [node name="Bottom" type="ColorRect" parent="Borders"]

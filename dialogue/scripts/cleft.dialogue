@@ -1,22 +1,40 @@
 ~ start
 
-if global.characterInteractions["Cleft"] == 0
-	do DialogueManager.changePortrait(0, "cleft", "neutral"):
-	cleft: WHAT DO YOU WANT.
-	cleft: CAN YOU NOT SEE I AM BUSY
-	do DialogueManager.changePortrait(0, "cleft", "angry"):
-	cleft: IN MY HOUSE
-elif global.characterInteractions["Cleft"] == 1
-	cleft: I AM A VERY BUSY PERSON
-	cleft: I NEED TO WORK TO REACH 1K, DO YOU NOT UNDERSTAND
-elif global.characterInteractions["Cleft"] == 2
-	cleft: AND IT DOES NOT HELP WITH ALL THE NOISE AROUND HERE
-	cleft: LIKE DAPPER CRYING AND THE SOUNDS COMING FROM THE PIZZA HUT ALL DAY
-	cleft: THEY WOULD NOT EVEN SELL ME A GALACTOSE PIZZA
-elif global.characterInteractions["Cleft"] == 3
-	cleft: I WILL BE CONTACTING MY PEOPLE TO SORT THIS ISSUE OUT.
-elif global.characterInteractions["Cleft"] > 3
-	cleft: GO AWAY
+if global.unlocks["Cleft"] == false
+	if global.items["Pizza"] == false
+		if global.characterInteractions["Cleft"] == 0
+			#do DialogueManager.changePortrait(0, "cleft", "neutral"):
+			cleft: WHAT DO YOU WANT.
+			cleft: CAN YOU NOT SEE I AM BUSY
+			#do DialogueManager.changePortrait(0, "cleft", "angry"):
+			cleft: IN MY HOUSE
+		elif global.characterInteractions["Cleft"] == 1
+			cleft: I AM A VERY BUSY PERSON
+			cleft: I NEED TO WORK TO REACH 1K, DO YOU NOT UNDERSTAND
+		elif global.characterInteractions["Cleft"] == 2
+			cleft: AND IT DOES NOT HELP WITH ALL THE NOISE AROUND HERE
+			cleft: LIKE DAPPER CRYING AND THE SOUNDS COMING FROM THE PIZZA HUT ALL DAY
+			cleft: THEY WOULD NOT EVEN SELL ME A GALACTOSE PIZZA
+		elif global.characterInteractions["Cleft"] == 3
+			cleft: I WILL BE CONTACTING MY PEOPLE TO SORT THIS ISSUE OUT.
+		elif global.characterInteractions["Cleft"] > 3
+			% cleft: GO AWAY
+			% cleft: IF YOU DON'T HAVE MY PIZZA, LEAVE ME ALONE.
+	else
+		set global.unlocks["Cleft"] = true
+		do global.save()
+		cleft: You got it!
+		cleft: And just the way I like it!
+		cleft: Alright, just for this, I'll let you in on a secret
+		cleft: Follow me...
+else:
+	Go into the box?
+	- Yes
+		do Overworld.save_position(Vector2(819, 146))
+		do Transition.change_scene_to_preset("Cleft House")
+		=> END
+	- No
+		=> END
 
 do global.add_interaction("Cleft")
 => END

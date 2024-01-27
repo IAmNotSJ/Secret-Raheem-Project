@@ -1,0 +1,14 @@
+~ start
+
+if global.characterInteractions["Block"] == 0
+	block: *munch munch munch munch*
+	block: oh hey wibr
+	block: *SLURRRRP*
+	block: whats up
+	block: *EXTREMELY LOUD TYPING*
+elif global.characterInteractions["Block"] > 0
+	block: yeah, I don't have much to do since my workplace is locked
+	block: Theres another way to get in but I'm kind of lazy
+
+do global.add_interaction("Block")
+=> END

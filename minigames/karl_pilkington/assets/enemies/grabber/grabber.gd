@@ -5,11 +5,11 @@ var bulletScene = preload("res://minigames/karl_pilkington/assets/enemies/grabbe
 
 var curEmotion = 'angry'
 
-const MAX_ATTACK_TIMER = 3
+const MAX_ATTACK_TIMER = 1
 var attack_timer = MAX_ATTACK_TIMER
 
 const HAND_SPEED = 275
-const MAX_CLAP_TIMER = 3
+const MAX_CLAP_TIMER = 1
 var clapCount = 0
 var clap_timer = MAX_ATTACK_TIMER
 var clapState = 0
@@ -155,14 +155,14 @@ func spawn_junk():
 		var angleTo = $Hand2/Marker2D.transform.x.angle_to(direction) + i*15
 		junk.global_position = $Hand2/Marker2D.global_position
 		junk.angle = angleTo
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", junk)
+		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", junk)
 
 func shoot_hand_bullet():
 	var bullet = bulletScene.instantiate()
 	bullet.global_position = $Hand1/Hand1Sprite/Marker2D.global_position
 	bullet.angle = $Hand1/Hand1Sprite.rotation_degrees
 	bullet.rotation_degrees = bullet.angle
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", bullet)
 
 func change_expression(expression:String = ''):
 	if expression != '':

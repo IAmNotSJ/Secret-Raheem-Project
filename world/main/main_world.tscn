@@ -1,0 +1,361 @@
+[gd_scene load_steps=44 format=3 uid="uid://duipwhxvx2swn"]
+
+[ext_resource type="Texture2D" uid="uid://chkk8j4e3fge6" path="res://world/backgrounds/world map.png" id="1_fr3iq"]
+[ext_resource type="Script" path="res://world/main/main_world.gd" id="1_t2qyf"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://characters/wibr/wibr.tscn" id="2_0fkds"]
+[ext_resource type="PackedScene" uid="uid://deevmhy44a624" path="res://world/overworld chars/sj/sj.tscn" id="3_vxvu5"]
+[ext_resource type="PackedScene" uid="uid://c3b6mw882imv4" path="res://world/main/scenes/fountain.tscn" id="4_83klh"]
+[ext_resource type="PackedScene" uid="uid://dhyje6stueijq" path="res://world/overworld chars/cherry/cherry.tscn" id="5_3ckn3"]
+[ext_resource type="PackedScene" uid="uid://dlq3kyf0jpqva" path="res://world/main/scenes/bench.tscn" id="6_rr731"]
+[ext_resource type="PackedScene" uid="uid://blcccv0s6u50t" path="res://world/overworld chars/key/key.tscn" id="7_g8tgg"]
+[ext_resource type="PackedScene" uid="uid://bjr6w4tm7wsa4" path="res://world/overworld chars/dile/dile.tscn" id="8_7ykrc"]
+[ext_resource type="PackedScene" uid="uid://du6kdrfo6rvr0" path="res://world/overworld chars/comp and dap/comp_and_dap.tscn" id="9_gk6v7"]
+[ext_resource type="PackedScene" uid="uid://dolunsqke4wma" path="res://world/overworld chars/atlas/atlas.tscn" id="10_sr7xh"]
+[ext_resource type="PackedScene" uid="uid://cd15dlebq4nhy" path="res://world/overworld chars/dizzy/dizzy.tscn" id="11_rgw2s"]
+[ext_resource type="PackedScene" uid="uid://cyd8mfw0vg1bi" path="res://world/overworld chars/slime/slime.tscn" id="12_bm4qp"]
+[ext_resource type="PackedScene" uid="uid://bx6vg1h4tdp7v" path="res://world/overworld chars/block/block.tscn" id="13_dkxd8"]
+[ext_resource type="Texture2D" uid="uid://uas6nohke52p" path="res://world/backgrounds/leaves.png" id="13_tii4a"]
+[ext_resource type="PackedScene" uid="uid://cdofwwmntnixn" path="res://world/main/scenes/sign.tscn" id="14_78btq"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://world/interactions/doorway.tscn" id="14_lw6rc"]
+[ext_resource type="PackedScene" uid="uid://iif53x211rnw" path="res://world/overworld chars/luna/luna.tscn" id="14_m6o60"]
+[ext_resource type="PackedScene" uid="uid://bf7hi3upbh03k" path="res://world/overworld chars/byrd/byrd.tscn" id="15_mta24"]
+[ext_resource type="Texture2D" uid="uid://hysepghfjji1" path="res://world/main/assets/pizza hut.png" id="15_nbl5c"]
+[ext_resource type="PackedScene" uid="uid://bhj32f7mw1khe" path="res://world/overworld chars/nova/nova.tscn" id="16_cbfww"]
+[ext_resource type="PackedScene" uid="uid://ces0aycq6cpvc" path="res://world/main/scenes/apartment.tscn" id="16_sknm3"]
+[ext_resource type="PackedScene" uid="uid://k4t5ibok1pds" path="res://world/main/scenes/tree.tscn" id="17_18gae"]
+[ext_resource type="Texture2D" uid="uid://qdx0hl5gruem" path="res://world/overworld chars/luna/tv.png" id="18_wdqot"]
+[ext_resource type="PackedScene" uid="uid://be3orsh21kbef" path="res://world/main/scenes/bush.tscn" id="18_xunk1"]
+[ext_resource type="Texture2D" uid="uid://dxo4q3jf0w5f" path="res://world/main/sky/assets/sky.png" id="19_btvnc"]
+[ext_resource type="PackedScene" uid="uid://4vy6hlnpjs2q" path="res://world/overworld chars/chu/chu.tscn" id="19_tv7y1"]
+[ext_resource type="Texture2D" uid="uid://p8gjdbj1mbpn" path="res://world/main/sky/assets/clouds.png" id="20_4jjyg"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://world/dialogue.tscn" id="20_p1uxr"]
+[ext_resource type="PackedScene" uid="uid://geyl2b3fh0pk" path="res://world/main/sky/scenes/flying_octagon.tscn" id="21_cuv34"]
+[ext_resource type="Texture2D" uid="uid://f1yuojc3knb" path="res://world/main/sky/assets/mountains.png" id="22_kcpeu"]
+[ext_resource type="Texture2D" uid="uid://bywm15x0t5oc5" path="res://world/main/sky/assets/tree bg.png" id="23_lmbog"]
+[ext_resource type="PackedScene" uid="uid://dmplm2w5tufh" path="res://world/overworld chars/roxy/roxy.tscn" id="30_bynqj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8v6"]
+size = Vector2(109, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bjce"]
+size = Vector2(489, 174)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0ugr"]
+size = Vector2(63, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wraek"]
+size = Vector2(64, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n51ei"]
+size = Vector2(76, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xim2"]
+radius = 47.1699
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3cul"]
+radius = 204.061
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul7bd"]
+size = Vector2(28, 1482)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r6y6"]
+size = Vector2(3396, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4438o"]
+size = Vector2(24, 1880)
+
+[node name="Main World" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(595, 281)
+script = ExtResource("1_t2qyf")
+
+[node name="WorldMap" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(289, -167)
+texture = ExtResource("1_fr3iq")
+metadata/_edit_lock_ = true
+
+[node name="Wibr" parent="." instance=ExtResource("2_0fkds")]
+position = Vector2(0, 199)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Wibr"]
+position = Vector2(-3, 15)
+
+[node name="Chars" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="SJ" parent="Chars" instance=ExtResource("3_vxvu5")]
+position = Vector2(529, -267)
+
+[node name="Fountain" parent="Chars" instance=ExtResource("4_83klh")]
+position = Vector2(6, 26)
+
+[node name="Cherry" parent="Chars" instance=ExtResource("5_3ckn3")]
+position = Vector2(-385, 205)
+offset = Vector2(0, -50)
+
+[node name="Bench2" parent="Chars" instance=ExtResource("6_rr731")]
+position = Vector2(-428, 181)
+seat2occupied = true
+
+[node name="Key" parent="Chars" instance=ExtResource("7_g8tgg")]
+position = Vector2(851, 105)
+
+[node name="Dile" parent="Chars" instance=ExtResource("8_7ykrc")]
+position = Vector2(662, 346)
+
+[node name="CompAndDap" parent="Chars" instance=ExtResource("9_gk6v7")]
+position = Vector2(-459, -320)
+
+[node name="Atlas" parent="Chars" instance=ExtResource("10_sr7xh")]
+position = Vector2(-784, 0)
+
+[node name="Dizzy" parent="Chars" instance=ExtResource("11_rgw2s")]
+position = Vector2(-459, 473)
+
+[node name="Slime" parent="Chars" instance=ExtResource("12_bm4qp")]
+position = Vector2(-714, -2)
+
+[node name="Block" parent="Chars" instance=ExtResource("13_dkxd8")]
+position = Vector2(1260, -179)
+
+[node name="Byrd" parent="Chars" instance=ExtResource("15_mta24")]
+position = Vector2(1498, 146)
+
+[node name="Luna" parent="Chars" instance=ExtResource("14_m6o60")]
+position = Vector2(1403, 128)
+
+[node name="Nova" parent="Chars" instance=ExtResource("16_cbfww")]
+position = Vector2(1448, -356)
+
+[node name="Roxy" parent="Chars" instance=ExtResource("30_bynqj")]
+position = Vector2(395, -585)
+
+[node name="Chu" parent="Chars" instance=ExtResource("19_tv7y1")]
+position = Vector2(-1261, 262)
+
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Doorways" type="Node2D" parent="Props"]
+
+[node name="Doorway" parent="Props/Doorways" instance=ExtResource("14_lw6rc")]
+y_sort_enabled = true
+position = Vector2(303, -394)
+scene_change = "res://world/pizzeria/pizzeria_back.tscn"
+save_pos = true
+
+[node name="Interaction" parent="Props/Doorways/Doorway" index="0"]
+position = Vector2(591, -37)
+
+[node name="CollisionShape2D" parent="Props/Doorways/Doorway/Interaction" index="0"]
+position = Vector2(44.5, 0)
+shape = SubResource("RectangleShape2D_qq8v6")
+
+[node name="Buildings" type="Node2D" parent="Props"]
+y_sort_enabled = true
+
+[node name="Sign" parent="Props/Buildings" instance=ExtResource("14_78btq")]
+position = Vector2(-1135, 146)
+
+[node name="PizzaHut" type="Sprite2D" parent="Props/Buildings"]
+position = Vector2(815, -331)
+texture = ExtResource("15_nbl5c")
+offset = Vector2(0, -95)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Props/Buildings/PizzaHut"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Buildings/PizzaHut/StaticBody2D"]
+position = Vector2(7, -10)
+shape = SubResource("RectangleShape2D_8bjce")
+
+[node name="Tv" type="Sprite2D" parent="Props/Buildings"]
+position = Vector2(1419, 199)
+texture = ExtResource("18_wdqot")
+offset = Vector2(0, 42.25)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Props/Buildings/Tv"]
+position = Vector2(-1, 63)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Buildings/Tv/StaticBody2D"]
+position = Vector2(-9, -16)
+shape = SubResource("RectangleShape2D_v0ugr")
+
+[node name="Dialogue" parent="Props/Buildings/Tv" instance=ExtResource("20_p1uxr")]
+interaction_dialogue = "res://dialogue/scripts/tv.dialogue"
+
+[node name="CollisionShape2D" parent="Props/Buildings/Tv/Dialogue/Dialogue" index="0"]
+position = Vector2(-10, 39)
+shape = SubResource("RectangleShape2D_wraek")
+
+[node name="Apartment" parent="Props/Buildings" instance=ExtResource("16_sknm3")]
+position = Vector2(-1103, -628)
+
+[node name="Foliage" type="Node2D" parent="Props"]
+y_sort_enabled = true
+
+[node name="Trees" type="Node2D" parent="Props/Foliage"]
+y_sort_enabled = true
+
+[node name="Tree" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(1084, -389)
+
+[node name="Tree2" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(1282, -392)
+scale = Vector2(2, 2)
+flip_h = true
+
+[node name="Tree3" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(1469, -406)
+scale = Vector2(2.65, 2.65)
+
+[node name="Tree4" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(1365, -435)
+scale = Vector2(2.7, 2.7)
+
+[node name="Tree5" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(-1112, 709)
+scale = Vector2(2.7, 2.7)
+flip_h = true
+
+[node name="Tree6" parent="Props/Foliage/Trees" instance=ExtResource("17_18gae")]
+position = Vector2(-1233, 638)
+
+[node name="Bushes" type="Node2D" parent="Props/Foliage"]
+y_sort_enabled = true
+
+[node name="Bush" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(-935, -605)
+
+[node name="Bush6" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(976, -263)
+
+[node name="Bush2" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(-1274, -597)
+
+[node name="Bush3" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(-1222, -652)
+
+[node name="Bush4" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(894, 80)
+
+[node name="Bush5" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(1016, 146)
+
+[node name="Bush7" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(1020, 77)
+flip_h = true
+
+[node name="Bush8" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(965, 47)
+
+[node name="Bush9" parent="Props/Foliage/Bushes" instance=ExtResource("18_xunk1")]
+position = Vector2(947, 184)
+flip_h = true
+
+[node name="Leaves" type="Sprite2D" parent="Props/Foliage"]
+z_index = 1
+position = Vector2(325, 222)
+texture = ExtResource("13_tii4a")
+
+[node name="Dialogue" type="Node2D" parent="Props"]
+
+[node name="Pizzeria Front" parent="Props/Dialogue" instance=ExtResource("20_p1uxr")]
+position = Vector2(694, -253)
+interaction_dialogue = "res://dialogue/scripts/pizzeria_outside.dialogue"
+
+[node name="CollisionShape2D" parent="Props/Dialogue/Pizzeria Front/Dialogue" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_n51ei")
+
+[node name="Alligator" parent="Props/Dialogue" instance=ExtResource("20_p1uxr")]
+interaction_dialogue = "res://dialogue/scripts/alligator.dialogue"
+
+[node name="CollisionShape2D" parent="Props/Dialogue/Alligator/Dialogue" index="0"]
+position = Vector2(527, 396)
+shape = SubResource("CircleShape2D_3xim2")
+
+[node name="Hyena" parent="Props/Dialogue" instance=ExtResource("20_p1uxr")]
+position = Vector2(-1239, 595)
+interaction_dialogue = "res://dialogue/scripts/hyena.dialogue"
+
+[node name="CollisionShape2D" parent="Props/Dialogue/Hyena/Dialogue" index="0"]
+position = Vector2(17, 0)
+shape = SubResource("CircleShape2D_s3cul")
+
+[node name="World Collisions" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Collisions"]
+polygon = PackedVector2Array(168, 763, 140, 711, 140, 635, 156, 567, 190, 527, 216, 473, 286, 441, 338, 437, 404, 415, 444, 389, 512, 375, 586, 381, 650, 421, 744, 439, 842, 467, 942, 525, 998, 603, 1030, 685, 1032, 765)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="World Collisions"]
+polygon = PackedVector2Array(-1384, -641, 2036, -699, 2050, -739, -1358, -692)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Collisions"]
+position = Vector2(-1372, 36)
+shape = SubResource("RectangleShape2D_ul7bd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World Collisions"]
+position = Vector2(306, 779)
+shape = SubResource("RectangleShape2D_4r6y6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World Collisions"]
+position = Vector2(2042, 169)
+shape = SubResource("RectangleShape2D_4438o")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(595, 281)
+motion_scale = Vector2(0, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(45, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("19_btvnc")
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(595, 281)
+motion_scale = Vector2(0.2, 1.01)
+
+[node name="Clouds" type="Sprite2D" parent="ParallaxBackground/Clouds"]
+position = Vector2(30, -988)
+scale = Vector2(2, 2)
+texture = ExtResource("20_4jjyg")
+
+[node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(595, 281)
+motion_scale = Vector2(0.2, 1.025)
+
+[node name="Mountains" type="Sprite2D" parent="ParallaxBackground/Mountains"]
+position = Vector2(84, -808)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("22_kcpeu")
+
+[node name="Octagon" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(595, 281)
+motion_scale = Vector2(0.2, 1.01)
+
+[node name="Flying Octagon" parent="ParallaxBackground/Octagon" instance=ExtResource("21_cuv34")]
+position = Vector2(-538, -909)
+
+[node name="City" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(595, 281)
+motion_scale = Vector2(0.3, 1.05)
+
+[node name="Bush" type="Sprite2D" parent="ParallaxBackground/City"]
+position = Vector2(102, -760)
+texture = ExtResource("23_lmbog")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -25.0
+
+[connection signal="interacted" from="Chars/Key" to="." method="_on_key_interacted"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="Props/Doorways/Doorway"]
+[editable path="Props/Buildings/Tv/Dialogue"]
+[editable path="Props/Dialogue/Pizzeria Front"]
+[editable path="Props/Dialogue/Alligator"]
+[editable path="Props/Dialogue/Hyena"]

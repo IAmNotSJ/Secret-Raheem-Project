@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsn5yhcu0ddgg"
+path="res://.godot/imported/Persistent Joy.ogg-f9c8091dad366f94b1cdaf6d5256e999.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Persistent Joy.ogg"
+dest_files=["res://.godot/imported/Persistent Joy.ogg-f9c8091dad366f94b1cdaf6d5256e999.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

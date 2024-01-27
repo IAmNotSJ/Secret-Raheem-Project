@@ -62,8 +62,9 @@ func shoot():
 	bullet.global_position = pupil.global_position
 	var angleTo = angleToTarget(target, marker)
 	bullet.initialize(angleTo, gasTexture, 600)
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+	mainScene.call_deferred("add_child", bullet)
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

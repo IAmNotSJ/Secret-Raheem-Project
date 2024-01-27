@@ -38,4 +38,4 @@ func spawn_bullet(angle):
 	var bullet = bulletScene.instantiate()
 	bullet.global_position = $Gun/Marker2D.global_position
 	bullet.angle = angle
-	get_tree().get_root().get_node("KarlPilkington").call_deferred("add_child", bullet)
+	get_tree().get_root().get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", bullet)

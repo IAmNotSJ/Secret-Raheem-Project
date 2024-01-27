@@ -29,9 +29,11 @@ func _unhandled_input(_event):
 
 func set_text(daTitle:String = 'NULL', daDescription:String = 'NULL', daPrice:String = 'NULL', disabled:bool = false):
 	print('updated!')
+	if daTitle == "HYENA MULTILEVEL QUANTUM MANIPULATOR":
+		daTitle = "HYENA M.Q.N."
 	title.text = "[b]" + daTitle + "[/b]"
 	description.text = daDescription
 	if daPrice != 'NULL' and !disabled:
-		price.text = str(daPrice) + " HYENAS"
+		price.text = daPrice.to_upper() + " HYENAS"
 	else:
 		price.text = " "

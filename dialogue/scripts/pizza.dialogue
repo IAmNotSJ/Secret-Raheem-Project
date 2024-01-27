@@ -1,0 +1,13 @@
+~ start
+
+set global.items["Pizza"] = true
+set global.characterInteractions["Cleft"] = 0
+do global.save()
+It's a pizza
+Cobwebs and mold surround it
+It seems as though it's been here for years
+It is harboring its own ecosystem
+...
+You take it
+
+=> END

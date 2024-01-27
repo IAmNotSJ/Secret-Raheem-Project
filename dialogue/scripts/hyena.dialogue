@@ -1,0 +1,26 @@
+~ start
+if !global.unlocks["Gate"]
+	if !global.items["Key"]
+		Underneath the brush a lone gate stands, locked to the outside world
+		Beyond the thicket of the horizon, you are able to hear the distant howls of the familiar.
+	else
+		set global.unlocks["Gate"] = true
+		do global.save()
+		Your hands tremble as you reach towards the lock of the gate
+		As you insert the key, you hear a faint click as the harsh, brittle stiffness of the gate begins to see itself open
+		Through the pockets past the thick bramble and overgrowth, you are able to yet again hear the calls of those who you long
+		Enter the gate?
+		- Yes
+			do Transition.change_scene_to_preset("Hyena")
+			=> END
+		- No
+			=> END
+else:
+	Enter the gate?
+	- Yes
+		do Overworld.save_position(Vector2(-1275, 627))
+		do Transition.change_scene_to_preset("Hyena")
+		=> END
+	- No
+		=> END
+=> END

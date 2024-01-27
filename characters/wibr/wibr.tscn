@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cxqffaxvpn3fd"]
+[gd_scene load_steps=31 format=3 uid="uid://cxqffaxvpn3fd"]
 
 [ext_resource type="Script" path="res://characters/base.gd" id="1_k08co"]
 [ext_resource type="Texture2D" uid="uid://5kc58oayr3bj" path="res://characters/wibr/wibr overworld.png" id="2_pm7ec"]
@@ -52,6 +52,18 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
 "values": [Vector2(0, 0)]
 }
 
@@ -261,6 +273,33 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, -9)]
+}
+
+[sub_resource type="Animation" id="Animation_rdun1"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, -36), Vector2(0, -44), Vector2(0, -31), Vector2(0, -30), Vector2(0, -36), Vector2(0, -35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_0ge2g"]
@@ -483,6 +522,7 @@ _data = {
 "idle_left": SubResource("Animation_83lat"),
 "idle_right": SubResource("Animation_mfn2u"),
 "idle_up": SubResource("Animation_pbhan"),
+"jump": SubResource("Animation_rdun1"),
 "walk_down": SubResource("Animation_0ge2g"),
 "walk_left": SubResource("Animation_khehf"),
 "walk_right": SubResource("Animation_1lmow"),
@@ -559,12 +599,13 @@ radius = 22.0
 height = 76.0
 
 [node name="Wibr" type="CharacterBody2D"]
+position = Vector2(0, -8)
 script = ExtResource("1_k08co")
-walk_speed = 500
+walk_speed = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pm7ec")
-hframes = 9
+hframes = 14
 
 [node name="Hitbox" parent="." instance=ExtResource("3_vnmjk")]
 position = Vector2(1, 28)

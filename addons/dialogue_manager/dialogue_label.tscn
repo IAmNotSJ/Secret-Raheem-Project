@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckvgyvclnwggo"]
+[gd_scene load_steps=3 format=3 uid="uid://ckvgyvclnwggo"]
 
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="1_cital"]
+[ext_resource type="AudioStream" uid="uid://bqf4xumwvn6g1" path="res://dialogue/dialogue_box/sounds/dialogue.wav" id="2_xd7yp"]
 
 [node name="DialogueLabel" type="RichTextLabel"]
 anchors_preset = 10
@@ -16,3 +17,7 @@ hint_underlined = false
 deselect_on_focus_loss_enabled = false
 visible_characters_behavior = 1
 script = ExtResource("1_cital")
+skip_action = &"ui_cancel"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xd7yp")

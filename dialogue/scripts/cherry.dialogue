@@ -1,10 +1,9 @@
 ~ start
 if global.characterInteractions["Cherry"] == 0
-	do DialogueManager.changePortrait(0, "cherry", "wave"):
 	cherry: Howdy wibr!
 elif global.characterInteractions["Cherry"] == 1
 	cherry: There's been noise coming from all over the place today
-	cherry: Something must be happening to cause it
+	cherry: Something around here must be causing it
 elif global.characterInteractions["Cherry"] > 1
 	cherry: what the fuck do i write here brah
 

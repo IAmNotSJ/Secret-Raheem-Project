@@ -20,7 +20,6 @@ song = ExtResource("2_vliu7")
 
 [node name="Sand" parent="." instance=ExtResource("2_axdr4")]
 position = Vector2(321, -129)
-health = 20.0
 
 [node name="Wheel" parent="." instance=ExtResource("3_76wmv")]
 position = Vector2(1380, 533)
@@ -34,18 +33,15 @@ position = Vector2(1011, -150)
 [node name="Scale" parent="." instance=ExtResource("7_e3t5l")]
 
 [node name="Pipe" parent="." instance=ExtResource("8_7s8ip")]
-health = 20.0
 
 [node name="Spark" parent="." instance=ExtResource("9_grr6f")]
 position = Vector2(1409, 811)
-health = 20.0
 
 [node name="Alloy" parent="." instance=ExtResource("10_68vqj")]
 position = Vector2(-90, 348)
 
 [node name="Blade" parent="." instance=ExtResource("11_4a1sf")]
 position = Vector2(1390, 345)
-health = 20.0
 
 [node name="Gas" parent="." instance=ExtResource("12_fegwr")]
 position = Vector2(-102, -130)

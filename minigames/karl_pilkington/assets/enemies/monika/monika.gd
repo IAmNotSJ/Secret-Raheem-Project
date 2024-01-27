@@ -10,7 +10,7 @@ var state = SMALL
 @export var health2:int = 60
 
 const eyeradius = 6
-@onready var mainScene = get_tree().root.get_node("KarlPilkington")
+@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 
 const miniScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/mini.tscn")
 const MAX_MINI_TIMER = Vector2(3, 5)
@@ -31,7 +31,8 @@ var deadFlowerPositions = [[Vector2(225, 193), Vector2(-225, 193)], [Vector2(105
 
 const flumpScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/flump.tscn")
 
-func _ready(): 
+func _ready():
+	mainScene.music.stop() 
 	super()
 
 func _process(delta):
@@ -78,6 +79,7 @@ func hurt(damage):
 	if state == SMALL:
 		if health <= 1:
 			$ProgressionPlayer.play('change')
+			mainScene.music.play() 
 	else:
 		if health <= 0:
 			die()
@@ -88,16 +90,17 @@ func spawn_mini():
 	if miniKa.global_position.x < 1280 / 2:
 		miniKa.flip_h = true
 	miniKa.target = target
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", miniKa)
+	killOnDeath.append(miniKa)
+	mainScene.call_deferred("add_child", miniKa)
 
 func spawn_warn():
 	var warn = warnScene.instantiate()
 	warn.global_position = target.global_position
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", warn)
+	mainScene.call_deferred("add_child", warn)
 func spawn_flump():
 	var flump = flumpScene.instantiate()
 	killOnDeath.append(flump)
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", flump)
+	mainScene.call_deferred("add_child", flump)
 
 func spawn_dead(ground:bool = false):
 	if ground == false:
@@ -105,13 +108,13 @@ func spawn_dead(ground:bool = false):
 		deadFlowerPositions.shuffle()
 		dead.global_position = deadFlowerPositions[0][1]
 		dead.targetPos = deadFlowerPositions[0][0]
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", dead)
+		mainScene.call_deferred("add_child", dead)
 	else:
 		for i in range(2):
 			var dead = deadFlowerScene.instantiate()
 			dead.global_position = deadFlowerPositions[i][1]
 			dead.targetPos = deadFlowerPositions[i][0]
-			get_tree().root.get_node("KarlPilkington").call_deferred("add_child", dead)
+			mainScene.call_deferred("add_child", dead)
 
 func spawn_bullet():
 	var bullet = bulletScene.instantiate()
@@ -123,7 +126,7 @@ func spawn_bullet():
 	var angleTo = bullet.transform.x.angle_to(direction)
 	bullet.spin = true
 	bullet.angle = angleTo
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+	mainScene.call_deferred("add_child", bullet)
 
 func angleToTarget(daTarget, marker):
 	var direction = daTarget.global_position - global_position

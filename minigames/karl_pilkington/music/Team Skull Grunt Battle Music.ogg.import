@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://n2r5tutyet3n"
+path="res://.godot/imported/Team Skull Grunt Battle Music.ogg-1ef7122e4f8ff62854d7abae3087c40d.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/karl_pilkington/music/Team Skull Grunt Battle Music.ogg"
+dest_files=["res://.godot/imported/Team Skull Grunt Battle Music.ogg-1ef7122e4f8ff62854d7abae3087c40d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

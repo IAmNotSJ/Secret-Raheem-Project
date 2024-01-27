@@ -259,6 +259,7 @@ position = Vector2(1639, 226)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3xicd")
+health = 50.0
 song = ExtResource("2_rv7bt")
 hitbox = NodePath("Hurtbox")
 

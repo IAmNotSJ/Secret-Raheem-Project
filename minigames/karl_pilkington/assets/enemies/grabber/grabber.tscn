@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://c6wuhkgc0ru25"]
+[gd_scene load_steps=39 format=3 uid="uid://c6wuhkgc0ru25"]
 
 [ext_resource type="Texture2D" uid="uid://bv6uoiueop4fe" path="res://minigames/karl_pilkington/assets/enemies/grabber/glasses.png" id="1_7isck"]
 [ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/grabber/grabber.gd" id="1_ssbfo"]
+[ext_resource type="AudioStream" uid="uid://n2r5tutyet3n" path="res://minigames/karl_pilkington/music/Team Skull Grunt Battle Music.ogg" id="2_0imj7"]
 [ext_resource type="Texture2D" uid="uid://cvq61hwvn3b5r" path="res://minigames/karl_pilkington/assets/enemies/grabber/hands.png" id="2_hufoc"]
 [ext_resource type="Texture2D" uid="uid://b0v3yi5n5eruo" path="res://minigames/karl_pilkington/assets/enemies/grabber/mouth.png" id="4_8gwu1"]
 [ext_resource type="Texture2D" uid="uid://cehyonn5rsro3" path="res://minigames/karl_pilkington/assets/enemies/grabber/eyebrows.png" id="5_oe1ne"]
@@ -1107,6 +1108,7 @@ z_index = 1
 position = Vector2(640, -126)
 script = ExtResource("1_ssbfo")
 health = 50.0
+song = ExtResource("2_0imj7")
 hitbox = NodePath("Glasses/Area2D")
 
 [node name="Glasses" type="Node2D" parent="."]

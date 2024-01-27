@@ -1,0 +1,140 @@
+[gd_scene load_steps=16 format=3 uid="uid://coq1vpspwrw63"]
+
+[ext_resource type="Script" path="res://menu/main_menu.gd" id="1_q88bu"]
+[ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="2_3g75t"]
+[ext_resource type="Texture2D" uid="uid://cu6u28j0rwel4" path="res://menu/assets/shell.png" id="3_6s5sv"]
+[ext_resource type="Texture2D" uid="uid://1keyq18h6qat" path="res://menu/assets/title.png" id="4_b5egf"]
+[ext_resource type="Texture2D" uid="uid://cao6klfkstypv" path="res://menu/assets/bg.png" id="5_e2yv8"]
+[ext_resource type="Texture2D" uid="uid://b8utgw1mfobmv" path="res://menu/assets/buttons/start.png" id="5_oist7"]
+[ext_resource type="Texture2D" uid="uid://bhgabmxek0jvw" path="res://menu/assets/buttons/karl.png" id="6_24374"]
+[ext_resource type="Texture2D" uid="uid://d0jl7qknbxfro" path="res://menu/assets/buttons/start-select.png" id="6_xu7us"]
+[ext_resource type="Texture2D" uid="uid://bebj26ta8pck6" path="res://menu/assets/buttons/hyena.png" id="7_m8axa"]
+[ext_resource type="Texture2D" uid="uid://dnaf0su4shk35" path="res://menu/assets/buttons/karl-select.png" id="8_7jgxb"]
+[ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menu/assets/buttons/hyena-select.png" id="10_6x787"]
+[ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://music/Title Screen.ogg" id="12_geveb"]
+
+[sub_resource type="Animation" id="Animation_6mkq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 171)]
+}
+
+[sub_resource type="Animation" id="Animation_x1ui1"]
+resource_name = "bop"
+length = 0.750004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.208333, 0.291667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(640, 157), Vector2(640, 165), Vector2(640, 169), Vector2(640, 170), Vector2(640, 168)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_go4rk"]
+_data = {
+"RESET": SubResource("Animation_6mkq2"),
+"bop": SubResource("Animation_x1ui1")
+}
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_q88bu")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("5_e2yv8")
+centered = false
+
+[node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
+offset_left = -10.2652
+offset_top = 662.0
+offset_right = 1675.73
+offset_bottom = 731.0
+texture = ExtResource("3_6s5sv")
+speed = Vector2(-50, 0)
+crossingPoint = -276.0
+
+[node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
+offset_left = -114.292
+offset_top = -10.0
+offset_right = 1571.71
+offset_bottom = 59.0
+texture = ExtResource("3_6s5sv")
+flip_v = true
+speed = Vector2(50, 0)
+crossingPoint = -110.0
+
+[node name="Begin" type="TextureButton" parent="."]
+offset_left = 421.0
+offset_top = 490.0
+offset_right = 567.0
+offset_bottom = 539.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("5_oist7")
+texture_hover = ExtResource("6_xu7us")
+
+[node name="Karl" type="TextureButton" parent="."]
+offset_left = 266.0
+offset_top = 490.0
+offset_right = 315.0
+offset_bottom = 539.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("6_24374")
+texture_hover = ExtResource("8_7jgxb")
+
+[node name="Hyena" type="TextureButton" parent="."]
+offset_left = 864.0
+offset_top = 490.0
+offset_right = 962.0
+offset_bottom = 588.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("7_m8axa")
+texture_hover = ExtResource("10_6x787")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(640, 171)
+scale = Vector2(2, 2)
+texture = ExtResource("4_b5egf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_geveb")
+volume_db = -9.0
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_go4rk")
+}
+autoplay = "bop"
+
+[connection signal="pressed" from="Begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="Karl" to="." method="_on_karl_pressed"]
+[connection signal="pressed" from="Hyena" to="." method="_on_hyena_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

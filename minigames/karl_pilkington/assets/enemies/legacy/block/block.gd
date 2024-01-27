@@ -26,14 +26,14 @@ func replicate_bullet(daPos:Vector2, angleOffset = 0):
 	var bullet = bullet_scene.instantiate()
 	var dir = target.global_position - daPos
 	bullet.start(daPos, dir.angle() + angleOffset)
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+	mainScene.call_deferred("add_child", bullet)
 
 func shoot():
 	var bullet = basic_bullet.instantiate()
 	bullet.global_position = pupil.global_position
 	var angleTo = angleToTarget(target, marker)
 	bullet.initialize(angleTo, bullet_texture, 700)
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+	mainScene.call_deferred("add_child", bullet)
 
 func _on_hitbox_entered(area):
 	if active:

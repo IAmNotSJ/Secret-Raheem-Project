@@ -1,0 +1,8 @@
+~ start
+
+nova: Hey.
+nova: I had some nuggers here but I think someone took them
+nova: But who could have done it...
+
+do global.add_interaction("Nova")
+=> END

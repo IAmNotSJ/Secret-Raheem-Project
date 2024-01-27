@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpo4epn4pqeyw"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/pilkFull.gd" id="1_8802m"]
+[ext_resource type="PackedScene" uid="uid://bwwmi7b5w1ukc" path="res://minigames/karl_pilkington/pilkington menu.tscn" id="2_302q3"]
+
+[node name="Pilkington" type="Node2D"]
+script = ExtResource("1_8802m")
+
+[node name="PilkingtonMenu" parent="." instance=ExtResource("2_302q3")]

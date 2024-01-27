@@ -49,6 +49,7 @@ _data = {
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_jgqal")
+health = 15.0
 ATTACK_TIMER = 6
 hitbox = NodePath("Area2D")
 

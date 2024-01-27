@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dmrk6sxpj8wrf"
+path="res://.godot/imported/Checking In.ogg-878e49eb5823a27a63a54b4c09072850.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/Checking In.ogg"
+dest_files=["res://.godot/imported/Checking In.ogg-878e49eb5823a27a63a54b4c09072850.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

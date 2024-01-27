@@ -1,5 +1,15 @@
 ~ start
 
+if global.characterInteractions["Dapper Composty"] == 0
+	dapper: Another failed roll!!!
+	dapper: If I don't get this super ultra mega rare motor oil cookie soon I'm going to have to mortgage my house!
+	composty: Oh, it's ok dappor..
+	composty: I'm sure if you keep trying you'll get it..
+if global.characterInteractions["Dapper Composty"] > 0
+	composty: How's it going dappor?
+	dapper: let me see....
+	%999 dapper: No.... Another failed roll....
+	%1 dapper: I GOT IT!!! Now onto the next Cookie!
 
-
+do global.add_interaction("Dapper Composty")
 => END

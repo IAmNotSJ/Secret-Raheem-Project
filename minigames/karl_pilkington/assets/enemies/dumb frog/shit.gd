@@ -19,7 +19,7 @@ func destroy():
 		var shit = smallShitScene.instantiate()
 		shit.global_position = global_position
 		shit.direction = i * 90
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", shit)
+		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", shit)
 	queue_free()
 
 

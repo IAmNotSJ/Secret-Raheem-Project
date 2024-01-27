@@ -28,20 +28,36 @@ extends Node2D
 @onready var clickButtons = [netButton, meatButton, encyclopediaButton, callButton, tomeButton, timeMachineButton, armyButton, darkArtButton, prismButton, darkMatterButton, augmentorButton, multiLevelQuantumManipulatorButton, yenaforceButton, folderButton]
 
 @onready var clickUpgrades:Dictionary = {
-	"HYENA NET" : [0, 1, netButton.bigPrice.toString()],
-	"HYENA MEAT" : [0, 3, meatButton.bigPrice.toString()],
-	"HYENA ENCYCLOPEDIA" : [0, 8, encyclopediaButton.bigPrice.toString()],
-	"HYENA CALL" : [0, 20, callButton.bigPrice.toString()],
-	"HYENA TOME" : [0, 56, tomeButton.bigPrice.toString()],
-	"HYENA TIME MACHINE" : [0, 86, timeMachineButton.bigPrice.toString()],
-	"HYENA ARMY" : [0, 123, armyButton.bigPrice.toString()],
-	"HYENA DARK ARTS" : [0, 450, darkArtButton.bigPrice.toString()],
-	"HYENA PRISM" : [0, 1130, prismButton.bigPrice.toString()],
-	"HYENA DARK MATTER" : [0, 4500, darkMatterButton.bigPrice.toString()],
-	"HYENA AUGMENTOR" : [0, 11200, augmentorButton.bigPrice.toString()],
-	"HYENA MULTILEVEL QUANTUM MANIPULATOR" : [0, 96000, multiLevelQuantumManipulatorButton.bigPrice.toString()],
-	"HYENA FORCE" : [0, 350000, yenaforceButton.bigPrice.toString()],
-	"HYENA FOLDER" : [0, 1000000, folderButton.bigPrice.toString()],
+	"HYENA NET" : [0, netButton.bigPrice.toString()],
+	"HYENA MEAT" : [0, meatButton.bigPrice.toString()],
+	"HYENA ENCYCLOPEDIA" : [0, encyclopediaButton.bigPrice.toString()],
+	"HYENA CALL" : [0, callButton.bigPrice.toString()],
+	"HYENA TOME" : [0, tomeButton.bigPrice.toString()],
+	"HYENA TIME MACHINE" : [0, timeMachineButton.bigPrice.toString()],
+	"HYENA ARMY" : [0, armyButton.bigPrice.toString()],
+	"HYENA DARK ARTS" : [0, darkArtButton.bigPrice.toString()],
+	"HYENA PRISM" : [0, prismButton.bigPrice.toString()],
+	"HYENA DARK MATTER" : [0, darkMatterButton.bigPrice.toString()],
+	"HYENA AUGMENTOR" : [0, augmentorButton.bigPrice.toString()],
+	"HYENA MULTILEVEL QUANTUM MANIPULATOR" : [0, multiLevelQuantumManipulatorButton.bigPrice.toString()],
+	"HYENA FORCE" : [0, yenaforceButton.bigPrice.toString()],
+	"HYENA FOLDER" : [0, folderButton.bigPrice.toString()],
+}
+var clickProduction:Dictionary = {
+	"HYENA NET" : "1",
+	"HYENA MEAT" : "3",
+	"HYENA ENCYCLOPEDIA" : "8",
+	"HYENA CALL" : "60",
+	"HYENA TOME" : "420",
+	"HYENA TIME MACHINE" : "28420",
+	"HYENA ARMY" : "1.25e6",
+	"HYENA DARK ARTS" : "6e6",
+	"HYENA PRISM" : "3.3e8",
+	"HYENA DARK MATTER" : "1.34e11",
+	"HYENA AUGMENTOR" : "9.99e13",
+	"HYENA MULTILEVEL QUANTUM MANIPULATOR" : "4.56e16",
+	"HYENA FORCE" : "1e18",
+	"HYENA FOLDER" : "9.99e21"
 }
 var curClick = 1
 
@@ -68,28 +84,53 @@ var curClick = 1
 @onready var idleButtons = [snackButton, trapButton, droneButton, enclosureButton, zooButton, parkButton,sanctuaryButton, spellButton, rocketButton, colonyButton, portalButton, vortexButton, galaxyButton, duplicatorButton, dysonButton, blackHoleButton, afterlifeButton, singularityButton, universeButton, multiverseButton]
 
 @onready var idleUpgrades:Dictionary = {
-	"HYENA SNACK" : [0, 0.1, snackButton.bigPrice.toString()],
-	"HYENA TRAP" : [0, 1, trapButton.bigPrice.toString()],
-	"HYENA DRONE" : [0, 11, droneButton.bigPrice.toString()],
-	"HYENA ENCLOSURE" : [0, 54, enclosureButton.bigPrice.toString()],
-	"HYENA ZOO" : [0, 94, zooButton.bigPrice.toString()],
-	"HYENA PARK" : [0, 140, parkButton.bigPrice.toString()],
-	"HYENA SANCTUARY" : [0, 890, sanctuaryButton.bigPrice.toString()],
-	"HYENA SPELL" : [0, 1400, spellButton.bigPrice.toString()],
-	"HYENA ROCKET" : [0, 3500, rocketButton.bigPrice.toString()],
-	"HYENA COLONY" : [0, 9999, colonyButton.bigPrice.toString()],
-	"HYENA PORTAL" : [0, 26500, portalButton.bigPrice.toString()],
-	"HYENA VORTEX" : [0, 89000, vortexButton.bigPrice.toString()],
-	"HYENA GALAXY" : [0, 500000, galaxyButton.bigPrice.toString()],
-	"HYENA DUPLICATOR" : [0, 1300000, duplicatorButton.bigPrice.toString()],
-	"HYENA DYSON SPHERE" : [0, 12500000, dysonButton.bigPrice.toString()],
-	"HYENA BLACK HOLE" : [0, 98000000, blackHoleButton.bigPrice.toString()],
-	"HYENA AFTERLIFE" : [0, 340000000, afterlifeButton.bigPrice.toString()],
-	"HYENA SINGULARITY" : [0, 1100000000, singularityButton.bigPrice.toString()],
-	"HYENA UNIVERSE" : [0, 8900000000, universeButton.bigPrice.toString()],
-	"HYENA MULTIVERSE" : [0, 33300000000, multiverseButton.bigPrice.toString()],
+	"HYENA SNACK" : [0, snackButton.bigPrice.toString()],
+	"HYENA TRAP" : [0, trapButton.bigPrice.toString()],
+	"HYENA DRONE" : [0, droneButton.bigPrice.toString()],
+	"HYENA ENCLOSURE" : [0, enclosureButton.bigPrice.toString()],
+	"HYENA ZOO" : [0, zooButton.bigPrice.toString()],
+	"HYENA PARK" : [0, parkButton.bigPrice.toString()],
+	"HYENA SANCTUARY" : [0, sanctuaryButton.bigPrice.toString()],
+	"HYENA SPELL" : [0, spellButton.bigPrice.toString()],
+	"HYENA ROCKET" : [0, rocketButton.bigPrice.toString()],
+	"HYENA COLONY" : [0, colonyButton.bigPrice.toString()],
+	"HYENA PORTAL" : [0, portalButton.bigPrice.toString()],
+	"HYENA VORTEX" : [0, vortexButton.bigPrice.toString()],
+	"HYENA GALAXY" : [0, galaxyButton.bigPrice.toString()],
+	"HYENA DUPLICATOR" : [0, duplicatorButton.bigPrice.toString()],
+	"HYENA DYSON SPHERE" : [0, dysonButton.bigPrice.toString()],
+	"HYENA BLACK HOLE" : [0, blackHoleButton.bigPrice.toString()],
+	"HYENA AFTERLIFE" : [0, afterlifeButton.bigPrice.toString()],
+	"HYENA SINGULARITY" : [0, singularityButton.bigPrice.toString()],
+	"HYENA UNIVERSE" : [0, universeButton.bigPrice.toString()],
+	"HYENA MULTIVERSE" : [0, multiverseButton.bigPrice.toString()],
+}
+var idleProduction:Dictionary = {
+	"HYENA SNACK" : 0.1,
+	"HYENA TRAP" : 1,
+	"HYENA DRONE" : 11,
+	"HYENA ENCLOSURE" : 54,
+	"HYENA ZOO" : 94,
+	"HYENA PARK" : 3.6e2,
+	"HYENA SANCTUARY" : 3.1e3,
+	"HYENA SPELL" : 3.04e4,
+	"HYENA ROCKET" : 1.3e5,
+	"HYENA COLONY" : 1e6,
+	"HYENA PORTAL" : 3.65e7,
+	"HYENA VORTEX" : 8.2e7,
+	"HYENA GALAXY" : 1e9,
+	"HYENA DUPLICATOR" : 8e10,
+	"HYENA DYSON SPHERE" : 9.9e11,
+	"HYENA BLACK HOLE" : 2.2e13,
+	"HYENA AFTERLIFE" : 6.4e14,
+	"HYENA SINGULARITY" : 1.1e16,
+	"HYENA UNIVERSE" : 2e18,
+	"HYENA MULTIVERSE" : 3.33e19
 }
 
+const FLOAT_MIN = 1.79769e-308
+const MAX_MANTISSA = 1209600
+ 
 var curIdle = 1
 
 @onready var musicPlayer = $Music
@@ -98,7 +139,7 @@ var counterScene = preload("res://minigames/hyena_clicker/Counter.tscn")
 
 const SAVE_PATH: String = "user://hyena.save"
 
-const FLOAT_MIN = 1.79769e-308
+
 
 var rng = RandomNumberGenerator.new()
 
@@ -107,6 +148,7 @@ var can_click:bool = false
 var hyena_rotation:int = 8
 
 var hyenas:Big = Big.new(0)
+var totalHyenas:Big = Big.new(0)
 
 
 var HPS:Big = Big.new(0)
@@ -116,11 +158,11 @@ const MAX_IDLE:int = 1
 var idle_timer:float = 3
 var idle_loop:int = 1
 
-const maxCPSTimer = 2
+const maxCPSTimer = 5
 var cpsTimer = maxCPSTimer
 var cpsData = 0
 
-var easter_egg_timer:float = rng.randf_range(250,800)
+var easter_egg_timer:float = rng.randf_range(150,400)
 var first_opened:bool = true
 
 var trackList = [
@@ -152,18 +194,42 @@ var trackList = [
 	"Title" : "The Forest Town",
 	"Artist" : "Calum Bowen",
 	"Link" : "https://www.youtube.com/watch?v=aFNgCkFOcXo"},
+	{"Path" : "res://minigames/hyena_clicker/music/Checking In.ogg",
+	"Title" : "Checking In",
+	"Artist" : "Lena Raine",
+	"Link" : "https://www.youtube.com/watch?v=fOzvP1I5tLU&list=PLe1jcCJWvkWiWLp9h3ge0e5v7n6kxEfOG&index=6"},
+	{"Path" : "res://minigames/hyena_clicker/music/Home Sweet Home.ogg",
+	"Title" : "Home Sweet Home",
+	"Artist" : "Keiichi Suzuki, Hirokazu Tanaka, Hiroshi Kanazu, Toshiyuki Ueno",
+	"Link" : "https://www.youtube.com/watch?v=l8HLmavya0M&list=PL1kU0pk5M3GCwzveqamX71sW3RmCzuXB5&index=17"},
+	{"Path" : "res://minigames/hyena_clicker/music/My Dearest Friends.ogg",
+	"Title" : "My Dearest Friends",
+	"Artist" : "Lena Raine",
+	"Link" : "https://www.youtube.com/watch?v=VHN63n9y1vg&list=PLe1jcCJWvkWiWLp9h3ge0e5v7n6kxEfOG&index=21"},
+	{"Path" : "res://minigames/hyena_clicker/music/Threed, Free at Last.ogg",
+	"Title" : "Threed, Free at Last",
+	"Artist" : "Keiichi Suzuki, Hirokazu Tanaka, Hiroshi Kanazu, Toshiyuki Ueno",
+	"Link" : "https://www.youtube.com/watch?v=GcERPRac04k&list=PL1kU0pk5M3GCwzveqamX71sW3RmCzuXB5&index=63"},
 ]
+var curTrack = 0
 
 func _ready():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	
 	load_save()
 	hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+	
+	if global.minigames["Hyena Clicker"] == false:
+		global.minigames["Hyena Clicker"] = true
+		global.save()
 	
 	if first_opened:
 		play_specific_song(0)
 		first_opened = false
 		save()
 	else:
-		play_random_song()
+		trackList.shuffle()
+		play_specific_song(0)
 	shopMenu.visible = false
 	
 	update_shop_listings()
@@ -208,14 +274,20 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click") && can_click:
 		click()
 	if Input.is_action_just_pressed("back"):
-		Transition.change_scene_to_file("res://world/main_world.tscn")
+		if global.enteredMiniGameFromMenu:
+			Transition.change_scene_to_preset("Main Menu")
+		else:
+			Transition.change_scene_to_file("res://world/main/main_world.tscn")
 
 func get_CPS(clicks):
 	var result:float = clicks / maxCPSTimer
 	cpsCounter.text = str(result) + " CLICKS PER SECOND"
 
 func update_HPS():
-	hpsCounter.text = HPS.toString() + " HYENAS PER SECOND"
+	if (HPS.isLargerThanOrEqualTo(1000000)):
+		hpsCounter.text = HPS.toAmericanName().to_upper() + " HYENAS PER SECOND"
+	else:
+		hpsCounter.text = HPS.toString() + " HYENAS PER SECOND"
 
 func click():
 	add_hyenas(true)
@@ -224,15 +296,20 @@ func click():
 	cpsData += 1
 	
 	var instance = counterScene.instantiate()
-	instance.move(hyena_calculation().toString())
+	if hyena_calculation().isLargerThan(1000):
+		instance.move(hyena_calculation().toMetricSymbol())
+	else:
+		instance.move(hyena_calculation())
 	instance.set_position(Vector2(get_global_mouse_position().x - 16, get_global_mouse_position().y - 25))
 	add_child(instance)
 
 func add_hyenas(isClick:bool = true):
 	if (isClick):
 		hyenas.plus(hyena_calculation())
+		totalHyenas.plus(hyena_calculation())
 	else:
 		hyenas.plus(idle_calculation())
+		totalHyenas.plus(idle_calculation())
 	save()
 	update_counter()
 	update_yena()
@@ -249,31 +326,37 @@ func update_counter():
 		counter.text = hyenas.toString() + " HYENAS "
 
 func update_yena():
-	if hyenaInRange(0,999):
+	if hyenaInRange("0","999"):
 		$HyenaPlayer.play('stage 1')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(1000, 4999):
+	elif hyenaInRange("1e3", "4999"):
 		$HyenaPlayer.play('stage 2')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(5000,49999):
+	elif hyenaInRange("5e3","49999"):
 		$HyenaPlayer.play('stage 3')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(50000, 999999):
+	elif hyenaInRange("5e4", "999999"):
 		$HyenaPlayer.play('stage 4')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(1000000, 249999999):
+	elif hyenaInRange("1e6", "249999999"):
 		$HyenaPlayer.play('stage 5')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(250000000, 4999999999):
+	elif hyenaInRange("2.5e8", "4999999999"):
 		$HyenaPlayer.play('stage 6')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(5000000000, 14999999999):
+	elif hyenaInRange("5e9", "99999999999999"):
 		$HyenaPlayer.play('stage 7')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange(15000000000, 100000000000):
+	elif hyenaInRange("1e14", "499999999999999"):
 		$HyenaPlayer.play('stage 8')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-func hyenaInRange(val1:int, val2:int):
+	elif hyenaInRange("500000000000000", "999999999999999999"):
+		$HyenaPlayer.play('stage 9')
+		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+	elif hyenaInRange("1000000000000000000", "999000000000000000000"):
+		$HyenaPlayer.play('stage 10')
+		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+func hyenaInRange(val1:String, val2:String):
 	if hyenas.isLargerThanOrEqualTo(val1) and hyenas.isLessThan(val2):
 		return true
 	else:
@@ -281,22 +364,22 @@ func hyenaInRange(val1:int, val2:int):
 
 func hyena_calculation():
 	var hyena_num:Big = Big.new(1)
-	for upgrade in clickUpgrades.values():
-		hyena_num.plus(upgrade[0] * upgrade[1])
+	for key in clickUpgrades.keys():
+		hyena_num.plus(Big.new(clickUpgrades[key][0]).multiply(clickProduction[key]))
+	
+	
 	return hyena_num
 
 func idle_calculation():
 	var hyena_num:Big = Big.new(0)
 	if idle_loop == 10:
 		hyena_num.plus(idleUpgrades["HYENA SNACK"][0])
-	for upgrade in idleUpgrades.values():
-		if !upgrade[1] < 1:
-			hyena_num.plus(upgrade[0] * upgrade[1])
+	hyena_num.plus(HPS.roundDown())
 	
 	return hyena_num
 
 func spawn_easter_egg():
-	match rng.randi_range(0, 2):
+	match rng.randi_range(0, 3):
 		0:
 			$IdleAnims.play("creature_run")
 			$TheCreature.position.x = 1300
@@ -306,7 +389,10 @@ func spawn_easter_egg():
 			$IdleAnims.play("popup")
 		2:
 			$IdleAnims.play('jumpscare')
-			#$JumpscareSound.play()
+			$JumpscareSound.play()
+		3:
+			$HyenaPlayer.play('secret')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
 
 func _on_hyena_mouse_entered():
 	can_click = true
@@ -315,11 +401,13 @@ func _on_hyena_mouse_exited():
 
 func save():
 	var hyenaString = hyenas.toString()
+	var totalString = totalHyenas.toString()
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data:Dictionary = {
 		"FirstTime": first_opened,
 		"Hyenas": hyenaString,
+		"Total Hyenas": totalString,
 		
 		"CurIdle": curIdle,
 		"CurClick": curClick,
@@ -345,20 +433,21 @@ func load_save():
 				
 				first_opened = current_line["FirstTime"]
 				hyenas = Big.new(current_line["Hyenas"])
+				totalHyenas = Big.new(current_line["Total Hyenas"])
 				
 				curIdle = current_line["CurIdle"]
 				curClick = current_line["CurClick"]
 				
 				clickUpgrades = current_line["Click Upgrades"]
 				for i in clickButtons.size():
-					clickButtons[i].bigPrice = Big.new(clickUpgrades[clickButtons[i].item][2])
+					update_item_price(clickButtons[i])
 					if clickButtons[i].limit != 0 and clickButtons[i].limit <= clickUpgrades[clickButtons[i].item][0]:
 						clickButtons[i].disable()
 				
 				idleUpgrades = current_line["Idle Upgrades"]
 				for i in idleButtons.size():
-					idleButtons[i].bigPrice = Big.new(idleUpgrades[idleButtons[i].item][2])
-					HPS.plus(idleUpgrades[idleButtons[i].item][0] * idleUpgrades[idleButtons[i].item][1])
+					update_item_price(idleButtons[i])
+					HPS.plus(idleUpgrades[idleButtons[i].item][0] * idleProduction[idleButtons[i].item])
 	update_HPS()
 
 func _on_shop_button_pressed():
@@ -370,17 +459,20 @@ func _on_shop_button_pressed():
 func on_item_button_clicked(button):
 	if hyenas.isLargerThanOrEqualTo(button.bigPrice):
 		remove_hyenas(button.bigPrice)
-		button.multiply_price(button.price_multiplier)
-		button.update_price()
-		if button.limit == 0:
-			idleUpgrades[button.item][2] = button.bigPrice.toString()
-		else:
-			clickUpgrades[button.item][2] = button.bigPrice.toString()
-		$KaChing.play()
-		
 		buy_item(button)
 		
+		update_item_price(button)
+		button.update_price()
+		$KaChing.play()
+		
 		update_HPS()
+
+func update_item_price(button):
+	if button.limit == 0:
+		button.bigPrice = Big.new(idleUpgrades[button.item][1]).multiply(Big.new(1.25).powerInt(idleUpgrades[button.item][0]))
+	else:
+		button.bigPrice = Big.new(clickUpgrades[button.item][1]).multiply(Big.new(1.5).powerInt(clickUpgrades[button.item][0]))
+	button.bigPrice.roundDown()
 
 func buy_item(button):
 	for i in clickButtons.size():
@@ -395,7 +487,7 @@ func buy_item(button):
 			idleUpgrades[idleButtons[i].item][0] += 1
 			if idleUpgrades[idleButtons[i].item][0] == 1:
 				curIdle += 1
-			HPS.plus(idleUpgrades[idleButtons[i].item][1])
+			HPS.plus(idleProduction[idleButtons[i].item])
 	
 	update_shop_listings()
 
@@ -412,31 +504,38 @@ func update_shop_listings():
 			clickButtons[i].visible = false
 	
 func play_random_song():
-	trackList.shuffle()
-	musicPlayer.stream = load(trackList[0]["Path"])
+	var trackListCopy = trackList
+	trackListCopy.shuffle()
+	musicPlayer.stream = load(trackListCopy[0]["Path"])
 	
 	var tween = create_tween()
 	musicPlayer.volume_db = -80
 	tween.tween_property(musicPlayer, "volume_db", 0, 1)
 	
-	update_song_text(trackList[0]["Title"], trackList[0]["Artist"], trackList[0]["Link"])
+	update_song_text(trackListCopy[0]["Title"], trackListCopy[0]["Artist"], trackListCopy[0]["Link"])
 	musicPlayer.play()
 func play_specific_song(song:int = 0):
 	musicPlayer.stream = load(trackList[song]["Path"])
 	var tween = create_tween()
 	musicPlayer.volume_db = -80
 	tween.tween_property(musicPlayer, "volume_db", 0, 1)
-	update_song_text(trackList[song]["Title"], trackList[0]["Artist"], trackList[0]["Link"])
+	update_song_text(trackList[song]["Title"], trackList[song]["Artist"], trackList[song]["Link"])
+	curTrack += 1
 	
 	musicPlayer.play()
 func _on_music_finished():
-	play_random_song()
+	if curTrack >= trackList.size():
+		trackList.shuffle()
+		curTrack = 0
+	play_specific_song(curTrack)
 
 func update_song_text(title:String, artist:String, link:String):
-	print('hello?')
-	musicButton.text = "       "
-	for i in range(8):
-		musicButton.text += '"' + title + '"' + " : " + artist + "       "
+	var textToRepeat:String
+	textToRepeat = "       " + '"' + title + '"' + " : " + artist + "       "
+	var repeatTimes = floor(1280 / textToRepeat.length())
+	musicButton.text = ' '
+	for i in range(repeatTimes):
+		musicButton.text += textToRepeat
 	musicButton.position.x = -musicButton.size.x
 	musicButton.modulate.a = 0
 	musicButton.uri = link

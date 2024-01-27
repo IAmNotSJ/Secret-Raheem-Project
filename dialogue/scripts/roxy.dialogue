@@ -1,0 +1,13 @@
+~ start
+
+if !global.octagon_fallen
+	if global.characterInteractions["Roxy"] == 0
+		roxy: Hm...
+		roxy: There's something about that city...
+	if global.characterInteractions["Roxy"] > 0
+		roxy: I've got a bad feeling...
+if global.octagon_fallen
+	roxy: oh
+
+do global.add_interaction("Roxy")
+=> END

@@ -55,7 +55,6 @@ _data = {
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_nlgyr")
-health = 15
 SPEED = 250
 eyeradius = 5
 ATTACK_TIMER = 8

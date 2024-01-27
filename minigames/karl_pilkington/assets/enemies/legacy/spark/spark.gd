@@ -22,9 +22,10 @@ func spawn_bolt():
 	var spark = boltScene.instantiate()
 	spark.global_position = target.global_position
 	spark.target = target
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", spark)
+	mainScene.call_deferred("add_child", spark)
 
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

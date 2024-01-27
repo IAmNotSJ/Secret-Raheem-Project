@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo286p513bova"]
+
+[ext_resource type="Texture2D" uid="uid://y0ec78lxlwwr" path="res://minigames/karl_pilkington/win/bg.png" id="1_01pik"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/win/win_screen.gd" id="1_r3u1l"]
+[ext_resource type="Texture2D" uid="uid://cv0p78mdg0j33" path="res://minigames/karl_pilkington/win/pilk.png" id="3_4twy8"]
+[ext_resource type="AudioStream" uid="uid://dv8wai57in5sn" path="res://minigames/karl_pilkington/sounds/win.ogg" id="4_nqxy1"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="5_ay6l4"]
+
+[node name="WinScreen" type="Node2D"]
+script = ExtResource("1_r3u1l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1286.0
+offset_bottom = 720.0
+texture = ExtResource("1_01pik")
+stretch_mode = 1
+
+[node name="Retry" type="RichTextLabel" parent="."]
+modulate = Color(0.576471, 0.333333, 0.203922, 1)
+offset_left = 18.0
+offset_top = 645.0
+offset_right = 564.0
+offset_bottom = 718.0
+theme_override_colors/default_color = Color(1, 0.627451, 0.572549, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Restart[/center]"
+
+[node name="Menu" type="RichTextLabel" parent="."]
+modulate = Color(0.576471, 0.333333, 0.203922, 1)
+offset_left = 657.0
+offset_top = 645.0
+offset_right = 1203.0
+offset_bottom = 718.0
+theme_override_colors/default_color = Color(1, 0.627451, 0.572549, 1)
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]Main Menu[/center]"
+
+[node name="Pilk" type="Sprite2D" parent="."]
+position = Vector2(869, 323)
+texture = ExtResource("3_4twy8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 716.0
+offset_bottom = 206.0
+theme_override_colors/default_color = Color(0.576471, 0.207843, 0.117647, 1)
+theme_override_fonts/normal_font = ExtResource("5_ay6l4")
+theme_override_font_sizes/normal_font_size = 136
+text = "Winner!!1!"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nqxy1")

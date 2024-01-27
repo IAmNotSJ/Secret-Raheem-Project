@@ -3,9 +3,12 @@
 if global.characterInteractions["Dile"] == 0
 	dile: Hmm..
 	dile: I don't think he likes me...
-elif global.characterInteractions["Dile"] > 0
+elif global.characterInteractions["Dile"] == 1
 	dile: What do you mean? He's clearly real
 	dile: i think...
+elif global.characterInteractions["Dile"] > 1
+	wibr: Dile this is clearly a cardboard alligator
+	dile: He's a crocodile.....
 
 do global.add_interaction("Dile")
 

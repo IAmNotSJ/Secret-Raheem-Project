@@ -86,8 +86,6 @@ func _configure_focus() -> void:
 		else:
 			item.focus_neighbor_bottom = items[i + 1].get_path()
 			item.focus_next = items[i + 1].get_path()
-
-		item.mouse_entered.connect(_on_response_mouse_entered.bind(item))
 		item.gui_input.connect(_on_response_gui_input.bind(item, i))
 
 	items[0].grab_focus()

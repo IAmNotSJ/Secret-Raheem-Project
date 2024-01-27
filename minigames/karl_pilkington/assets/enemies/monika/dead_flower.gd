@@ -22,4 +22,4 @@ func explode():
 		var bullet = bulletScene.instantiate()
 		bullet.angle = i * (angleDistance)
 		bullet.global_position = global_position
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", bullet)
+		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", bullet)

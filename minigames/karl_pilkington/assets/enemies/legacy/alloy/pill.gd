@@ -2,7 +2,7 @@ extends Sprite2D
 
 @onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/pill.tscn")
 
-@onready var mainScene = get_tree().root.get_node("KarlPilkington")
+@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 
 var SPEED = 600
 var ANGLE_DEGREES = 130
@@ -43,7 +43,7 @@ func spawn_pill(leAngle):
 	var pill = pillScene.instantiate()
 	pill.initialize(leAngle, true)
 	pill.global_position = global_position
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", pill)
+	mainScene.call_deferred("add_child", pill)
 
 func _on_area_2d_area_entered(area):
 	area.owner.hit()

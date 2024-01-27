@@ -20,5 +20,6 @@ func die():
 	super()
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

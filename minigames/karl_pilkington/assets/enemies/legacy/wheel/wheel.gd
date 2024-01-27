@@ -76,8 +76,9 @@ func _process(delta):
 			
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)
 
 func _on_hurtbox_area_entered(area):
 	area.owner.hit()

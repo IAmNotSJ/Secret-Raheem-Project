@@ -1,12 +1,22 @@
 extends Node2D
 
+@onready var parent = get_tree().root.get_node("Pilkington")
 
+func _ready():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	if !global.minigames["Karl Pilkington"]:
+		global.minigames["Karl Pilkington"] = true
+		global.save()
 func _unhandled_input(_event: InputEvent):
 	if Input.is_action_just_pressed("back"):
-		Transition.change_scene_to_file("res://world/main_world.tscn")
+		if global.enteredMiniGameFromMenu:
+			Transition.change_scene_to_preset("Main Menu")
+		else:
+			Transition.change_scene_to_file("res://world/key house/key_house.tscn")
 
 func _on_button_pressed():
-	Transition.change_scene_to_file("res://minigames/karl_pilkington/karl pilkington.tscn")
+	parent.changeScene("res://minigames/karl_pilkington/select menu/upgrade_menu.tscn")
+	#DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 
 
 func _on_audio_stream_player_finished():

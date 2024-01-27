@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bbiesp6pq8gkv"
+path="res://.godot/imported/macbook.dialogue-462ae9985e40af5935cd2f7190cf35d2.tres"
+
+[deps]
+
+source_file="res://dialogue/scripts/macbook.dialogue"
+dest_files=["res://.godot/imported/macbook.dialogue-462ae9985e40af5935cd2f7190cf35d2.tres"]
+
+[params]
+
+defaults=true

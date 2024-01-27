@@ -304,6 +304,7 @@ _data = {
 [node name="Scale" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 position = Vector2(0, 646)
 script = ExtResource("1_r4r4n")
+health = 15.0
 hitbox = NodePath("CanvasGroup/ColorRect/Hitbox")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]

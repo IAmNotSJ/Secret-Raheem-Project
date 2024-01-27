@@ -11,6 +11,7 @@ scale = Vector2(1.25, 1.25)
 script = ExtResource("1_n0xm3")
 hitbox = NodePath("Area2D")
 screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+bullet_speed = 700
 damage = 0.5
 
 [node name="Node2D" type="Sprite2D" parent="."]

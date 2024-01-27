@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ppquqthjeuvd"
+path="res://.godot/imported/My Dearest Friends.ogg-f0c197dcae047b91374193177f465721.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/My Dearest Friends.ogg"
+dest_files=["res://.godot/imported/My Dearest Friends.ogg-f0c197dcae047b91374193177f465721.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

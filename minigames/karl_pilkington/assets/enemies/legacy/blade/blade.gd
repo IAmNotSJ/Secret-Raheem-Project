@@ -25,9 +25,10 @@ func slice():
 	print('le slice!')
 	var leSlice = sliceScene.instantiate()
 	leSlice.global_position.x = target.global_position.x
-	get_tree().root.get_node("KarlPilkington").call_deferred("add_child", leSlice)
+	mainScene.call_deferred("add_child", leSlice)
 
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

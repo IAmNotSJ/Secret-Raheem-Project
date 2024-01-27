@@ -65,5 +65,6 @@ func _on_hurtbox_area_entered(area):
 	area.owner.hit()
 
 func _on_hitbox_entered(area):
-	$CanvasGroup/EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$CanvasGroup/EffectsPlayer.play('hit')
+		super(area)

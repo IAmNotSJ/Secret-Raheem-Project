@@ -1,0 +1,13 @@
+~ start
+
+if global.characterInteractions["Luna"] == 0
+	luna: FUCK
+	luna: oh hi wibr!!
+	wibr: What's the matter?
+	luna: oh nothing its just this FUCKING GD LEVEL
+	wibr: (Gamer rage affects us all it seems)
+elif global.characterInteractions["Luna"] > 0
+	luna: hghrnghfhfghfh...
+
+do global.add_interaction("Luna")
+=> END

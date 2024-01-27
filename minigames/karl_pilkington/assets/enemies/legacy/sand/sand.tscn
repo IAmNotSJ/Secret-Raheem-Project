@@ -55,7 +55,6 @@ _data = {
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_ck55r")
-health = 15
 SPEED = 500
 hitbox = NodePath("Sprite2D/Hitbox")
 

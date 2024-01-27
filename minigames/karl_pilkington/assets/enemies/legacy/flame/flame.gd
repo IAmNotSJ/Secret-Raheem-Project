@@ -29,8 +29,9 @@ func spawn_fire(amount:int):
 		fire.global_position = pupil.global_position
 		var daAngle = (360 / amount * i) + offset
 		fire.initialize(target, 175, daAngle, -3)
-		get_tree().root.get_node("KarlPilkington").call_deferred("add_child", fire)
+		mainScene.call_deferred("add_child", fire)
 
 func _on_hitbox_entered(area):
-	$EffectsPlayer.play('hit')
-	super(area)
+	if active:
+		$EffectsPlayer.play('hit')
+		super(area)

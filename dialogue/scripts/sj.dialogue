@@ -2,7 +2,7 @@
 
 if global.characterInteractions["SJ"] == 0:
 	sj: heyo
-	wibr:  
+	wibr: ..
 	sj: What?
 	wibr: What's with the pizza hut
 	sj: The what?

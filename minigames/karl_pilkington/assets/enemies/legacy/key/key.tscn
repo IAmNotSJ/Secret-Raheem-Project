@@ -58,6 +58,7 @@ _data = {
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_0eh1f")
+health = 17.0
 ATTACK_TIMER = 4
 hitbox = NodePath("Area2D")
 

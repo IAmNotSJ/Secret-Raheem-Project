@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqv7rsnry6kf"]
+
+[ext_resource type="Texture2D" uid="uid://ccptbekweoywb" path="res://minigames/karl_pilkington/assets/enemies/the chef/galactose/galac1.png" id="1_gvjvl"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/the chef/pizza.gd" id="2_ox71y"]
+
+[node name="Galactose" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_gvjvl")
+script = ExtResource("2_ox71y")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-7, -149)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(145, -10, -120, 140, -140, 75, -150, -15, -135, -90, -115, -135, -90, -135, -80, -110, -65, -95)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

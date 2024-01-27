@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var mainScene = get_tree().root.get_node("KarlPilkington")
+@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 
 @export var song:AudioStream
 @onready var sand = $Sand
@@ -24,6 +24,8 @@ signal died
 
 var membersAlive = []
 func _ready():
+	for i in members.size():
+		health += members[i].health
 	for i in range(3):
 		spawn_new_legacy()
 	block.died.connect(on_legacy_died.bind(block))
@@ -38,8 +40,6 @@ func _ready():
 	gas.died.connect(on_legacy_died.bind(gas))
 	key.died.connect(on_legacy_died.bind(key))
 	
-	for i in members.size():
-		health += members[i].health
 	health *= 100
 	mainScene.bossbar.max_value = health * 100
 
@@ -53,7 +53,7 @@ func spawn_new_legacy():
 func on_legacy_died(member):
 	if members != []:
 		spawn_new_legacy()
-	
+	print(str(member) + "DIED!")
 	membersAlive.erase(member)
 	print(membersAlive)
 	if membersAlive == []:

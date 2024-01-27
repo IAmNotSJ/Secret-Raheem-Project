@@ -19,7 +19,7 @@ signal finished_typing()
 
 
 ## The action to press to skip typing.
-@export var skip_action: StringName = &"ui_cancel"
+@export var skip_action: StringName = &"ui_accept"
 
 ## The speed with which the text types out.
 @export var seconds_per_step: float = 0.02
@@ -133,6 +133,7 @@ func _type_next(delta: float, seconds_needed: float) -> void:
 		visible_characters += 1
 		if visible_characters <= get_total_character_count():
 			spoke.emit(get_parsed_text()[visible_characters - 1], visible_characters - 1, _get_speed(visible_characters))
+			$Sound.play()
 		# See if there's time to type out some more in this frame
 		seconds_needed += seconds_per_step * (1.0 / _get_speed(visible_characters))
 		if seconds_needed > delta:
