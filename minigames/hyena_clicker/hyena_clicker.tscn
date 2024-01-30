@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cfhlqxfmnum6b"]
+[gd_scene load_steps=59 format=3 uid="uid://cfhlqxfmnum6b"]
 
 [ext_resource type="Script" path="res://minigames/hyena_clicker/hyena_clicker_alt.gd" id="1_u7ey2"]
 [ext_resource type="Texture2D" uid="uid://b3bu8cjwnvxg4" path="res://minigames/hyena_clicker/assets/bg.png" id="2_2fknm"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cuoms5fjdevig" path="res://minigames/hyena_clicker/assets/hyenas/secret.png" id="23_0puji"]
 [ext_resource type="Texture2D" uid="uid://hcisujgnk2k2" path="res://minigames/hyena_clicker/assets/hyenas/stage9.png" id="24_7h28v"]
 [ext_resource type="Texture2D" uid="uid://bpj5rn6kxcah0" path="res://minigames/hyena_clicker/assets/hyenas/stage10.png" id="25_g1s6q"]
+[ext_resource type="Texture2D" uid="uid://cuxfhf61wxcdl" path="res://minigames/hyena_clicker/assets/hyenas/folder.png" id="26_86ugb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mv6v6"]
 
@@ -269,6 +270,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(419, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_5bh8v"]
+resource_name = "folder"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hyena:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("26_86ugb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hyena:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(526, 457)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hyena:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(371, 143)]
 }
 
 [sub_resource type="Animation" id="Animation_etu04"]
@@ -714,6 +755,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqkhf"]
 _data = {
 "RESET": SubResource("Animation_hf81j"),
+"folder": SubResource("Animation_5bh8v"),
 "secret": SubResource("Animation_etu04"),
 "stage 1": SubResource("Animation_82ktv"),
 "stage 10": SubResource("Animation_is5o6"),
@@ -790,7 +832,7 @@ item = "HYENA SNACK"
 description = "Lures [b]0.1[/b] Hyenas Per Second 
 
 A delicious treat for all hyenas of the world! This will be the first in many’s journey to gather the beasts. Many have failed before. 
-[i]Do you have what it takes in order to obtain the folder? [/i]"
+[i]Do you have what it takes? [/i]"
 
 [node name="Trap Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
@@ -799,7 +841,8 @@ price_multiplier = 1.5
 item = "HYENA TRAP"
 description = "Traps [b]1[/b] Hyena Per Second
 
-Quite the trusty trap, but not very convincing. Hyenas are keen and smart creatures, filled with mysterious and wacky biological patterns. A simple device such as this will not do to reach for the top."
+Quite the trusty trap, but not very convincing. Hyenas are keen and smart creatures, filled with mysterious and wacky biological patterns. A simple device such as this will not do to reach for the top.
+[i]Reach for the top. [/i]"
 
 [node name="Drone Button" parent="ShopMenu/IdleContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
@@ -876,7 +919,7 @@ layout_mode = 2
 price = "1e9"
 price_multiplier = 1.5
 item = "HYENA COLONY"
-description = "Founds [b]1.0M[/b] Hyenas Per Second
+description = "Founds [b]1M[/b] Hyenas Per Second
 
 Ah, the empty expanse of a planet of your own! Here, you may found your own colony to dedicate solely to these animals. You have come so far, but there is still so much to do. With this new expanse, it is only your drive which will carry you further. No longer must you rely on others, it is now only you.
 [i]You are in control now.[/i] "
@@ -1054,7 +1097,7 @@ price = "1.3e5"
 price_multiplier = 1.5
 item = "HYENA CALL"
 limit = 2
-description = "Calls [b]20[/b] Hyenas Per Click
+description = "Calls [b]60[/b] Hyenas Per Click
 
 Imitation is the sincerest form of flattery, and you have all the flatter to give to these hyenas. With this, you are able to mimic the wild hyena’s call, to lure it to befriend you. It may seem cruel, but this is what is best for them. You are able to take care of the creatures proper, and that is all that truly matters in the end. Keep collecting your animals, and soon the world will be yours. 
 [i]All yours[/i]"
@@ -1066,7 +1109,7 @@ price = "1.3e6"
 price_multiplier = 1.5
 item = "HYENA TOME"
 limit = 1
-description = "Summons [b]120[/b] Hyenas Per Click
+description = "Summons [b]420[/b] Hyenas Per Click
 
 To continue climbing the ladder of the hyena world, you must turn to unconventional means of optimizing your hyena output. This is the first of many of those means. You must be willing to do what many not dare to do. Through this tome, you are able to summon hyenas upon your own command. No matter the consequences, this is what you must do. 
 [i]You must.[/i]"
@@ -1078,7 +1121,7 @@ price = "1.1e7"
 price_multiplier = 1.5
 item = "HYENA TIME MACHINE"
 limit = 1
-description = "Collects [b]520[/b] Hyenas Per Click
+description = "Collects [b]28.4K[/b] Hyenas Per Click
 
 Designed by the head of your Hyena Research Team (HRT), this device allows you to travel back in time in order to properly collect the hyenas that you have missed out upon within the past. With this device, you are able to collect as many hyenas as your heart desires, and as your abilities allow. This is the start of the next phase in your hyena gathering journey.
 [i]Get ready.[/i]"
@@ -1090,7 +1133,7 @@ price = "2e8"
 price_multiplier = 1.5
 item = "HYENA ARMY"
 limit = 1
-description = "Enlists [b]1040[/b] Hyenas Per Click
+description = "Enlists [b]1.25M[/b] Hyenas Per Click
 
 As you grow in influence, your power must reflect that. Many have caught wind of your efforts to capture these animals, and many are unhappy with your methods. But they are not to be bothered with. Allow for an army to take it upon themselves to fight your battles, so you can keep focusing on what’s important. 
 [i]Capturing these hyenas.[/i]"
@@ -1102,7 +1145,7 @@ price = "1.5e9"
 price_multiplier = 1.5
 item = "HYENA DARK ARTS"
 limit = 1
-description = "Creates [b]14K[/b] Hyenas Per Click
+description = "Creates [b]6M[/b] Hyenas Per Click
 
 Turning towards dark methods in order to capture hyenas, while your methods before had been questionable, there is no doubt past this point that your ventures will be highly scrutinized. Turning to the dark arts, you are able to create hyenas from the life energy of others. You are becoming more powerful with every advancement. 
 [i]Much more powerful[/i] "
@@ -1114,7 +1157,7 @@ price = "1e12"
 price_multiplier = 1.5
 item = "HYENA PRISM"
 limit = 1
-description = "Reflects [b]33M[/b] Hyenas Per Click
+description = "Reflects [b]330M[/b] Hyenas Per Click
 
 What better way to catch hyenas than to trap them within the confines of magic? Using this prism, you may find and reflect the hyenas into the shards. This is what you will need to do soon, in order to keep the hyenas in all one place. You will need to transport them all into one place. In the end, only one object will stand past the sea of hyenas. 
 
@@ -1162,11 +1205,11 @@ As you reach towards the device, the world around you begins to tremble. The dim
 [node name="Yenaforce Button" parent="ShopMenu/ClickContainer/VBoxContainer" groups=["hyena buttons"] instance=ExtResource("5_58qgn")]
 layout_mode = 2
 size_flags_horizontal = 8
-price = "1.3e21"
+price = "2.5e21"
 price_multiplier = 1.5
 item = "HYENA FORCE"
 limit = 1
-description = "Controls [b]1Qi[/b] Hyenas Per Click
+description = "Controls [b]100Qi[/b] Hyenas Per Click
 
 You are here. All that is left is to unbind the power sealing the folder down and out of this world. Using the ancient hyena force, you may free the accursed prison from its shackles and unleash hyena mayhem. It has all led up to this point. Every trial and every tribulation. You have worked so very hard for this.
 
@@ -1179,7 +1222,8 @@ price = "1e24"
 price_multiplier = 1.5
 item = "HYENA FOLDER"
 limit = 1
-description = "Controls [b]9.99Sx[/b] Hyenas Per Click
+description = "Controls [b]999Sx[/b] Hyenas Per Click
+Enables Autoclick
 
 The world trembles around you. The folder has been freed. All that remains is the ultimate sacrifice. Offer your hyenas to the folder’s endless terabytes. When you do, you will be freed from the confines of hyena limits. Only infinity awaits you now. End your journey. 
 

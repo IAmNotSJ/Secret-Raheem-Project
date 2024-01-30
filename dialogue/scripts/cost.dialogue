@@ -7,9 +7,6 @@ if global.characterInteractions["Cost"] == 0
 	cost: Hi
 	wibr: Where the hell am i???
 	cost: This is my apartment...
-	wibr: This place reminds me of something...
-	wibr: But I can't put my finger on it...
-	cost: LOL
 	do global.add_interaction("Cost")
 elif global.characterInteractions["Cost"] == 1 and global.costTeleported
 	cost: Oh hi
@@ -23,5 +20,7 @@ elif global.characterInteractions["Cost"] > 2 and global.costTeleported
 	cost: maybe
 	do global.add_interaction("Cost")
 elif global.characterInteractions["Cost"] > 0 and !global.costTeleported
-	cost: I sure am glad I'm not the only one with a limited dialogue tree in this place
+	wibr: This place reminds me of something...
+	wibr: But I can't put my finger on it...
+	cost: LOL
 => END

@@ -1,11 +1,11 @@
 ~ start
 if global.characterInteractions["Cherry"] == 0
-	cherry: Howdy wibr!
+	cherry: Howdy Wibr!
 elif global.characterInteractions["Cherry"] == 1
 	cherry: There's been noise coming from all over the place today
-	cherry: Something around here must be causing it
-elif global.characterInteractions["Cherry"] > 1
-	cherry: what the fuck do i write here brah
+	cherry: There must be something around here that's causing it..
+elif global.characterInteractions["Cherry"] > 1:
+	cherry: I think Chu might be looking into it..
 
 do global.add_interaction("Cherry")
 => END

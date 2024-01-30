@@ -6,7 +6,7 @@ enum {
 }
 var state = IDLE
 
-const max_progress = 120
+const max_progress = 70
 var progress:float = max_progress
 var acceleration:float = 1
 

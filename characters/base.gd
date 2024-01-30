@@ -6,6 +6,9 @@ class_name CharacterBase extends CharacterBody2D
 @onready var animationTree:AnimationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 
+const max_exit = 3
+var exit_timer:float = max_exit
+
 var pause_inputs:bool = false
 
 var in_bench:bool = false
@@ -15,31 +18,29 @@ var interaction_in_range = []
 
 var input_vector:Vector2 = Vector2.ZERO
 
+var can_move = true
+
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	animationTree.active = true
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if !in_bench:
-		input_vector = Vector2.ZERO
-		input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-		input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-		input_vector = input_vector.normalized()
-		
-		if Input.is_action_just_pressed("ui_accept") and characters_in_range:
-			if characters_in_range[0] != null:
-				characters_in_range[0].interact(self)
-				stop_movement()
-	else:
-		if Input.is_action_just_pressed("ui_accept"):
-			animationPlayer.play('idle_down')
-			$Sprite2D.position = Vector2.ZERO
-			in_bench = false
-	
-	if Input.is_action_just_pressed("hyena"):
-		Transition.change_scene_to_preset("Hyena")
-	if Input.is_action_just_pressed("karl"):
-		Transition.change_scene_to_preset("Pilkington")
+	if can_move:
+		if !in_bench:
+			input_vector = Vector2.ZERO
+			input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+			input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+			input_vector = input_vector.normalized()
+			
+			if Input.is_action_just_pressed("ui_accept") and characters_in_range:
+				if characters_in_range[0] != null:
+					characters_in_range[0].interact(self)
+					stop_movement()
+		else:
+			if Input.is_action_just_pressed("ui_accept"):
+				animationPlayer.play('idle_down')
+				$Sprite2D.position = Vector2.ZERO
+				in_bench = false
 
 func _physics_process(_delta):
 	if input_vector != Vector2.ZERO:
@@ -52,6 +53,13 @@ func _physics_process(_delta):
 		velocity = Vector2.ZERO
 		animationState.travel("Idle")
 		
+	if Input.is_action_pressed('back'):
+		exit_timer -= _delta
+		if exit_timer <= 0:
+			Transition.change_scene_to_preset("Main Menu")
+	else:
+		exit_timer = max_exit
+	
 	move_and_slide()
 
 func stop_movement():

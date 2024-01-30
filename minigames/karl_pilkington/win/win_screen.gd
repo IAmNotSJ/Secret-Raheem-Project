@@ -11,6 +11,7 @@ var pilkSine = 0
 func _ready():
 	parent.hasWon = true
 	parent.save()
+	$WinSound.play()
 	
 	changeSelection(0)
 	$ColorRect.visible = true

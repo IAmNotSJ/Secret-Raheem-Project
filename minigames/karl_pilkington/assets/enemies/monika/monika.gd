@@ -81,6 +81,8 @@ func hurt(damage):
 			$ProgressionPlayer.play('change')
 			mainScene.music.play() 
 	else:
+		#if state == BIG:
+			#$Hitplayer.play('hurt big')
 		if health <= 0:
 			die()
 
@@ -144,5 +146,5 @@ func change_health():
 	state = BIG
 
 func die():
-	delete()
+	$ProgressionPlayer.play('die')
 	super()

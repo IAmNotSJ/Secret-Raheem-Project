@@ -1,5 +1,7 @@
 extends Node
 
+var isWindowFocused:bool = true
+
 const SAVE_PATH = "user://overworld.save"
 @onready var music = $Music
 
@@ -44,6 +46,14 @@ func _ready():
 	load_save()
 	pass
 
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("fullscreen"):
+		print('work mayhaps?')
+		if DisplayServer.window_get_mode() == 0 or DisplayServer.window_get_mode() == 2:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
 func add_interaction(character:String):
 	if character == null:
 		print("Invalid Character")
@@ -61,6 +71,15 @@ func add_value(daSet, value:String):
 	else:
 		daSet[value] = true
 		save()
+
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+			print('window unfocused!')
+			isWindowFocused = false
+		NOTIFICATION_WM_WINDOW_FOCUS_IN:
+			print('window focused!')
+			isWindowFocused = true
 
 func save():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

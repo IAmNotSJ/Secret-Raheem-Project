@@ -87,6 +87,12 @@ scene_change = "res://world/main/main_world.tscn"
 position = Vector2(11, 7)
 shape = SubResource("RectangleShape2D_2gbgc")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
 [connection signal="interacted" from="Pizza/Dialogue" to="." method="_on_dialogue_interacted"]
 
 [editable path="Wibr"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqoakoy8d8pvv"
+path="res://.godot/imported/Sweet Sour.ogg-31ab917c5bb1a2ca4a4c7f8276bbdbca.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/Sweet Sour.ogg"
+dest_files=["res://.godot/imported/Sweet Sour.ogg-31ab917c5bb1a2ca4a4c7f8276bbdbca.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

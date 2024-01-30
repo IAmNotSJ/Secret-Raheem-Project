@@ -6,6 +6,8 @@ var lightRotation:int = 20
 
 var pilkingtonPath:String
 
+var selected:bool = false
+
 func _ready():
 	var occluders = $PointLight2D.get_children()
 	occluders.shuffle()
@@ -22,5 +24,7 @@ func createUpgrade(daName, daDescription, path, daTexture):
 	pilkingtonPath = path
 	$CenterContainer/Upgrade.texture_normal = daTexture
 func _on_upgrade_pressed():
-	parent.pilkPath = pilkingtonPath
-	parent.changeScene("res://minigames/karl_pilkington/karl pilkington.tscn")
+	if !selected:
+		parent.pilkPath = pilkingtonPath
+		selected = true
+		parent.changeScene("res://minigames/karl_pilkington/karl pilkington.tscn")

@@ -4,6 +4,7 @@ var posThingy = 0
 
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	DiscordSDKLoader.run_preset("Menu")
 	if !global.minigames["Karl Pilkington"]:
 		$Karl.queue_free()
 	if !global.minigames["Hyena Clicker"]:

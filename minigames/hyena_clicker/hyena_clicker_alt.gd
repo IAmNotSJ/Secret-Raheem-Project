@@ -56,8 +56,8 @@ var clickProduction:Dictionary = {
 	"HYENA DARK MATTER" : "1.34e11",
 	"HYENA AUGMENTOR" : "9.99e13",
 	"HYENA MULTILEVEL QUANTUM MANIPULATOR" : "4.56e16",
-	"HYENA FORCE" : "1e18",
-	"HYENA FOLDER" : "9.99e21"
+	"HYENA FORCE" : "1e20",
+	"HYENA FOLDER" : "9.99e23"
 }
 var curClick = 1
 
@@ -162,6 +162,9 @@ const maxCPSTimer = 5
 var cpsTimer = maxCPSTimer
 var cpsData = 0
 
+const MAX_AUTOCLICK:float = 1/10
+var autoclick = MAX_AUTOCLICK
+
 var easter_egg_timer:float = rng.randf_range(150,400)
 var first_opened:bool = true
 
@@ -210,11 +213,32 @@ var trackList = [
 	"Title" : "Threed, Free at Last",
 	"Artist" : "Keiichi Suzuki, Hirokazu Tanaka, Hiroshi Kanazu, Toshiyuki Ueno",
 	"Link" : "https://www.youtube.com/watch?v=GcERPRac04k&list=PL1kU0pk5M3GCwzveqamX71sW3RmCzuXB5&index=63"},
+	{"Path" : "res://minigames/hyena_clicker/music/Knoddys Resort.ogg",
+	"Title" : "Knoddys Resort",
+	"Artist" : "zKevin",
+	"Link" : "https://soundcloud.com/kevinisnotseven/knoddys-resort-1?in=kevinisnotseven/sets/robot64"},
+	{"Path" : "res://minigames/hyena_clicker/music/Lost Girl.ogg",
+	"Title" : "Lost Girl",
+	"Artist" : "Toby Fox",
+	"Link" : "https://tobyfox.bandcamp.com/track/lost-girl"},
+	{"Path" : "res://minigames/hyena_clicker/music/Lost Library.ogg",
+	"Title" : "Lost Library",
+	"Artist" : "SLIME GIRLS",
+	"Link" : "https://www.youtube.com/watch?v=31jhk_A3mYk"},
+	{"Path" : "res://minigames/hyena_clicker/music/It's Raining Somewhere Else.ogg",
+	"Title" : "It's Raining Somewhere Else",
+	"Artist" : "Toby Fox",
+	"Link" : "https://tobyfox.bandcamp.com/track/its-raining-somewhere-else"},
+	{"Path" : "res://minigames/hyena_clicker/music/Sweet Sour.ogg",
+	"Title" : "Sweet Sour",
+	"Artist" : "MasterSwordRemix",
+	"Link" : "https://masterswordremix.bandcamp.com/track/sweet-sour"},
 ]
 var curTrack = 0
 
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	DiscordSDKLoader.run_preset("Hyena")
 	
 	load_save()
 	hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
@@ -236,6 +260,7 @@ func _ready():
 	update_counter()
 	update_yena()
 	get_tree().call_group("hyena buttons", "update_price")
+	update_discord()
 
 func _process(delta):
 	easter_egg_timer -= delta
@@ -264,6 +289,13 @@ func _process(delta):
 		if idle_loop > 10:
 			idle_loop = 1
 	
+	if clickUpgrades["HYENA FOLDER"][0] > 0:
+		if Input.is_action_pressed("click") && can_click:
+			if autoclick <= 0:
+				autoclick = MAX_AUTOCLICK
+				click()
+		autoclick -= delta
+	
 	musicButton.position.x += 30 * delta
 	if musicButton.position.x > 1280:
 		musicButton.position.x = -musicButton.size.x
@@ -271,7 +303,7 @@ func _process(delta):
 		musicButton.modulate.a += delta
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("click") && can_click:
+	if Input.is_action_just_pressed("click") && can_click && clickUpgrades["HYENA FOLDER"][0] == 0:
 		click()
 	if Input.is_action_just_pressed("back"):
 		if global.enteredMiniGameFromMenu:
@@ -299,17 +331,18 @@ func click():
 	if hyena_calculation().isLargerThan(1000):
 		instance.move(hyena_calculation().toMetricSymbol())
 	else:
-		instance.move(hyena_calculation())
+		instance.move(hyena_calculation().toString())
 	instance.set_position(Vector2(get_global_mouse_position().x - 16, get_global_mouse_position().y - 25))
 	add_child(instance)
 
 func add_hyenas(isClick:bool = true):
 	if (isClick):
-		hyenas.plus(hyena_calculation())
-		totalHyenas.plus(hyena_calculation())
+			hyenas.plus(hyena_calculation())
+			totalHyenas.plus(hyena_calculation())
 	else:
 		hyenas.plus(idle_calculation())
 		totalHyenas.plus(idle_calculation())
+	update_discord()
 	save()
 	update_counter()
 	update_yena()
@@ -326,36 +359,40 @@ func update_counter():
 		counter.text = hyenas.toString() + " HYENAS "
 
 func update_yena():
-	if hyenaInRange("0","999"):
-		$HyenaPlayer.play('stage 1')
+	if clickUpgrades["HYENA FOLDER"][0] >= 1:
+		$HyenaPlayer.play('folder')
 		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("1e3", "4999"):
-		$HyenaPlayer.play('stage 2')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("5e3","49999"):
-		$HyenaPlayer.play('stage 3')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("5e4", "999999"):
-		$HyenaPlayer.play('stage 4')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("1e6", "249999999"):
-		$HyenaPlayer.play('stage 5')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("2.5e8", "4999999999"):
-		$HyenaPlayer.play('stage 6')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("5e9", "99999999999999"):
-		$HyenaPlayer.play('stage 7')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("1e14", "499999999999999"):
-		$HyenaPlayer.play('stage 8')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("500000000000000", "999999999999999999"):
-		$HyenaPlayer.play('stage 9')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
-	elif hyenaInRange("1000000000000000000", "999000000000000000000"):
-		$HyenaPlayer.play('stage 10')
-		hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+	else:
+		if hyenaInRange("0","999"):
+			$HyenaPlayer.play('stage 1')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("1e3", "4999"):
+			$HyenaPlayer.play('stage 2')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("5e3","49999"):
+			$HyenaPlayer.play('stage 3')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("5e4", "999999"):
+			$HyenaPlayer.play('stage 4')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("1e6", "249999999"):
+			$HyenaPlayer.play('stage 5')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("2.5e8", "4999999999"):
+			$HyenaPlayer.play('stage 6')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("5e9", "99999999999999"):
+			$HyenaPlayer.play('stage 7')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("1e14", "499999999999999"):
+			$HyenaPlayer.play('stage 8')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenaInRange("500000000000000", "999999999999999999"):
+			$HyenaPlayer.play('stage 9')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
+		elif hyenas.isLargerThanOrEqualTo("1000000000000000000"):
+			$HyenaPlayer.play('stage 10')
+			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
 func hyenaInRange(val1:String, val2:String):
 	if hyenas.isLargerThanOrEqualTo(val1) and hyenas.isLessThan(val2):
 		return true
@@ -367,14 +404,13 @@ func hyena_calculation():
 	for key in clickUpgrades.keys():
 		hyena_num.plus(Big.new(clickUpgrades[key][0]).multiply(clickProduction[key]))
 	
-	
 	return hyena_num
 
 func idle_calculation():
 	var hyena_num:Big = Big.new(0)
 	if idle_loop == 10:
 		hyena_num.plus(idleUpgrades["HYENA SNACK"][0])
-	hyena_num.plus(HPS.roundDown())
+	hyena_num.plus(Big.new(HPS).roundDown())
 	
 	return hyena_num
 
@@ -389,7 +425,8 @@ func spawn_easter_egg():
 			$IdleAnims.play("popup")
 		2:
 			$IdleAnims.play('jumpscare')
-			$JumpscareSound.play()
+			if global.isWindowFocused:
+				$JumpscareSound.play()
 		3:
 			$HyenaPlayer.play('secret')
 			hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
@@ -464,6 +501,8 @@ func on_item_button_clicked(button):
 		update_item_price(button)
 		button.update_price()
 		$KaChing.play()
+		if button.item == "HYENA FOLDER":
+			update_yena()
 		
 		update_HPS()
 
@@ -546,3 +585,10 @@ func _on_texture_button_toggled(toggled_on):
 		musicPlayer.stream_paused = true
 	else:
 		musicPlayer.stream_paused = false
+
+func update_discord():
+	if hyenas.isLargerThan(1000000):
+		DiscordSDK.state = hyenas.toAmericanName().to_upper() + " H"
+	else:
+		DiscordSDK.state = hyenas.toString() + " H"
+	DiscordSDK.refresh()

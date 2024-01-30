@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://clyw0utgg730f"
+path="res://.godot/imported/Knoddys Resort.ogg-607fd8299596d8b4e8ab644421207137.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/music/Knoddys Resort.ogg"
+dest_files=["res://.godot/imported/Knoddys Resort.ogg-607fd8299596d8b4e8ab644421207137.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

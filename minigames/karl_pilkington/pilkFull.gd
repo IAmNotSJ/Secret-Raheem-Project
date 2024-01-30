@@ -8,6 +8,9 @@ const SAVE_PATH: String = "user://pilkington.save"
 
 var hasWon:bool = false
 
+func _ready():
+	save()
+
 func changeScene(target:String, transition:bool = true):
 	var newScene = load(target).instantiate()
 	

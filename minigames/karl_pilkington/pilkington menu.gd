@@ -7,6 +7,7 @@ func _ready():
 	if !global.minigames["Karl Pilkington"]:
 		global.minigames["Karl Pilkington"] = true
 		global.save()
+	DiscordSDKLoader.run_preset("Karl")
 func _unhandled_input(_event: InputEvent):
 	if Input.is_action_just_pressed("back"):
 		if global.enteredMiniGameFromMenu:

@@ -5,6 +5,7 @@ extends Node2D
 
 func interact(body):
 	Transition.change_scene_to_file(scene_change)
+	body.can_move = false
 	
 	if save_pos:
 		Overworld.save_position(body.position)

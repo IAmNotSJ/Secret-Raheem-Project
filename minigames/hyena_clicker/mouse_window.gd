@@ -28,7 +28,6 @@ func _unhandled_input(_event):
 			description.scroll_to_line(curLine)
 
 func set_text(daTitle:String = 'NULL', daDescription:String = 'NULL', daPrice:String = 'NULL', disabled:bool = false):
-	print('updated!')
 	if daTitle == "HYENA MULTILEVEL QUANTUM MANIPULATOR":
 		daTitle = "HYENA M.Q.N."
 	title.text = "[b]" + daTitle + "[/b]"
