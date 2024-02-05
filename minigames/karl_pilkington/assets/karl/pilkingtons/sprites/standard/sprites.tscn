@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://mhkbxn50hh0"]
+
+[ext_resource type="Texture2D" uid="uid://8ht1833ml3sd" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/standard/pilkington.png" id="1_j5v6f"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/karl/pilkingtons/sprites/sprites.gd" id="2_6702m"]
+
+[sub_resource type="Animation" id="Animation_p757o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g4vi2"]
+resource_name = "dead"
+length = 1.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.7, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 5, 6, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hx06t"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_2xft6"]
+resource_name = "run"
+length = 0.250004
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ql68r"]
+_data = {
+"RESET": SubResource("Animation_p757o"),
+"dead": SubResource("Animation_g4vi2"),
+"idle": SubResource("Animation_hx06t"),
+"run": SubResource("Animation_2xft6")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t1aud"]
+radius = 21.0
+height = 56.0
+
+[node name="Sprites" type="Sprite2D" node_paths=PackedStringArray("animationPlayer")]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_j5v6f")
+offset = Vector2(0, -11)
+hframes = 11
+script = ExtResource("2_6702m")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ql68r")
+}
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(0.4, 0.4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Collision2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2, -23)
+shape = SubResource("CapsuleShape2D_t1aud")

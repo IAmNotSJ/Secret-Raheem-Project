@@ -63,14 +63,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath(".:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 51.5)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_fw1nx"]
@@ -91,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath(".:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,33 +107,32 @@ _data = {
 "comein": SubResource("Animation_fw1nx")
 }
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("2_wrhio")
-
-[node name="Fire" type="Sprite2D" parent="."]
+[node name="Fire" type="Sprite2D" node_paths=PackedStringArray("hurtbox")]
 position = Vector2(0, 51.5)
 scale = Vector2(3, 3)
 texture = ExtResource("1_cidff")
 hframes = 4
+script = ExtResource("2_wrhio")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 150.0
 
-[node name="Area2D" type="Area2D" parent="Fire"]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fire/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 7.66667)
 shape = SubResource("CapsuleShape2D_uvuc5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Fire"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_plbst")
 }
 autoplay = "flame"
 
-[node name="EffectsPlayer" type="AnimationPlayer" parent="Fire"]
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3ksbj")
 }
 autoplay = "comein"
-
-[connection signal="area_entered" from="Fire/Area2D" to="." method="_on_area_2d_area_entered"]

@@ -35,7 +35,7 @@ func _process(delta):
 					attackTimer = ATTACK_TIMER
 					state = SPIN
 					$Animationplayer.play('spin')
-					spin_timer = rng.randi_range(2, 7)
+					spin_timer = global.rng.randi_range(2, 7)
 			SPIN:
 				spin_timer -= delta
 				look_at_target(target, pupil, marker)
@@ -73,12 +73,6 @@ func _process(delta):
 				
 				if velocity == Vector2.ZERO:
 					state = IDLE
-			
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)
 
 func _on_hurtbox_area_entered(area):
-	area.owner.hit()
+	hit_target(area)

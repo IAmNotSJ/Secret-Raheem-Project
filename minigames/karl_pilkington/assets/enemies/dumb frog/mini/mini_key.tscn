@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpr1nuvyauc3f"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/dumb frog/mini/mini_key.gd" id="1_k0673"]
+[ext_resource type="Texture2D" uid="uid://dps87bgverbxw" path="res://minigames/karl_pilkington/assets/enemies/dumb frog/mini/mini key.png" id="2_g8ll5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3nnk"]
+radius = 2.26667
+height = 6.93333
+
+[sub_resource type="Animation" id="Animation_wd8q4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_7f6jt"]
+resource_name = "jump"
+length = 2.00001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -6), Vector2(0, -4), Vector2(0, 3), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"jump_state"
+}, {
+"args": [],
+"method": &"idle_state"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08qeh"]
+_data = {
+"RESET": SubResource("Animation_wd8q4"),
+"jump": SubResource("Animation_7f6jt")
+}
+
+[node name="MiniKey" type="Sprite2D" node_paths=PackedStringArray("hurtbox")]
+scale = Vector2(3, 3)
+texture = ExtResource("2_g8ll5")
+offset = Vector2(0, -6)
+hframes = 4
+script = ExtResource("1_k0673")
+hurtbox = [NodePath("Hurtbox")]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0.333333, 1.33333)
+scale = Vector2(2.5, 2.5)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_i3nnk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_08qeh")
+}
+autoplay = "jump"

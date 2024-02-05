@@ -18,13 +18,7 @@ func _process(delta):
 
 func spawn_pill():
 	var pill = pillScene.instantiate()
-	var angle = target.global_position - global_position
-	pill.initialize(angle.angle(), false)
+	var daAngle = target.global_position - global_position
+	pill.angle = rad_to_deg(daAngle.angle())
 	pill.global_position = pupil.global_position
 	mainScene.call_deferred("add_child", pill)
-
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

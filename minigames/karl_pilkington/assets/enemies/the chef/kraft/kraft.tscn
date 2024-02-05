@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwxtjfia7mvq1"]
+
+[ext_resource type="Texture2D" uid="uid://d3b4it4c74m72" path="res://minigames/karl_pilkington/assets/enemies/the chef/kraft/kraft.png" id="1_50w4x"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/bullet.gd" id="2_qkt50"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3w73"]
+size = Vector2(44, 94)
+
+[node name="Kraft" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
+texture = ExtResource("1_50w4x")
+script = ExtResource("2_qkt50")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 600.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_a3w73")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -23,15 +23,9 @@ func _process(delta):
 		global_position = global_position.move_toward(pos, delta * SPEED)
 
 func spawn_fire(amount:int):
-	var offset = rng.randi_range(0,90)
+	var offset = global.rng.randi_range(0,90)
 	for i in range(amount):
 		var fire = fireScene.instantiate()
-		fire.global_position = pupil.global_position
 		var daAngle = (360 / amount * i) + offset
 		fire.initialize(target, 175, daAngle, -3)
 		mainScene.call_deferred("add_child", fire)
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

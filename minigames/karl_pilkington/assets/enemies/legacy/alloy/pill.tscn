@@ -95,11 +95,15 @@ _data = {
 radius = 4.0
 height = 18.0
 
-[node name="Prescription" type="Sprite2D"]
+[node name="Prescription" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
 scale = Vector2(3, 3)
 texture = ExtResource("1_wg3aw")
 hframes = 4
 script = ExtResource("2_7207e")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 600.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -108,13 +112,10 @@ libraries = {
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_637uq")
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

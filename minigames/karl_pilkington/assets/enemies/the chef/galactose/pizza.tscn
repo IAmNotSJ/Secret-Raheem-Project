@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://djqv7rsnry6kf"]
+
+[ext_resource type="Texture2D" uid="uid://ccptbekweoywb" path="res://minigames/karl_pilkington/assets/enemies/the chef/galactose/galac1.png" id="1_fy653"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/the chef/galactose/pizza.gd" id="2_r07jd"]
+
+[node name="Galactose" type="Sprite2D" node_paths=PackedStringArray("hurtbox")]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_fy653")
+script = ExtResource("2_r07jd")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 200.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-7, -149)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox"]
+polygon = PackedVector2Array(145, -10, -120, 140, -140, 75, -150, -15, -135, -90, -115, -135, -90, -135, -80, -110, -65, -95)

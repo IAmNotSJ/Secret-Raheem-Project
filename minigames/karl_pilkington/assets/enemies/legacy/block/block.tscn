@@ -92,7 +92,7 @@ size = Vector2(12, 71)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6k4wn"]
 size = Vector2(32, 15)
 
-[node name="Block" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Block" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_00tdl")
@@ -100,7 +100,8 @@ health = 10.0
 SPEED = 300
 eyeradius = 6
 ATTACK_TIMER = 6
-hitbox = NodePath("Area2D")
+hitbox = NodePath("Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -129,13 +130,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ba3qi")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 visible = false
 position = Vector2(0, 45)
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(4, -43.5)
 shape = SubResource("RectangleShape2D_bdyja")
 

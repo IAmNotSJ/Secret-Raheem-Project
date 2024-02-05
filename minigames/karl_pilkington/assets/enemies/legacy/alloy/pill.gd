@@ -1,30 +1,23 @@
-extends Sprite2D
+extends EnemyBullet
 
 @onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/pill.tscn")
 
 @onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 
-var SPEED = 600
 var ANGLE_DEGREES = 130
 
-var angle
 var isChild = false
 
 var timer:float
 
-var rng = RandomNumberGenerator.new()
+func _ready():
+	$AnimationPlayer.play(str(global.rng.randi_range(1,4)))
+	timer = global.rng.randf_range(1, 1.3)
+	super()
 
-func initialize(daAngle, child:bool = false):
-	$AnimationPlayer.play(str(rng.randi_range(1,4)))
-	angle = daAngle
-	isChild = child
-	
-	timer = rng.randf_range(1, 1.3)
-	print(timer)
-func _physics_process(delta):
-	position.x += SPEED * cos(angle) * delta
-	position.y += SPEED * sin(angle) * delta
+func _process(delta):
 	rotation_degrees += ANGLE_DEGREES * delta
+	super(delta)
 	
 	timer -= delta
 	if timer <= 0:
@@ -41,13 +34,7 @@ func split():
 
 func spawn_pill(leAngle):
 	var pill = pillScene.instantiate()
-	pill.initialize(leAngle, true)
+	angle = leAngle
+	isChild = true
 	pill.global_position = global_position
 	mainScene.call_deferred("add_child", pill)
-
-func _on_area_2d_area_entered(area):
-	area.owner.hit()
-	queue_free()
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()

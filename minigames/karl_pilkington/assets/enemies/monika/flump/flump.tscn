@@ -1,0 +1,235 @@
+[gd_scene load_steps=7 format=3 uid="uid://o40hqn0xlhq6"]
+
+[ext_resource type="Texture2D" uid="uid://d1nfo3rlwo840" path="res://minigames/karl_pilkington/assets/enemies/monika/flump/flump.png" id="1_cgruc"]
+[ext_resource type="Texture2D" uid="uid://b7cv1crh1fd3b" path="res://minigames/karl_pilkington/assets/enemies/monika/flump/flumpvine.png" id="2_0awci"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/monika/flump/flump.gd" id="2_gtwtw"]
+
+[sub_resource type="Animation" id="Animation_u1tts"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.13253, 0.13253)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flumpvine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flumpvine2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flumpvine2/Hurtbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flumpvine2/Hurtbox:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Flumpvine/Hurtbox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Flumpvine/Hurtbox:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y3j2b"]
+resource_name = "spawn"
+length = 2.0
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.13253, 0.13253), Vector2(0.513, 0.513), Vector2(1.318, 1.318), Vector2(2.2, 2.2), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flumpvine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375, 0.458334, 0.541667, 0.666667, 0.833334, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.8, 1.8), Vector2(1.9, 1.9), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flumpvine2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.375, 0.458334, 0.541667, 0.666667, 0.833334, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.8, 1.8), Vector2(1.9, 1.9), Vector2(2, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flumpvine2/Hurtbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.375, 0.916667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flumpvine2/Hurtbox:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.375, 0.916667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Flumpvine/Hurtbox:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.375, 0.916667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Flumpvine/Hurtbox:monitorable")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.375, 0.916667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfhuy"]
+_data = {
+"RESET": SubResource("Animation_u1tts"),
+"spawn": SubResource("Animation_y3j2b")
+}
+
+[node name="Flump" type="Sprite2D" node_paths=PackedStringArray("hurtbox")]
+position = Vector2(658, 468)
+scale = Vector2(0.13253, 0.13253)
+texture = ExtResource("1_cgruc")
+script = ExtResource("2_gtwtw")
+hurtbox = [NodePath("Flumpvine/Hurtbox"), NodePath("Flumpvine2/Hurtbox")]
+
+[node name="Flumpvine" type="Sprite2D" parent="."]
+position = Vector2(3.5, 8)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_0awci")
+offset = Vector2(-24.25, -22.5)
+
+[node name="Hurtbox" type="Area2D" parent="Flumpvine"]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flumpvine/Hurtbox"]
+polygon = PackedVector2Array(-33, -44.75, -42.25, -35.25, -46, -24.5, -43.5, -15.5, -38.5, -9.25, -29, -9.5, -13.5, -15, -7.75, -14.75, -2.25, -12.5, 0.25, -9.25, 0, -0.75, -1.5, -0.75, -1.5, -6.5, -5.5, -12.75, -14.25, -12.75, -26.25, -7.75, -36.75, -7, -40.75, -8.75, -47.25, -16.75, -49, -23.5, -47, -32.75, -36, -44.5)
+
+[node name="Flumpvine2" type="Sprite2D" parent="."]
+position = Vector2(2, 6)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_0awci")
+offset = Vector2(24.5, 22.5)
+flip_h = true
+flip_v = true
+
+[node name="Hurtbox" type="Area2D" parent="Flumpvine2"]
+position = Vector2(0.75, 1)
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flumpvine2/Hurtbox"]
+position = Vector2(-0.5, -1)
+scale = Vector2(-1, -1)
+polygon = PackedVector2Array(-33, -44.75, -42.25, -35.25, -46, -24.5, -43.5, -15.5, -38.5, -9.25, -29, -9.5, -13.5, -15, -7.75, -14.75, -2.25, -12.5, 0.25, -9.25, 0, -0.75, -1.5, -0.75, -1.5, -6.5, -5.5, -12.75, -14.25, -12.75, -26.25, -7.75, -36.75, -7, -40.75, -8.75, -47.25, -16.75, -49, -23.5, -47, -32.75, -36, -44.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yfhuy")
+}
+autoplay = "spawn"

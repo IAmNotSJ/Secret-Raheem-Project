@@ -45,13 +45,14 @@ _data = {
 "hit": SubResource("Animation_lx0u5")
 }
 
-[node name="Gas" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Gas" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_jgqal")
 health = 15.0
 ATTACK_TIMER = 6
-hitbox = NodePath("Area2D")
+hitbox = NodePath("Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -69,11 +70,11 @@ position = Vector2(1, -19)
 position = Vector2(1, -19)
 shape = SubResource("CircleShape2D_qxyao")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(1, -19)
 shape = SubResource("CircleShape2D_qxyao")
 

@@ -10,17 +10,14 @@ signal died
 @export var eyeradius = 4
 
 @export var ATTACK_TIMER = 3
+var attackTimer = ATTACK_TIMER
 
 @export var hitbox:Area2D
-
-
+@export var hitPlayer:AnimationPlayer
 
 var rng = RandomNumberGenerator.new()
 
-var attackTimer = ATTACK_TIMER
-
 var boosted:bool = false
-
 var active
 
 var target
@@ -59,8 +56,13 @@ func die():
 	died.emit()
 	queue_free()
 
+func hit_target(area):
+	area.get_parent().get_parent().hit()
+
 func change_boost(val:bool):
 	boosted = val
 
 func _on_hitbox_entered(area):
-	hurt(area.owner.damage)
+	if active:
+		hurt(area.owner.damage)
+		hitPlayer.play('hit')

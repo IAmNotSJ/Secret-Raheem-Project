@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cug7qjg4na1rn"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/items/chair/chair.gd" id="1_r3bjn"]
+
+[node name="Chair" type="Node"]
+script = ExtResource("1_r3bjn")
+sprites = "res://minigames/karl_pilkington/assets/karl/pilkingtons/sprites/chair/sprites.tscn"

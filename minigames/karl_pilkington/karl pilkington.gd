@@ -9,11 +9,11 @@ extends Node2D
 @onready var pilkington
 @onready var music = $AudioStreamPlayer
 
-@onready var cleftScene = preload("res://minigames/karl_pilkington/assets/enemies/dumb frog/dumb frog.tscn")
-@onready var chefScene = preload("res://minigames/karl_pilkington/assets/enemies/the chef/the chef.tscn")
+@onready var cleftScene = preload("res://minigames/karl_pilkington/assets/enemies/dumb frog/main/dumb frog.tscn")
+@onready var chefScene = preload("res://minigames/karl_pilkington/assets/enemies/the chef/main/the chef.tscn")
 @onready var legacyScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/legacies.tscn")
-@onready var dapperScene = preload("res://minigames/karl_pilkington/assets/enemies/grabber/grabber.tscn")
-@onready var monikaScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/monika.tscn")
+@onready var dapperScene = preload("res://minigames/karl_pilkington/assets/enemies/grabber/main/grabber.tscn")
+@onready var monikaScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/main/monika.tscn")
 
 @onready var enemyArray = [
 cleftScene,
@@ -29,7 +29,7 @@ dapperScene
 ]
 @onready var phase2Array = [
 chefScene,
-monikaScene
+#monikaScene
 ]
 @onready var phase3Array = [
 legacyScene
@@ -56,9 +56,9 @@ var boosted = false
 
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
-	if parent.pilkPath != null:
-		pilkScene = load(parent.pilkPath)
 	spawn_pilkington()
+	if parent.pilkPath != null:
+		pilkington.add_item(parent.pilkPath)
 	bossbar.visible = false
 	bossSprite.visible = false
 	update_health()

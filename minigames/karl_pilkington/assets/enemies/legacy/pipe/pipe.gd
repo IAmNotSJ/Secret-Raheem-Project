@@ -18,8 +18,3 @@ func die():
 	mainScene.boosted = false
 	mainScene.speedMusic(1)
 	super()
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

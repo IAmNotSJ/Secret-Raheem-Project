@@ -301,11 +301,12 @@ _data = {
 "shoot": SubResource("Animation_3dx0y")
 }
 
-[node name="Scale" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Scale" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 position = Vector2(0, 646)
 script = ExtResource("1_r4r4n")
 health = 15.0
 hitbox = NodePath("CanvasGroup/ColorRect/Hitbox")
+hitPlayer = NodePath("CanvasGroup/EffectsPlayer")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 position = Vector2(1280, 0)

@@ -23,9 +23,3 @@ func spawn_bolt():
 	spark.global_position = target.global_position
 	spark.target = target
 	mainScene.call_deferred("add_child", spark)
-
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjpdcruu4jru5"]
+
+[ext_resource type="PackedScene" uid="uid://bxnydvvj6ssh4" path="res://minigames/karl_pilkington/debug/button/debug_button.tscn" id="1_n04dt"]
+
+[node name="Debug" type="Node2D"]
+
+[node name="Button" parent="." instance=ExtResource("1_n04dt")]

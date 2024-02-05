@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://pwa757dkb550"]
+
+[ext_resource type="Texture2D" uid="uid://bgp5i2wjvuwd" path="res://minigames/karl_pilkington/assets/enemies/grabber/bullet/bullet.png" id="1_wwwmp"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/bullet.gd" id="2_swy2f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jiprm"]
+radius = 4.33333
+height = 16.6667
+
+[node name="Bullet" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
+scale = Vector2(3, 3)
+texture = ExtResource("1_wwwmp")
+script = ExtResource("2_swy2f")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 650.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jiprm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

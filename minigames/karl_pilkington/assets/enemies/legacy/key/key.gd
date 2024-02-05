@@ -31,15 +31,8 @@ func _process(delta):
 						shots = 5
 
 func shoot():
-	print('shot')
 	var bullet = bulletScene.instantiate()
 	bullet.global_position = pupil.global_position
 	var angleTo = angleToTarget(target, marker)
-	bullet.initialize(angleTo, bulletTexture, 600)
+	bullet.start(rad_to_deg(angleTo), bulletTexture, 600)
 	mainScene.call_deferred("add_child", bullet)
-
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

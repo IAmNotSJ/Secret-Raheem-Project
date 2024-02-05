@@ -6,23 +6,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3totq"]
 radius = 9.05539
 
-[node name="Bullet" type="CharacterBody2D"]
-scale = Vector2(1.25, 1.25)
-collision_layer = 8
-collision_mask = 0
-script = ExtResource("1_vll8u")
-
-[node name="Node2D" type="Sprite2D" parent="."]
+[node name="Bullet" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
 texture = ExtResource("1_01mip")
+script = ExtResource("1_vll8u")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 500.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.25, 1.25)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
+scale = Vector2(1.25, 1.25)
 collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_3totq")
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

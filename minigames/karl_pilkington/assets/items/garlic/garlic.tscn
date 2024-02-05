@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2tgnipm0ea4s"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/items/garlic/garlic.gd" id="1_i26yo"]
+
+[node name="Garlic" type="Node"]
+script = ExtResource("1_i26yo")

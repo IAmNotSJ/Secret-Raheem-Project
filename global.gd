@@ -3,7 +3,6 @@ extends Node
 var isWindowFocused:bool = true
 
 const SAVE_PATH = "user://overworld.save"
-@onready var music = $Music
 
 var rng = RandomNumberGenerator.new()
 
@@ -44,7 +43,6 @@ var enteredMiniGameFromMenu = false
 
 func _ready():
 	load_save()
-	pass
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("fullscreen"):

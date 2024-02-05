@@ -51,12 +51,13 @@ _data = {
 "hit": SubResource("Animation_yof31")
 }
 
-[node name="Sand" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Sand" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_ck55r")
 SPEED = 500
 hitbox = NodePath("Sprite2D/Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
 position = Vector2(0, -30)

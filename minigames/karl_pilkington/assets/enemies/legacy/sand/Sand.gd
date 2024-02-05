@@ -29,10 +29,5 @@ func shoot():
 		var sand = sandScene.instantiate()
 		sand.global_position = pupil.global_position
 		var angleTo = angleToTarget(target, marker)
-		sand.initialize(angleTo + (i * deg_to_rad(-15)), sand_texture, 600)
+		sand.start(rad_to_deg(angleTo) + (i * -15), sand_texture, 600)
 		mainScene.call_deferred("add_child", sand)
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

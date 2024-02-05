@@ -3,16 +3,43 @@ class_name PilkingtonBase extends CharacterBody2D
 signal hurt
 
 @onready var parent  = get_tree().root.get_node("Pilkington")
+@onready var center = $Center
+
+@export_category("Players")
 
 @export var effectPlayer:AnimationPlayer
-
 @export var hurtPlayer:AudioStreamPlayer
 @export var shootPlayer:AudioStreamPlayer
-
+@export_category("Stats")
 @export var walk_speed:int = 350
 @export var max_bullet_timer:float = 1
+@export var tears_per_shot:int = 1
+@export_category("Options")
+@export var walk_anim:bool = true
+@export var has_special:bool = false
+@export var include_bar:bool = true : 
+	set(value) : 
+		$TextureProgressBar.visible = value
+
+var spritePath = "res://minigames/karl_pilkington/assets/karl/pilkingtons/sprites/standard/sprites.tscn"
+var sprites
+
 const max_timer_disappear_timer = 1
 const max_cooldown = 1.5
+
+const fartScene = preload("res://minigames/karl_pilkington/assets/items/garlic/cloud.tscn")
+const max_fart_timer = 10
+var fart_timer = 0
+
+var items:Dictionary = {
+	"Awful" : false,
+	"Chair" : false,
+	"Coin" : false,
+	"Garlic" : false,
+	"Mini" : false,
+	"Shield" : false,
+	"Weed" : false
+}
 
 var input_vector:Vector2 = Vector2.ZERO
 var intended_angle:float = 0
@@ -33,21 +60,27 @@ func _unhandled_input(_event):
 	input_vector = Vector2.ZERO
 	intended_angle = 0
 	if health != 0:
-		input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-		input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		
 		if input_vector.x == 1:
 			intended_angle = 0.25
 		elif input_vector.x == -1:
 			intended_angle = -0.25
 		
-		if input_vector != Vector2.ZERO:
-			$AnimationPlayer.play("run")
-		else:
-			$AnimationPlayer.play("idle")
-
+		if walk_anim:
+			if input_vector != Vector2.ZERO:
+				sprites.animationPlayer.play("run")
+			else:
+				sprites.animationPlayer.play("idle")
+		
+		if Input.is_action_just_pressed("karl_special"):
+			if items["Garlic"]:
+				spawn_fart()
 func _physics_process(delta):
 	cooldown_timer -= delta
+	if items["Garlic"]:
+		fart_timer -= delta
 	
 	if input_vector != Vector2.ZERO:
 		velocity = input_vector * walk_speed
@@ -67,7 +100,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed('click'):
 			timer_disappear_timer = max_timer_disappear_timer
 			$TextureProgressBar.modulate.a = 1
-			shoot()
+			shoot(tears_per_shot)
 			bullet_timer = max_bullet_timer
 	
 	rotation = lerp(rotation, intended_angle, 0.4)
@@ -75,13 +108,17 @@ func _physics_process(delta):
 	
 	position.x = clamp(position.x, 0, 1280)
 	position.y = clamp(position.y, 0, 720)
-	
 
-func shoot():
-	var bullet = bullet_scene.instantiate()
-	var dir = get_global_mouse_position() - global_position
-	bullet.start(position, dir.angle())
-	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
+func shoot(amount):
+	for i in range(amount):
+		var bullet = bullet_scene.instantiate()
+		var angle = (get_global_mouse_position() - global_position).angle()
+		if items["Awful"]:
+			angle += global.rng.randf_range(deg_to_rad(-10), deg_to_rad(10))
+		if items["Chair"]:
+			angle += deg_to_rad(90 * i)
+		bullet.start(position, angle)
+		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
 	playShootSound()
 
 func hit():
@@ -93,13 +130,35 @@ func hit():
 		playHurtSound()
 		cooldown_timer = max_cooldown
 	if health == 0:
-		$AnimationPlayer.play('dead')
-		await $AnimationPlayer.animation_finished
+		sprites.animationPlayer.play('dead')
+		await sprites.animationPlayer.animation_finished
 		parent.changeScene("res://minigames/karl_pilkington/gameover/game_over.tscn", false)
+
+func spawn_fart():
+	print('FART')
+	if fart_timer <= 0:
+		fart_timer = max_fart_timer
+		var fart = fartScene.instantiate()
+		fart.global_position = global_position
+		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(fart)
 
 func playHurtSound():
 	hurtPlayer.stream = load("res://minigames/karl_pilkington/sounds/karlsounds/augh" + str(global.rng.randi_range(1,5)) + ".ogg")
 	hurtPlayer.play()
-
 func playShootSound():
 	shootPlayer.play()
+
+func add_item(path):
+	var item = load(path).instantiate()
+	add_child(item)
+	if item.sprites != " ":
+		spritePath = item.sprites
+	print(spritePath)
+	change_sprites(spritePath)
+	
+	items[item.name] = true
+
+func change_sprites(path):
+	var sprite = load(path).instantiate()
+	add_child(sprite)
+	sprites = sprite

@@ -9,10 +9,6 @@ var pos = Vector2(1189,345)
 
 func _process(delta):
 	if active:
-		if mainScene.boosted:
-			$EffectsPlayer.speed_scale = 1.5
-		else:
-			$EffectsPlayer.speed_scale = 1.5
 		look_at_target(target, pupil, marker)
 		position = position.move_toward(pos, delta * SPEED)
 		
@@ -22,13 +18,6 @@ func _process(delta):
 			slice()
 
 func slice():
-	print('le slice!')
 	var leSlice = sliceScene.instantiate()
 	leSlice.global_position.x = target.global_position.x
 	mainScene.call_deferred("add_child", leSlice)
-
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

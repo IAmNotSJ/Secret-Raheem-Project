@@ -53,7 +53,7 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f86o2"]
 
-[node name="Flame" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Flame" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_qav1g")
@@ -61,7 +61,8 @@ health = 13.0
 SPEED = 250
 eyeradius = 5
 ATTACK_TIMER = 15
-hitbox = NodePath("Area2D")
+hitbox = NodePath("Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -84,19 +85,19 @@ shape = SubResource("RectangleShape2D_hca1j")
 position = Vector2(-18.5, 76.5)
 shape = SubResource("RectangleShape2D_u2vxw")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(10, -18)
 shape = SubResource("CircleShape2D_28i28")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(7.5, 49.5)
 shape = SubResource("RectangleShape2D_hca1j")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-18.5, 76.5)
 shape = SubResource("RectangleShape2D_u2vxw")
 

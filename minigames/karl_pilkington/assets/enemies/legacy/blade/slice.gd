@@ -1,17 +1,17 @@
 extends Node2D
 
+@export var hurtbox:Area2D
+
 @onready var slice = $DaSlice
-@onready var collisionShape = $Area2D/CollisionShape2D
+@onready var collisionShape = $Hurtbox/CollisionShape2D
 @onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	animationPlayer.play('slice')
 func _process(_delta):
-	collisionShape.shape.size = slice.size
-	collisionShape.global_position = slice.global_position
+	if hurtbox.has_overlapping_areas():
+		for area in hurtbox.get_overlapping_areas():
+			area.get_parent().get_parent().hit()
 	
 	if !$AnimationPlayer.is_playing():
 		queue_free()
-
-func _on_area_2d_area_entered(area):
-	area.owner.hit()

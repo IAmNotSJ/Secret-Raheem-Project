@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dssiu806jx3yl"]
+
+[ext_resource type="Texture2D" uid="uid://yme7mfpftsx" path="res://minigames/karl_pilkington/assets/upgrades/upgrades.png" id="1_l8fud"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/upgrades/upgrade.gd" id="1_srwcn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmv84"]
+
+[node name="Upgrade" type="Sprite2D"]
+texture = ExtResource("1_l8fud")
+hframes = 4
+script = ExtResource("1_srwcn")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_rmv84")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

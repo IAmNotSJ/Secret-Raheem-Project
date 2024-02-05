@@ -1,0 +1,566 @@
+[gd_scene load_steps=24 format=3 uid="uid://c6wuhkgc0ru25"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/grabber/main/grabber.gd" id="1_ukshk"]
+[ext_resource type="AudioStream" uid="uid://n2r5tutyet3n" path="res://minigames/karl_pilkington/music/Team Skull Grunt Battle Music.ogg" id="2_tml3f"]
+[ext_resource type="Texture2D" uid="uid://bv6uoiueop4fe" path="res://minigames/karl_pilkington/assets/enemies/grabber/main/glasses.png" id="3_kv0wm"]
+[ext_resource type="Texture2D" uid="uid://b0v3yi5n5eruo" path="res://minigames/karl_pilkington/assets/enemies/grabber/main/mouth.png" id="4_o1h6r"]
+[ext_resource type="Texture2D" uid="uid://cehyonn5rsro3" path="res://minigames/karl_pilkington/assets/enemies/grabber/main/eyebrows.png" id="5_x0f2k"]
+[ext_resource type="PackedScene" uid="uid://dhmmwup1bq253" path="res://minigames/karl_pilkington/assets/enemies/grabber/main/hands/hand.tscn" id="6_ydkr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmti6"]
+size = Vector2(328, 151)
+
+[sub_resource type="Animation" id="Animation_g5dim"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-813, 507)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(813, 507)]
+}
+
+[sub_resource type="Animation" id="Animation_087a5"]
+resource_name = "dead"
+length = 0.833338
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.25, 0.333334, 0.416667, 0.5, 0.583334, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 270), Vector2(-10, 273), Vector2(0, 280), Vector2(5, 289), Vector2(0, 292), Vector2(-7, 300), Vector2(5, 310), Vector2(-1, 318), Vector2(-6, 331)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["worried"],
+"method": &"change_expression"
+}, {
+"args": [],
+"method": &"delete"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.25, 0.333334, 0.416667, 0.5, 0.583334, 0.666667, 0.750001, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-473, 507), Vector2(-471, 509), Vector2(-469, 511), Vector2(-470, 512), Vector2(-472, 514), Vector2(-470, 516), Vector2(-468, 518), Vector2(-466, 520), Vector2(-464, 522), Vector2(-466, 524), Vector2(-467, 525)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.25, 0.333334, 0.416667, 0.5, 0.583334, 0.666667, 0.750001, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(473, 507), Vector2(475, 509), Vector2(473, 510), Vector2(471, 512), Vector2(473, 514), Vector2(475, 516), Vector2(473, 518), Vector2(471, 520), Vector2(473, 522), Vector2(475, 524), Vector2(477, 526)]
+}
+
+[sub_resource type="Animation" id="Animation_lquy6"]
+resource_name = "intro"
+length = 2.0
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.208333, 0.291667, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 105), Vector2(0, 201), Vector2(0, 273), Vector2(0, 281), Vector2(0, 273), Vector2(0, 268)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.583334, 0.666667, 0.75, 0.875, 0.958333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-813, 507), Vector2(-732, 507), Vector2(-436, 507), Vector2(-432, 507), Vector2(-448, 507), Vector2(-473, 507)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.04167, 1.125, 1.20833, 1.29167, 1.41667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(816, 507), Vector2(728, 507), Vector2(592, 507), Vector2(464, 507), Vector2(440, 507), Vector2(450, 507), Vector2(473, 507)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5b7oy"]
+_data = {
+"RESET": SubResource("Animation_g5dim"),
+"dead": SubResource("Animation_087a5"),
+"intro": SubResource("Animation_lquy6")
+}
+
+[sub_resource type="Animation" id="Animation_lhvh5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassesSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Mouth:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 141)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/Eyebrows:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, -70)]
+}
+
+[sub_resource type="Animation" id="Animation_4cu2v"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassesSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 4), Vector2(0, 0), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Mouth:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 141), Vector2(0, 146), Vector2(0, 141), Vector2(0, 136), Vector2(0, 141)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/Eyebrows:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, -70), Vector2(-4, -67), Vector2(-4, -71), Vector2(-4, -73.5), Vector2(-4, -70)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bj11k"]
+_data = {
+"RESET": SubResource("Animation_lhvh5"),
+"float": SubResource("Animation_4cu2v")
+}
+
+[sub_resource type="Animation" id="Animation_5bfo1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Eyebrows:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/GlassesSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lvkqd"]
+resource_name = "angry"
+length = 0.001
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Eyebrows:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/GlassesSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pl08n"]
+resource_name = "beat"
+length = 0.001
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Eyebrows:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/GlassesSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_81ect"]
+resource_name = "hit"
+length = 0.0833376
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/GlassesSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_xtt2v"]
+resource_name = "worried"
+length = 0.001
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glasses/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glasses/Eyebrows:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glasses/GlassesSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbk2b"]
+_data = {
+"RESET": SubResource("Animation_5bfo1"),
+"angry": SubResource("Animation_lvkqd"),
+"beat": SubResource("Animation_pl08n"),
+"hit": SubResource("Animation_81ect"),
+"worried": SubResource("Animation_xtt2v")
+}
+
+[sub_resource type="Animation" id="Animation_y58r3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(473, 507)]
+}
+
+[sub_resource type="Animation" id="Animation_8l3lc"]
+resource_name = "grab"
+length = 3.0
+step = 0.0416667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.916667, 2.41667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["fist", 2],
+"method": &"change_hands"
+}, {
+"args": ["prepped", 2],
+"method": &"change_hands"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.25, 0.333334, 0.416667, 0.5, 0.583334, 2.04167, 2.125, 2.20834, 2.29167, 2.375, 2.41667, 2.5, 2.58334, 2.66667, 2.75, 2.83333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(473, 507), Vector2(471, 510), Vector2(470, 514), Vector2(472, 517), Vector2(522, 497), Vector2(586, 489), Vector2(706, 489), Vector2(754, 489), Vector2(706, 497), Vector2(594, 489), Vector2(554, 481), Vector2(535, 481), Vector2(487, 489), Vector2(407, 553), Vector2(447, 593), Vector2(468, 571), Vector2(471, 523), Vector2(484, 507), Vector2(473, 507)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.41667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_junk"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phen0"]
+_data = {
+"RESET": SubResource("Animation_y58r3"),
+"grab": SubResource("Animation_8l3lc")
+}
+
+[node name="Grabber" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+z_index = 1
+position = Vector2(640, -126)
+script = ExtResource("1_ukshk")
+health = 50.0
+song = ExtResource("2_tml3f")
+hitbox = [NodePath("Glasses/Hitbox")]
+
+[node name="Glasses" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="Area2D" parent="Glasses"]
+position = Vector2(0, 8)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Glasses/Hitbox"]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_jmti6")
+
+[node name="GlassesSprite" type="Sprite2D" parent="Glasses"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_kv0wm")
+hframes = 4
+metadata/_edit_group_ = true
+
+[node name="Mouth" type="Sprite2D" parent="Glasses"]
+position = Vector2(0, 141)
+scale = Vector2(3, 3)
+texture = ExtResource("4_o1h6r")
+hframes = 3
+
+[node name="Eyebrows" type="Sprite2D" parent="Glasses"]
+position = Vector2(-4, -70)
+scale = Vector2(3, 3)
+texture = ExtResource("5_x0f2k")
+hframes = 3
+
+[node name="Hand1" parent="." instance=ExtResource("6_ydkr1")]
+position = Vector2(-813, 507)
+flip_h = true
+
+[node name="Hand2" parent="." instance=ExtResource("6_ydkr1")]
+position = Vector2(473, 507)
+
+[node name="IntroPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5b7oy")
+}
+
+[node name="FloatPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bj11k")
+}
+autoplay = "float"
+
+[node name="ExpressionChanger" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sbk2b")
+}
+
+[node name="AttackPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phen0")
+}

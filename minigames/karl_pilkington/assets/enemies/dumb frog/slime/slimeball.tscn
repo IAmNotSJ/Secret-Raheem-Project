@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch3rmg4sysobc"]
+
+[ext_resource type="Texture2D" uid="uid://3thybfwpvr2r" path="res://minigames/karl_pilkington/assets/enemies/dumb frog/slime/slime ball.png" id="1_vewea"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/dumb frog/slime/slimeball.gd" id="2_fnxkt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vy68"]
+radius = 8.8
+
+[node name="SlimeBall" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_vewea")
+script = ExtResource("2_fnxkt")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+toPos = true
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 400.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_2vy68")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

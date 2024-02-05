@@ -51,7 +51,7 @@ _data = {
 "hit": SubResource("Animation_hgvly")
 }
 
-[node name="Spark" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Spark" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_2km65")
@@ -59,6 +59,7 @@ health = 13.0
 SPEED = 300
 ATTACK_TIMER = 10
 hitbox = NodePath("Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

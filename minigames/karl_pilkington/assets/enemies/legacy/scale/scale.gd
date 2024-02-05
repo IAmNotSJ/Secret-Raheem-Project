@@ -62,9 +62,4 @@ func change_boost(val):
 		animationPlayer.speed_scale = 1
 
 func _on_hurtbox_area_entered(area):
-	area.owner.hit()
-
-func _on_hitbox_entered(area):
-	if active:
-		$CanvasGroup/EffectsPlayer.play('hit')
-		super(area)
+	hit_target(area)

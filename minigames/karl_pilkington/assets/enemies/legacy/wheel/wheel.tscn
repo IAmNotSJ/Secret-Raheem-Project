@@ -84,13 +84,14 @@ _data = {
 "spin": SubResource("Animation_2e6kr")
 }
 
-[node name="Wheel" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Wheel" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "hitPlayer")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_yc7qg")
 SPEED = 500
 eyeradius = 5
 hitbox = NodePath("Hitbox")
+hitPlayer = NodePath("EffectsPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

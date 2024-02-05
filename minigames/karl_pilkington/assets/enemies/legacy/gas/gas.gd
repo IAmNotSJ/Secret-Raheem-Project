@@ -61,10 +61,5 @@ func shoot():
 	var bullet = bulletScene.instantiate()
 	bullet.global_position = pupil.global_position
 	var angleTo = angleToTarget(target, marker)
-	bullet.initialize(angleTo, gasTexture, 600)
+	bullet.start(rad_to_deg(angleTo), gasTexture, 600)
 	mainScene.call_deferred("add_child", bullet)
-
-func _on_hitbox_entered(area):
-	if active:
-		$EffectsPlayer.play('hit')
-		super(area)

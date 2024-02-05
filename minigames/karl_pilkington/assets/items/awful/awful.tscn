@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwbicw22nlro8"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/items/awful/awful.gd" id="1_mymhb"]
+
+[node name="Awful" type="Node"]
+script = ExtResource("1_mymhb")
+sprites = "res://minigames/karl_pilkington/assets/karl/pilkingtons/sprites/awful/sprites.tscn"
