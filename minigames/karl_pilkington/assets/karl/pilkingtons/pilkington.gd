@@ -1,6 +1,7 @@
 class_name PilkingtonBase extends CharacterBody2D
 
 signal hurt
+signal heal
 
 @onready var parent  = get_tree().root.get_node("Pilkington")
 @onready var center = $Center
@@ -40,6 +41,13 @@ var items:Dictionary = {
 	"Shield" : false,
 	"Weed" : false
 }
+
+var stats:Dictionary = {
+	"Attack" : 1,
+	"Speed" : 1,
+	"Size" : 1,
+}
+var upgrades = []
 
 var input_vector:Vector2 = Vector2.ZERO
 var intended_angle:float = 0
@@ -83,12 +91,10 @@ func _physics_process(delta):
 		fart_timer -= delta
 	
 	if input_vector != Vector2.ZERO:
-		velocity = input_vector * walk_speed
+		velocity = input_vector * walk_speed * stats["Speed"]
 	else:
 		velocity = Vector2.ZERO
 	
-	#Why wasn't this working in unhandled input? le fuck?
-	#update: i am stupid
 	if bullet_timer > 0:
 		bullet_timer -= delta
 		$TextureProgressBar.value = (max_bullet_timer - bullet_timer) * 100
@@ -117,7 +123,7 @@ func shoot(amount):
 			angle += global.rng.randf_range(deg_to_rad(-10), deg_to_rad(10))
 		if items["Chair"]:
 			angle += deg_to_rad(90 * i)
-		bullet.start(position, angle)
+		bullet.start(position, angle, stats["Attack"])
 		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
 	playShootSound()
 
@@ -133,6 +139,44 @@ func hit():
 		sprites.animationPlayer.play('dead')
 		await sprites.animationPlayer.animation_finished
 		parent.changeScene("res://minigames/karl_pilkington/gameover/game_over.tscn", false)
+
+func add_health(amount):
+	health += amount
+	heal.emit()
+
+func add_upgrade(upgrade):
+	match upgrade.state:
+		"HEALTH":
+			add_health(1)
+		"SPEED":
+			stats["Speed"] += 0.3
+		"ATTACK":
+			stats["Attack"] += 0.5
+		"SIZE":
+			scale -= Vector2(0.3, 0.3)
+	if upgrade.cooldown > 0:
+		var timer = Timer.new()
+		timer.wait_time = upgrade.cooldown
+		timer.one_shot = true
+		timer.autostart = true
+		parent.add_child(timer)
+		upgrades.append(upgrade)
+		timer.timeout.connect(remove_upgrade.bind(timer))
+	print(upgrades)
+
+func remove_upgrade(daTimer):
+	print('timer out!')
+	var upgrade = upgrades[0]
+	match upgrade.state:
+		"SPEED":
+			stats["Speed"] -= 0.3
+		"ATTACK":
+			stats["Attack"] -= 0.5
+		"SIZE":
+			scale += Vector2(0.3, 0.3)
+	upgrades.erase(upgrade)
+	upgrade.queue_free()
+	daTimer.queue_free()
 
 func spawn_fart():
 	print('FART')

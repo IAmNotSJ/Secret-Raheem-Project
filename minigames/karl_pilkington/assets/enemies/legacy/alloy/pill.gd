@@ -30,7 +30,7 @@ func split():
 			var coolAngle = 0
 			if mainScene.boosted:
 				coolAngle = (mainScene.pilkington.global_position - global_position).angle()
-			spawn_pill(coolAngle + (i * 120))
+			spawn_pill(coolAngle + (i * 15))
 
 func spawn_pill(leAngle):
 	var pill = pillScene.instantiate()

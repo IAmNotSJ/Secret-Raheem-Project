@@ -11,11 +11,10 @@
 script = ExtResource("1_46fup")
 
 [node name="TextureRect" parent="." instance=ExtResource("3_r4rav")]
-offset_left = -85.2929
-offset_top = -85.2929
-offset_right = 1348.7
-offset_bottom = 769.708
-active = false
+offset_left = -91.1202
+offset_top = -91.1202
+offset_right = 1342.87
+offset_bottom = 763.881
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 432.0

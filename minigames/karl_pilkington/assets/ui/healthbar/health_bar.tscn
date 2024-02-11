@@ -1,0 +1,250 @@
+[gd_scene load_steps=20 format=3 uid="uid://70d1iofdlysh"]
+
+[ext_resource type="Texture2D" uid="uid://co4vyr1ykas5d" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_0.png" id="1_73s3p"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/ui/healthbar/health_bar.gd" id="1_nal2a"]
+[ext_resource type="Texture2D" uid="uid://c0pxn2fnxm1x3" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_4.png" id="2_5fbw7"]
+[ext_resource type="Texture2D" uid="uid://ckuet77sl13ed" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_3.png" id="3_33ma0"]
+[ext_resource type="Texture2D" uid="uid://drok4trvh2eki" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_2.png" id="4_tnymg"]
+[ext_resource type="Texture2D" uid="uid://bbqxffyihue7h" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_1.png" id="5_6dqjv"]
+[ext_resource type="Texture2D" uid="uid://d13xkoqo64eox" path="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_5.png" id="6_fvnao"]
+[ext_resource type="PackedScene" uid="uid://bkn7xn2vgx3b" path="res://minigames/karl_pilkington/assets/ui/UI_detector.tscn" id="7_vkjw3"]
+[ext_resource type="Texture2D" uid="uid://b7lau4ls8f6xf" path="res://minigames/karl_pilkington/assets/ui/healthbar/icons.png" id="8_1r0ul"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0xad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_73s3p")
+}],
+"loop": true,
+"name": &"health 0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6dqjv")
+}],
+"loop": true,
+"name": &"health 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tnymg")
+}],
+"loop": true,
+"name": &"health 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_33ma0")
+}],
+"loop": true,
+"name": &"health 3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5fbw7")
+}],
+"loop": true,
+"name": &"health 4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fvnao")
+}],
+"loop": true,
+"name": &"health 5",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svgh1"]
+size = Vector2(80.25, 29.75)
+
+[sub_resource type="Animation" id="Animation_2t6qk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Icon/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n6ltj"]
+resource_name = "hit"
+length = 1.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Icon/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pdfvn"]
+_data = {
+"RESET": SubResource("Animation_2t6qk"),
+"hit": SubResource("Animation_n6ltj")
+}
+
+[sub_resource type="Animation" id="Animation_2qnmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6ka4s"]
+resource_name = "dead"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_sq1q7"]
+resource_name = "normal"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nnknb"]
+resource_name = "worried"
+length = 0.833338
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6lb4"]
+_data = {
+"RESET": SubResource("Animation_2qnmj"),
+"dead": SubResource("Animation_6ka4s"),
+"normal": SubResource("Animation_sq1q7"),
+"worried": SubResource("Animation_nnknb")
+}
+
+[node name="HealthBar" type="CanvasGroup"]
+script = ExtResource("1_nal2a")
+
+[node name="Bar" type="AnimatedSprite2D" parent="."]
+clip_children = 2
+position = Vector2(192, 64)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_j0xad")
+animation = &"health 5"
+
+[node name="ColorRect" type="ColorRect" parent="Bar"]
+visible = false
+offset_left = -48.75
+offset_top = -17.0
+offset_right = 269.25
+offset_bottom = 94.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(46, 50)
+scale = Vector2(4, 4)
+texture = ExtResource("8_1r0ul")
+hframes = 3
+
+[node name="ColorRect2" type="ColorRect" parent="Icon"]
+visible = false
+offset_left = -12.0
+offset_top = -12.5
+offset_right = 14.0
+offset_bottom = 13.5
+
+[node name="Pilk Detection" parent="." instance=ExtResource("7_vkjw3")]
+position = Vector2(164, 52)
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" parent="Pilk Detection" index="0"]
+position = Vector2(-1.625, 0.875)
+shape = SubResource("RectangleShape2D_svgh1")
+
+[node name="hitPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bar")
+libraries = {
+"": SubResource("AnimationLibrary_pdfvn")
+}
+
+[node name="iconPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d6lb4")
+}
+
+[editable path="Pilk Detection"]

@@ -2,6 +2,10 @@ extends Node2D
 
 var pilkPath:String
 
+var debugOptions:Dictionary = {
+	"Spawn Enemies" : false
+}
+
 const SAVE_PATH: String = "user://pilkington.save"
 
 @onready var currentScene = $PilkingtonMenu

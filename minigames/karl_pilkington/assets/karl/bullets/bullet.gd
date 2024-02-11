@@ -16,9 +16,10 @@ func _ready():
 	hitbox.area_entered.connect(_on_area_2d_area_entered)
 	screenNotifier.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
 
-func start(_position, _direction):
+func start(_position, _direction, _damage):
 	position = _position
 	rotation = _direction
+	damage *= _damage
 
 
 func _physics_process(delta):

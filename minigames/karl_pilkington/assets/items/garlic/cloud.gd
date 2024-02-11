@@ -13,9 +13,9 @@ func _process(delta):
 		modulate.a -= delta
 		if modulate.a <= 0:
 			queue_free()
-	if $Area2D.get_overlapping_areas() != []:
+	if $Hurtbox.get_overlapping_areas() != []:
 		attack_timer -= delta
 		if attack_timer <= 0:
 			attack_timer = max_attack_timer
-			for area in $Area2D.get_overlapping_areas():
+			for area in $Hurtbox.get_overlapping_areas():
 				area.owner.hurt(damage)

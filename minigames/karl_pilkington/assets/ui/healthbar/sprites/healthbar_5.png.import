@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fjvayfhlqh1o"
-path="res://.godot/imported/healthbar_1.png-d393c0776846aa7ee5f1b898cc26e7ff.ctex"
+uid="uid://d13xkoqo64eox"
+path="res://.godot/imported/healthbar_5.png-ad2653116d87d8d7a0b8d0814a873f0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/karl_pilkington/assets/ui/healthbar/healthbar_1.png"
-dest_files=["res://.godot/imported/healthbar_1.png-d393c0776846aa7ee5f1b898cc26e7ff.ctex"]
+source_file="res://minigames/karl_pilkington/assets/ui/healthbar/sprites/healthbar_5.png"
+dest_files=["res://.godot/imported/healthbar_5.png-ad2653116d87d8d7a0b8d0814a873f0d.ctex"]
 
 [params]
 
