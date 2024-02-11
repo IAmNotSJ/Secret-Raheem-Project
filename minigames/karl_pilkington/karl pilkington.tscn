@@ -46,11 +46,14 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_g1iqv")
 
-[node name="Bg" type="Sprite2D" parent="."]
-z_index = -2
-position = Vector2(680, 374)
-scale = Vector2(7, 7)
+[node name="BG" type="TextureRect" parent="."]
+offset_left = -1082.0
+offset_top = -630.0
+offset_right = -1048.0
+offset_bottom = -611.0
+scale = Vector2(102, 102)
 texture = ExtResource("2_csjmh")
+stretch_mode = 1
 
 [node name="UI" parent="." instance=ExtResource("4_gqpxn")]
 z_index = 2
@@ -75,7 +78,7 @@ libraries = {
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 4
-position = Vector2(745, 240)
+position = Vector2(1369, 51)
 scale = Vector2(4, 4)
 texture = ExtResource("4_w68jw")
 
