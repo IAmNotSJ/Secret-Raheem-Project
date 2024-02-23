@@ -10,7 +10,6 @@ var state = SMALL
 @export var health2:int = 60
 
 const eyeradius = 6
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
 
 const miniScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/mini/mini.tscn")
 const MAX_MINI_TIMER = Vector2(3, 5)
@@ -42,7 +41,7 @@ func _process(delta):
 			bulletTimer -= delta
 			if bulletTimer <= 0:
 				bulletTimer = MAX_BULLET_TIMER
-				spawn_bullet()
+				shoot()
 		BIG:
 			miniTimer -= delta
 			if miniTimer <= 0:
@@ -118,7 +117,7 @@ func spawn_dead(ground:bool = false):
 			dead.targetPos = deadFlowerPositions[i][0]
 			mainScene.call_deferred("add_child", dead)
 
-func spawn_bullet():
+func shoot():
 	var bullet = bulletScene.instantiate()
 	if rng.randi_range(0,1) == 1:
 		bullet.global_position = Vector2(rng.randi_range(50, 530), 150)

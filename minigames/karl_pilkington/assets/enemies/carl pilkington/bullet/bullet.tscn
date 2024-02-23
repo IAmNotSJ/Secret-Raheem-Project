@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk3m47lcxel1t"]
+
+[ext_resource type="Texture2D" uid="uid://dfrasffno2did" path="res://minigames/karl_pilkington/assets/enemies/carl pilkington/bullet/bullet.png" id="1_f5kq3"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/bullet.gd" id="2_5cut7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7d5qg"]
+radius = 5.67646
+
+[node name="Bullet" type="Sprite2D" node_paths=PackedStringArray("screenNotifier", "hurtbox")]
+scale = Vector2(3, 3)
+texture = ExtResource("1_f5kq3")
+script = ExtResource("2_5cut7")
+screenNotifier = NodePath("VisibleOnScreenNotifier2D")
+hurtbox = [NodePath("Hurtbox")]
+destroyOnHit = true
+speed = 400.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_7d5qg")

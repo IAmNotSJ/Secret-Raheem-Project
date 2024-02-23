@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckblhlapjluw0"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/dummy/counter/counter.gd" id="1_2mdua"]
+
+[node name="Counter" type="RichTextLabel"]
+z_index = 1
+offset_right = 365.0
+offset_bottom = 113.0
+theme_override_font_sizes/normal_font_size = 34
+text = "1.0"
+script = ExtResource("1_2mdua")

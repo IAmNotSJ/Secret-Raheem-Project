@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbstbsi2a81my"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/gameplay/boss_handler/boss_handler.gd" id="1_0f71w"]
+
+[node name="BossHandler" type="Node"]
+script = ExtResource("1_0f71w")

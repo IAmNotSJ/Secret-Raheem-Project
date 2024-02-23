@@ -659,12 +659,11 @@ _data = {
 "hurt big": SubResource("Animation_21sn2")
 }
 
-[node name="Monika" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Monika" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(571, 116)
 script = ExtResource("1_l5nff")
 song = ExtResource("2_wwpi4")
-hitbox = [NodePath("Hitbox")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(40, 147)

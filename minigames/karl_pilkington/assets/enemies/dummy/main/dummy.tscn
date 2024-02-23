@@ -1,0 +1,267 @@
+[gd_scene load_steps=12 format=3 uid="uid://drvurngqqsuuq"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/dummy/main/dummy.gd" id="1_fyt2y"]
+[ext_resource type="Texture2D" uid="uid://2x14uqmj7mio" path="res://minigames/karl_pilkington/assets/enemies/dummy/main/dummy.png" id="2_va2n3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxyif"]
+size = Vector2(144, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi1um"]
+size = Vector2(144, 47)
+
+[sub_resource type="Animation" id="Animation_36dwb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_6on2n"]
+resource_name = "hurt"
+length = 1.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["teleport", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(2, -6), Vector2(-1, -6), Vector2(1, -6), Vector2(-1, -6), Vector2(1, -6), Vector2(-0.5, -6), Vector2(0.5, -6), Vector2(-0.5, -6), Vector2(0.5, -6), Vector2(0, -6)]
+}
+
+[sub_resource type="Animation" id="Animation_nrgox"]
+resource_name = "teleport"
+length = 0.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -7), Vector2(0, -5.5), Vector2(0, -6.5), Vector2(0, -6)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_58jtq"]
+_data = {
+"RESET": SubResource("Animation_36dwb"),
+"hurt": SubResource("Animation_6on2n"),
+"teleport": SubResource("Animation_nrgox")
+}
+
+[sub_resource type="Animation" id="Animation_0q1ei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b5u2r"]
+resource_name = "grab"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ko5t4"]
+_data = {
+"RESET": SubResource("Animation_0q1ei"),
+"grab": SubResource("Animation_b5u2r")
+}
+
+[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_fyt2y")
+hitbox = [NodePath("Hitbox")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -72.0
+offset_top = -91.0
+offset_right = 72.0
+offset_bottom = 54.0
+mouse_filter = 1
+
+[node name="Sprites" type="Sprite2D" parent="."]
+clip_children = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_va2n3")
+offset = Vector2(0, -6)
+hframes = 2
+
+[node name="ColorRect" type="ColorRect" parent="Sprites"]
+visible = false
+offset_left = -25.0
+offset_top = -31.0
+offset_right = 29.0
+offset_bottom = 22.0
+mouse_filter = 2
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_yxyif")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30.5)
+shape = SubResource("RectangleShape2D_qi1um")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_58jtq")
+}
+
+[node name="EffectPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ko5t4")
+}
+
+[connection signal="focus_entered" from="Control" to="." method="_on_control_focus_entered"]
+[connection signal="focus_exited" from="Control" to="." method="_on_control_focus_exited"]

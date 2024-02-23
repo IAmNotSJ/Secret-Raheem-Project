@@ -5,6 +5,8 @@ class_name EnemyBullet extends EnemyAttack
 @export var toPos:bool = false
 var final_pos:Vector2 = Vector2.ZERO
 
+
+# Angle that the bullet will move in, in degrees
 var angle:float = 0
 
 func initialize(daAngle:float):

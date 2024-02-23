@@ -7,8 +7,6 @@ extends EnemyBase
 
 @onready var attackPlayer = $AttackPlayer
 
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
-
 const max_teleport_timer = 3
 const max_attack_timer = 5
 const max_pizza_timer = 24

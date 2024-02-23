@@ -2,9 +2,9 @@ extends BulletBase
 
 var delete_timer:float = 5
 
-func start(_position, _direction):
+func start(_position, _direction, _damage):
 	type = SWIRVE
-	super(_position, _direction)
+	super(_position, _direction, _damage)
 
 
 func _physics_process(delta):

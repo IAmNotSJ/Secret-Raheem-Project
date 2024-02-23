@@ -1,4 +1,4 @@
-extends CanvasGroup
+extends Node2D
 
 func _ready():
 	$Bar.play("health 5")

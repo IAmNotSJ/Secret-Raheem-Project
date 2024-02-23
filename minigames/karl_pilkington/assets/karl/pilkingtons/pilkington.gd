@@ -27,6 +27,7 @@ var sprites
 
 const max_timer_disappear_timer = 1
 const max_cooldown = 1.5
+var canShoot:bool = true
 
 const fartScene = preload("res://minigames/karl_pilkington/assets/items/garlic/cloud.tscn")
 const max_fart_timer = 10
@@ -64,7 +65,7 @@ var health = 5
 func initialize():
 	pass
 
-func _unhandled_input(_event):
+func _input(event):
 	input_vector = Vector2.ZERO
 	intended_angle = 0
 	if health != 0:
@@ -85,6 +86,8 @@ func _unhandled_input(_event):
 		if Input.is_action_just_pressed("karl_special"):
 			if items["Garlic"]:
 				spawn_fart()
+	if event is InputEventMouseMotion:
+		parent.get_node("KarlPilkington").crosshair.global_position = get_global_mouse_position()
 func _physics_process(delta):
 	cooldown_timer -= delta
 	if items["Garlic"]:
@@ -99,7 +102,7 @@ func _physics_process(delta):
 		bullet_timer -= delta
 		$TextureProgressBar.value = (max_bullet_timer - bullet_timer) * 100
 		
-	if bullet_timer <= 0:
+	if bullet_timer <= 0 and canShoot:
 		timer_disappear_timer -= delta
 		if timer_disappear_timer <= 0:
 			$TextureProgressBar.modulate.a -= delta
@@ -124,6 +127,7 @@ func shoot(amount):
 		if items["Chair"]:
 			angle += deg_to_rad(90 * i)
 		bullet.start(position, angle, stats["Attack"])
+		parent.get_node("KarlPilkington").crosshair.animationPlayer.play('shoot')
 		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
 	playShootSound()
 
@@ -179,7 +183,6 @@ func remove_upgrade(daTimer):
 	daTimer.queue_free()
 
 func spawn_fart():
-	print('FART')
 	if fart_timer <= 0:
 		fart_timer = max_fart_timer
 		var fart = fartScene.instantiate()
