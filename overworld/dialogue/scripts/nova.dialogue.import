@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://26kb8dp8n0es"
+path="res://.godot/imported/nova.dialogue-19088c8a07ceab120653a380e7dfaa27.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/nova.dialogue"
+dest_files=["res://.godot/imported/nova.dialogue-19088c8a07ceab120653a380e7dfaa27.tres"]
+
+[params]
+
+defaults=true

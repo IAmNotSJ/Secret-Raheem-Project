@@ -10,3 +10,6 @@ func lower_health(health):
 	else:
 		$iconPlayer.play('dead')
 	$hitPlayer.play('hit')
+
+func update_health(target):
+	lower_health(target.health)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://c6m7p187o41g3"
+path="res://.godot/imported/cherry.dialogue-126bdb6b7a4ee9e5f09f529490019b3c.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/cherry.dialogue"
+dest_files=["res://.godot/imported/cherry.dialogue-126bdb6b7a4ee9e5f09f529490019b3c.tres"]
+
+[params]
+
+defaults=true

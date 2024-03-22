@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://wpe6y3br0tb1"
+path="res://.godot/imported/luna.dialogue-b5252e75c77e72af2d60b334e0d0c034.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/luna.dialogue"
+dest_files=["res://.godot/imported/luna.dialogue-b5252e75c77e72af2d60b334e0d0c034.tres"]
+
+[params]
+
+defaults=true

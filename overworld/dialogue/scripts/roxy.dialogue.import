@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://c20jyiqn4vxnj"
+path="res://.godot/imported/roxy.dialogue-ad3dbed0e0d988ee400de8ea506419a9.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/roxy.dialogue"
+dest_files=["res://.godot/imported/roxy.dialogue-ad3dbed0e0d988ee400de8ea506419a9.tres"]
+
+[params]
+
+defaults=true

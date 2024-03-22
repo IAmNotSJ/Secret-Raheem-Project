@@ -1,6 +1,6 @@
 class_name PilkUpgrade extends Control
 
-@onready var parent = get_tree().root.get_node("Pilkington")
+@onready var parent = global.sceneManager.get_node("Pilkington")
 
 var lightRotation:int = 20
 

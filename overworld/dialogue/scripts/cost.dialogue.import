@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://cu4g42xq5dtuj"
+path="res://.godot/imported/cost.dialogue-4d9731a2c3e24b6c9aeb73679933e6db.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/cost.dialogue"
+dest_files=["res://.godot/imported/cost.dialogue-4d9731a2c3e24b6c9aeb73679933e6db.tres"]
+
+[params]
+
+defaults=true

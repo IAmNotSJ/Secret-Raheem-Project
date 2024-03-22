@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://oajqtvh8r8fd"
+path="res://.godot/imported/cleft.dialogue-219f92c43e82ed540eaacd5aba67a728.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/cleft.dialogue"
+dest_files=["res://.godot/imported/cleft.dialogue-219f92c43e82ed540eaacd5aba67a728.tres"]
+
+[params]
+
+defaults=true

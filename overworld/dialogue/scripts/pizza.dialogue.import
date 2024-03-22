@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dfq46b3otwy4d"
+path="res://.godot/imported/pizza.dialogue-6418fd9189bf3a79161c2ccaae848d9a.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/pizza.dialogue"
+dest_files=["res://.godot/imported/pizza.dialogue-6418fd9189bf3a79161c2ccaae848d9a.tres"]
+
+[params]
+
+defaults=true

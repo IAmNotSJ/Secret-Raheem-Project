@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://coq1vpspwrw63"]
+[gd_scene load_steps=17 format=3 uid="uid://coq1vpspwrw63"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_q88bu"]
 [ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="2_3g75t"]
@@ -11,14 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://bebj26ta8pck6" path="res://menu/assets/buttons/hyena.png" id="7_m8axa"]
 [ext_resource type="Texture2D" uid="uid://dnaf0su4shk35" path="res://menu/assets/buttons/karl-select.png" id="8_7jgxb"]
 [ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menu/assets/buttons/hyena-select.png" id="10_6x787"]
-[ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://music/Title Screen.ogg" id="12_geveb"]
+[ext_resource type="PackedScene" uid="uid://dnd1doq4yac7c" path="res://menu/settings/settings.tscn" id="12_po7vl"]
+[ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://overworld/music/Title Screen.ogg" id="13_bdykl"]
 
 [sub_resource type="Animation" id="Animation_6mkq2"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Title:position")
+tracks/0/path = NodePath("Main/Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +37,7 @@ step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Title:position")
+tracks/0/path = NodePath("Main/Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,34 +62,43 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -146.942
+offset_left = -192.334
 offset_top = 662.0
-offset_right = 1539.05
+offset_right = 1493.66
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -255.604
+offset_left = -210.018
 offset_top = -10.0
-offset_right = 1430.4
+offset_right = 1475.99
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
 speed = Vector2(50, 0)
 crossingPoint = -110.0
 
-[node name="Begin" type="TextureButton" parent="."]
-offset_left = 421.0
+[node name="Main" type="Node2D" parent="."]
+
+[node name="Begin" type="TextureButton" parent="Main"]
+offset_left = 413.0
 offset_top = 490.0
-offset_right = 567.0
+offset_right = 559.0
 offset_bottom = 539.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("5_oist7")
 texture_hover = ExtResource("6_xu7us")
 
-[node name="Karl" type="TextureButton" parent="."]
+[node name="Settings" type="Button" parent="Main"]
+offset_left = 851.0
+offset_top = 337.0
+offset_right = 1216.0
+offset_bottom = 484.0
+text = "SETTINGS"
+
+[node name="Karl" type="TextureButton" parent="Main"]
 offset_left = 266.0
 offset_top = 490.0
 offset_right = 315.0
@@ -97,7 +107,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("6_24374")
 texture_hover = ExtResource("8_7jgxb")
 
-[node name="Hyena" type="TextureButton" parent="."]
+[node name="Hyena" type="TextureButton" parent="Main"]
 offset_left = 864.0
 offset_top = 490.0
 offset_right = 962.0
@@ -106,15 +116,14 @@ scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("7_m8axa")
 texture_hover = ExtResource("10_6x787")
 
-[node name="Title" type="Sprite2D" parent="."]
+[node name="Title" type="Sprite2D" parent="Main"]
 position = Vector2(640, 171)
-scale = Vector2(2, 2)
+scale = Vector2(2.001, 2.001)
 texture = ExtResource("4_b5egf")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_geveb")
-volume_db = -9.0
-autoplay = true
+[node name="Settings" parent="." instance=ExtResource("12_po7vl")]
+visible = false
+position = Vector2(5, 2)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -134,7 +143,13 @@ libraries = {
 }
 autoplay = "bop"
 
-[connection signal="pressed" from="Begin" to="." method="_on_begin_pressed"]
-[connection signal="pressed" from="Karl" to="." method="_on_karl_pressed"]
-[connection signal="pressed" from="Hyena" to="." method="_on_hyena_pressed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_bdykl")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Main/Begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Karl" to="." method="_on_karl_pressed"]
+[connection signal="pressed" from="Main/Hyena" to="." method="_on_hyena_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

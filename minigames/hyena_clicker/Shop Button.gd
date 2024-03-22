@@ -11,7 +11,7 @@ signal clicked(button:ShopButton)
 
 @export_multiline var description:String = ''
 
-@onready var mainScene = get_tree().root.get_node("HyenaClicker")
+@onready var mainScene = global.sceneManager.get_node("HyenaClicker")
 
 var bigPrice : Big
 
@@ -54,12 +54,12 @@ func _on_pressed():
 
 
 func _on_mouse_entered():
-	get_tree().root.get_node("HyenaClicker").mouseWindow.visible = true
+	global.sceneManager.get_node("HyenaClicker").mouseWindow.visible = true
 	if bigPrice.isLargerThan(1000):
-		get_tree().root.get_node("HyenaClicker").mouseWindow.set_text(item, description, bigPrice.toAmericanName(), disabled)
+		global.sceneManager.get_node("HyenaClicker").mouseWindow.set_text(item, description, bigPrice.toAmericanName(), disabled)
 	else:
-		get_tree().root.get_node("HyenaClicker").mouseWindow.set_text(item, description, bigPrice.toString(), disabled)
-	get_tree().root.get_node("HyenaClicker").mouseWindow.rightOfMouse = true
+		global.sceneManager.get_node("HyenaClicker").mouseWindow.set_text(item, description, bigPrice.toString(), disabled)
+	global.sceneManager.get_node("HyenaClicker").mouseWindow.rightOfMouse = true
 
 func _on_mouse_exited():
-	get_tree().root.get_node("HyenaClicker").mouseWindow.visible = false
+	global.sceneManager.get_node("HyenaClicker").mouseWindow.visible = false

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bvg8c3kyiqbhv"
+path="res://.godot/imported/alligator.dialogue-ad33788e7d0d2289f8de5a27a4e60165.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/alligator.dialogue"
+dest_files=["res://.godot/imported/alligator.dialogue-ad33788e7d0d2289f8de5a27a4e60165.tres"]
+
+[params]
+
+defaults=true

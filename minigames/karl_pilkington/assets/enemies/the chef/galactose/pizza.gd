@@ -1,6 +1,6 @@
 extends EnemyAttack
 
-@onready var chef = get_tree().root.get_node("Pilkington").get_node("KarlPilkington").get_node("The Chef")
+@onready var chef = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").get_node("The Chef")
 
 var target
 var angle:float = 0

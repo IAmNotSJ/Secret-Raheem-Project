@@ -12,6 +12,14 @@ const legacyScene = "res://minigames/karl_pilkington/assets/enemies/legacy/legac
 const dapperScene = "res://minigames/karl_pilkington/assets/enemies/grabber/main/grabber.tscn"
 const monikaScene = "res://minigames/karl_pilkington/assets/enemies/monika/main/monika.tscn"
 
+var fullEnemyList:Array = [
+	cleftScene,
+	dapperScene,
+	chefScene,
+	monikaScene,
+	legacyScene
+]
+
 var phase1Array = [
 cleftScene,
 dapperScene
@@ -28,6 +36,10 @@ var phases = [
 	phase2Array,
 	phase3Array
 ]
+
+var customOrder = []
+
+
 var phase_count = 3
 var phase = 0
 var enemies = []
@@ -60,15 +72,21 @@ func _process(delta):
 
 func set_enemy_rotation():
 	for i in range(phase_count):
-		enemies.append(load(phases[i][global.rng.randi_range(0, phases[i].size() - 1)]))
+		if customOrder == []:
+			enemies.append(load(phases[i][global.rng.randi_range(0, phases[i].size() - 1)]))
+		else:
+			if customOrder.size() < i:
+				enemies.append(load(customOrder[i]))
+			else:
+				enemies.append(load(fullEnemyList[global.rng.randi_range(0, fullEnemyList.size() - 1)]))
 
 func spawn_enemy_on_order(daPhase):
 	var enemy = enemies[daPhase].instantiate()
 	enemy.target = parent.pilkington
-	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", enemy)
+	global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", enemy)
 	curEnemy = enemy
 	parent.bossbar.visible = true
-	parent.update_max_health(enemy.health) 
+	parent.ui.update_max_health(enemy.health) 
 	parent.bossAnim.play(enemy.name)
 	curEnemy.died.connect(on_enemy_died)
 	if enemy.song != null:
@@ -82,4 +100,4 @@ func on_enemy_died():
 func spawn_enemy(path):
 	var enemy = load(path).instantiate()
 	enemy.target = parent.pilkington
-	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", enemy)
+	global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", enemy)

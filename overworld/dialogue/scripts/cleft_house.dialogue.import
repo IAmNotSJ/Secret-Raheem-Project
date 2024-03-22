@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dh4ks77t767ov"
+path="res://.godot/imported/cleft_house.dialogue-8529afafe282e5c3f634fc6dd2457c85.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/cleft_house.dialogue"
+dest_files=["res://.godot/imported/cleft_house.dialogue-8529afafe282e5c3f634fc6dd2457c85.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dhaqwm370h7cp"
+path="res://.godot/imported/note.dialogue-b0794bf3bc266b411b858f2999246fbd.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/note.dialogue"
+dest_files=["res://.godot/imported/note.dialogue-b0794bf3bc266b411b858f2999246fbd.tres"]
+
+[params]
+
+defaults=true

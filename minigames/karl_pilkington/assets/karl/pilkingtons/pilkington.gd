@@ -3,7 +3,7 @@ class_name PilkingtonBase extends CharacterBody2D
 signal hurt
 signal heal
 
-@onready var parent  = get_tree().root.get_node("Pilkington")
+@onready var parent  = global.sceneManager.get_node("Pilkington")
 @onready var center = $Center
 
 @export_category("Players")
@@ -128,7 +128,7 @@ func shoot(amount):
 			angle += deg_to_rad(90 * i)
 		bullet.start(position, angle, stats["Attack"])
 		parent.get_node("KarlPilkington").crosshair.animationPlayer.play('shoot')
-		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").add_child(bullet)
 	playShootSound()
 
 func hit():
@@ -187,7 +187,7 @@ func spawn_fart():
 		fart_timer = max_fart_timer
 		var fart = fartScene.instantiate()
 		fart.global_position = global_position
-		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").add_child(fart)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").add_child(fart)
 
 func playHurtSound():
 	hurtPlayer.stream = load("res://minigames/karl_pilkington/sounds/karlsounds/augh" + str(global.rng.randi_range(1,5)) + ".ogg")

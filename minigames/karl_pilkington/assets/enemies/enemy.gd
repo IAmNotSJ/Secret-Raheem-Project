@@ -1,6 +1,6 @@
 class_name EnemyBase extends CharacterBody2D
 
-@onready var mainScene = get_tree().get_root().get_node("Pilkington").get_node("KarlPilkington")
+@onready var mainScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington")
 
 var rng = RandomNumberGenerator.new()
 
@@ -34,9 +34,6 @@ func spawn_bullet(entity, global_pos, degrees):
 	entity.global_position = global_pos
 	entity.angle = degrees
 	mainScene.call_deferred("add_child", entity)
-
-func deg_to_target(target):
-	pass
 
 func hurt(damage:float):
 	health -= damage

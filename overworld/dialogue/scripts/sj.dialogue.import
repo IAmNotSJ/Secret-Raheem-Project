@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bb51jxhxr5awm"
+path="res://.godot/imported/sj.dialogue-efdd4d0dd530ec17a399ff699c930be9.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/sj.dialogue"
+dest_files=["res://.godot/imported/sj.dialogue-efdd4d0dd530ec17a399ff699c930be9.tres"]
+
+[params]
+
+defaults=true

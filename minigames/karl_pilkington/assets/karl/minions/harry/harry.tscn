@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8slo5p3sx3b" path="res://minigames/karl_pilkington/assets/karl/minions/harry/harry.png" id="1_h2nhh"]
 [ext_resource type="Script" path="res://minigames/karl_pilkington/assets/karl/minions/harry/harry.gd" id="1_ut7dl"]
-[ext_resource type="Texture2D" uid="uid://dqjcc80p1a3k" path="res://world/main/sky/assets/boom.png" id="3_lp46q"]
+[ext_resource type="Texture2D" uid="uid://dqjcc80p1a3k" path="res://overworld/world/main/sky/assets/boom.png" id="3_lp46q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6x4k"]
 radius = 186.024

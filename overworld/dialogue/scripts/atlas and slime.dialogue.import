@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bc6ntiuyooixp"
+path="res://.godot/imported/atlas and slime.dialogue-a44921fa5133eb68ed4f553dac1e4cef.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/atlas and slime.dialogue"
+dest_files=["res://.godot/imported/atlas and slime.dialogue-a44921fa5133eb68ed4f553dac1e4cef.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://31uiumq5fxhf"
+path="res://.godot/imported/A Bit of Peace and Quiet.ogg-b947d07b51bf5a5580ca57f681b27131.oggvorbisstr"
+
+[deps]
+
+source_file="res://overworld/music/A Bit of Peace and Quiet.ogg"
+dest_files=["res://.godot/imported/A Bit of Peace and Quiet.ogg-b947d07b51bf5a5580ca57f681b27131.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

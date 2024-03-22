@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://dykefgh7m6ryy"
+path="res://.godot/imported/penis island.dialogue-368e0ff6166dbb3806130b4af9cdb6db.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/penis island.dialogue"
+dest_files=["res://.godot/imported/penis island.dialogue-368e0ff6166dbb3806130b4af9cdb6db.tres"]
+
+[params]
+
+defaults=true

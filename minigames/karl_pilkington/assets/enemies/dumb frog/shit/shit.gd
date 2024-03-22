@@ -16,5 +16,5 @@ func destroy():
 		var shit = smallShitScene.instantiate()
 		shit.global_position = global_position
 		shit.angle = i * 90
-		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", shit)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", shit)
 	super()

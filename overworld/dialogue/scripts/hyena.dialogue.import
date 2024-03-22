@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ypmjdg552t8i"
+path="res://.godot/imported/hyena.dialogue-6edee4d7b2d676af2bc806ebab4e43b9.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/hyena.dialogue"
+dest_files=["res://.godot/imported/hyena.dialogue-6edee4d7b2d676af2bc806ebab4e43b9.tres"]
+
+[params]
+
+defaults=true

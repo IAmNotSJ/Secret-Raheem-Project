@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
+@onready var mainScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington")
 var SPEED = 300
 const SHOOT_TIME = 0.5
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bcaimqawmytk7"
+path="res://.godot/imported/byrd.dialogue-79cb1ece002a3d29547c05a0dcbf937e.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/byrd.dialogue"
+dest_files=["res://.godot/imported/byrd.dialogue-79cb1ece002a3d29547c05a0dcbf937e.tres"]
+
+[params]
+
+defaults=true

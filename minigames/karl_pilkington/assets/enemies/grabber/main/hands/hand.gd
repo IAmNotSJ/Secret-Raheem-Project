@@ -88,7 +88,7 @@ func shoot():
 	bullet.global_position = $Marker2D.global_position
 	bullet.angle = rotation_degrees
 	bullet.rotation_degrees = bullet.angle
-	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", bullet)
+	global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", bullet)
 func spawn_junk():
 	for i in range(-2, 3):
 		var junk = junkScene.instantiate()
@@ -96,7 +96,7 @@ func spawn_junk():
 		var angleTo = $Marker2D.transform.x.angle_to(direction)
 		junk.global_position = $Marker2D.global_position
 		junk.angle = rad_to_deg(angleTo)  + i * 20
-		get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", junk)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", junk)
 
 func change_hand(anim:String = ''):
 	if anim != '':

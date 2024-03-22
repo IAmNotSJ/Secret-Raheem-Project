@@ -11,10 +11,10 @@ func _process(delta):
 		global_position = global_position.move_toward(pos, delta * SPEED)
 
 func change_active():
-	mainScene.speedMusic(1.2)
+	mainScene.music.speed_up(1.2)
 	super()
 
 func die():
 	mainScene.boosted = false
-	mainScene.speedMusic(1)
+	mainScene.music.speed_up(1)
 	super()

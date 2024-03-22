@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://1r0psqtukt6d"
+path="res://.godot/imported/comp and dap.dialogue-02854df582a028eee5e7c51a55d7e26f.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/comp and dap.dialogue"
+dest_files=["res://.godot/imported/comp and dap.dialogue-02854df582a028eee5e7c51a55d7e26f.tres"]
+
+[params]
+
+defaults=true

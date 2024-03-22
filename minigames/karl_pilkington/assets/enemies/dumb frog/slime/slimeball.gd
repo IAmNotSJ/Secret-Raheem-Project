@@ -8,11 +8,11 @@ func _process(delta):
 		spawn_puddle()
 
 func spawn_puddle():
-	if is_instance_valid(get_tree().root.get_node("Pilkington").get_node("KarlPilkington").get_node("Cleft")):
+	if is_instance_valid(global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").get_node("Cleft")):
 		var puddle = puddleScene.instantiate()
 		puddle.global_position = global_position
-		get_tree().get_root().get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", puddle)
-		get_tree().get_root().get_node("Pilkington").get_node("KarlPilkington").get_node("Cleft").killOnDeath.append(puddle)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", puddle)
+		global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").get_node("Cleft").killOnDeath.append(puddle)
 	
 	queue_free()
 

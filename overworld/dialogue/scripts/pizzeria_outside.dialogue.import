@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://2n8hb55oinvy"
+path="res://.godot/imported/pizzeria_outside.dialogue-51689b0227f50b4d3138156b0b2f7a61.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/pizzeria_outside.dialogue"
+dest_files=["res://.godot/imported/pizzeria_outside.dialogue-51689b0227f50b4d3138156b0b2f7a61.tres"]
+
+[params]
+
+defaults=true

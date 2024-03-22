@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://lm4ujbt6g6y3"
+path="res://.godot/imported/tv.dialogue-610c2a856edd2dd4b6909d2454b2113b.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/tv.dialogue"
+dest_files=["res://.godot/imported/tv.dialogue-610c2a856edd2dd4b6909d2454b2113b.tres"]
+
+[params]
+
+defaults=true

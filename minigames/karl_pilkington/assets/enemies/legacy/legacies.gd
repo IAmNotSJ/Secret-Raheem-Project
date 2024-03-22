@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
+@onready var mainScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington")
 
 @export var song:AudioStream
 @onready var sand = $Sand

@@ -7,14 +7,14 @@
 extends Node
 
 var presets:Dictionary = {
-	"Menu" : ["IN THE MENU", "main", "Happy Anniversary!"],
+	"Menu" : ["IN THE MENUS", "main", "Happy Anniversary!"],
 	"Overworld" : ["OVER THE OVERWORLD", "main", "What's with these howls?"],
 	"Pizzeria" : ["BEHIND THE PIZZERIA", "main", "It stinks in here"],
 	"Cleft" : ["UNDERNEATH THE HOUSE", "main", "Smells like diet coke"],
 	"Apartment" : ["EXPLORING THE APARTMENT", "main", "Just like the episode showed!"],
 	"Karl" : ["PLAYING AN ARCADE MACHINE", "pilkington", "This isn't scratch"],
 	"Hyena" : ["ROUNDING UP THE CREATURES", "hyena", "THE FOLDER CALLS"],
-	"Art" : ["DRAWING", "main", "Mama Mia!"]
+	"Art" : ["RAHEEM PAINT", "main", "Mama Mia!"]
 }
 
 func _ready() -> void:

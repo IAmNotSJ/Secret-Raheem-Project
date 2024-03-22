@@ -2,8 +2,8 @@ class_name LegacyMember extends CharacterBody2D
 
 signal died
 
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
-@onready var legacyScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington").get_node("Lazy League")
+@onready var mainScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington")
+@onready var legacyScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").get_node("Lazy League")
 
 @export var health:float = 20
 @export var SPEED = 100

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Raheem Birthday"
 config/version="1.0.0"
-run/main_scene="res://splash/splash_screen.tscn"
+run/main_scene="res://SceneManager/scene_manager.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="IamSJ/Raheem Birthday"
 config/features=PackedStringArray("4.2", "Mobile")
@@ -20,13 +20,14 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://test.png"
 config/size/window_height_override=0
+run/balloon_path="res://dialogue/dialogue_box/raheem_box.tscn"
 
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Transition="*res://transition/transition.tscn"
 global="*res://global.tscn"
-Overworld="*res://world/overworld.gd"
+Overworld="*res://overworld/world/overworld.gd"
 DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/discord_autoload.gd"
 
 [debug]
@@ -38,18 +39,25 @@ gdscript/warnings/confusable_local_declaration=0
 
 [dialogue_manager]
 
-general/balloon_path="res://dialogue/dialogue_box/raheem_box.tscn"
+general/balloon_path="res://overworld/dialogue/dialogue_box/raheem_box.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
+window/size/transparent=true
 window/stretch/mode="canvas_items"
+window/per_pixel_transparency/allowed=true
 mouse_cursor/custom_image="res://mouse/mouse.png"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/discord-sdk-gd/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -157,7 +165,7 @@ undo={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/scripts/fountain.dialogue", "res://dialogue/scripts/comp and dap.dialogue", "res://dialogue/scripts/cherry.dialogue", "res://dialogue/scripts/sj.dialogue", "res://dialogue/scripts/cleft.dialogue", "res://dialogue/scripts/dile.dialogue", "res://dialogue/scripts/atlas and slime.dialogue", "res://dialogue/scripts/dizzy.dialogue", "res://dialogue/scripts/cost.dialogue", "res://dialogue/scripts/pizzeria_outside.dialogue", "res://dialogue/scripts/alligator.dialogue", "res://dialogue/scripts/penis island.dialogue", "res://dialogue/scripts/block.dialogue", "res://dialogue/scripts/luna.dialogue", "res://dialogue/scripts/tv.dialogue", "res://dialogue/scripts/byrd.dialogue", "res://dialogue/scripts/roxy.dialogue", "res://dialogue/scripts/nova.dialogue", "res://dialogue/scripts/pizza.dialogue", "res://dialogue/scripts/cleft_house.dialogue", "res://dialogue/scripts/macbook.dialogue", "res://dialogue/scripts/pilkington.dialogue", "res://dialogue/scripts/coke.dialogue", "res://dialogue/scripts/wario.dialogue", "res://dialogue/scripts/note.dialogue", "res://dialogue/scripts/key.dialogue", "res://dialogue/scripts/hyena.dialogue", "res://dialogue/scripts/chu.dialogue")
+locale/translations_pot_files=PackedStringArray("res://overworld/dialogue/scripts/alligator.dialogue", "res://overworld/dialogue/scripts/atlas and slime.dialogue", "res://overworld/dialogue/scripts/block.dialogue", "res://overworld/dialogue/scripts/byrd.dialogue", "res://overworld/dialogue/scripts/cherry.dialogue", "res://overworld/dialogue/scripts/chu.dialogue", "res://overworld/dialogue/scripts/cleft.dialogue", "res://overworld/dialogue/scripts/cleft_house.dialogue", "res://overworld/dialogue/scripts/coke.dialogue", "res://overworld/dialogue/scripts/comp and dap.dialogue", "res://overworld/dialogue/scripts/cost.dialogue", "res://overworld/dialogue/scripts/dile.dialogue", "res://overworld/dialogue/scripts/dizzy.dialogue", "res://overworld/dialogue/scripts/fountain.dialogue", "res://overworld/dialogue/scripts/hyena.dialogue", "res://overworld/dialogue/scripts/key.dialogue", "res://overworld/dialogue/scripts/luna.dialogue", "res://overworld/dialogue/scripts/macbook.dialogue", "res://overworld/dialogue/scripts/note.dialogue", "res://overworld/dialogue/scripts/nova.dialogue", "res://overworld/dialogue/scripts/penis island.dialogue", "res://overworld/dialogue/scripts/pilkington.dialogue", "res://overworld/dialogue/scripts/pizza.dialogue", "res://overworld/dialogue/scripts/pizzeria_outside.dialogue", "res://overworld/dialogue/scripts/roxy.dialogue", "res://overworld/dialogue/scripts/sj.dialogue", "res://overworld/dialogue/scripts/tv.dialogue", "res://overworld/dialogue/scripts/wario.dialogue")
 
 [layer_names]
 
@@ -173,3 +181,5 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/scripts/fountain
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_s3tc_bptc=true
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 0)
+viewport/transparent_background=true

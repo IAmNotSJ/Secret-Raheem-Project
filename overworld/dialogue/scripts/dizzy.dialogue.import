@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://d0hhwyd5eh0s7"
+path="res://.godot/imported/dizzy.dialogue-1148922cce26cc4fff41020b2ad1322d.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/dizzy.dialogue"
+dest_files=["res://.godot/imported/dizzy.dialogue-1148922cce26cc4fff41020b2ad1322d.tres"]
+
+[params]
+
+defaults=true

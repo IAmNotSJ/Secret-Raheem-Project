@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://boai058oocco0"]
+[gd_scene load_steps=11 format=3 uid="uid://boai058oocco0"]
 
 [ext_resource type="Script" path="res://minigames/karl_pilkington/karl pilkington.gd" id="1_g1iqv"]
 [ext_resource type="Texture2D" uid="uid://dsocb3ls4r5ua" path="res://minigames/karl_pilkington/assets/bg/bg.png" id="2_csjmh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://41v41iabaatk" path="res://minigames/karl_pilkington/assets/ui/UI.tscn" id="4_gqpxn"]
 [ext_resource type="PackedScene" uid="uid://dbstbsi2a81my" path="res://minigames/karl_pilkington/gameplay/boss_handler/boss_handler.tscn" id="5_qnkm5"]
 [ext_resource type="PackedScene" uid="uid://bhnj1k6abgat5" path="res://minigames/karl_pilkington/assets/ui/crosshait/crosshair.tscn" id="6_2apvk"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/music/musicPlayer.gd" id="6_mgbxm"]
 
 [sub_resource type="Animation" id="Animation_xfb7e"]
 length = 0.001
@@ -54,16 +55,18 @@ script = ExtResource("1_g1iqv")
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -2
-offset_left = -1082.0
-offset_top = -630.0
-offset_right = -1048.0
-offset_bottom = -611.0
+offset_left = -150.0
+offset_top = -114.0
+offset_right = -135.0
+offset_bottom = -105.0
 scale = Vector2(102, 102)
 texture = ExtResource("2_csjmh")
 stretch_mode = 1
 
 [node name="UI" parent="." instance=ExtResource("4_gqpxn")]
 z_index = 2
+
+[node name="Crosshair" parent="." instance=ExtResource("6_2apvk")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -82,7 +85,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("6_mgbxm")
 
-[node name="Crosshair" parent="." instance=ExtResource("6_2apvk")]
-
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

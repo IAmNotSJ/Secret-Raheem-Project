@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var parent  = get_tree().root.get_node("Pilkington")
+@onready var parent  = global.sceneManager.get_node("Pilkington")
 
 var curSelected:int = 0
 
@@ -25,7 +25,7 @@ func _process(delta):
 				if global.enteredMiniGameFromMenu:
 					Transition.change_scene_to_preset("Main Menu")
 				else:
-					parent.changeScene("res://minigames/karl_pilkington/pilkington menu.tscn")
+					parent.changeScene("res://minigames/karl_pilkington/menu/pilkington menu.tscn")
 
 func changeSelection(amount):
 	curSelected += amount

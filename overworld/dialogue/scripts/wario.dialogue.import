@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ce3dk4u1dfbgw"
+path="res://.godot/imported/wario.dialogue-03c995a2dd7a331a488772ff6aa46863.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/wario.dialogue"
+dest_files=["res://.godot/imported/wario.dialogue-03c995a2dd7a331a488772ff6aa46863.tres"]
+
+[params]
+
+defaults=true

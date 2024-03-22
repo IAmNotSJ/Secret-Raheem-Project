@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var monika = get_tree().root.get_node("Pilkington").get_node("KarlPilkington").get_node("Monika")
+@onready var monika = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").get_node("Monika")
 
 const sporeScene = preload("res://minigames/karl_pilkington/assets/enemies/monika/bullet/bullet.tscn")
 @export var health:float = 0.5
@@ -22,7 +22,7 @@ func spawn_spore():
 	var angleTo = $Marker2D.transform.x.angle_to(direction)
 	spore.angle =  rad_to_deg(angleTo)
 	spore.global_position = $Marker2D.global_position
-	get_tree().root.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", spore)
+	global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", spore)
 
 func hurt(damage):
 	health -= damage

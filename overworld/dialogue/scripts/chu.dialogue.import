@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ct2srf0pumu24"
+path="res://.godot/imported/chu.dialogue-3cace448188628450b3a5093c96b9757.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/chu.dialogue"
+dest_files=["res://.godot/imported/chu.dialogue-3cace448188628450b3a5093c96b9757.tres"]
+
+[params]
+
+defaults=true

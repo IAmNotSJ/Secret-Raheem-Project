@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://05q0ybss2q8x"
+path="res://.godot/imported/Title Screen.ogg-e15dc534c155633fb3a026e5a0606e8e.oggvorbisstr"
+
+[deps]
+
+source_file="res://overworld/music/Title Screen.ogg"
+dest_files=["res://.godot/imported/Title Screen.ogg-e15dc534c155633fb3a026e5a0606e8e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

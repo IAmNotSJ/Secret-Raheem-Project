@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3b6mw882imv4"]
+
+[ext_resource type="Texture2D" uid="uid://c5qn3yhaxaq22" path="res://overworld/world/main/assets/fountain.png" id="1_l5t6l"]
+[ext_resource type="Script" path="res://overworld/world/overworld chars/overworld character.gd" id="2_o3ohy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p33ix"]
+radius = 52.0
+height = 162.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqrb4"]
+radius = 38.0
+height = 330.0
+
+[sub_resource type="Animation" id="Animation_hnck4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_21qr7"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4iut"]
+_data = {
+"RESET": SubResource("Animation_hnck4"),
+"idle": SubResource("Animation_21qr7")
+}
+
+[node name="Fountain" type="Sprite2D"]
+position = Vector2(6, -83)
+texture = ExtResource("1_l5t6l")
+offset = Vector2(0, -97.045)
+hframes = 2
+script = ExtResource("2_o3ohy")
+interaction_dialogue = "fountain"
+
+[node name="Dialogue Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -100)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogue Hitbox"]
+position = Vector2(6, 190)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p33ix")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 141)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qqrb4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w4iut")
+}
+autoplay = "idle"

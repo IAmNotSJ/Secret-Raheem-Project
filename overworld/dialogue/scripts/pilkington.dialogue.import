@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://bsdv8i1qecisd"
+path="res://.godot/imported/pilkington.dialogue-cba64148ad8fcb572bb06a7cb2e4f7a8.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/pilkington.dialogue"
+dest_files=["res://.godot/imported/pilkington.dialogue-cba64148ad8fcb572bb06a7cb2e4f7a8.tres"]
+
+[params]
+
+defaults=true

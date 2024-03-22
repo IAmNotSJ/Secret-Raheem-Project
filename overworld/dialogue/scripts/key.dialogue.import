@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://ch2u8hrcqwhwq"
+path="res://.godot/imported/key.dialogue-bb9f5162d86e6f486e04212083636d02.tres"
+
+[deps]
+
+source_file="res://overworld/dialogue/scripts/key.dialogue"
+dest_files=["res://.godot/imported/key.dialogue-bb9f5162d86e6f486e04212083636d02.tres"]
+
+[params]
+
+defaults=true

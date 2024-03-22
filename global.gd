@@ -1,10 +1,19 @@
 extends Node
 
+@onready var sceneManager = get_tree().root.get_node("SceneManager")
+
 var isWindowFocused:bool = true
 
 const SAVE_PATH = "user://overworld.save"
+const SETTINGS_PATH = "user://settings.hellopersonlookingatthefiles"
 
 var rng = RandomNumberGenerator.new()
+
+var settings:Dictionary = {
+	"audioSettings" : {"Master":1.0, "Music": 1.0}
+}
+
+
 
 var characterInteractions:Dictionary = {
 	"Cherry": 0,
@@ -43,6 +52,8 @@ var enteredMiniGameFromMenu = false
 
 func _ready():
 	load_save()
+	load_settings()
+	apply_settings()
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
@@ -106,3 +117,32 @@ func load_save():
 				items = current_line["Items"]
 				unlocks = current_line["Unlocks"]
 				minigames = current_line["Minigames"]
+
+func save_settings():
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	var data:Dictionary = settings
+	var jstr = JSON.stringify(data)
+	print("settings saved!")
+	
+	file.store_line(jstr)
+
+func load_settings():
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
+	if not file:
+		return
+	if file == null:
+		return
+	if FileAccess.file_exists(SETTINGS_PATH) == true:
+		if not file.eof_reached():
+			var da_settings = JSON.parse_string(file.get_line())
+			if da_settings:
+				settings = da_settings
+				for key in da_settings.keys():
+					if da_settings[key] != null:
+						pass
+
+func apply_settings():
+	for key in settings["audioSettings"].keys():
+		var bus = AudioServer.get_bus_index(key)
+		AudioServer.set_bus_volume_db(bus, linear_to_db(settings["audioSettings"][key]))
+	print(settings)
