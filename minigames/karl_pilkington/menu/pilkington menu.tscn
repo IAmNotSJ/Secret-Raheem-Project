@@ -11,10 +11,10 @@
 script = ExtResource("1_46fup")
 
 [node name="TextureRect" parent="." instance=ExtResource("3_r4rav")]
-offset_left = -105.566
-offset_top = -105.566
-offset_right = 1328.42
-offset_bottom = 749.435
+offset_left = -108.423
+offset_top = -108.423
+offset_right = 1325.56
+offset_bottom = 746.578
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 432.0
@@ -36,6 +36,7 @@ text = "PLAY
 stream = ExtResource("2_h0qxu")
 volume_db = -20.0
 autoplay = true
+bus = &"Music"
 
 [node name="Wing" parent="." instance=ExtResource("5_kueff")]
 position = Vector2(36, 92)

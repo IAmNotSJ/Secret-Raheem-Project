@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://8q5ryivwc7he"]
+
+[ext_resource type="Script" path="res://minigames/paint/main/raheem_paint.gd" id="1_60xtu"]
+[ext_resource type="PackedScene" uid="uid://c4kulem5g8wu1" path="res://minigames/paint/canvas/canvas.tscn" id="1_dlnkp"]
+
+[node name="Raheem Paint" type="Node2D"]
+script = ExtResource("1_60xtu")
+
+[node name="BG" type="ColorRect" parent="."]
+visible = false
+z_index = -3
+offset_right = 1276.0
+offset_bottom = 719.0
+color = Color(0.788235, 0.964706, 1, 1)
+
+[node name="Canvas" parent="." instance=ExtResource("1_dlnkp")]
+offset_left = 359.0
+offset_top = 14.0
+offset_right = 1219.0
+offset_bottom = 703.0
+
+[node name="Buttons" type="Node2D" parent="."]
+visible = false
+
+[node name="Brush Size" type="HSlider" parent="Buttons"]
+visible = false
+offset_left = 5.0
+offset_top = 193.0
+offset_right = 333.0
+offset_bottom = 209.0
+min_value = 2.0
+max_value = 20.0
+value = 2.0
+
+[node name="Button" type="Button" parent="Buttons"]
+visible = false
+offset_left = 12.0
+offset_top = 119.0
+offset_right = 69.0
+offset_bottom = 176.0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+visible = false
+offset_left = 39.0
+offset_top = 504.0
+offset_right = 221.0
+offset_bottom = 686.0
+text = "dasdasdads"
+
+[connection signal="drag_ended" from="Buttons/Brush Size" to="." method="_on_brush_size_drag_ended"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

@@ -10,7 +10,7 @@ const SETTINGS_PATH = "user://settings.hellopersonlookingatthefiles"
 var rng = RandomNumberGenerator.new()
 
 var settings:Dictionary = {
-	"audioSettings" : {"Master":1.0, "Music": 1.0}
+	"audioSettings" : {"Master":1.0, "Music": 1.0, "SFX": 1.0}
 }
 
 

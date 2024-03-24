@@ -1,54 +1,67 @@
 extends ColorRect
 
+var can_draw = false
+
+var brush_color:Color = Color.BLACK
+var brush_size:int = 2
+
 var circles = []
 var strokes = []
+var strokes_special = []
+
+var cur_stroke:Stroke
 
 var stroke_count:int = 0
 
 func _ready():
 	DiscordSDKLoader.run_preset("Art")
+	cur_stroke = Stroke.new()
+	add_child(cur_stroke)
 
 func _process(_delta):
 	if Input.is_action_pressed("click"):
-		if circles != []:
-			if get_global_mouse_position().distance_to(circles[0][0]) > 1:
-				queue_redraw()
-		else:
-			queue_redraw()
+		if can_draw:
+			#add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+			cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
 
 func _input(event):
 	if event.is_action_released("click"):
-		strokes.push_front(stroke_count)
-		print(strokes)
-		stroke_count = 0
+		if can_draw:
+			strokes.push_back(stroke_count)
+			strokes_special.push_back(cur_stroke)
+			cur_stroke = Stroke.new()
+			add_child(cur_stroke)
+			cur_stroke.queue_redraw()
+			stroke_count = 0
 	if event.is_action_pressed("undo"):
 		undo_stroke()
 	if event.is_action_pressed('hyena'):
 		for i in range(80):
 			stroke_count += 1
-			circles.push_front([get_global_mouse_position().lerp(Vector2(40, 40), 0.0125 * i), 5, Color.BLACK])
+			circles.push_back([get_local_mouse_position().lerp(Vector2(40, 40), 0.0125 * i), brush_size, brush_color])
 			queue_redraw()
 
 func _draw():
 	if Input.is_action_pressed("click"):
-		add_circle(get_global_mouse_position(), 2, Color.BLACK)
-	draw_circles()
+		#add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+		cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+	#draw_circles()
 
 func add_circle_advanced(mouse_pos, radius, daColor):
-	if stroke_count > 0 and mouse_pos.distance_to(circles[0][0]) > 4:
-			var distance = int(mouse_pos.distance_to(circles[0][0]))
+	if stroke_count > 0 and mouse_pos.distance_to(circles[circles.size() - 1][0]) > 4:
+			var distance = int(mouse_pos.distance_to(circles[circles.size() - 1][0]))
 			var distanceFloat:float = 1
 			for i in range(distance):
 				stroke_count += 1
 				print(distanceFloat / distance * i) 
-				circles.push_front([circles[0][0].lerp(mouse_pos, distanceFloat / distance * i), radius, daColor])
+				circles.push_back([circles[circles.size() - 1][0].lerp(mouse_pos, distanceFloat / distance * i), radius, daColor])
 	else:
 		stroke_count += 1
-		circles.push_front([mouse_pos, radius, daColor])
+		circles.push_back([mouse_pos, radius, daColor])
 
 func add_circle(mouse_pos, radius, daColor):
 	stroke_count += 1
-	circles.push_front([mouse_pos, radius, daColor])
+	circles.push_back([mouse_pos, radius, daColor])
 
 func draw_circles():
 	for i in circles.size():
@@ -56,11 +69,21 @@ func draw_circles():
 
 func undo_stroke():
 	if strokes != []:
-		for i in range(strokes[0]):
-			circles.pop_front()
-		strokes.pop_front()
+		for i in range(strokes[strokes.size() - 1]):
+			circles.pop_back()
+		strokes.pop_back()
 		queue_redraw()
 
 func clear():
 	circles = []
 	queue_redraw()
+
+
+func _on_mouse_detection_mouse_entered():
+	can_draw = true
+	print('can draw!')
+
+
+func _on_mouse_detection_mouse_exited():
+	can_draw = false
+	print("can't draw!")

@@ -55,3 +55,4 @@ offset_bottom = 720.0
 
 [node name="WinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_nqxy1")
+bus = &"SFX"

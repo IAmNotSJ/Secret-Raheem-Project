@@ -5,10 +5,6 @@ var posThingy = 0
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	DiscordSDKLoader.run_preset("Menu")
-	#if !global.minigames["Karl Pilkington"]:
-	$Main/Karl.queue_free()
-	#if !global.minigames["Hyena Clicker"]:
-	$Main/Hyena.queue_free()
 	$ColorRect.visible = true
 func _process(delta):
 	posThingy += delta
@@ -35,3 +31,7 @@ func _on_settings_pressed():
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
+
+
+func _on_games_pressed():
+	$Games.visible = true

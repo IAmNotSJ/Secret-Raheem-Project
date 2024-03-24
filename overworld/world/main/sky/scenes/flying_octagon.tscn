@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://djec12psy6pu0" path="res://overworld/world/main/sky/assets/octagon.png" id="1_wole5"]
 [ext_resource type="Script" path="res://overworld/world/main/sky/scenes/flying_octagon.gd" id="2_875js"]
 [ext_resource type="Texture2D" uid="uid://dqjcc80p1a3k" path="res://overworld/world/main/sky/assets/boom.png" id="2_r78kc"]
-[ext_resource type="AudioStream" uid="uid://bs873a06lo32y" path="res://sound effects/boom.ogg" id="4_l0tgi"]
+[ext_resource type="AudioStream" uid="uid://bs873a06lo32y" path="res://overworld/sound effects/boom.ogg" id="4_l0tgi"]
 
 [sub_resource type="Animation" id="Animation_ekpmq"]
 length = 0.001
@@ -106,3 +106,4 @@ autoplay = "float"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_l0tgi")
+bus = &"SFX"

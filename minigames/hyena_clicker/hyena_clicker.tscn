@@ -1333,15 +1333,19 @@ libraries = {
 
 [node name="JumpscareSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_cpso8")
+bus = &"SFX"
 
 [node name="KaChing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_xchj4")
+bus = &"SFX"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_34rvk")
 volume_db = -15.0
+bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
 
 [node name="Jumpscare" type="Sprite2D" parent="."]
 visible = false

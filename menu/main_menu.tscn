@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://coq1vpspwrw63"]
+[gd_scene load_steps=18 format=3 uid="uid://coq1vpspwrw63"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_q88bu"]
 [ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="2_3g75t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menu/assets/buttons/hyena-select.png" id="10_6x787"]
 [ext_resource type="PackedScene" uid="uid://dnd1doq4yac7c" path="res://menu/settings/settings.tscn" id="12_po7vl"]
 [ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://overworld/music/Title Screen.ogg" id="13_bdykl"]
+[ext_resource type="PackedScene" uid="uid://dmk0pvnookhar" path="res://menu/games/games_menu.tscn" id="13_gp170"]
 
 [sub_resource type="Animation" id="Animation_6mkq2"]
 length = 0.001
@@ -62,18 +63,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -192.334
+offset_left = -178.441
 offset_top = 662.0
-offset_right = 1493.66
+offset_right = 1507.55
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -210.018
+offset_left = -223.873
 offset_top = -10.0
-offset_right = 1475.99
+offset_right = 1462.14
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -92,17 +93,24 @@ texture_normal = ExtResource("5_oist7")
 texture_hover = ExtResource("6_xu7us")
 
 [node name="Settings" type="Button" parent="Main"]
-offset_left = 851.0
-offset_top = 337.0
-offset_right = 1216.0
-offset_bottom = 484.0
+offset_left = 874.0
+offset_top = 487.0
+offset_right = 1239.0
+offset_bottom = 634.0
+text = "SETTINGS"
+
+[node name="Games" type="Button" parent="Main"]
+offset_left = 33.0
+offset_top = 488.0
+offset_right = 398.0
+offset_bottom = 635.0
 text = "SETTINGS"
 
 [node name="Karl" type="TextureButton" parent="Main"]
-offset_left = 266.0
-offset_top = 490.0
-offset_right = 315.0
-offset_bottom = 539.0
+offset_left = 867.0
+offset_top = 331.0
+offset_right = 916.0
+offset_bottom = 380.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("6_24374")
 texture_hover = ExtResource("8_7jgxb")
@@ -124,6 +132,9 @@ texture = ExtResource("4_b5egf")
 [node name="Settings" parent="." instance=ExtResource("12_po7vl")]
 visible = false
 position = Vector2(5, 2)
+
+[node name="Games" parent="." instance=ExtResource("13_gp170")]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -150,6 +161,7 @@ bus = &"Music"
 
 [connection signal="pressed" from="Main/Begin" to="." method="_on_begin_pressed"]
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Games" to="." method="_on_games_pressed"]
 [connection signal="pressed" from="Main/Karl" to="." method="_on_karl_pressed"]
 [connection signal="pressed" from="Main/Hyena" to="." method="_on_hyena_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -74,9 +74,11 @@ libraries = {
 }
 
 [node name="HurtPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="ShootPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ivhn0")
+bus = &"SFX"
 
 [node name="Center" type="Marker2D" parent="."]
 position = Vector2(0, -17)

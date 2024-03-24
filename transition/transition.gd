@@ -9,6 +9,7 @@ var sceneTransitions:Dictionary = {
 	"Pizzeria": "res://overworld/world/pizzeria/pizzeria_back.tscn",
 	"Pilkington": "res://minigames/karl_pilkington/pilkFull.tscn",
 	"Hyena": "res://minigames/hyena_clicker/hyena_clicker.tscn",
+	"Paint": "res://minigames/paint/main/raheem_paint.tscn",
 	"Main Menu": "res://menu/main_menu.tscn"
 }
 func change_scene_to_file(target: String) -> void:
