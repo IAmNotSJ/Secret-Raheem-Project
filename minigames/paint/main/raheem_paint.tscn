@@ -20,10 +20,8 @@ offset_right = 1219.0
 offset_bottom = 703.0
 
 [node name="Buttons" type="Node2D" parent="."]
-visible = false
 
 [node name="Brush Size" type="HSlider" parent="Buttons"]
-visible = false
 offset_left = 5.0
 offset_top = 193.0
 offset_right = 333.0
@@ -32,15 +30,7 @@ min_value = 2.0
 max_value = 20.0
 value = 2.0
 
-[node name="Button" type="Button" parent="Buttons"]
-visible = false
-offset_left = 12.0
-offset_top = 119.0
-offset_right = 69.0
-offset_bottom = 176.0
-
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-visible = false
 offset_left = 39.0
 offset_top = 504.0
 offset_right = 221.0

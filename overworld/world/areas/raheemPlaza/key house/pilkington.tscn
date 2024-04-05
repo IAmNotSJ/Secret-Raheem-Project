@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu1rupe1fb0pg"]
+
+[ext_resource type="Texture2D" uid="uid://drttpkl6p6k2s" path="res://overworld/world/areas/raheemPlaza/key house/assets/pilkington.png" id="1_nr1hl"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://overworld/world/dialogue.tscn" id="2_212d8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sk7y"]
+size = Vector2(99, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ahge"]
+size = Vector2(43, 46)
+
+[node name="Pilkington" type="Sprite2D"]
+texture = ExtResource("1_nr1hl")
+
+[node name="Dialogue" parent="." instance=ExtResource("2_212d8")]
+interaction_dialogue = "pilkington"
+
+[node name="CollisionShape2D" parent="Dialogue/Dialogue" index="0"]
+position = Vector2(-20.5, 32)
+shape = SubResource("RectangleShape2D_7sk7y")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3.5, 43)
+shape = SubResource("RectangleShape2D_1ahge")
+
+[editable path="Dialogue"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4pjdqv57o6f8"]
+
+[ext_resource type="Texture2D" uid="uid://k4jktsd7n47" path="res://overworld/world/areas/raheemPlaza/main/assets/rec.png" id="1_ym4k0"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="2_jyn68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hj4r4"]
+size = Vector2(281, 89.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylc42"]
+size = Vector2(299, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyksv"]
+size = Vector2(84, 20)
+
+[node name="Rec" type="Sprite2D"]
+texture = ExtResource("1_ym4k0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-138.5, 100.75)
+shape = SubResource("RectangleShape2D_hj4r4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(151.5, 89.5)
+shape = SubResource("RectangleShape2D_ylc42")
+
+[node name="Doorway" parent="." instance=ExtResource("2_jyn68")]
+scene_change = "res://world/rec/rec.tscn"
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(-153, 152)
+shape = SubResource("RectangleShape2D_xyksv")
+
+[editable path="Doorway"]

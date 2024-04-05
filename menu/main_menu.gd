@@ -16,18 +16,8 @@ func _process(delta):
 func _on_begin_pressed():
 	Transition.change_scene_to_preset("Overworld")
 
-
-func _on_karl_pressed():
-	global.enteredMiniGameFromMenu = true
-	Transition.change_scene_to_preset("Pilkington")
-func _on_hyena_pressed():
-	global.enteredMiniGameFromMenu = true
-	Transition.change_scene_to_preset("Hyena")
-
-
 func _on_settings_pressed():
 	$Settings.visible = true
-
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()

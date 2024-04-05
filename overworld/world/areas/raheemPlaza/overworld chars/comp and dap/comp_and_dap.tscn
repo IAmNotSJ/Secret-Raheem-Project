@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://du6kdrfo6rvr0"]
+
+[ext_resource type="Texture2D" uid="uid://cui83avgsyjp0" path="res://overworld/world/areas/raheemPlaza/overworld chars/comp and dap/comp and dap.png" id="1_enxk5"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_4hfw1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ixsn1"]
+radius = 17.0
+height = 94.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sf3ke"]
+radius = 30.0
+height = 218.0
+
+[sub_resource type="Animation" id="Animation_2vmjg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_omfkl"]
+resource_name = "idle"
+length = 1.00001
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rktbj"]
+_data = {
+"RESET": SubResource("Animation_2vmjg"),
+"idle": SubResource("Animation_omfkl")
+}
+
+[node name="CompAndDap" type="Sprite2D"]
+texture = ExtResource("1_enxk5")
+offset = Vector2(0, 10)
+hframes = 2
+script = ExtResource("2_4hfw1")
+interaction_dialogue = "comp and dap"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-63, 43)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ixsn1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(51, 45)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ixsn1")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 48)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sf3ke")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rktbj")
+}
+autoplay = "idle"

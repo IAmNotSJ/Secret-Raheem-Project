@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://dolunsqke4wma"]
+
+[ext_resource type="Texture2D" uid="uid://dmo04e2k6eop0" path="res://overworld/world/areas/raheemPlaza/overworld chars/atlas/atlas.png" id="1_tlo1a"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_4nqnp"]
+[ext_resource type="PackedScene" uid="uid://bi1tynwcdpj4d" path="res://overworld/world/hitbox.tscn" id="3_2au4e"]
+
+[sub_resource type="Animation" id="Animation_muj15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qgskn"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vb04"]
+_data = {
+"RESET": SubResource("Animation_muj15"),
+"idle": SubResource("Animation_qgskn")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67wuy"]
+radius = 34.0147
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrdmr"]
+radius = 32.0
+height = 120.0
+
+[node name="Atlas" type="Sprite2D"]
+texture = ExtResource("1_tlo1a")
+offset = Vector2(0, 15.725)
+hframes = 2
+script = ExtResource("2_4nqnp")
+interaction_dialogue = "atlas and slime"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1vb04")
+}
+autoplay = "idle"
+
+[node name="Area2D" parent="." instance=ExtResource("3_2au4e")]
+position = Vector2(-16, 8)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(11, 3)
+shape = SubResource("CircleShape2D_67wuy")
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(-5, 44)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rrdmr")
+
+[editable path="Area2D"]

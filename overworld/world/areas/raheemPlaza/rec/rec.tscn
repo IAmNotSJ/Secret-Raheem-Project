@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://d30gmn1653isj"]
+
+[ext_resource type="Texture2D" uid="uid://km0d52vyiixj" path="res://overworld/world/areas/raheemPlaza/backgrounds/rec.png" id="1_24ay7"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://overworld/characters/wibr/wibr.tscn" id="2_m83ms"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="3_gfnda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65hhx"]
+size = Vector2(241, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef08g"]
+size = Vector2(1178.5, 20)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(652, 337)
+texture = ExtResource("1_24ay7")
+
+[node name="Wibr" parent="." instance=ExtResource("2_m83ms")]
+position = Vector2(355, 628)
+
+[node name="Camera2D" type="Camera2D" parent="Wibr"]
+zoom = Vector2(1.2, 1.2)
+
+[node name="Doorway" parent="." instance=ExtResource("3_gfnda")]
+scene_change = "res://world/main/main_world.tscn"
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(343, 721)
+shape = SubResource("RectangleShape2D_65hhx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(652.75, -59)
+shape = SubResource("RectangleShape2D_ef08g")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1239, 189)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ef08g")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(65, 195)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ef08g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(663, 731)
+shape = SubResource("RectangleShape2D_ef08g")
+
+[editable path="Doorway"]

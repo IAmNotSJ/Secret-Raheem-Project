@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd15dlebq4nhy"]
+
+[ext_resource type="Texture2D" uid="uid://qjdbeth6mdor" path="res://overworld/world/areas/raheemPlaza/overworld chars/dizzy/dizzy.png" id="1_eds4w"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_s3wel"]
+[ext_resource type="PackedScene" uid="uid://bi1tynwcdpj4d" path="res://overworld/world/hitbox.tscn" id="3_ue6gf"]
+
+[sub_resource type="Animation" id="Animation_l3qha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uu4xm"]
+resource_name = "idle"
+length = 2.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rvtp5"]
+_data = {
+"RESET": SubResource("Animation_l3qha"),
+"idle": SubResource("Animation_uu4xm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa0xj"]
+size = Vector2(88, 36)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ye1u"]
+radius = 31.0
+height = 122.0
+
+[node name="Dizzy" type="Sprite2D"]
+texture = ExtResource("1_eds4w")
+offset = Vector2(0, 5.045)
+hframes = 2
+script = ExtResource("2_s3wel")
+interaction_dialogue = "dizzy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rvtp5")
+}
+autoplay = "idle"
+
+[node name="Hitbox" parent="." instance=ExtResource("3_ue6gf")]
+position = Vector2(-6, -7)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(6, 42)
+shape = SubResource("RectangleShape2D_fa0xj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 28)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7ye1u")
+
+[editable path="Hitbox"]

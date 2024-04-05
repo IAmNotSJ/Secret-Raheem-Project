@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsibwl6c2fc1u"]
+
+[ext_resource type="Texture2D" uid="uid://2cd88f51xymj" path="res://overworld/world/areas/raheemPlaza/backgrounds/mainworld.png" id="1_52hfb"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/pizzeria/pizzeria_back.gd" id="1_xfuyl"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://overworld/characters/wibr/wibr.tscn" id="2_os71a"]
+[ext_resource type="Texture2D" uid="uid://djmu80jpx0vdo" path="res://overworld/world/areas/raheemPlaza/pizzeria/assets/box1.png" id="4_n41do"]
+[ext_resource type="Texture2D" uid="uid://cgyfc5ee5mdpk" path="res://overworld/world/areas/raheemPlaza/pizzeria/assets/box2.png" id="5_bvhd2"]
+[ext_resource type="PackedScene" uid="uid://d25rgysi77iq8" path="res://overworld/world/areas/raheemPlaza/pizzeria/pizza.tscn" id="5_dvifv"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="6_c8wts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61wvv"]
+size = Vector2(20, 770.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbb3o"]
+size = Vector2(122.25, 122.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s01t"]
+size = Vector2(122.5, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gbgc"]
+size = Vector2(114, 34)
+
+[node name="Pizzeria" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_xfuyl")
+
+[node name="Mainworld" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(669, 343)
+texture = ExtResource("1_52hfb")
+
+[node name="Wibr" parent="." instance=ExtResource("2_os71a")]
+position = Vector2(666, 74)
+metadata/_edit_group_ = true
+
+[node name="Interaction" parent="Wibr" index="4"]
+visible = true
+
+[node name="Box1" type="Sprite2D" parent="."]
+position = Vector2(992, 79)
+texture = ExtResource("4_n41do")
+
+[node name="Box2" type="Sprite2D" parent="."]
+position = Vector2(334, 87)
+texture = ExtResource("5_bvhd2")
+offset = Vector2(0, -28.375)
+flip_h = true
+
+[node name="Pizza" parent="." instance=ExtResource("5_dvifv")]
+z_index = -1
+position = Vector2(681, 580)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(275, 342.75)
+shape = SubResource("RectangleShape2D_61wvv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1063, 295)
+shape = SubResource("RectangleShape2D_61wvv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(667, 17)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_61wvv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(670, 670)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_61wvv")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(339.875, 68.25)
+shape = SubResource("RectangleShape2D_gbb3o")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(996.75, 80)
+shape = SubResource("RectangleShape2D_4s01t")
+
+[node name="Doorway" parent="." instance=ExtResource("6_c8wts")]
+position = Vector2(659, 9)
+scene_change = "Overworld"
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(11, 7)
+shape = SubResource("RectangleShape2D_2gbgc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="interacted" from="Pizza/Dialogue" to="." method="_on_dialogue_interacted"]
+
+[editable path="Wibr"]
+[editable path="Pizza"]
+[editable path="Pizza/Dialogue"]
+[editable path="Doorway"]

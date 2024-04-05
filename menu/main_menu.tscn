@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://coq1vpspwrw63"]
+[gd_scene load_steps=14 format=3 uid="uid://coq1vpspwrw63"]
 
 [ext_resource type="Script" path="res://menu/main_menu.gd" id="1_q88bu"]
 [ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="2_3g75t"]
@@ -6,11 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://1keyq18h6qat" path="res://menu/assets/title.png" id="4_b5egf"]
 [ext_resource type="Texture2D" uid="uid://cao6klfkstypv" path="res://menu/assets/bg.png" id="5_e2yv8"]
 [ext_resource type="Texture2D" uid="uid://b8utgw1mfobmv" path="res://menu/assets/buttons/start.png" id="5_oist7"]
-[ext_resource type="Texture2D" uid="uid://bhgabmxek0jvw" path="res://menu/assets/buttons/karl.png" id="6_24374"]
 [ext_resource type="Texture2D" uid="uid://d0jl7qknbxfro" path="res://menu/assets/buttons/start-select.png" id="6_xu7us"]
-[ext_resource type="Texture2D" uid="uid://bebj26ta8pck6" path="res://menu/assets/buttons/hyena.png" id="7_m8axa"]
-[ext_resource type="Texture2D" uid="uid://dnaf0su4shk35" path="res://menu/assets/buttons/karl-select.png" id="8_7jgxb"]
-[ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menu/assets/buttons/hyena-select.png" id="10_6x787"]
 [ext_resource type="PackedScene" uid="uid://dnd1doq4yac7c" path="res://menu/settings/settings.tscn" id="12_po7vl"]
 [ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://overworld/music/Title Screen.ogg" id="13_bdykl"]
 [ext_resource type="PackedScene" uid="uid://dmk0pvnookhar" path="res://menu/games/games_menu.tscn" id="13_gp170"]
@@ -63,18 +59,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -178.441
+offset_left = -119.713
 offset_top = 662.0
-offset_right = 1507.55
+offset_right = 1566.28
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -223.873
+offset_left = -318.639
 offset_top = -10.0
-offset_right = 1462.14
+offset_right = 1367.36
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -105,24 +101,6 @@ offset_top = 488.0
 offset_right = 398.0
 offset_bottom = 635.0
 text = "SETTINGS"
-
-[node name="Karl" type="TextureButton" parent="Main"]
-offset_left = 867.0
-offset_top = 331.0
-offset_right = 916.0
-offset_bottom = 380.0
-scale = Vector2(3, 3)
-texture_normal = ExtResource("6_24374")
-texture_hover = ExtResource("8_7jgxb")
-
-[node name="Hyena" type="TextureButton" parent="Main"]
-offset_left = 864.0
-offset_top = 490.0
-offset_right = 962.0
-offset_bottom = 588.0
-scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("7_m8axa")
-texture_hover = ExtResource("10_6x787")
 
 [node name="Title" type="Sprite2D" parent="Main"]
 position = Vector2(640, 171)
@@ -162,6 +140,4 @@ bus = &"Music"
 [connection signal="pressed" from="Main/Begin" to="." method="_on_begin_pressed"]
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Games" to="." method="_on_games_pressed"]
-[connection signal="pressed" from="Main/Karl" to="." method="_on_karl_pressed"]
-[connection signal="pressed" from="Main/Hyena" to="." method="_on_hyena_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

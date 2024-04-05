@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ces0aycq6cpvc"]
+
+[ext_resource type="Texture2D" uid="uid://6gesifmhrs0b" path="res://overworld/world/areas/raheemPlaza/main/assets/apartment.png" id="1_gljy7"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="2_gu2j7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xihiw"]
+size = Vector2(112.5, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3i8r"]
+size = Vector2(45.5, 11)
+
+[node name="Apartment" type="Sprite2D"]
+position = Vector2(5, -50)
+scale = Vector2(2, 2)
+texture = ExtResource("1_gljy7")
+offset = Vector2(0, -334.845)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3.5, -9.5)
+shape = SubResource("RectangleShape2D_xihiw")
+
+[node name="Doorway" parent="." instance=ExtResource("2_gu2j7")]
+position = Vector2(-8, 39.5)
+scene_change = "Cost House"
+save_pos = true
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(7, -18)
+shape = SubResource("RectangleShape2D_h3i8r")
+
+[editable path="Doorway"]

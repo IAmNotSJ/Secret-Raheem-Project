@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf7hi3upbh03k"]
+
+[ext_resource type="Texture2D" uid="uid://76jkal3lj38o" path="res://overworld/world/areas/raheemPlaza/overworld chars/byrd/byrd.png" id="1_rbxyi"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_xokag"]
+
+[sub_resource type="Animation" id="Animation_a1oso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_15caw"]
+resource_name = "idke"
+length = 0.40001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ar2y0"]
+_data = {
+"RESET": SubResource("Animation_a1oso"),
+"idke": SubResource("Animation_15caw")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gccdr"]
+radius = 20.0
+height = 80.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pxnb"]
+size = Vector2(50, 30)
+
+[node name="Byrd" type="Sprite2D"]
+texture = ExtResource("1_rbxyi")
+hframes = 2
+script = ExtResource("2_xokag")
+interaction_dialogue = "byrd"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ar2y0")
+}
+autoplay = "idke"
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(0, 16)
+shape = SubResource("CapsuleShape2D_gccdr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4, 45)
+shape = SubResource("RectangleShape2D_3pxnb")

@@ -55,14 +55,6 @@ func _ready():
 	load_settings()
 	apply_settings()
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("fullscreen"):
-		print('work mayhaps?')
-		if DisplayServer.window_get_mode() == 0 or DisplayServer.window_get_mode() == 2:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
 func add_interaction(character:String):
 	if character == null:
 		print("Invalid Character")

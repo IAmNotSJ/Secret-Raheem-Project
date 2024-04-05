@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjr6w4tm7wsa4"]
+
+[ext_resource type="Texture2D" uid="uid://dtr34lno4cbgh" path="res://overworld/world/areas/raheemPlaza/overworld chars/dile/dile.png" id="1_bk8db"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_8r0rn"]
+[ext_resource type="PackedScene" uid="uid://bi1tynwcdpj4d" path="res://overworld/world/hitbox.tscn" id="2_642ii"]
+
+[sub_resource type="Animation" id="Animation_uipyo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a65wn"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wbox"]
+_data = {
+"RESET": SubResource("Animation_uipyo"),
+"idle": SubResource("Animation_a65wn")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gh8k"]
+radius = 23.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xc6u6"]
+radius = 32.0
+height = 64.0
+
+[node name="Dile" type="Sprite2D"]
+texture = ExtResource("1_bk8db")
+flip_h = true
+hframes = 2
+script = ExtResource("2_8r0rn")
+interaction_dialogue = "dile"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5wbox")
+}
+autoplay = "idle"
+
+[node name="Area2D" parent="." instance=ExtResource("2_642ii")]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(10, 36)
+shape = SubResource("CapsuleShape2D_0gh8k")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(10, 42)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(0, -16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xc6u6")
+
+[editable path="Area2D"]

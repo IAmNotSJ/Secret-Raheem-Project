@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d25rgysi77iq8"]
+
+[ext_resource type="Texture2D" uid="uid://d33oeo5t71vtd" path="res://overworld/world/areas/raheemPlaza/pizzeria/assets/pizza.png" id="1_4nnj1"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://overworld/world/dialogue.tscn" id="2_w24tb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bupbq"]
+radius = 58.0345
+
+[node name="Pizza" type="Sprite2D"]
+texture = ExtResource("1_4nnj1")
+
+[node name="Dialogue" parent="." instance=ExtResource("2_w24tb")]
+interaction_dialogue = "res://dialogue/scripts/pizza.dialogue"
+
+[node name="CollisionShape2D" parent="Dialogue/Dialogue" index="0"]
+position = Vector2(-6, -3)
+shape = SubResource("CircleShape2D_bupbq")
+
+[editable path="Dialogue"]

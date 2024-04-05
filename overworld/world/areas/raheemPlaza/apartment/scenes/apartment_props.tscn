@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://bx22uw381rhu0"]
+
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/apartment/scenes/apartment_props.gd" id="1_o0vc3"]
+[ext_resource type="Texture2D" uid="uid://ce10bxjcdoi6n" path="res://overworld/world/areas/raheemPlaza/apartment/assets/door.png" id="2_80mu2"]
+[ext_resource type="PackedScene" uid="uid://bjlu5uj7w8qvj" path="res://overworld/world/areas/raheemPlaza/overworld chars/cost/cost.tscn" id="2_wmwe5"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="4_7kcbm"]
+[ext_resource type="Texture2D" uid="uid://ov8kd56tne1n" path="res://overworld/world/areas/raheemPlaza/apartment/assets/key.png" id="5_s3kod"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/dialogue.gd" id="6_41hkc"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://overworld/world/dialogue.tscn" id="7_0j03w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngwnk"]
+size = Vector2(67, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anodb"]
+size = Vector2(3800, 3800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvsu"]
+size = Vector2(65, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihyue"]
+radius = 24.3311
+
+[node name="Apartment Props" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_o0vc3")
+
+[node name="Node2D" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Cost" parent="Node2D" instance=ExtResource("2_wmwe5")]
+
+[node name="Door" type="Sprite2D" parent="Node2D"]
+position = Vector2(890, 79)
+texture = ExtResource("2_80mu2")
+offset = Vector2(0, -1.365)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/Door"]
+position = Vector2(-5, 62)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Door/StaticBody2D"]
+position = Vector2(5, -22)
+shape = SubResource("RectangleShape2D_ngwnk")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(706, 237)
+shape = SubResource("RectangleShape2D_anodb")
+
+[node name="Doorway" parent="." instance=ExtResource("4_7kcbm")]
+position = Vector2(885, 141)
+scene_change = "Overworld"
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(6, -20)
+shape = SubResource("RectangleShape2D_7nvsu")
+
+[node name="Key" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(449, 248)
+texture = ExtResource("5_s3kod")
+script = ExtResource("6_41hkc")
+
+[node name="Dialogue" parent="Key" instance=ExtResource("7_0j03w")]
+interaction_dialogue = "key"
+
+[node name="CollisionShape2D" parent="Key/Dialogue/Dialogue" index="0"]
+shape = SubResource("CircleShape2D_ihyue")
+
+[connection signal="area_exited" from="Node2D/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="interacted" from="Key/Dialogue" to="." method="_on_dialogue_interacted"]
+
+[editable path="Doorway"]
+[editable path="Key/Dialogue"]

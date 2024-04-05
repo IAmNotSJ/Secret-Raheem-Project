@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlq3kyf0jpqva"]
+
+[ext_resource type="Texture2D" uid="uid://dkowvp5foks3x" path="res://overworld/world/areas/raheemPlaza/main/assets/bench.png" id="1_g4bn2"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/main/scenes/bench.gd" id="2_b55oi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov6cd"]
+size = Vector2(45, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j01sj"]
+size = Vector2(130, 31)
+
+[node name="Bench" type="Sprite2D"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_g4bn2")
+script = ExtResource("2_b55oi")
+
+[node name="Seat1Interaction" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Seat1Interaction"]
+position = Vector2(-35.8333, 50.8333)
+shape = SubResource("RectangleShape2D_ov6cd")
+
+[node name="Seat2Interaction" type="Area2D" parent="."]
+position = Vector2(73.3333, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Seat2Interaction"]
+position = Vector2(-35.8333, 50.8333)
+shape = SubResource("RectangleShape2D_ov6cd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, 20.5)
+shape = SubResource("RectangleShape2D_j01sj")
+
+[node name="Seat" type="Marker2D" parent="."]
+position = Vector2(-33.3333, -9.16667)
+
+[node name="Seat2" type="Marker2D" parent="."]
+position = Vector2(35, -10)

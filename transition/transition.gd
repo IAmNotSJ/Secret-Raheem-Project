@@ -3,10 +3,10 @@ extends CanvasLayer
 
 @onready var animationPlayer = $AnimationPlayer
 var sceneTransitions:Dictionary = {
-	"Overworld": "res://overworld/world/main/main_world.tscn",
-	"Cleft House": "res://overworld/world/key house/key_house.tscn",
-	"Cost House": "res://overworld/world/apartment/apartment.tscn",
-	"Pizzeria": "res://overworld/world/pizzeria/pizzeria_back.tscn",
+	"Overworld": "res://overworld/world/areas/raheemPlaza/main/main_world.tscn",
+	"Cleft House": "res://overworld/world/areas/raheemPlaza/key house/key_house.tscn",
+	"Cost House": "res://overworld/world/areas/raheemPlaza/apartment/apartment.tscn",
+	"Pizzeria": "res://overworld/world/areas/raheemPlaza/pizzeria/pizzeria_back.tscn",
 	"Pilkington": "res://minigames/karl_pilkington/pilkFull.tscn",
 	"Hyena": "res://minigames/hyena_clicker/hyena_clicker.tscn",
 	"Paint": "res://minigames/paint/main/raheem_paint.tscn",

@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjlu5uj7w8qvj"]
+
+[ext_resource type="Texture2D" uid="uid://qwxhmkmvfs0q" path="res://overworld/world/areas/raheemPlaza/overworld chars/cost/cost.png" id="1_45dcn"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_sie46"]
+
+[sub_resource type="Animation" id="Animation_mohei"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7bjq8"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ls35h"]
+_data = {
+"RESET": SubResource("Animation_mohei"),
+"idle": SubResource("Animation_7bjq8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63ink"]
+size = Vector2(90, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0qb0"]
+size = Vector2(83, 79)
+
+[node name="Cost" type="Sprite2D"]
+position = Vector2(604, 98)
+texture = ExtResource("1_45dcn")
+offset = Vector2(0, 25.365)
+hframes = 2
+script = ExtResource("2_sie46")
+interaction_dialogue = "cost"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ls35h")
+}
+autoplay = "idle"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 21)
+shape = SubResource("RectangleShape2D_63ink")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3.5, 29.5)
+shape = SubResource("RectangleShape2D_q0qb0")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdofwwmntnixn"]
+
+[ext_resource type="Texture2D" uid="uid://bnn8r1mn014ep" path="res://overworld/world/areas/raheemPlaza/main/assets/sign.png" id="1_2amln"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://overworld/world/dialogue.tscn" id="2_nkxev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0f4x"]
+size = Vector2(141, 47)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_txph0"]
+radius = 23.0
+height = 204.0
+
+[node name="Sign" type="Sprite2D"]
+texture = ExtResource("1_2amln")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(6.5, 61.5)
+shape = SubResource("RectangleShape2D_f0f4x")
+
+[node name="Dialogue" parent="." instance=ExtResource("2_nkxev")]
+interaction_dialogue = "penis island"
+
+[node name="CollisionShape2D" parent="Dialogue/Dialogue" index="0"]
+position = Vector2(12, 65)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_txph0")
+
+[editable path="Dialogue"]

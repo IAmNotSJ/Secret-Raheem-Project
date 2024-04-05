@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://be3orsh21kbef"]
+
+[ext_resource type="Texture2D" uid="uid://dslygtwpv1s8" path="res://overworld/world/areas/raheemPlaza/main/assets/bush.png" id="1_evhlv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6ft2"]
+radius = 6.0
+height = 48.0
+
+[node name="Bush" type="Sprite2D"]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_evhlv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_j6ft2")

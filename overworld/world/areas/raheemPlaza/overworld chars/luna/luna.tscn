@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://iif53x211rnw"]
+
+[ext_resource type="Texture2D" uid="uid://cg5cq3topeoja" path="res://overworld/world/areas/raheemPlaza/overworld chars/luna/luna.png" id="1_2ojgm"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/overworld chars/overworld character.gd" id="2_vakfn"]
+
+[sub_resource type="Animation" id="Animation_qle7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mco7c"]
+resource_name = "idle"
+length = 0.20001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7r2u7"]
+_data = {
+"RESET": SubResource("Animation_qle7x"),
+"idle": SubResource("Animation_mco7c")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi75x"]
+radius = 23.75
+height = 85.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3yxi"]
+size = Vector2(70, 41.25)
+
+[node name="Luna" type="Sprite2D"]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_2ojgm")
+hframes = 2
+script = ExtResource("2_vakfn")
+interaction_dialogue = "luna"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7r2u7")
+}
+autoplay = "idle"
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(0, 18.75)
+shape = SubResource("CapsuleShape2D_yi75x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2.5, 41.875)
+shape = SubResource("RectangleShape2D_p3yxi")

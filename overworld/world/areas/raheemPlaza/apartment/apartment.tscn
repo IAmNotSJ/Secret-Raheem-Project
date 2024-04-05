@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://blo7dyahtbbgk"]
+
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/apartment/apartment.gd" id="1_05rt7"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://overworld/characters/wibr/wibr.tscn" id="1_ch1n1"]
+[ext_resource type="PackedScene" uid="uid://bx22uw381rhu0" path="res://overworld/world/areas/raheemPlaza/apartment/scenes/apartment_props.tscn" id="2_guycm"]
+
+[node name="Apartment" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_05rt7")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Wibr" parent="." instance=ExtResource("1_ch1n1")]
+position = Vector2(640, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Wibr"]
+
+[node name="ColorRect" type="ColorRect" parent="Wibr/Camera2D"]
+z_index = -2
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Apartment Props" parent="." instance=ExtResource("2_guycm")]

@@ -1,0 +1,178 @@
+[gd_scene load_steps=22 format=3 uid="uid://ejnuo31adyiq"]
+
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/key house/key_house.gd" id="1_85tb2"]
+[ext_resource type="Texture2D" uid="uid://cm8byq135xp27" path="res://overworld/world/areas/raheemPlaza/key house/assets/bg.png" id="1_jnptd"]
+[ext_resource type="PackedScene" uid="uid://cxqffaxvpn3fd" path="res://overworld/characters/wibr/wibr.tscn" id="2_y8jmw"]
+[ext_resource type="PackedScene" uid="uid://bp3g3fr0yut2v" path="res://overworld/world/areas/raheemPlaza/key house/key.tscn" id="3_8x8jh"]
+[ext_resource type="Texture2D" uid="uid://b5xf1xjbq3jq4" path="res://overworld/world/areas/raheemPlaza/key house/assets/macbook.png" id="4_i4go7"]
+[ext_resource type="PackedScene" uid="uid://bgrwcw08q37it" path="res://overworld/world/dialogue.tscn" id="5_ounbm"]
+[ext_resource type="Texture2D" uid="uid://mte8dwmeo026" path="res://overworld/world/areas/raheemPlaza/key house/assets/note.png" id="5_soauk"]
+[ext_resource type="Texture2D" uid="uid://b4m4bvt7vvyjh" path="res://overworld/world/areas/raheemPlaza/key house/assets/overlay.png" id="6_24suf"]
+[ext_resource type="Texture2D" uid="uid://je3kigj4mb00" path="res://overworld/world/areas/raheemPlaza/key house/assets/tower.png" id="7_s8657"]
+[ext_resource type="PackedScene" uid="uid://bu1rupe1fb0pg" path="res://overworld/world/areas/raheemPlaza/key house/pilkington.tscn" id="8_uy1j1"]
+[ext_resource type="Texture2D" uid="uid://bxvewnpqyge4p" path="res://overworld/world/areas/raheemPlaza/key house/assets/wario.png" id="9_53ei0"]
+[ext_resource type="PackedScene" uid="uid://bb1s3h35lmdcn" path="res://overworld/world/interactions/doorway.tscn" id="11_xxmi3"]
+[ext_resource type="AudioStream" uid="uid://dkxsv1c8oyy1o" path="res://overworld/music/Poo.ogg" id="12_8aebt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoy6k"]
+size = Vector2(60, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ltx0"]
+radius = 20.0
+height = 62.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fw3ba"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50yj6"]
+radius = 40.05
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6a4y"]
+radius = 25.0
+height = 177.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0ybo"]
+size = Vector2(15, 731)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltv2q"]
+size = Vector2(954, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fw1n"]
+radius = 66.0681
+
+[node name="Key House" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_85tb2")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(661, 360)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("1_jnptd")
+
+[node name="Wibr" parent="." instance=ExtResource("2_y8jmw")]
+position = Vector2(338, 92)
+
+[node name="Key" parent="." instance=ExtResource("3_8x8jh")]
+position = Vector2(995, 29)
+interaction_dialogue = "cleft_house"
+
+[node name="Macbook" type="Sprite2D" parent="."]
+position = Vector2(841, 17)
+texture = ExtResource("4_i4go7")
+offset = Vector2(0, 48)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Macbook"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Macbook/StaticBody2D"]
+position = Vector2(1, 63)
+shape = SubResource("RectangleShape2D_hoy6k")
+
+[node name="Dialogue" parent="Macbook" instance=ExtResource("5_ounbm")]
+interaction_dialogue = "macbook"
+
+[node name="CollisionShape2D" parent="Macbook/Dialogue/Dialogue" index="0"]
+position = Vector2(1, 58)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1ltx0")
+
+[node name="Note" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(294, 482)
+texture = ExtResource("5_soauk")
+
+[node name="Dialogue" parent="Note" instance=ExtResource("5_ounbm")]
+interaction_dialogue = "note"
+
+[node name="CollisionShape2D" parent="Note/Dialogue/Dialogue" index="0"]
+shape = SubResource("CircleShape2D_fw3ba")
+
+[node name="Wario" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(267, 661)
+texture = ExtResource("9_53ei0")
+
+[node name="Dialogue" parent="Wario" instance=ExtResource("5_ounbm")]
+interaction_dialogue = "wario"
+
+[node name="CollisionShape2D" parent="Wario/Dialogue/Dialogue" index="0"]
+shape = SubResource("CircleShape2D_50yj6")
+
+[node name="Pilkington" parent="." instance=ExtResource("8_uy1j1")]
+position = Vector2(1082, 323)
+
+[node name="Tower" type="Sprite2D" parent="."]
+position = Vector2(619, 680)
+scale = Vector2(2, 2)
+texture = ExtResource("7_s8657")
+offset = Vector2(0, -25)
+
+[node name="Dialogue" parent="Tower" instance=ExtResource("5_ounbm")]
+interaction_dialogue = "coke"
+
+[node name="CollisionShape2D" parent="Tower/Dialogue/Dialogue" index="0"]
+position = Vector2(-2, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u6a4y")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(661, 360)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("6_24suf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(178.5, 366.5)
+shape = SubResource("RectangleShape2D_o0ybo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1144, 360)
+shape = SubResource("RectangleShape2D_o0ybo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(660.75, -9)
+shape = SubResource("RectangleShape2D_ltv2q")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(661, 730)
+shape = SubResource("RectangleShape2D_ltv2q")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 2
+offset_left = -18.0
+offset_top = -19.0
+offset_right = 186.0
+offset_bottom = 749.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+z_index = 2
+offset_left = 1136.0
+offset_top = -14.0
+offset_right = 1338.0
+offset_bottom = 751.0
+color = Color(0, 0, 0, 1)
+
+[node name="Doorway" parent="." instance=ExtResource("11_xxmi3")]
+scene_change = "Overworld"
+
+[node name="CollisionShape2D" parent="Doorway/Interaction" index="0"]
+position = Vector2(222, 21)
+shape = SubResource("CircleShape2D_0fw1n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8aebt")
+volume_db = -15.0
+bus = &"Music"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="Macbook/Dialogue"]
+[editable path="Note/Dialogue"]
+[editable path="Wario/Dialogue"]
+[editable path="Pilkington"]
+[editable path="Pilkington/Dialogue"]
+[editable path="Tower/Dialogue"]
+[editable path="Doorway"]

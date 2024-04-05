@@ -11,12 +11,12 @@ func _ready():
 	bus_index = AudioServer.get_bus_index(setting)
 	value = db_to_linear(AudioServer.get_bus_volume_db(bus_index))
 	$Title.text = setting + " Volume"
-	$Volume.text = str(value * 100) + "%"
+	$"Volume Control/Volume".text = str(value * 100) + "%"
 
 func _process(_delta):
 	if updating:
 		AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
-		$Volume.text = str(value * 100) + "%"
+		$"Volume Control/Volume".text = str(value * 100) + "%"
 
 func _on_drag_started():
 	updating = true

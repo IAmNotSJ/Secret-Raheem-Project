@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4t5ibok1pds"]
+
+[ext_resource type="Texture2D" uid="uid://c38gnp0a41i5m" path="res://overworld/world/areas/raheemPlaza/main/assets/tree.png" id="1_6ojcl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r4q6"]
+size = Vector2(45, 14)
+
+[node name="Tree" type="Sprite2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_6ojcl")
+offset = Vector2(0, -43)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(23.5, 17)
+shape = SubResource("RectangleShape2D_3r4q6")

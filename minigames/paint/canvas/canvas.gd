@@ -29,6 +29,7 @@ func _input(event):
 		if can_draw:
 			strokes.push_back(stroke_count)
 			strokes_special.push_back(cur_stroke)
+			print(strokes_special)
 			cur_stroke = Stroke.new()
 			add_child(cur_stroke)
 			cur_stroke.queue_redraw()
@@ -68,11 +69,10 @@ func draw_circles():
 		draw_circle(circles[i][0], circles[i][1], circles[i][2])
 
 func undo_stroke():
-	if strokes != []:
-		for i in range(strokes[strokes.size() - 1]):
-			circles.pop_back()
-		strokes.pop_back()
-		queue_redraw()
+	if strokes_special != []:
+		strokes_special.back().queue_free()
+		strokes_special.pop_back()
+		print(strokes_special)
 
 func clear():
 	circles = []

@@ -12,7 +12,6 @@ func _draw():
 
 func add_circle(mouse_pos, radius, daColor):
 	size += 1
-	print('drawing!')
 	circles.push_back([mouse_pos, radius, daColor])
 	queue_redraw()
 
