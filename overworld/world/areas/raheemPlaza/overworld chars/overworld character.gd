@@ -7,5 +7,4 @@ const dialoguePrefix:String = "res://overworld/dialogue/scripts/"
 signal interacted
 
 func interact(_body):
-	DialogueManager.show_dialogue_balloon(load(dialoguePrefix + interaction_dialogue + ".dialogue"), "start")
 	interacted.emit()
