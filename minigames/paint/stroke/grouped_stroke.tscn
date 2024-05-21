@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2gqc62m8btoa"]
+
+[ext_resource type="Script" path="res://minigames/paint/stroke/grouped_stroke.gd" id="1_c7wss"]
+
+[node name="Grouped Stroke" type="Node"]
+script = ExtResource("1_c7wss")

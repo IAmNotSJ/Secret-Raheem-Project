@@ -6,8 +6,6 @@ var size:int = 0
 var brush_size:int = 2
 var brush_color:Color = Color.BLACK
 func _draw():
-	if Input.is_action_pressed("click"):
-		add_circle(get_local_mouse_position(), brush_size, brush_color)
 	draw_circles()
 
 func add_circle(mouse_pos, radius, daColor):
@@ -31,3 +29,6 @@ func add_circle_advanced(mouse_pos, radius, daColor):
 func draw_circles():
 	for i in circles.size():
 		draw_circle(circles[i][0], circles[i][1], circles[i][2])
+
+func clear_memory():
+	circles = []

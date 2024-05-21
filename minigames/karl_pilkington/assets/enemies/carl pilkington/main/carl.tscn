@@ -63,6 +63,7 @@ radius = 33.0
 height = 92.0
 
 [node name="Carl Pilkington" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+position = Vector2(636, 338)
 script = ExtResource("1_s85pv")
 health = 60.0
 hitbox = [NodePath("Hitbox")]
@@ -88,3 +89,6 @@ shape = SubResource("CapsuleShape2D_5n45n")
 
 [node name="ShootingMarker" type="Marker2D" parent="."]
 position = Vector2(-2, -14)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(444, 13)

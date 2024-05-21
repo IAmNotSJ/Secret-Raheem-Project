@@ -12,7 +12,6 @@ func _physics_process(delta):
 	if delete_timer <= 0:
 		queue_free()
 	rotation_degrees += 60 * delta
-	#bullet_speed += delta * 80
 	position.x += bullet_speed * cos(rotation - deg_to_rad(30)) * delta
 	position.y += bullet_speed * sin(rotation - deg_to_rad(30)) * delta
 

@@ -28,6 +28,7 @@ Transition="*res://transition/transition.tscn"
 global="*res://global.tscn"
 Overworld="*res://overworld/world/overworld.gd"
 DiscordSDKLoader="*res://addons/discord-sdk-gd/nodes/discord_autoload.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
 
@@ -35,6 +36,19 @@ gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/confusable_identifier=0
 gdscript/warnings/confusable_local_declaration=0
+
+[dialogic]
+
+directories/dch_directory={
+"sj": "res://overworld/dialogue/characters/sj.dch"
+}
+directories/dtl_directory={
+"timeline": "res://overworld/dialogue/scripts/timeline.dtl"
+}
+glossary/default_case_sensitive=true
+layout/style_list=["res://overworld/dialogue/styles/Raheem.tres"]
+layout/default_style="res://overworld/dialogue/styles/Raheem.tres"
+variables={}
 
 [dialogue_manager]
 
@@ -58,7 +72,7 @@ project/assembly_name="Raheem Birthday"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/discord-sdk-gd/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/discord-sdk-gd/plugin.cfg")
 
 [filesystem]
 

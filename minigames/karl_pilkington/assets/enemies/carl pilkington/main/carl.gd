@@ -2,6 +2,14 @@ extends EnemyBase
 
 @onready var shootingMarker = $ShootingMarker
 
+var walkingSpots:Array = [
+	Vector2(391, -214),
+	Vector2(-292, 162),
+	Vector2(444, 13)
+]
+
+@onready var curSpot:Vector2 = global_position
+
 const bulletScene = preload("res://minigames/karl_pilkington/assets/enemies/carl pilkington/bullet/bullet.tscn")
 
 enum {

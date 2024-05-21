@@ -212,7 +212,7 @@ func getCastDegree(pos:int):
 func getFishCatch():
 	var fishName:String = ''
 	
-	fishName = fish[rng.randi_range(0, fish.size())][0]
+	fishName = fish[rng.randi_range(0, fish.size()) - 1][0]
 	
 	return fishName
 	 
