@@ -40,10 +40,13 @@ gdscript/warnings/confusable_local_declaration=0
 [dialogic]
 
 directories/dch_directory={
-"sj": "res://overworld/dialogue/characters/sj.dch"
+"hampter": "res://overworld/dialogue/characters/overworld/hampter.dch",
+"sj": "res://overworld/dialogue/scripts/overworld/sj.dch",
+"wibr": "res://overworld/dialogue/characters/overworld/wibr.dch"
 }
 directories/dtl_directory={
-"timeline": "res://overworld/dialogue/scripts/timeline.dtl"
+"cherry": "res://overworld/dialogue/scripts/overworld/cherry.dtl",
+"fountain": "res://overworld/dialogue/scripts/overworld/fountain.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://overworld/dialogue/styles/Raheem.tres"]

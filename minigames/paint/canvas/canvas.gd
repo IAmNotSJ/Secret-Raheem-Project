@@ -20,7 +20,10 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_pressed("click") and can_draw:
-		cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+		if brush_size <= 3:
+			cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+		else:
+			cur_stroke.add_circle(get_local_mouse_position(), brush_size, brush_color)
 
 func _input(event):
 	if event.is_action_released("click") and can_draw:
@@ -67,7 +70,7 @@ func make_new_stroke():
 	strokes.push_back(stroke_count)
 	strokes_special.push_back(cur_stroke)
 	print(strokes_special)
-	cur_stroke.clear_memory()
+	#cur_stroke.clear_memory()
 	cur_stroke = Stroke.new()
 	add_child(cur_stroke)
 	cur_stroke.queue_redraw()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwfv21h8ppu1p"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/items/stick/stick.gd" id="2_sut23"]
+
+[node name="Node" type="Node"]
+script = ExtResource("2_sut23")

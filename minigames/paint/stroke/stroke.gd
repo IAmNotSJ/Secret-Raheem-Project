@@ -6,6 +6,7 @@ var size:int = 0
 var brush_size:int = 2
 var brush_color:Color = Color.BLACK
 func _draw():
+	print('redraw!')
 	draw_circles()
 
 func add_circle(mouse_pos, radius, daColor):

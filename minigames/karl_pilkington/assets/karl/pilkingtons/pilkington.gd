@@ -20,7 +20,7 @@ signal heal
 @export var has_special:bool = false
 @export var include_bar:bool = true : 
 	set(value) : 
-		$TextureProgressBar.visible = value
+		$ShootBar.visible = value
 
 var spritePath = "res://minigames/karl_pilkington/assets/karl/pilkingtons/sprites/standard/sprites.tscn"
 var sprites
@@ -40,7 +40,8 @@ var items:Dictionary = {
 	"Garlic" : false,
 	"Mini" : false,
 	"Shield" : false,
-	"Weed" : false
+	"Weed" : false,
+	"Stick" : false
 }
 
 var stats:Dictionary = {
@@ -100,15 +101,15 @@ func _physics_process(delta):
 	
 	if bullet_timer > 0:
 		bullet_timer -= delta
-		$TextureProgressBar.value = (max_bullet_timer - bullet_timer) * 100
+		$ShootBar.value = ((max_bullet_timer - bullet_timer) / max_bullet_timer) * 100
 		
 	if bullet_timer <= 0 and canShoot:
 		timer_disappear_timer -= delta
 		if timer_disappear_timer <= 0:
-			$TextureProgressBar.modulate.a -= delta
+			$ShootBar.modulate.a -= delta
 		if Input.is_action_pressed('click'):
 			timer_disappear_timer = max_timer_disappear_timer
-			$TextureProgressBar.modulate.a = 1
+			$ShootBar.modulate.a = 1
 			shoot(tears_per_shot)
 			bullet_timer = max_bullet_timer
 	

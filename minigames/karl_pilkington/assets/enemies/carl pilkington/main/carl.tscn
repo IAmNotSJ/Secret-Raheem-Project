@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3m4tnrjxopar"]
+[gd_scene load_steps=12 format=3 uid="uid://b3m4tnrjxopar"]
 
 [ext_resource type="Texture2D" uid="uid://c26b1gt2gapcm" path="res://minigames/karl_pilkington/assets/enemies/carl pilkington/main/sprites.png" id="1_18qut"]
 [ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/carl pilkington/main/carl.gd" id="1_s85pv"]
+[ext_resource type="PackedScene" uid="uid://d2rb554y2dilj" path="res://minigames/karl_pilkington/assets/enemies/carl pilkington/rhino_dash/path.tscn" id="3_4l55v"]
 
 [sub_resource type="Animation" id="Animation_yxo65"]
 length = 0.001
@@ -62,11 +63,64 @@ _data = {
 radius = 33.0
 height = 92.0
 
+[sub_resource type="Animation" id="Animation_f3a0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(636, -70)]
+}
+
+[sub_resource type="Animation" id="Animation_vum7m"]
+resource_name = "intro"
+length = 0.500004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.125, 0.166667, 0.25, 0.291667, 0.333333, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(636, -70), Vector2(528, 59), Vector2(509, 94), Vector2(527, 139), Vector2(794, 196), Vector2(831, 236), Vector2(821, 270), Vector2(651, 334)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.416667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [150],
+"method": &"dash"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6af8l"]
+_data = {
+"RESET": SubResource("Animation_f3a0s"),
+"intro": SubResource("Animation_vum7m")
+}
+
 [node name="Carl Pilkington" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
-position = Vector2(636, 338)
+position = Vector2(636, -70)
 script = ExtResource("1_s85pv")
 health = 60.0
 hitbox = [NodePath("Hitbox")]
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
@@ -77,7 +131,7 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_ensb2")
 }
-autoplay = "idle"
+autoplay = "run"
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
@@ -87,8 +141,30 @@ collision_mask = 8
 position = Vector2(-3, -10)
 shape = SubResource("CapsuleShape2D_5n45n")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-3, -10)
+shape = SubResource("CapsuleShape2D_5n45n")
+
 [node name="ShootingMarker" type="Marker2D" parent="."]
 position = Vector2(-2, -14)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(444, 13)
+[node name="attackPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6af8l")
+}
+autoplay = "intro"
+
+[node name="RhinoPath" parent="." instance=ExtResource("3_4l55v")]
+color = Color(1, 1, 1, 0)
+
+[node name="RhinoCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="RhinoCooldown" to="." method="_on_rhino_cooldown_timeout"]

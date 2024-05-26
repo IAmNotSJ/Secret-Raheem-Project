@@ -3,7 +3,7 @@ extends AnimationPlayer
 ## A custom script/node that adds some animations to the textbox.
 
 # Careful: Sync these with the ones in the root script!
-enum AnimationsIn {NONE, POP_IN, FADE_UP}
+enum AnimationsIn {NONE, POP_IN, RAHEEM_STANDARD, FADE_UP}
 enum AnimationsOut {NONE, POP_OUT, FADE_DOWN}
 enum AnimationsNewText {NONE, WIGGLE}
 
@@ -43,6 +43,8 @@ func _on_textbox_show() -> void:
 			play("textbox_pop")
 		AnimationsIn.FADE_UP:
 			play("textbox_fade_up")
+		AnimationsIn.RAHEEM_STANDARD:
+			play("textbox_pop_in")
 	if not is_connected(&'animation_finished', Callable(animation_system, &'animation_finished')):
 		var _error : int = connect(&'animation_finished', Callable(animation_system, &'animation_finished'), CONNECT_ONE_SHOT)
 

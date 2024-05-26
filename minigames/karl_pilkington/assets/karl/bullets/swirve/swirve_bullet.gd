@@ -12,8 +12,12 @@ func _physics_process(delta):
 	if delete_timer <= 0:
 		queue_free()
 	rotation_degrees += 60 * delta
-	position.x += bullet_speed * cos(rotation - deg_to_rad(30)) * delta
-	position.y += bullet_speed * sin(rotation - deg_to_rad(30)) * delta
+	
+	rotation -= deg_to_rad(45) * delta * 2
+	
+	velocity.x = bullet_speed * cos(rotation)
+	velocity.y = bullet_speed * sin(rotation)
+	super(delta)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	pass

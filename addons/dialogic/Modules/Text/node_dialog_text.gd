@@ -22,6 +22,8 @@ var base_visible_characters := 0
 # May be overwritten when syncing reveal speed to voice.
 var active_speed: float = 0.01
 
+var real_speed : float = 0.04
+
 var speed_counter: float = 0
 
 func _set(property: StringName, what: Variant) -> bool:
@@ -41,7 +43,10 @@ func _set(property: StringName, what: Variant) -> bool:
 func _ready() -> void:
 	# add to necessary
 	add_to_group('dialogic_dialog_text')
-
+	meta_hover_ended.connect(_on_meta_hover_ended)
+	meta_hover_started.connect(_on_meta_hover_started)
+	meta_clicked.connect(_on_meta_clicked)
+	gui_input.connect(on_gui_input)
 	bbcode_enabled = true
 	if textbox_root == null:
 		textbox_root = self
@@ -115,8 +120,7 @@ func continue_reveal() -> void:
 		finish_text()
 		# if the text finished organically, add a small input block
 		# this prevents accidental skipping when you expected the text to be longer
-		# TODO! Make this configurable in the settings!
-		DialogicUtil.autoload().Inputs.block_input(0.3)
+		DialogicUtil.autoload().Inputs.block_input(ProjectSettings.get_setting('dialogic/text/advance_delay', 0.1))
 
 
 ## Reveals the entire text instantly.
@@ -136,6 +140,23 @@ func _process(delta: float) -> void:
 
 	speed_counter += delta
 
-	while speed_counter > active_speed and revealing and !DialogicUtil.autoload().paused:
-		speed_counter -= active_speed
+	while speed_counter > real_speed and revealing and !DialogicUtil.autoload().paused:
+		speed_counter -= real_speed
 		continue_reveal()
+
+
+
+func _on_meta_hover_started(_meta:Variant) -> void:
+	DialogicUtil.autoload().Inputs.action_was_consumed = true
+
+func _on_meta_hover_ended(_meta:Variant) -> void:
+	DialogicUtil.autoload().Inputs.action_was_consumed = false
+
+func _on_meta_clicked(_meta:Variant) -> void:
+	DialogicUtil.autoload().Inputs.action_was_consumed = true
+
+
+## Handle mouse input
+func on_gui_input(event:InputEvent) -> void:
+	DialogicUtil.autoload().Inputs.handle_node_gui_input(event)
+

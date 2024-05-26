@@ -14,7 +14,7 @@ extends DialogicLayoutLayer
 
 enum Alignments {LEFT, CENTER, RIGHT}
 
-enum AnimationsIn {NONE, POP_IN, FADE_UP}
+enum AnimationsIn {NONE, POP_IN, RAHEEM_STANDARD, FADE_UP}
 enum AnimationsOut {NONE, POP_OUT, FADE_DOWN}
 enum AnimationsNewText {NONE, WIGGLE}
 
@@ -129,29 +129,29 @@ func _apply_export_overrides() -> void:
 	animations.set(&'animation_new_text', box_animation_new_text)
 
 	## NAME LABEL SETTINGS
-	var name_label: DialogicNode_NameLabel = %DialogicNode_NameLabel
-	if name_label_use_global_font_size:
-		name_label.add_theme_font_size_override(&"font_size", get_global_setting(&'font_size', name_label_custom_font_size) as int)
-	else:
-		name_label.add_theme_font_size_override(&"font_size", name_label_custom_font_size)
+	#var name_label: DialogicNode_NameHolder = %NameHolder
+	#if name_label_use_global_font_size:
+	#	name_label.add_theme_font_size_override(&"font_size", get_global_setting(&'font_size', name_label_custom_font_size) as int)
+	#else:
+	#	name_label.add_theme_font_size_override(&"font_size", name_label_custom_font_size)
 
-	if name_label_use_global_font and get_global_setting(&'font', false):
-		name_label.add_theme_font_override(&'font', load(get_global_setting(&'font', '') as String) as Font)
-	elif not name_label_font.is_empty():
-		name_label.add_theme_font_override(&'font', load(name_label_font) as Font)
+	#if name_label_use_global_font and get_global_setting(&'font', false):
+	#	name_label.add_theme_font_override(&'font', load(get_global_setting(&'font', '') as String) as Font)
+	#elif not name_label_font.is_empty():
+	#	name_label.add_theme_font_override(&'font', load(name_label_font) as Font)
 
-	if name_label_use_global_color:
-		name_label.add_theme_color_override(&"font_color", get_global_setting(&'font_color', name_label_custom_color) as Color)
-	else:
-		name_label.add_theme_color_override(&"font_color", name_label_custom_color)
+	#if name_label_use_global_color:
+	#	name_label.add_theme_color_override(&"font_color", get_global_setting(&'font_color', name_label_custom_color) as Color)
+	#else:
+	#	name_label.add_theme_color_override(&"font_color", name_label_custom_color)
 
-	name_label.use_character_color = name_label_use_character_color
+	#name_label.use_character_color = name_label_use_character_color
 
-	var name_label_panel: PanelContainer = %NameLabelPanel
-	if ResourceLoader.exists(name_label_box_panel):
-		name_label_panel.add_theme_stylebox_override(&'panel', load(name_label_box_panel) as StyleBox)
-	else:
-		name_label_panel.add_theme_stylebox_override(&'panel', load(this_folder.path_join("vn_textbox_name_label_panel.tres")) as StyleBox)
+	var name_label_panel: Panel = %NameLabelPanel
+	#if ResourceLoader.exists(name_label_box_panel):
+	#	name_label_panel.add_theme_stylebox_override(&'panel', load(name_label_box_panel) as StyleBox)
+	#else:
+	#	name_label_panel.add_theme_stylebox_override(&'panel', load(this_folder.path_join("vn_textbox_name_label_panel.tres")) as StyleBox)
 
 	name_label_panel.position = name_label_box_offset+Vector2(0, -40)
 	name_label_panel.position -= Vector2(
@@ -162,7 +162,7 @@ func _apply_export_overrides() -> void:
 	name_label_panel.grow_horizontal = [1, 2, 0][name_label_alignment]
 
 	## NEXT INDICATOR SETTINGS
-	var next_indicator: DNextIndicator = %NextIndicator
+	var next_indicator: DialogicNode_NextIndicator = %NextIndicator
 	next_indicator.enabled = next_indicator_enabled
 
 	if next_indicator_enabled:

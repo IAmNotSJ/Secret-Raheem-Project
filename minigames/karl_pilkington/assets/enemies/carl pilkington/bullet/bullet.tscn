@@ -13,11 +13,13 @@ script = ExtResource("2_5cut7")
 screenNotifier = NodePath("VisibleOnScreenNotifier2D")
 hurtbox = [NodePath("Hurtbox")]
 destroyOnHit = true
-speed = 400.0
+speed = 600.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_7d5qg")

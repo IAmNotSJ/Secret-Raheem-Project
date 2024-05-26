@@ -8,10 +8,9 @@
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="4_t8tjp"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_next_indicator.gd" id="5_40a50"]
 [ext_resource type="Script" path="res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/autoadvance_indicator.gd" id="6_07xym"]
-[ext_resource type="Texture2D" uid="uid://b0rpqfg4fhebk" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/next.svg" id="6_uch03"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="7_bi7sh"]
-[ext_resource type="StyleBox" uid="uid://m7gyepkysu83" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_name_label_panel.tres" id="9_yg8ig"]
-[ext_resource type="Texture2D" uid="uid://gcwfpawrmb3" path="res://overworld/dialogue/styles/RaheemStyle/Assets/okragly_skurwiel_by_parasolek_dfnat1s-375w.jpg" id="11_7tn2f"]
+[ext_resource type="Texture2D" uid="uid://3glbql824pom" path="res://overworld/dialogue/styles/RaheemStyle/Assets/nextIndicator.png" id="8_fa57t"]
+[ext_resource type="Texture2D" uid="uid://b0nis35fdu0d" path="res://overworld/dialogue/styles/RaheemStyle/Assets/nameHolders/unknown title.png" id="12_tf75x"]
+[ext_resource type="Script" path="res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/NameHolder.gd" id="12_wjmjr"]
 
 [sub_resource type="Animation" id="Animation_au0a2"]
 length = 0.001
@@ -194,15 +193,69 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_uebqa"]
+resource_name = "textbox_pop_in"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/AnimationParent:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.375, 0.458333, 0.541667, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 163), Vector2(0, 96), Vector2(0, -15), Vector2(0, -18), Vector2(0, -8), Vector2(0, 10), Vector2(0, 6), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Anchor/AnimationParent:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anchor/AnimationParent:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Anchor/AnimationParent:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c14kh"]
 _data = {
 "RESET": SubResource("Animation_au0a2"),
 "new_text": SubResource("Animation_6kbwc"),
 "textbox_fade_up": SubResource("Animation_g6k55"),
-"textbox_pop": SubResource("Animation_htbgc")
+"textbox_pop": SubResource("Animation_htbgc"),
+"textbox_pop_in": SubResource("Animation_uebqa")
 }
 
-[sub_resource type="FontVariation" id="FontVariation_v8y64"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7odrn"]
 
 [node name="VN_TextboxLayer" type="Control"]
 layout_mode = 3
@@ -215,11 +268,8 @@ mouse_filter = 2
 script = ExtResource("1_bpydr")
 text_custom_color = Color(1, 1, 1, 1)
 box_panel = "res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/vn_textbox_default_panel.tres"
+box_animation_in = 2
 name_label_box_panel = "res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/vn_textbox_name_label_panel.tres"
-
-[node name="OkraglySkurwielByParasolekDfnat1s-375w" type="Sprite2D" parent="."]
-position = Vector2(661, 286)
-texture = ExtResource("11_7tn2f")
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -286,15 +336,15 @@ unique_name_in_owner = true
 layout_mode = 2
 offset_left = 238.0
 offset_top = 127.0
-offset_right = 507.0
-offset_bottom = 166.0
+offset_right = 1122.0
+offset_bottom = 303.0
 mouse_filter = 1
 theme_override_colors/default_color = Color(0.0549926, 0.024098, 0.165314, 1)
 theme_override_fonts/normal_font = ExtResource("4_t8tjp")
-theme_override_font_sizes/normal_font_size = 25
-theme_override_font_sizes/bold_font_size = 25
-theme_override_font_sizes/italics_font_size = 25
-theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
 bbcode_enabled = true
 text = "Some default text"
 visible_characters_behavior = 1
@@ -314,11 +364,12 @@ offset_left = 1111.0
 offset_top = 295.0
 offset_right = 1111.0
 offset_bottom = 295.0
+scale = Vector2(2, 2)
 size_flags_horizontal = 8
 size_flags_vertical = 8
 script = ExtResource("5_40a50")
-show_on_questions = true
-texture = ExtResource("6_uch03")
+animation = 2
+texture = ExtResource("8_fa57t")
 metadata/_edit_layout_mode = 1
 
 [node name="AutoAdvanceProgressbar" type="ProgressBar" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
@@ -326,10 +377,10 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.188235)
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-offset_left = 15.0
-offset_top = 25.0
-offset_right = 285.0
-offset_bottom = 35.0
+offset_left = 98.0
+offset_top = 306.0
+offset_right = 1136.0
+offset_bottom = 316.0
 size_flags_vertical = 8
 max_value = 1.0
 step = 0.001
@@ -340,31 +391,23 @@ script = ExtResource("6_07xym")
 [node name="NameLabelHolder" type="Control" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 91.0
-offset_top = 151.0
-offset_right = 361.0
-offset_bottom = 171.0
+offset_left = 62.0
+offset_top = 32.0
+offset_right = 332.0
+offset_bottom = 52.0
 mouse_filter = 2
 
-[node name="NameLabelPanel" type="PanelContainer" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/NameLabelHolder"]
+[node name="NameLabelPanel" type="Panel" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/NameLabelHolder"]
 unique_name_in_owner = true
-self_modulate = Color(0.00784314, 0.00784314, 0.00784314, 0.843137)
-layout_mode = 1
-offset_left = -30.0
-offset_top = -97.0
-offset_right = 75.0
-offset_bottom = 16.0
-theme_override_styles/panel = ExtResource("9_yg8ig")
-metadata/_edit_layout_mode = 1
-metadata/_edit_use_custom_anchors = true
-metadata/_edit_group_ = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7odrn")
 
-[node name="DialogicNode_NameLabel" type="Label" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/NameLabelHolder/NameLabelPanel" node_paths=PackedStringArray("name_label_root")]
+[node name="NameHolder" type="TextureRect" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/NameLabelHolder/NameLabelPanel"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("FontVariation_v8y64")
-theme_override_font_sizes/font_size = 15
-text = "S"
-script = ExtResource("7_bi7sh")
-name_label_root = NodePath("..")
+offset_right = 116.0
+offset_bottom = 141.0
+texture = ExtResource("12_tf75x")
+script = ExtResource("12_wjmjr")

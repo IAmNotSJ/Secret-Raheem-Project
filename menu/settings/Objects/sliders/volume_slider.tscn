@@ -39,6 +39,7 @@ offset_left = 225.0
 offset_top = 6.0
 offset_right = 1158.0
 offset_bottom = 68.0
+theme_override_constants/center_grabber = -165
 theme_override_icons/grabber = ExtResource("1_tpyu0")
 theme_override_icons/grabber_highlight = ExtResource("1_tpyu0")
 theme_override_icons/tick = ExtResource("1_tpyu0")

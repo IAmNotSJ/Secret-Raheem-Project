@@ -24,9 +24,10 @@ func _ready():
 	
 	music.play()
 
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept"):
-		$UpgradeHandler.spawn_upgrade()
+func _unhandled_input(_event):
+	#if event.is_action_pressed("ui_accept"):
+	#$UpgradeHandler.spawn_upgrade()
+	pass
 
 func changeMusic(daMusic):
 	music.stream = daMusic

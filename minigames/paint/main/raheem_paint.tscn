@@ -1,8 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://8q5ryivwc7he"]
+[gd_scene load_steps=9 format=3 uid="uid://8q5ryivwc7he"]
 
 [ext_resource type="Script" path="res://minigames/paint/main/raheem_paint.gd" id="1_60xtu"]
 [ext_resource type="PackedScene" uid="uid://c4kulem5g8wu1" path="res://minigames/paint/canvas/canvas.tscn" id="1_dlnkp"]
 [ext_resource type="Texture2D" uid="uid://bwga2hrn2f3u1" path="res://minigames/paint/main/ui/bg.png" id="2_lcg8q"]
+[ext_resource type="Texture2D" uid="uid://djwd21pqgail" path="res://minigames/paint/main/ui/slider icon.png" id="4_aikaw"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="5_y0g8o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_610l8"]
+bg_color = Color(0.133157, 0.181525, 0.404006, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0714086, 0.0388675, 0.205488, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijt5b"]
+bg_color = Color(0.153392, 0.413251, 0.81339, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.319013, 0.771008, 0.951241, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75mdw"]
+bg_color = Color(0.0705882, 0.0392157, 0.203922, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0705882, 0.0392157, 0.203922, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
 
 [node name="Raheem Paint" type="Node2D"]
 script = ExtResource("1_60xtu")
@@ -25,16 +70,33 @@ offset_left = 5.0
 offset_top = 193.0
 offset_right = 333.0
 offset_bottom = 209.0
+theme_override_icons/grabber = ExtResource("4_aikaw")
+theme_override_icons/grabber_highlight = ExtResource("4_aikaw")
+theme_override_icons/grabber_disabled = ExtResource("4_aikaw")
+theme_override_styles/slider = SubResource("StyleBoxFlat_610l8")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ijt5b")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ijt5b")
 min_value = 2.0
 max_value = 20.0
 value = 2.0
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-offset_left = 12.0
-offset_top = 397.0
-offset_right = 194.0
-offset_bottom = 579.0
+offset_left = 16.0
+offset_top = 219.0
+offset_right = 125.0
+offset_bottom = 328.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_75mdw")
 text = "dasdasdads"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 6.0
+offset_top = 164.0
+offset_right = 175.0
+offset_bottom = 197.0
+theme_override_colors/default_color = Color(0.0705882, 0.0392157, 0.203922, 1)
+theme_override_fonts/normal_font = ExtResource("5_y0g8o")
+theme_override_font_sizes/normal_font_size = 22
+text = "Brush Size"
 
 [connection signal="drag_ended" from="Buttons/Brush Size" to="." method="_on_brush_size_drag_ended"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

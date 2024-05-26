@@ -141,7 +141,7 @@ func look_at_target(daTarget, pupil, marker):
 
 func change_health():
 	health = health2
-	mainScene.update_max_health(health2)
+	mainScene.ui.update_max_health(health2)
 	state = BIG
 
 func die():

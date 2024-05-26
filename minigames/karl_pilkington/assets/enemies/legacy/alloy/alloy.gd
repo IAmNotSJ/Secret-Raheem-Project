@@ -1,6 +1,6 @@
 extends LegacyMember
 
-@onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/pill.tscn")
+@onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/daPill.tscn")
 
 @onready var pupil = $Node2D/Pupil
 @onready var marker = $Node2D/Marker2D

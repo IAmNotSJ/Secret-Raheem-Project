@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2rb554y2dilj"]
+
+[ext_resource type="Script" path="res://minigames/karl_pilkington/assets/enemies/carl pilkington/rhino_dash/path.gd" id="1_42ut6"]
+
+[node name="Rhino Path" type="ColorRect"]
+z_index = -1
+offset_right = 205.0
+offset_bottom = 32.0
+pivot_offset = Vector2(0, 16)
+script = ExtResource("1_42ut6")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 15)

@@ -11,18 +11,21 @@ const chefScene = "res://minigames/karl_pilkington/assets/enemies/the chef/main/
 const legacyScene = "res://minigames/karl_pilkington/assets/enemies/legacy/legacies.tscn"
 const dapperScene = "res://minigames/karl_pilkington/assets/enemies/grabber/main/grabber.tscn"
 const monikaScene = "res://minigames/karl_pilkington/assets/enemies/monika/main/monika.tscn"
+const carlScene = "res://minigames/karl_pilkington/assets/enemies/carl pilkington/main/carl.tscn"
 
 var fullEnemyList:Array = [
 	cleftScene,
 	dapperScene,
 	chefScene,
 	monikaScene,
-	legacyScene
+	legacyScene,
+	carlScene
 ]
 
 var phase1Array = [
-cleftScene,
-dapperScene
+#cleftScene,
+#dapperScene
+carlScene
 ]
 var phase2Array = [
 chefScene,

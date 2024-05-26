@@ -59,7 +59,7 @@ visible = false
 position = Vector2(-1, -14)
 shape = SubResource("CapsuleShape2D_t1aud")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="ShootBar" type="TextureProgressBar" parent="."]
 offset_left = -35.0
 offset_top = -95.0
 offset_right = -12.0

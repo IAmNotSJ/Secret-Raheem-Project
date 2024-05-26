@@ -25,7 +25,7 @@ func _ready():
 	animationTree.active = true
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if can_move:
+	if can_move and Dialogic.current_timeline == null:
 		if !in_bench:
 			input_vector = Vector2.ZERO
 			input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")

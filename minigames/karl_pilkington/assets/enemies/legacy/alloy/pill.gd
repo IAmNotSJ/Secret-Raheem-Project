@@ -1,8 +1,11 @@
 extends EnemyBullet
 
-@onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/pill.tscn")
+#I actually swear to christ on a fucking stick if this file corrupts one more god forsaken time
+#I will actually blow my fucking brains out over the cold hard pavement with a shotgun
+#And it will all be pill.tscn's fault
+@onready var pillScene = preload("res://minigames/karl_pilkington/assets/enemies/legacy/alloy/daPill.tscn")
 
-@onready var mainScene = get_tree().root.get_node("Pilkington").get_node("KarlPilkington")
+@onready var mainScene = global.sceneManager.get_node("Pilkington").get_node("KarlPilkington")
 
 var ANGLE_DEGREES = 130
 
@@ -34,7 +37,7 @@ func split():
 
 func spawn_pill(leAngle):
 	var pill = pillScene.instantiate()
-	angle = leAngle
-	isChild = true
+	pill.angle = leAngle
+	pill.isChild = true
 	pill.global_position = global_position
 	mainScene.call_deferred("add_child", pill)

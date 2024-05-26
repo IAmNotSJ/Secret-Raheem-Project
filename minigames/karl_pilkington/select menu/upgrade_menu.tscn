@@ -9,9 +9,9 @@ script = ExtResource("1_b0gvb")
 
 [node name="Parallax" parent="." instance=ExtResource("2_7mohk")]
 z_index = -1
-offset_left = -164.052
+offset_left = -140.457
 offset_top = -627.078
-offset_right = 1817.95
+offset_right = 1841.55
 offset_bottom = 744.922
 texture = ExtResource("3_5wm2y")
 speed = Vector2(50, 0)
