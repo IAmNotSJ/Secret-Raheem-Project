@@ -1,5 +1,7 @@
 extends ColorRect
 
+@onready var save_dialog = $SaveDialog
+
 var can_draw = false
 
 var brush_color:Color = Color.BLACK
@@ -16,6 +18,9 @@ var stroke_count:int = 0
 func _ready():
 	DiscordSDKLoader.run_preset("Art")
 	cur_stroke = Stroke.new()
+	
+	save_dialog.add_filter("*.png", "Image")
+	
 	add_child(cur_stroke)
 
 func _process(_delta):
@@ -30,11 +35,8 @@ func _input(event):
 		make_new_stroke()
 	if event.is_action_pressed("undo"):
 		undo_stroke()
-	if event.is_action_pressed('hyena'):
-		for i in range(80):
-			stroke_count += 1
-			circles.push_back([get_local_mouse_position().lerp(Vector2(40, 40), 0.0125 * i), brush_size, brush_color])
-			queue_redraw()
+	if event.is_action_pressed("save"):
+		save_dialog.popup_centered()
 
 func add_circle_advanced(mouse_pos, radius, daColor):
 	if stroke_count > 0 and mouse_pos.distance_to(circles[circles.size() - 1][0]) > 4:
@@ -61,6 +63,7 @@ func undo_stroke():
 		strokes_special.back().queue_free()
 		strokes_special.pop_back()
 		print(strokes_special)
+	queue_redraw()
 
 func clear():
 	circles = []
@@ -76,6 +79,7 @@ func make_new_stroke():
 	cur_stroke.queue_redraw()
 	stroke_count = 0
 
+
 func _on_mouse_detection_mouse_entered():
 	can_draw = true
 	print('can draw!')
@@ -83,3 +87,22 @@ func _on_mouse_detection_mouse_entered():
 func _on_mouse_detection_mouse_exited():
 	can_draw = false
 	print("can't draw!")
+
+
+func _on_save_dialog_file_selected(path):
+	var isMaximized:bool = false
+	if DisplayServer.window_get_mode(DisplayServer.WINDOW_MODE_MAXIMIZED):
+		isMaximized = true
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	# Wait until the frame has finished before getting the texture.
+	await RenderingServer.frame_post_draw
+	# Get the viewport image.
+	var img = get_viewport().get_texture().get_image()
+	# Crop the image so we only have canvas area.
+	var cropped_image = img.get_region(Rect2(global_position, size))
+	# Save the image with the passed in path we got from the save dialog.
+	cropped_image.save_png(path + ".png")
+	
+	if isMaximized:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)

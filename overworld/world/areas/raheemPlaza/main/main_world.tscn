@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://duipwhxvx2swn"]
+[gd_scene load_steps=45 format=3 uid="uid://duipwhxvx2swn"]
 
 [ext_resource type="Texture2D" uid="uid://chkk8j4e3fge6" path="res://overworld/world/areas/raheemPlaza/backgrounds/world map.png" id="1_fr3iq"]
 [ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/main/main_world.gd" id="1_t2qyf"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://f1yuojc3knb" path="res://overworld/world/areas/raheemPlaza/main/sky/assets/mountains.png" id="22_kcpeu"]
 [ext_resource type="Texture2D" uid="uid://bywm15x0t5oc5" path="res://overworld/world/areas/raheemPlaza/main/sky/assets/tree bg.png" id="23_lmbog"]
 [ext_resource type="PackedScene" uid="uid://dmplm2w5tufh" path="res://overworld/world/areas/raheemPlaza/overworld chars/roxy/roxy.tscn" id="30_bynqj"]
+[ext_resource type="PackedScene" uid="uid://cc1md6wtks64r" path="res://overworld/light/day_night_cycle/day_night_cycle.tscn" id="34_s2bfg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8v6"]
 size = Vector2(109, 20)
@@ -92,7 +93,7 @@ position = Vector2(529, -267)
 position = Vector2(6, 26)
 
 [node name="Cherry" parent="Chars" instance=ExtResource("5_3ckn3")]
-position = Vector2(-385, 205)
+position = Vector2(-116, 6)
 offset = Vector2(0, -50)
 
 [node name="Bench2" parent="Chars" instance=ExtResource("6_rr731")]
@@ -304,7 +305,13 @@ shape = SubResource("RectangleShape2D_4r6y6")
 position = Vector2(2042, 169)
 shape = SubResource("RectangleShape2D_4438o")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="World Collisions"]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="DayNightCycle2" parent="ParallaxBackground" instance=ExtResource("34_s2bfg")]
+position = Vector2(0, 0)
+color = Color(1, 1, 1, 1)
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(595, 281)
@@ -347,6 +354,9 @@ motion_scale = Vector2(0.3, 1.05)
 [node name="Bush" type="Sprite2D" parent="ParallaxBackground/City"]
 position = Vector2(102, -760)
 texture = ExtResource("23_lmbog")
+
+[node name="DayNightCycle" parent="." instance=ExtResource("34_s2bfg")]
+color = Color(1, 1, 1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -25.0

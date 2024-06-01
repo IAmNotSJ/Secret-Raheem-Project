@@ -15,6 +15,8 @@ var pilkScene = preload("res://minigames/karl_pilkington/assets/karl/pilkingtons
 
 var boosted = false
 
+var cheating:bool = false
+
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	

@@ -42,7 +42,21 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_fb2l6")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Offset" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -137.0
+offset_top = -158.0
+offset_right = -97.0
+offset_bottom = -118.0
+
+[node name="Scale" type="Control" parent="Offset"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Offset/Scale"]
+unique_name_in_owner = true
 position = Vector2(137, 160)
 range_z_max = -1
 shadow_enabled = true
@@ -50,53 +64,55 @@ texture = ExtResource("4_gduwd")
 texture_scale = 3.0
 metadata/_edit_lock_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 position = Vector2(11, -1)
 occluder = SubResource("OccluderPolygon2D_eb62q")
 
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 position = Vector2(-2, 13)
 occluder = SubResource("OccluderPolygon2D_7cnej")
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 position = Vector2(-3, 2)
 occluder = SubResource("OccluderPolygon2D_7vqu2")
 
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 position = Vector2(-5, -9)
 occluder = SubResource("OccluderPolygon2D_ilpyg")
 
-[node name="LightOccluder2D5" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 position = Vector2(-17, 7)
 occluder = SubResource("OccluderPolygon2D_hrlu6")
 
-[node name="LightOccluder2D6" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 occluder = SubResource("OccluderPolygon2D_q3csk")
 
-[node name="LightOccluder2D7" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 occluder = SubResource("OccluderPolygon2D_fcrwo")
 
-[node name="LightOccluder2D8" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 occluder = SubResource("OccluderPolygon2D_bt5wf")
 
-[node name="LightOccluder2D9" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D9" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 occluder = SubResource("OccluderPolygon2D_4avdy")
 
-[node name="LightOccluder2D10" type="LightOccluder2D" parent="PointLight2D"]
+[node name="LightOccluder2D10" type="LightOccluder2D" parent="Offset/Scale/PointLight2D"]
 occluder = SubResource("OccluderPolygon2D_41ams")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="Offset/Scale"]
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 72.0
 scale = Vector2(4, 4)
 
-[node name="Upgrade" type="TextureButton" parent="CenterContainer"]
+[node name="UpgradeTexture" type="TextureButton" parent="Offset/Scale/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_gnc5x")
 stretch_mode = 0
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="Offset/Scale"]
+unique_name_in_owner = true
 layout_direction = 2
 layout_mode = 0
 offset_top = -62.0
@@ -106,7 +122,8 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]TITLE[/center]"
 
-[node name="Description" type="RichTextLabel" parent="."]
+[node name="Description" type="RichTextLabel" parent="Offset/Scale"]
+unique_name_in_owner = true
 layout_direction = 2
 layout_mode = 0
 offset_top = 274.0
@@ -117,4 +134,4 @@ theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center]DESCRIPTION[/center]"
 
-[connection signal="pressed" from="CenterContainer/Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="Offset/Scale/CenterContainer/UpgradeTexture" to="." method="_on_upgrade_pressed"]

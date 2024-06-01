@@ -23,9 +23,8 @@ var fullEnemyList:Array = [
 ]
 
 var phase1Array = [
-#cleftScene,
-#dapperScene
-carlScene
+cleftScene,
+dapperScene
 ]
 var phase2Array = [
 chefScene,
@@ -69,7 +68,10 @@ func _process(delta):
 					phase_changed.emit()
 					enemy_spawn_timer = max_enemy_spawn
 			else:
-				parent.changeScene("res://minigames/karl_pilkington/win/win_screen.tscn", false)
+				if parent.cheating:
+					print('ADD DEBUG WIN SCREEN')
+				else:
+					parent.parent.changeScene("res://minigames/karl_pilkington/win/win_screen.tscn", false)
 		else: 
 			parent.bossbar.value = curEnemy.health * 100
 

@@ -6,6 +6,8 @@ class_name CharacterBase extends CharacterBody2D
 @onready var animationTree:AnimationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 
+
+
 const max_exit = 3
 var exit_timer:float = max_exit
 
@@ -41,6 +43,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 				animationPlayer.play('idle_down')
 				$Sprite2D.position = Vector2.ZERO
 				in_bench = false
+	if Input.is_action_just_pressed("hyena"):
+		Transition.change_scene_to_preset("Fishing")
 
 func _physics_process(_delta):
 	if input_vector != Vector2.ZERO:

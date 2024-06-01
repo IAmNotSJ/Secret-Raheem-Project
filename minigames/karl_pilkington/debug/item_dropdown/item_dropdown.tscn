@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://2iwyjff5gef5"]
+
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="1_7cd1e"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/debug/item_dropdown/item_dropdown.gd" id="1_rgdcm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ei0h"]
+bg_color = Color(0.467329, 0.561519, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kscc1"]
+bg_color = Color(0.12549, 0.188235, 0.439216, 1)
+
+[sub_resource type="Theme" id="Theme_1ypqo"]
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_2ei0h")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_kscc1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ojex"]
+bg_color = Color(0.125134, 0.189462, 0.439792, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxvdn"]
+bg_color = Color(0.199206, 0.42783, 0.658288, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7fk8"]
+bg_color = Color(0.307494, 0.560759, 0.822252, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+expand_margin_left = 3.0
+
+[node name="OptionButton" type="OptionButton"]
+offset_left = 3.0
+offset_right = 200.0
+offset_bottom = 32.0
+theme = SubResource("Theme_1ypqo")
+theme_override_fonts/font = ExtResource("1_7cd1e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxFlat_5ojex")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ojex")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dxvdn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m7fk8")
+item_count = 1
+selected = 0
+popup/item_0/text = "Random"
+popup/item_0/id = 100
+script = ExtResource("1_rgdcm")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

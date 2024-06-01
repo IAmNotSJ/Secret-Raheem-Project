@@ -9,3 +9,4 @@ func _on_color_picker_button_color_changed(color):
 
 func _on_brush_size_drag_ended(_daVal):
 	$Canvas.brush_size = $"Buttons/Brush Size".value
+

@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://wx4vg6urdlso"]
+
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="1_8w8q4"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/debug/item_counter/item_counter.gd" id="1_e3nvb"]
+[ext_resource type="PackedScene" uid="uid://2iwyjff5gef5" path="res://minigames/karl_pilkington/debug/item_dropdown/item_dropdown.tscn" id="2_s3h63"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2ny6"]
+bg_color = Color(0.12549, 0.188235, 0.439216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyef0"]
+bg_color = Color(0.218486, 0.311087, 0.669957, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qrgv"]
+bg_color = Color(0.29928, 0.408375, 0.79804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6gbj"]
+bg_color = Color(0.12549, 0.188235, 0.439216, 1)
+
+[node name="ItemCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 138.0
+offset_bottom = 40.0
+script = ExtResource("1_e3nvb")
+
+[node name="MinusButton" type="Button" parent="."]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 34.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_t2ny6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dyef0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4qrgv")
+text = "-"
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -4.0
+offset_right = 104.0
+offset_bottom = 44.0
+theme_override_fonts/normal_font = ExtResource("1_8w8q4")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]3"
+
+[node name="PlusButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 3.0
+offset_right = 134.0
+offset_bottom = 34.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_v6gbj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dyef0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4qrgv")
+text = "+"
+
+[node name="ItemDropdowns" type="Node2D" parent="."]
+position = Vector2(0, 56)
+
+[node name="OptionButton" parent="ItemDropdowns" instance=ExtResource("2_s3h63")]
+
+[node name="OptionButton2" parent="ItemDropdowns" instance=ExtResource("2_s3h63")]
+offset_left = 218.0
+offset_right = 415.0
+index = 1
+
+[node name="OptionButton3" parent="ItemDropdowns" instance=ExtResource("2_s3h63")]
+offset_left = 433.0
+offset_right = 630.0
+index = 2
+
+[node name="OptionButton4" parent="ItemDropdowns" instance=ExtResource("2_s3h63")]
+offset_left = 648.0
+offset_right = 845.0
+index = 3
+
+[node name="OptionButton5" parent="ItemDropdowns" instance=ExtResource("2_s3h63")]
+offset_left = 863.0
+offset_right = 1060.0
+index = 4
+
+[connection signal="pressed" from="MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]

@@ -133,17 +133,18 @@ func shoot(amount):
 	playShootSound()
 
 func hit():
-	if (cooldown_timer <= 0):
-		health -= 1
-		if health != 0:
-			effectPlayer.play('hit')
-		hurt.emit()
-		playHurtSound()
-		cooldown_timer = max_cooldown
-	if health == 0:
-		sprites.animationPlayer.play('dead')
-		await sprites.animationPlayer.animation_finished
-		parent.changeScene("res://minigames/karl_pilkington/gameover/game_over.tscn", false)
+	if !parent.debugOptions["Invincibility"]:
+		if (cooldown_timer <= 0):
+			health -= 1
+			if health != 0:
+				effectPlayer.play('hit')
+			hurt.emit()
+			playHurtSound()
+			cooldown_timer = max_cooldown
+		if health == 0:
+			sprites.animationPlayer.play('dead')
+			await sprites.animationPlayer.animation_finished
+			parent.changeScene("res://minigames/karl_pilkington/gameover/game_over.tscn", false)
 
 func add_health(amount):
 	health += amount

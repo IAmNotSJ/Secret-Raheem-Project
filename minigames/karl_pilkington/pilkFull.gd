@@ -2,10 +2,36 @@ extends Node2D
 
 var pilkPath:String
 
-var debugOptions:Dictionary = {
+#Used as a reference for what is a "proper" value for a debug option
+#If one is not right, enable the cheating variable
+var debugOptionsStandard:Dictionary = {
+	"Invincibility" : false,
 	"Spawn Enemies" : true,
 	"Spawn Dummy" : false
 }
+var debugOptions:Dictionary = {
+	"Invincibility" : false,
+	"Spawn Enemies" : true,
+	"Spawn Dummy" : false
+}
+
+var customItemList:Array = [
+	"Blocky Chair",
+	"Clickbait", 
+	"The Cookie",
+	"Guardian Angel",
+	"Mini Mushroom", 
+	"Garlic",
+	"The Stick"
+]
+
+# Checks to see if theres anything in here other than "Random" when calculating upgrades.
+# If yes, add the upgrade to the designated index. 
+var custom_item_array = ["Random", "Random", "Random", "Random", "Random"]
+
+var custom_items:int = 3
+
+var usesDebug:bool = false
 
 const SAVE_PATH: String = "user://pilkington.save"
 
@@ -29,6 +55,22 @@ func changeScene(target:String, transition:bool = true):
 	
 	if transition:
 		Transition.animationPlayer.play('trans_back')
+
+func check_debug():
+	print('checking!')
+	var cheating = false
+	for i in range(debugOptions.keys().size()):
+		if debugOptions[debugOptions.keys()[i]] != debugOptionsStandard[debugOptions.keys()[i]]:
+			cheating = true
+	if custom_items != 3:
+		cheating = true
+	
+	for i in range(custom_items):
+		if custom_item_array[i] != "Random":
+			print(custom_item_array[i])
+			cheating = true
+	
+	usesDebug = cheating
 
 func save():
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

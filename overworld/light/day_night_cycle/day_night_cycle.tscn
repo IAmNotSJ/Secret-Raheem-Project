@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1md6wtks64r"]
+
+[ext_resource type="Script" path="res://overworld/light/day_night_cycle/day_night_cycle.gd" id="1_05m2r"]
+[ext_resource type="Texture2D" uid="uid://bgkga4jxkygux" path="res://overworld/light/day_night_cycle/daynightcycle-gradient-texture.tres" id="2_cytv5"]
+
+[node name="DayNightCycle" type="CanvasModulate"]
+position = Vector2(-595, -281)
+color = Color(0.116791, 0.161778, 0.269858, 1)
+script = ExtResource("1_05m2r")
+lightGradient = ExtResource("2_cytv5")

@@ -9,6 +9,7 @@ var sceneTransitions:Dictionary = {
 	"Pizzeria": "res://overworld/world/areas/raheemPlaza/pizzeria/pizzeria_back.tscn",
 	"Pilkington": "res://minigames/karl_pilkington/pilkFull.tscn",
 	"Hyena": "res://minigames/hyena_clicker/hyena_clicker.tscn",
+	"Fishing": "res://minigames/fishing/fishing_minigame.tscn",
 	"Paint": "res://minigames/paint/main/raheem_paint.tscn",
 	"Main Menu": "res://menu/main_menu.tscn"
 }

@@ -1,7 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjpdcruu4jru5"]
+[gd_scene load_steps=5 format=3 uid="uid://cjpdcruu4jru5"]
 
-[ext_resource type="PackedScene" uid="uid://bxnydvvj6ssh4" path="res://minigames/karl_pilkington/debug/button/debug_button.tscn" id="1_n04dt"]
+[ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="1_ph4tu"]
+[ext_resource type="Script" path="res://minigames/karl_pilkington/debug/debug.gd" id="1_uq6jq"]
+[ext_resource type="PackedScene" uid="uid://cuh1irb4a2cnn" path="res://minigames/karl_pilkington/debug/button/bool button.tscn" id="2_rq4ex"]
+[ext_resource type="PackedScene" uid="uid://wx4vg6urdlso" path="res://minigames/karl_pilkington/debug/item_counter/item_counter.tscn" id="5_c81ay"]
 
 [node name="Debug" type="Node2D"]
+script = ExtResource("1_uq6jq")
 
-[node name="Button" parent="." instance=ExtResource("1_n04dt")]
+[node name="Parallax" parent="." instance=ExtResource("1_ph4tu")]
+modulate = Color(0.637878, 0.672481, 0.942097, 1)
+offset_left = -122.14
+offset_top = -266.348
+offset_right = 1557.91
+offset_bottom = 818.765
+
+[node name="Options Holder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1286.0
+offset_bottom = 722.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Options Holder"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 48.0
+offset_right = 267.0
+offset_bottom = 266.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options Holder/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Invincibility" parent="Options Holder/HBoxContainer/VBoxContainer" instance=ExtResource("2_rq4ex")]
+layout_mode = 2
+text = "Invincibility"
+displayOption = "Invincibility"
+debugOption = "Invincibility"
+
+[node name="Dummy" parent="Options Holder/HBoxContainer/VBoxContainer" instance=ExtResource("2_rq4ex")]
+layout_mode = 2
+text = "Spawn Dummy"
+displayOption = "Spawn Dummy"
+debugOption = "Spawn Dummy"
+
+[node name="Enemies" parent="Options Holder/HBoxContainer/VBoxContainer" instance=ExtResource("2_rq4ex")]
+layout_mode = 2
+text = "Spawn Enemies"
+displayOption = "Spawn Enemies"
+debugOption = "Spawn Enemies"
+
+[node name="ItemCounter" parent="." instance=ExtResource("5_c81ay")]
+offset_left = 16.0
+offset_top = 447.0
+offset_right = 154.0
+offset_bottom = 487.0

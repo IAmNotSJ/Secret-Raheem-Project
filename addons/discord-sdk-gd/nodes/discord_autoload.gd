@@ -14,7 +14,7 @@ var presets:Dictionary = {
 	"Apartment" : ["EXPLORING THE APARTMENT", "main", "Just like the episode showed!"],
 	"Karl" : ["PLAYING AN ARCADE MACHINE", "pilkington", "This isn't scratch"],
 	"Hyena" : ["ROUNDING UP THE CREATURES", "hyena", "THE FOLDER CALLS"],
-	"Art" : ["RAHEEM PAINT", "main", "Mama Mia!"]
+	"Art" : ["mind your business maybe", "main", "Mama Mia!"]
 }
 
 func _ready() -> void:

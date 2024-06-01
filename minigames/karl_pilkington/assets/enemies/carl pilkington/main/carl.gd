@@ -24,6 +24,8 @@ var movement_angle_grow_direction:bool = true
 var movement_angle_grow_speed:float = 10
 var movement_gap:float = 150
 
+var random_offset:Vector2i = Vector2i(rng.randi_range(-30, 30), rng.randi_range(-30, 30))
+
 var moving:bool = true : 
 	set(value):
 		if value == true:
@@ -55,6 +57,7 @@ var shooting_cooldown = 0
 
 func _ready():
 	super()
+	$RandomTimer.start()
 	$"RhinoPath".target = target
 
 func _process(delta):
@@ -80,22 +83,16 @@ func shoot():
 func move(delta):
 	match curMovement:
 		movementTypes.SURROUND:
-			var intended_position = Vector2(target.global_position.x + cos(movement_angle) * movement_gap, target.global_position.y + sin(movement_angle) * movement_gap)
-			global_position = global_position.lerp(intended_position, speed * delta)
 			dash_timer -= delta
 			if dash_timer <= 0:
 				changeMovement()
 		movementTypes.RHINO:
-			var intended_position = Vector2(target.global_position.x + cos(movement_angle) * movement_gap, target.global_position.y + sin(movement_angle) * movement_gap)
-			global_position = global_position.lerp(intended_position, speed * delta)
 			rhino_timer -= delta
 			$RhinoPath.color.a = (RHINO_TIMER - rhino_timer) / RHINO_TIMER
 			if rhino_timer <= 0:
 				rhino_timer = RHINO_TIMER
 				rhino_dash()
 		movementTypes.AVOID:
-			var intended_position = Vector2(target.global_position.x + cos(movement_angle) * movement_gap, target.global_position.y + sin(movement_angle) * movement_gap)
-			global_position = global_position.lerp(intended_position, speed * delta)
 			movement_gap += 30 * delta
 			movement_angle += PI / 8 * delta
 			dash_timer -= delta
@@ -103,6 +100,8 @@ func move(delta):
 				changeMovement()
 			if movement_gap >= 300:
 				movement_gap = 300
+	var intended_position = Vector2(target.global_position.x + cos(movement_angle) * movement_gap + random_offset.x, target.global_position.y + sin(movement_angle) * movement_gap + random_offset.y)
+	global_position = global_position.lerp(intended_position, speed * delta)
 	
 	if movement_angle_grow_direction:
 		movement_angle += movement_angle_grow_speed * delta
@@ -211,3 +210,8 @@ func _on_rhino_cooldown_timeout():
 	shooting = true
 	changeMovement()
 	$RhinoCooldown.wait_time = RHINO_COOLDOWN
+
+
+func _on_random_timer_timeout():
+	print('timer out!')
+	random_offset = Vector2i(rng.randi_range(-30, 30), rng.randi_range(-30, 30))

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbtueiby0u6i3"]
+
+[ext_resource type="Script" path="res://overworld/misc/window gag/window.gd" id="1_ef34r"]
+[ext_resource type="Texture2D" uid="uid://bo3lfjatn44qe" path="res://overworld/misc/window gag/bitch.png" id="1_x7gmr"]
+
+[node name="Window" type="Window"]
+initial_position = 2
+size = Vector2i(380, 376)
+script = ExtResource("1_ef34r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x7gmr")
+centered = false
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

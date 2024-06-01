@@ -331,30 +331,22 @@ mouse_filter = 2
 texture = ExtResource("3_meeu3")
 metadata/_edit_layout_mode = 1
 
-[node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/AnimationParent/Sizer/DialogTextPanel" node_paths=PackedStringArray("textbox_root")]
+[node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 238.0
-offset_top = 127.0
-offset_right = 1122.0
-offset_bottom = 303.0
-mouse_filter = 1
-theme_override_colors/default_color = Color(0.0549926, 0.024098, 0.165314, 1)
+layout_mode = 0
+offset_left = 239.0
+offset_top = 119.0
+offset_right = 1135.0
+offset_bottom = 302.0
+theme_override_colors/default_color = Color(0.0235294, 0.0156863, 0.105882, 1)
 theme_override_fonts/normal_font = ExtResource("4_t8tjp")
-theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
-theme_override_font_sizes/italics_font_size = 32
-theme_override_font_sizes/bold_italics_font_size = 32
-bbcode_enabled = true
-text = "Some default text"
-visible_characters_behavior = 1
+theme_override_font_sizes/normal_font_size = 24
+text = "Sample Text"
 script = ExtResource("3_4634k")
-textbox_root = NodePath("..")
 
 [node name="DialogicNode_TypeSounds" type="AudioStreamPlayer" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/DialogicNode_DialogText"]
 unique_name_in_owner = true
 script = ExtResource("4_ma5mw")
-play_every_character = 0
 
 [node name="NextIndicator" type="Control" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
 unique_name_in_owner = true
