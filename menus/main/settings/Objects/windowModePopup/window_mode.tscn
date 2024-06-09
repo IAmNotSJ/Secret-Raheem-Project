@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://vrudn4iuu20u"]
+
+[ext_resource type="Script" path="res://menus/main/settings/Objects/windowModePopup/WindowModeButton.gd" id="1_irj87"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="1_y5r4v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p20i"]
+content_margin_top = 15.0
+bg_color = Color(0.0313726, 0.419608, 0.556863, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.141176, 0.870588, 0.909804, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31i3o"]
+bg_color = Color(0.160784, 0.301961, 0.592157, 1)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_g7uux"]
+default_font = ExtResource("1_y5r4v")
+default_font_size = 19
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_0p20i")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_31i3o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j38nu"]
+bg_color = Color(0.160784, 0.301961, 0.592157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.384314, 0.8, 0.988235, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6r01"]
+bg_color = Color(0.0313726, 0.419608, 0.556863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.141176, 0.870588, 0.909804, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oablx"]
+bg_color = Color(0.133333, 0.188235, 0.517647, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.384314, 0.8, 0.988235, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+
+[node name="WindowMode" type="OptionButton"]
+offset_right = 337.0
+offset_bottom = 59.0
+theme = SubResource("Theme_g7uux")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_j38nu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r6r01")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oablx")
+item_count = 2
+popup/item_0/text = "  Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "  Borderless Fullscreen"
+popup/item_1/id = 1
+script = ExtResource("1_irj87")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -225.0
+offset_top = 8.0
+offset_right = -4.0
+offset_bottom = 48.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 26
+text = "DISPLAY MODE"
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

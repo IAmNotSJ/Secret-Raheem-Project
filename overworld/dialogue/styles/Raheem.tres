@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogicStyle" load_steps=19 format=3 uid="uid://jr6i4wi1nqvv"]
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=21 format=3 uid="uid://jr6i4wi1nqvv"]
 
 [ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="1_kv7pe"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_8wi4v"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dhk6j6eb6e3q" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.tscn" id="7_upmw2"]
 [ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="8_lwh1o"]
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="9_57ytr"]
+[ext_resource type="PackedScene" uid="uid://ckq8cwiqweq85" path="res://overworld/dialogue/styles/RaheemStyle/CinematicBorder/cinematic_border.tscn" id="10_4aiur"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="10_5hm8y"]
 
 [sub_resource type="Resource" id="Resource_ivhii"]
@@ -20,6 +21,13 @@ overrides = {}
 script = ExtResource("2_8wi4v")
 scene = ExtResource("3_fw33j")
 overrides = {}
+
+[sub_resource type="Resource" id="Resource_d88gj"]
+script = ExtResource("2_8wi4v")
+scene = ExtResource("10_4aiur")
+overrides = {
+"disabled": "true"
+}
 
 [sub_resource type="Resource" id="Resource_3g7wx"]
 script = ExtResource("2_8wi4v")
@@ -62,5 +70,5 @@ base_overrides = {
 "global_font_color": "Color(0, 0.00683594, 0.109375, 1)",
 "global_font_size": "28.0"
 }
-layers = Array[ExtResource("2_8wi4v")]([SubResource("Resource_ivhii"), SubResource("Resource_qoix7"), SubResource("Resource_3g7wx"), SubResource("Resource_ga3xi"), SubResource("Resource_1lc55"), SubResource("Resource_8qiyj"), SubResource("Resource_f7dvm"), SubResource("Resource_egw2f")])
-metadata/_latest_layer = 1
+layers = Array[ExtResource("2_8wi4v")]([SubResource("Resource_ivhii"), SubResource("Resource_qoix7"), SubResource("Resource_d88gj"), SubResource("Resource_3g7wx"), SubResource("Resource_ga3xi"), SubResource("Resource_1lc55"), SubResource("Resource_8qiyj"), SubResource("Resource_f7dvm"), SubResource("Resource_egw2f")])
+metadata/_latest_layer = 2

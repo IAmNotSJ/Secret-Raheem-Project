@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmk0pvnookhar"]
+
+[ext_resource type="Script" path="res://menus/main/games/games_menu.gd" id="1_yj7na"]
+[ext_resource type="Texture2D" uid="uid://bebj26ta8pck6" path="res://menus/main/assets/buttons/hyena.png" id="2_238f5"]
+[ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menus/main/assets/buttons/hyena-select.png" id="3_7wdc0"]
+[ext_resource type="Texture2D" uid="uid://bhgabmxek0jvw" path="res://menus/main/assets/buttons/karl.png" id="4_mjd6l"]
+[ext_resource type="Texture2D" uid="uid://dnaf0su4shk35" path="res://menus/main/assets/buttons/karl-select.png" id="5_bucjh"]
+
+[node name="Games" type="Node2D"]
+script = ExtResource("1_yj7na")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 31.0
+offset_top = 34.0
+offset_right = 1224.0
+offset_bottom = 693.0
+color = Color(0.129412, 1, 0.929412, 1)
+
+[node name="Hyena" type="TextureButton" parent="."]
+offset_left = 77.0
+offset_top = 77.0
+offset_right = 175.0
+offset_bottom = 175.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_238f5")
+texture_hover = ExtResource("3_7wdc0")
+
+[node name="Karl" type="TextureButton" parent="."]
+offset_left = 88.0
+offset_top = 258.0
+offset_right = 137.0
+offset_bottom = 307.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("4_mjd6l")
+texture_hover = ExtResource("5_bucjh")
+
+[node name="Paint" type="TextureButton" parent="."]
+offset_left = 89.0
+offset_top = 437.0
+offset_right = 187.0
+offset_bottom = 535.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_238f5")
+
+[connection signal="pressed" from="Hyena" to="." method="_on_hyena_pressed"]
+[connection signal="pressed" from="Karl" to="." method="_on_karl_pressed"]
+[connection signal="pressed" from="Paint" to="." method="_on_paint_pressed"]

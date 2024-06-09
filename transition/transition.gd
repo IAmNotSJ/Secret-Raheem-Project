@@ -11,7 +11,7 @@ var sceneTransitions:Dictionary = {
 	"Hyena": "res://minigames/hyena_clicker/hyena_clicker.tscn",
 	"Fishing": "res://minigames/fishing/fishing_minigame.tscn",
 	"Paint": "res://minigames/paint/main/raheem_paint.tscn",
-	"Main Menu": "res://menu/main_menu.tscn"
+	"Main Menu": "res://menus/main/main_menu.tscn"
 }
 func change_scene_to_file(target: String) -> void:
 	animationPlayer.play('trans')

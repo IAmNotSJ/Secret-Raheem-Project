@@ -46,7 +46,8 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "cherry": "res://overworld/dialogue/scripts/overworld/cherry.dtl",
-"fountain": "res://overworld/dialogue/scripts/overworld/fountain.dtl"
+"fountain": "res://overworld/dialogue/scripts/overworld/fountain.dtl",
+"sj": "res://overworld/dialogue/scripts/overworld/sj.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://overworld/dialogue/styles/Raheem.tres"]
@@ -67,7 +68,7 @@ window/size/transparent=true
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/per_pixel_transparency/allowed=true
-mouse_cursor/custom_image="res://mouse/mouse.png"
+mouse_cursor/custom_image="res://useful shit/mouse/mouse.png"
 
 [dotnet]
 

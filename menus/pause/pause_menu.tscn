@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk0gmij718rnj"]
+
+[ext_resource type="Script" path="res://menus/pause/pause_menu.gd" id="1_cmu5r"]
+
+[sub_resource type="Animation" id="Animation_kp7wo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animation_parent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_koevb"]
+resource_name = "jump_in"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animation_parent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.375, 0.5, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-584, 0), Vector2(-416, 0), Vector2(-72, 0), Vector2(56, 0), Vector2(65, 0), Vector2(73, 0), Vector2(-15, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8qmb"]
+_data = {
+"RESET": SubResource("Animation_kp7wo"),
+"jump_in": SubResource("Animation_koevb")
+}
+
+[node name="pause_menu" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cmu5r")
+
+[node name="animation_parent" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 413.0
+offset_bottom = 751.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="animation_parent"]
+layout_mode = 0
+offset_left = -354.0
+offset_top = 56.0
+offset_right = 412.0
+offset_bottom = 917.0
+rotation = -0.216421
+
+[node name="VBoxContainer" type="VBoxContainer" parent="animation_parent"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 98.0
+offset_right = 414.0
+offset_bottom = 628.0
+theme_override_constants/separation = 85
+
+[node name="Button" type="Button" parent="animation_parent/VBoxContainer"]
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+text = "RESUME"
+
+[node name="Button2" type="Button" parent="animation_parent/VBoxContainer"]
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="Button3" type="Button" parent="animation_parent/VBoxContainer"]
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+text = "MAIN MENU"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g8qmb")
+}

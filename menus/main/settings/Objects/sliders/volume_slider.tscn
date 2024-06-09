@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbfjt7eeiihnp"]
+
+[ext_resource type="Script" path="res://menus/main/settings/Objects/sliders/slider.gd" id="1_kf0n8"]
+[ext_resource type="Texture2D" uid="uid://bsee7k00jkktu" path="res://menus/main/settings/Objects/sliders/raheem icon.png" id="1_tpyu0"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_cupjv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0oxy"]
+bg_color = Color(0.498039, 0.564706, 0.972549, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.211765, 0.211765, 0.639216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+expand_margin_top = 15.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksw6o"]
+bg_color = Color(0.384314, 0.8, 0.988235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.258824, 0.329412, 0.662745, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+expand_margin_top = 15.0
+anti_aliasing = false
+
+[node name="HSlider" type="HSlider"]
+offset_left = 225.0
+offset_top = 6.0
+offset_right = 1158.0
+offset_bottom = 68.0
+theme_override_constants/center_grabber = -165
+theme_override_icons/grabber = ExtResource("1_tpyu0")
+theme_override_icons/grabber_highlight = ExtResource("1_tpyu0")
+theme_override_icons/tick = ExtResource("1_tpyu0")
+theme_override_styles/slider = SubResource("StyleBoxFlat_p0oxy")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ksw6o")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ksw6o")
+max_value = 2.0
+step = 0.01
+script = ExtResource("1_kf0n8")
+setting = "Master"
+updateOnMove = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -203.0
+offset_top = 5.0
+offset_bottom = 45.0
+rotation = -0.00151817
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_cupjv")
+theme_override_font_sizes/normal_font_size = 26
+text = "BUS VOLUME"
+
+[node name="Volume Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Volume" type="RichTextLabel" parent="Volume Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.312
+anchor_right = 2.125
+anchor_bottom = 0.312
+offset_left = 19.0
+offset_top = -18.48
+offset_right = 80.0
+offset_bottom = 18.52
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_cupjv")
+theme_override_font_sizes/normal_font_size = 26
+text = "50%"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="drag_ended" from="." to="." method="_on_drag_ended"]
+[connection signal="drag_started" from="." to="." method="_on_drag_started"]
