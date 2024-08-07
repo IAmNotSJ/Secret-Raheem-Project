@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8xrlg2uabl00"]
+
+[ext_resource type="Texture2D" uid="uid://dnwvo6tq1i0nt" path="res://overworld/world/areas/raheemPlaza/main/assets/light.png" id="1_britl"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rb3ri"]
+polygon = PackedVector2Array(-8, 0, -5, 3, 5, 3, 7, -1, 8, -1, 8, 5, -8, 5)
+
+[sub_resource type="Gradient" id="Gradient_4iewh"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_47qib"]
+gradient = SubResource("Gradient_4iewh")
+width = 124
+height = 124
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Light" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_britl")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -1)
+occluder = SubResource("OccluderPolygon2D_rb3ri")
+sdf_collision = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightOccluder2D"]
+y_sort_enabled = true
+energy = 0.53
+range_layer_min = -1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_47qib")
+texture_scale = 5.0

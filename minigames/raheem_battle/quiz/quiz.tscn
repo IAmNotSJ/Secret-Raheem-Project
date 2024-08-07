@@ -1,0 +1,442 @@
+[gd_scene load_steps=4 format=3 uid="uid://buki7x0i4et4q"]
+
+[ext_resource type="PackedScene" uid="uid://dq3tmnfxq7asm" path="res://minigames/raheem_battle/quiz/answer_types/dropdown.tscn" id="1_a7ota"]
+[ext_resource type="PackedScene" uid="uid://d1hb74w06f06s" path="res://minigames/raheem_battle/quiz/answer_types/number.tscn" id="2_wckwr"]
+[ext_resource type="PackedScene" uid="uid://dtirb10f05po3" path="res://minigames/raheem_battle/quiz/answer_types/binary.tscn" id="3_wpjmg"]
+
+[node name="Quiz" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 1279.0
+offset_bottom = 1339.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1280, 1500)
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1280, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Raheem Battle Quiz"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1280, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Question 1" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 1:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214
+anchor_top = 1.403
+anchor_right = 0.214
+anchor_bottom = 1.403
+offset_left = -233.92
+offset_top = -11.493
+offset_right = 1.07999
+offset_bottom = 11.507
+text = "What server member are you?"
+
+[node name="OptionButton" parent="ScrollContainer/VBoxContainer/Question 1/Label" instance=ExtResource("1_a7ota")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.543
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_left = 1.0
+offset_top = -15.489
+offset_right = 156.0
+offset_bottom = 15.511
+grow_horizontal = 0
+grow_vertical = 2
+item_count = 14
+selected = 0
+popup/item_0/text = "Wibr"
+popup/item_0/id = 0
+popup/item_1/text = "SJ"
+popup/item_1/id = 1
+popup/item_2/text = "Cleft"
+popup/item_2/id = 2
+popup/item_3/text = "Block"
+popup/item_3/id = 3
+popup/item_4/text = "Cherry"
+popup/item_4/id = 4
+popup/item_5/text = "Dapper"
+popup/item_5/id = 5
+popup/item_6/text = "Slime"
+popup/item_6/id = 6
+popup/item_7/text = "Atlas"
+popup/item_7/id = 7
+popup/item_8/text = "Dile"
+popup/item_8/id = 8
+popup/item_9/text = "Composty"
+popup/item_9/id = 9
+popup/item_10/text = "Cost"
+popup/item_10/id = 10
+popup/item_11/text = "Lambda"
+popup/item_11/id = 11
+popup/item_12/text = "Luna"
+popup/item_12/id = 12
+popup/item_13/text = "Other"
+popup/item_13/id = 13
+answerKey = "Server Member"
+answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "Other"])
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 2" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 2:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.403
+anchor_right = 0.23
+anchor_bottom = 1.403
+offset_left = -254.4
+offset_top = -11.493
+offset_right = -117.4
+offset_bottom = 11.507
+text = "What is your age?"
+
+[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 2/Label" instance=ExtResource("2_wckwr")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.543
+anchor_right = 1.0
+anchor_bottom = 0.543
+offset_left = 4.0
+offset_top = -15.489
+offset_right = 159.0
+offset_bottom = 15.511
+answerKey = "Age"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 3" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 3:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.366
+anchor_top = 1.403
+anchor_right = 0.366
+anchor_bottom = 1.403
+offset_left = -428.48
+offset_top = -11.493
+offset_right = -173.48
+offset_bottom = 11.507
+text = "Have you ever made any Raheem/BBB related projects?"
+metadata/_edit_use_anchors_ = true
+
+[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 3/Label" instance=ExtResource("3_wpjmg")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -11.5
+offset_right = 26.0
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+answerKey = "Projects"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 4" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 4:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.403
+anchor_right = 0.23
+anchor_bottom = 1.403
+offset_left = -254.4
+offset_top = -11.493
+offset_right = -28.4
+offset_bottom = 11.507
+text = "Are you currently employed?"
+
+[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 4/Label" instance=ExtResource("3_wpjmg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.00885
+anchor_top = 0.521739
+anchor_right = 1.00885
+anchor_bottom = 0.521739
+offset_top = -12.0
+offset_bottom = 12.0
+grow_vertical = 2
+answerKey = "Employment"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 5" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 5:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 1.403
+anchor_right = 0.23
+anchor_bottom = 1.403
+offset_left = -254.4
+offset_top = -11.493
+offset_right = -28.4
+offset_bottom = 11.507
+text = "Are you a furry?"
+
+[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 5/Label" instance=ExtResource("3_wpjmg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.561
+anchor_top = 0.565
+anchor_right = 0.561
+anchor_bottom = 0.565
+offset_left = 1.21399
+offset_top = -11.995
+offset_right = 25.214
+offset_bottom = 12.005
+grow_horizontal = 0
+grow_vertical = 2
+answerKey = "Furry"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 6" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 6:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 6"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 287.0
+offset_bottom = 55.0
+text = "Do you stream on twitch?"
+autowrap_mode = 3
+
+[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 6" instance=ExtResource("3_wpjmg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.191
+anchor_top = 1.419
+anchor_right = 0.191
+anchor_bottom = 1.419
+offset_left = 0.519989
+offset_top = -11.989
+offset_right = 24.52
+offset_bottom = 12.011
+answerKey = "Twitch"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 7" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 7:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 7"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 32.0
+offset_right = 930.0
+offset_bottom = 84.0
+text = "Use the Midpoint Rule to estimate the volume under f(x,y)x²+y and above the rectangle given by −1≤x≤3, 0≤y≤4 in the xy-plane. Use 4 subdivisions in the x direction and 2 subdivisions in the y direction."
+autowrap_mode = 3
+
+[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 7/Label" instance=ExtResource("2_wckwr")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.01125
+anchor_top = 0.412808
+anchor_right = 1.01125
+anchor_bottom = 0.412808
+offset_left = 2.0
+offset_top = -15.466
+offset_right = 157.0
+offset_bottom = 15.534
+answerKey = "Math"
+metadata/_edit_use_anchors_ = true
+
+[node name="Break3" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Question 8" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 8:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 8"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 176.0
+offset_bottom = 55.0
+text = "Are you autistic?"
+autowrap_mode = 3
+
+[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 8/Label" instance=ExtResource("3_wpjmg")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.059
+anchor_top = 0.5
+anchor_right = 1.059
+anchor_bottom = 0.5
+offset_left = -0.0240021
+offset_top = -10.5
+offset_right = 23.976
+offset_bottom = 13.5
+answerKey = "Twitch"
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 9" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 9:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 9"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 387.0
+offset_bottom = 57.0
+text = "Who is your favorite other raheem member?"
+autowrap_mode = 3
+
+[node name="OptionButton2" parent="ScrollContainer/VBoxContainer/Question 9/Label" instance=ExtResource("1_a7ota")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.01691
+anchor_top = 0.5
+anchor_right = 1.01691
+anchor_bottom = 0.5
+offset_left = 0.130981
+offset_top = -15.5
+offset_right = 155.131
+offset_bottom = 15.5
+item_count = 14
+selected = 0
+popup/item_0/text = "Wibr"
+popup/item_0/id = 0
+popup/item_1/text = "SJ"
+popup/item_1/id = 1
+popup/item_2/text = "Cleft"
+popup/item_2/id = 2
+popup/item_3/text = "Block"
+popup/item_3/id = 3
+popup/item_4/text = "Cherry"
+popup/item_4/id = 4
+popup/item_5/text = "Dapper"
+popup/item_5/id = 5
+popup/item_6/text = "Slime"
+popup/item_6/id = 6
+popup/item_7/text = "Atlas"
+popup/item_7/id = 7
+popup/item_8/text = "Dile"
+popup/item_8/id = 8
+popup/item_9/text = "Composty"
+popup/item_9/id = 9
+popup/item_10/text = "Cost"
+popup/item_10/id = 10
+popup/item_11/text = "Lambda"
+popup/item_11/id = 11
+popup/item_12/text = "Luna"
+popup/item_12/id = 12
+popup/item_13/text = "Other"
+popup/item_13/id = 13
+answerKey = "Favorite Member"
+answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "Other"])
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 10" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 10:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 10"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 416.0
+offset_bottom = 57.0
+text = "Team Markiplier, Jacksepticeye, or Pewdiepie?"
+autowrap_mode = 3
+
+[node name="OptionButton2" parent="ScrollContainer/VBoxContainer/Question 10/Label" instance=ExtResource("1_a7ota")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.01691
+anchor_top = 0.5
+anchor_right = 1.01691
+anchor_bottom = 0.5
+offset_left = 0.130981
+offset_top = -15.5
+offset_right = 155.131
+offset_bottom = 15.5
+item_count = 3
+selected = 0
+popup/item_0/text = "Markiplier"
+popup/item_0/id = 0
+popup/item_1/text = "Jacksepticeye"
+popup/item_1/id = 1
+popup/item_2/text = "Pewdiepie"
+popup/item_2/id = 2
+answerKey = "Favorite Member"
+answers = Array[String](["Markiplier", "Jacksepticeye", "Pewdiepie"])
+metadata/_edit_use_anchors_ = true
+
+[node name="Question 11" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Question 11:"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 11"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 32.0
+offset_right = 264.0
+offset_bottom = 84.0
+text = "What's your lucky number?"
+autowrap_mode = 3
+
+[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 11/Label" instance=ExtResource("2_wckwr")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.01125
+anchor_top = 0.412808
+anchor_right = 1.01125
+anchor_bottom = 0.412808
+offset_left = 2.0
+offset_top = -15.466
+offset_right = 157.0
+offset_bottom = 15.534
+answerKey = "Math"
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://xcaxs85rnd6m"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_mes33"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_mes33")
+card_name = "Raheem"
+card_series = "Raheem"
+card_number = "000"
+base_attack = 2
+base_defense = 2
+size = 2
+can_get_bonuses = true
+ability_name = "Sand Veil"
+one_use_ability = false
+ability_description = "This card has a 50% chance to block an opponent's attack if it would normally lose the round, making nobody win the current round."
+should_remove = true

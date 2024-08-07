@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dyljn37bwojlg"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_5bv0y"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5bv0y")
+card_name = "Reanimated Collab"
+card_series = "Raheem"
+card_number = "018"
+base_attack = 1
+base_defense = 1
+size = 2
+can_get_bonuses = true
+ability_name = "Deadline"
+one_use_ability = false
+ability_description = "This card will get +2 attack if your opponent has two cards left."
+should_remove = true

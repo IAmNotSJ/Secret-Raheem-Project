@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dg500njum2jfq"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_da5gs"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_da5gs")
+card_name = "Gartic Phone"
+card_series = "Raheem"
+card_number = "019"
+base_attack = 3
+base_defense = 3
+size = 1
+can_get_bonuses = true
+ability_name = "Pass It On"
+one_use_ability = false
+ability_description = "If this card loses, half of its stats are passed onto the next card you play."
+should_remove = true

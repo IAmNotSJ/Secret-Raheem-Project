@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bnrw0l6rmwt1t"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_b64un"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_b64un")
+card_name = "Folder"
+card_series = "Raheem"
+card_number = "016"
+base_attack = 0
+base_defense = 0
+size = 2
+can_get_bonuses = true
+ability_name = "Up and Coming"
+one_use_ability = false
+ability_description = "This card will get +1 to both stats everytime you win a round. Losing will reset it."
+should_remove = true

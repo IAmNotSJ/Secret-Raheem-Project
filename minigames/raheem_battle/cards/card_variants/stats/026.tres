@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cqy2l6h2n72j8"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_wqfq6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wqfq6")
+card_name = "Cryptocurrency"
+card_series = "Wibr"
+card_number = "026"
+base_attack = 4
+base_defense = 4
+can_get_bonuses = true
+ability_name = "Cash Out"
+one_use_ability = false
+ability_description = "All future cards with a stat less than 3, will gain +2 to that stat."
+should_remove = true

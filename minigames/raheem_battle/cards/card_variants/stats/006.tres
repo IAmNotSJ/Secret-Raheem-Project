@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c2flwlilvbiq0"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_3c141"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3c141")
+card_name = "Dapper"
+card_series = "Dapper"
+card_number = "006"
+base_attack = 3
+base_defense = 3
+size = 3
+can_get_bonuses = true
+ability_name = "Catalyst"
+one_use_ability = true
+ability_description = "Choose a card to remove from your deck instead of this one if it were to win. (Does not activate any winning-related abilities)"
+should_remove = false

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dk8a4x46qtb3w"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_18vc7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_18vc7")
+card_name = "Flying Octagon"
+card_series = "Raheem"
+card_number = "015"
+base_attack = 3
+base_defense = 2
+size = 5
+can_get_bonuses = true
+ability_name = "Radio Broadcast"
+one_use_ability = false
+ability_description = "After this card is played, be notified of the stats of the next 3 cards your opponent will play. You will not be notified of their ability and this does not apply for any stat boosts/prenalties that are applied when a card is played."
+should_remove = true

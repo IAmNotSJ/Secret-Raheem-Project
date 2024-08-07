@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dxo5t442sq82h"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_eocmc"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_eocmc")
+card_name = "Cryptocurrency"
+card_series = "SJ"
+card_number = "029"
+base_attack = 4
+base_defense = 4
+can_get_bonuses = true
+ability_name = "Cash Out"
+one_use_ability = true
+ability_description = "All cards with a stat less than or equal to 3, will gain +2 to that stat."
+should_remove = true

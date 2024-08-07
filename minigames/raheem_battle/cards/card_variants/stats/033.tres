@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cxh41yxn2ps50"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_y7ge4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_y7ge4")
+card_name = "Horse Picture"
+card_series = "SJ"
+card_number = "033"
+base_attack = 2
+base_defense = 3
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

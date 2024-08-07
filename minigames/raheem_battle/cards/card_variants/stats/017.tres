@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c8lfdlgu13sp8"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_k28mp"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_k28mp")
+card_name = "Rusty Can"
+card_series = "Raheem"
+card_number = "017"
+base_attack = 1
+base_defense = 1
+size = 2
+can_get_bonuses = true
+ability_name = "Speeding"
+one_use_ability = false
+ability_description = "Every card interaction that you win, this card will get +1 to a predetermined stat and -1 to another. You will not be able to see this card's stats until you play it. "
+should_remove = true

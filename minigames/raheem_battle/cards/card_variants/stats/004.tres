@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b6jnkbue1nyj4"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_8c4oc"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_8c4oc")
+card_name = "Block"
+card_series = "Block"
+card_number = "004"
+base_attack = 2
+base_defense = 2
+size = 2
+can_get_bonuses = true
+ability_name = "Unfunny Tag"
+one_use_ability = false
+ability_description = "-1 to both stats of the opposing card."
+should_remove = true

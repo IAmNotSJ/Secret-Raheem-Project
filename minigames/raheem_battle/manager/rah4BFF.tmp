@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcf5cijtnm2sw"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/manager/raheem_battle.gd" id="1_nlfe7"]
+[ext_resource type="PackedScene" uid="uid://dniq8ycjwht5m" path="res://minigames/raheem_battle/menu/menu.tscn" id="1_ti5sv"]
+[ext_resource type="PackedScene" uid="uid://326mnhr5owui" path="res://minigames/raheem_battle/game/raheem_battle.tscn" id="3_phiap"]
+
+[node name="RaheemBattle" type="Node2D"]
+script = ExtResource("1_nlfe7")
+
+[node name="Menu" parent="." instance=ExtResource("1_ti5sv")]
+
+[node name="RaheemBattle" parent="." instance=ExtResource("3_phiap")]
+visible = false
+
+[node name="NetworkInfo" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="game_type" type="Label" parent="NetworkInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "GameType:"
+
+[node name="peer_id" type="Label" parent="NetworkInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PeerID:
+"
+
+[node name="room_address" type="Label" parent="NetworkInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RoomAddress:"

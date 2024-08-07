@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpo8gkq61fniq"]
+
+[ext_resource type="Texture2D" uid="uid://5h3607p5pxvs" path="res://minigames/raheem_battle/game/assets/opponents/opponent.png" id="1_ujoci"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/opponents/opponent.gd" id="2_tcicw"]
+
+[node name="Opponent" type="Sprite2D"]
+texture = ExtResource("1_ujoci")
+script = ExtResource("2_tcicw")

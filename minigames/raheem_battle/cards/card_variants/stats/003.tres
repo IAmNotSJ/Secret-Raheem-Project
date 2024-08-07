@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://t1xtvjt2ttbi"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_nbiiu"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nbiiu")
+card_name = "Cleft"
+card_series = "Cleft"
+card_number = "003"
+base_attack = 6
+base_defense = 5
+size = 2
+can_get_bonuses = true
+ability_name = "The 1K Race"
+one_use_ability = false
+ability_description = "If this card loses, receive a random card back that you had previously lost."
+should_remove = true

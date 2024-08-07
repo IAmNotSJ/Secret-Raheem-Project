@@ -76,10 +76,10 @@ func add_value(daSet, value:String):
 func _notification(what):
 	match what:
 		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
-			print('window unfocused!')
+			#print('window unfocused!')
 			isWindowFocused = false
 		NOTIFICATION_WM_WINDOW_FOCUS_IN:
-			print('window focused!')
+			#print('window focused!')
 			isWindowFocused = true
 
 func save():

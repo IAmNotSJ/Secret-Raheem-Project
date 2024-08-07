@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c6xwaij7jcp70"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_feg8p"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_feg8p")
+card_name = "Atlas"
+card_series = "Atlas"
+card_number = "008"
+base_attack = 2
+base_defense = 2
+size = 1
+can_get_bonuses = true
+ability_name = "Strategist"
+one_use_ability = false
+ability_description = "See a random card from your opponent's deck when played."
+should_remove = true

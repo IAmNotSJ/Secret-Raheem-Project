@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cbjvp1pc7yvgc"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ind1h"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ind1h")
+card_name = "Piracy"
+card_series = "SJ"
+card_number = "032"
+base_attack = 2
+base_defense = 4
+can_get_bonuses = true
+ability_name = "Torrenting"
+one_use_ability = false
+ability_description = "If this card loses, swap it with a random card from your opponent's deck."
+should_remove = true

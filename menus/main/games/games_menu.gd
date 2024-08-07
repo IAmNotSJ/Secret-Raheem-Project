@@ -18,3 +18,7 @@ func _on_karl_pressed():
 func _on_paint_pressed():
 	global.enteredMiniGameFromMenu = true
 	Transition.change_scene_to_preset("Paint")
+	
+func _on_battle_pressed():
+	global.enteredMiniGameFromMenu = true
+	Transition.change_scene_to_preset("Battle")

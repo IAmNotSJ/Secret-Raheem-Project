@@ -59,18 +59,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -119.713
+offset_left = -55.8302
 offset_top = 662.0
-offset_right = 1566.28
+offset_right = 1630.17
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -318.639
+offset_left = -382.517
 offset_top = -10.0
-offset_right = 1367.36
+offset_right = 1303.49
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -109,7 +109,10 @@ texture = ExtResource("4_b5egf")
 
 [node name="Settings" parent="." instance=ExtResource("12_po7vl")]
 visible = false
-position = Vector2(5, 2)
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 2.0
 
 [node name="Games" parent="." instance=ExtResource("13_gp170")]
 visible = false

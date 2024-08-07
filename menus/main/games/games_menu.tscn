@@ -34,6 +34,15 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("4_mjd6l")
 texture_hover = ExtResource("5_bucjh")
 
+[node name="Battle" type="TextureButton" parent="."]
+offset_left = 286.0
+offset_top = 75.0
+offset_right = 335.0
+offset_bottom = 124.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("4_mjd6l")
+texture_hover = ExtResource("5_bucjh")
+
 [node name="Paint" type="TextureButton" parent="."]
 offset_left = 89.0
 offset_top = 437.0
@@ -44,4 +53,5 @@ texture_normal = ExtResource("2_238f5")
 
 [connection signal="pressed" from="Hyena" to="." method="_on_hyena_pressed"]
 [connection signal="pressed" from="Karl" to="." method="_on_karl_pressed"]
+[connection signal="pressed" from="Battle" to="." method="_on_battle_pressed"]
 [connection signal="pressed" from="Paint" to="." method="_on_paint_pressed"]

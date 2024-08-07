@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c75vllqidw3mc"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_6d2xi"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_6d2xi")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1
+base_defense = 1
+size = null
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

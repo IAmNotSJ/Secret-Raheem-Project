@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1hb74w06f06s"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/number.gd" id="1_726wc"]
+
+[node name="SpinBox" type="SpinBox"]
+offset_right = 155.0
+offset_bottom = 31.0
+script = ExtResource("1_726wc")

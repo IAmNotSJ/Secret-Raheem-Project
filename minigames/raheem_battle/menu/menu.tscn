@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://dniq8ycjwht5m"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/menu.gd" id="1_fnnwu"]
+[ext_resource type="PackedScene" uid="uid://buki7x0i4et4q" path="res://minigames/raheem_battle/quiz/quiz.tscn" id="2_8g1s8"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_fnnwu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 0, 1, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 96
+text = "RAHEEM BATTLE"
+horizontal_alignment = 1
+
+[node name="Advanced" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 553.0
+offset_top = 286.0
+offset_right = 593.0
+offset_bottom = 326.0
+
+[node name="CheckBox" type="CheckBox" parent="Advanced"]
+layout_mode = 0
+offset_left = -66.0
+offset_top = 2.0
+offset_right = 161.0
+offset_bottom = 33.0
+button_pressed = true
+text = "Use Universal Plug In Play"
+flat = true
+
+[node name="Initial" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 553.0
+offset_top = 286.0
+offset_right = 593.0
+offset_bottom = 326.0
+
+[node name="Host" type="Button" parent="Initial"]
+layout_mode = 0
+offset_right = 94.0
+offset_bottom = 31.0
+text = "Host Game"
+
+[node name="Quiz" type="Button" parent="Initial"]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 389.0
+offset_right = 600.0
+offset_bottom = 420.0
+text = "Open Quiz"
+
+[node name="Join" type="Button" parent="Initial"]
+layout_mode = 0
+offset_top = 74.0
+offset_right = 87.0
+offset_bottom = 105.0
+text = "Join Game"
+
+[node name="Advanced" type="Button" parent="Initial"]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 390.0
+offset_right = 708.0
+offset_bottom = 421.0
+text = "Advanced"
+
+[node name="Host" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 668.0
+offset_right = 45.0
+offset_bottom = 708.0
+
+[node name="Create Room" type="Button" parent="Host"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = -410.0
+offset_right = 742.0
+offset_bottom = -351.0
+text = "Create Room"
+
+[node name="Match Rules" type="Button" parent="Host"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = -338.0
+offset_right = 742.0
+offset_bottom = -279.0
+text = "Set Match Rules"
+
+[node name="Join" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Join Room" type="Button" parent="Join"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 258.0
+offset_right = 747.0
+offset_bottom = 317.0
+text = "Join Room"
+
+[node name="address_bar" type="LineEdit" parent="Join"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 464.0
+offset_top = 322.0
+offset_right = 747.0
+offset_bottom = 381.0
+placeholder_text = "Enter Room Address"
+alignment = 1
+
+[node name="Quiz" parent="." instance=ExtResource("2_8g1s8")]
+visible = false
+
+[node name="display_name_box" type="LineEdit" parent="."]
+offset_left = 5.0
+offset_top = 668.0
+offset_right = 238.0
+offset_bottom = 717.0
+placeholder_text = "Display Name"
+
+[connection signal="toggled" from="Advanced/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="Initial/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Initial/Quiz" to="." method="_on_quiz_pressed"]
+[connection signal="pressed" from="Initial/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Initial/Advanced" to="." method="_on_advanced_pressed"]
+[connection signal="pressed" from="Host/Create Room" to="." method="_on_create_room_pressed"]
+[connection signal="pressed" from="Join/Join Room" to="." method="_on_join_room_pressed"]
+[connection signal="text_changed" from="display_name_box" to="." method="_on_display_name_box_text_changed"]

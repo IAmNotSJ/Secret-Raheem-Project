@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dug4yc7cwhsr4"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ef7fy"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ef7fy")
+card_name = "Cherry"
+card_series = "Cherry"
+card_number = "005"
+base_attack = 2
+base_defense = 3
+size = 3
+can_get_bonuses = true
+ability_name = "Boost"
+one_use_ability = true
+ability_description = "Every other card in this card's deck besides itself gets +1 defense"
+should_remove = true

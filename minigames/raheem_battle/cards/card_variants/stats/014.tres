@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://mspbmnxjmeuo"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_t6e2v"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_t6e2v")
+card_name = "Minecraft Server"
+card_series = "Raheem"
+card_number = "014"
+base_attack = 4
+base_defense = 3
+size = 5
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

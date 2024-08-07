@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://326mnhr5owui"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/game/raheem_battle.gd" id="1_gv46b"]
+[ext_resource type="Texture2D" uid="uid://dyxdxgasy7l4r" path="res://minigames/raheem_battle/game/assets/table.png" id="2_a3r8f"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/game/turn_decider.gd" id="3_3wvi5"]
+
+[node name="RaheemBattle" type="Node2D"]
+script = ExtResource("1_gv46b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 1, 1, 1)
+
+[node name="opponent_position" type="Node2D" parent="."]
+position = Vector2(631, 203)
+
+[node name="table" type="Sprite2D" parent="."]
+position = Vector2(640, 545)
+texture = ExtResource("2_a3r8f")
+
+[node name="players" type="Node" parent="."]
+
+[node name="spectators" type="Node" parent="."]
+
+[node name="turn_decider" type="Node" parent="."]
+script = ExtResource("3_3wvi5")

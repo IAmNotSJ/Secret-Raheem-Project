@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtirb10f05po3"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/binary.gd" id="1_vyni4"]
+
+[node name="CheckBox" type="CheckBox"]
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("1_vyni4")

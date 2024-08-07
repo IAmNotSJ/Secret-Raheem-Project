@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxhgyxwmuvv7s"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/player/player.gd" id="1_na1nj"]
+
+[node name="Player" type="Node"]
+script = ExtResource("1_na1nj")

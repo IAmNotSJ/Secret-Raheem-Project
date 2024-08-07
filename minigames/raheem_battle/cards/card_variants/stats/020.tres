@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c60cjnf235jbt"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_4xbwj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_4xbwj")
+card_name = "Deformed Hands"
+card_series = "Wibr"
+card_number = "020"
+base_attack = 4
+base_defense = 5
+size = 2
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

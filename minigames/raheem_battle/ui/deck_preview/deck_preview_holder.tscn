@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://yrw3wykomle6"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/deck_preview/deck_preview_holder.gd" id="1_s70l3"]
+
+[node name="deck_preview_holder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s70l3")
+
+[node name="Row1" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 159.0
+offset_top = 97.0
+offset_right = -130.0
+offset_bottom = -303.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250
+
+[node name="Row2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 132.0
+offset_top = 418.0
+offset_right = -193.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250

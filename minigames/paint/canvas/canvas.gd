@@ -15,6 +15,8 @@ var cur_stroke:Stroke
 
 var stroke_count:int = 0
 
+var use_advanced:bool = true
+
 func _ready():
 	DiscordSDKLoader.run_preset("Art")
 	cur_stroke = Stroke.new()
@@ -26,7 +28,10 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_pressed("click") and can_draw:
 		if brush_size <= 3:
-			cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+			if use_advanced:
+				cur_stroke.add_circle_advanced(get_local_mouse_position(), brush_size, brush_color)
+			else:
+				cur_stroke.add_circle(get_local_mouse_position(), brush_size, brush_color)
 		else:
 			cur_stroke.add_circle(get_local_mouse_position(), brush_size, brush_color)
 
@@ -37,6 +42,11 @@ func _input(event):
 		undo_stroke()
 	if event.is_action_pressed("save"):
 		save_dialog.popup_centered()
+	if event.is_action_pressed("hyena"):
+		if use_advanced:
+			use_advanced = false
+		else:
+			use_advanced = true
 
 func add_circle_advanced(mouse_pos, radius, daColor):
 	if stroke_count > 0 and mouse_pos.distance_to(circles[circles.size() - 1][0]) > 4:

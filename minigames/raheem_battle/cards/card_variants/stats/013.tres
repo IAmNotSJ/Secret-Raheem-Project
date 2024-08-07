@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cpcxotj5ujrmh"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_gw7kq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gw7kq")
+card_name = "Luna"
+card_series = "Luna"
+card_number = "013"
+base_attack = 4
+base_defense = 2
+size = 3
+can_get_bonuses = true
+ability_name = "Gamer Rage"
+one_use_ability = true
+ability_description = "If this card loses the interaction, gain +2 attack"
+should_remove = true

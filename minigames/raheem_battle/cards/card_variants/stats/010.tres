@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dk22fbrgiwdbn"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_enpqh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_enpqh")
+card_name = "Composty"
+card_series = "Composty"
+card_number = "010"
+base_attack = 1
+base_defense = 7
+size = 2
+can_get_bonuses = true
+ability_name = "Kindness"
+one_use_ability = false
+ability_description = "If this card wins, the opposing card gets +2 to both stats"
+should_remove = true

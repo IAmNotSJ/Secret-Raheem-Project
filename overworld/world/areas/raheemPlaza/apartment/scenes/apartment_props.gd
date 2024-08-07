@@ -5,7 +5,7 @@ extends Node2D
 @onready var wibr = global.sceneManager.get_node("Apartment").get_node("Wibr")
 
 func _ready():
-	if global.tpTimes != 6 or global.items["Key"]:
+	if global.tpTimes != 6 or Saves.items["Key"]:
 		$Key.queue_free()
 func _on_area_2d_area_exited(area):
 	print("BITCH!")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://77bwcljuk8nv"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_6ncn1"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_6ncn1")
+card_name = "Wisconsin"
+card_series = "SJ"
+card_number = "031"
+base_attack = 3
+base_defense = 5
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

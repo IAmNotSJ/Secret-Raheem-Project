@@ -7,17 +7,17 @@ var trackList = [
 ]
 
 func _ready():
-	$AudioStreamPlayer.stream = trackList[global.rng.randi_range(0, trackList.size() - 1)]
+	$AudioStreamPlayer.stream = trackList[randi_range(0, trackList.size() - 1)]
 	$AudioStreamPlayer.play()
 	
 	DiscordSDKLoader.run_preset("Overworld")
 	super()
 
 func _on_key_interacted():
-	if global.items["Pizza"] == true and global.unlocks["Cleft"] == true:
+	if Saves.items["Pizza"] == true and Saves.unlocks["Cleft"] == true:
 		$Chars/Key.animationPlayer.play('empty')
 
 
 func _on_audio_stream_player_finished():
-	$AudioStreamPlayer.stream = trackList[global.rng.randi_range(0, trackList.size() - 1)]
+	$AudioStreamPlayer.stream = trackList[randi_range(0, trackList.size() - 1)]
 	$AudioStreamPlayer.play()

@@ -1,0 +1,335 @@
+[gd_scene load_steps=13 format=3 uid="uid://dn83c73onu5by"]
+
+[ext_resource type="Texture2D" uid="uid://coiyduesthyr0" path="res://overworld/world/areas/raheemPlaza/main/objects/assets/lantern.png" id="1_4fbga"]
+[ext_resource type="Script" path="res://overworld/world/areas/raheemPlaza/main/objects/lantern.gd" id="2_ptu86"]
+
+[sub_resource type="Gradient" id="Gradient_d0y4y"]
+offsets = PackedFloat32Array(0, 0.170213, 0.347518, 1)
+colors = PackedColorArray(1, 0.976471, 0.976471, 1, 0.552956, 0.552955, 0.552956, 1, 0.241156, 0.241156, 0.241156, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_so2ih"]
+gradient = SubResource("Gradient_d0y4y")
+width = 600
+height = 600
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.820513, 0.846154)
+
+[sub_resource type="Animation" id="Animation_af2ik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yqtby"]
+resource_name = "off"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ytnm3"]
+resource_name = "on"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_piutb"]
+_data = {
+"RESET": SubResource("Animation_af2ik"),
+"off": SubResource("Animation_yqtby"),
+"on": SubResource("Animation_ytnm3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gstq"]
+size = Vector2(56, 23)
+
+[sub_resource type="Animation" id="Animation_4yi4x"]
+resource_name = "moth_fly"
+length = 1.00001
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moth1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.25, 0.333333, 0.5, 0.583333, 0.666667, 0.833333, 0.916667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(38, -224), Vector2(38, -226), Vector2(36, -226), Vector2(34, -222), Vector2(24, -218), Vector2(19, -224), Vector2(28, -228), Vector2(35, -217), Vector2(40, -221), Vector2(33, -228)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Moth2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.5, 0.583333, 0.75, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-32, -230), Vector2(-32, -232), Vector2(-29, -229), Vector2(-31, -226), Vector2(-26, -228), Vector2(-26, -223), Vector2(-28, -225), Vector2(-31, -225), Vector2(-32, -225)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Moth3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.75, 0.916667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(22, -210), Vector2(22, -207), Vector2(22, -209), Vector2(22, -207), Vector2(20, -210), Vector2(23, -212), Vector2(23, -207), Vector2(21, -207)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moth4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.416667, 0.583333, 0.75, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-24, -237), Vector2(-24, -238), Vector2(-24, -233), Vector2(-24, -236), Vector2(-24, -239), Vector2(-24, -234), Vector2(-26, -234), Vector2(-25, -235), Vector2(-24, -232)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moth5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25, 0.416667, 0.583333, 0.75, 0.833333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-30, -205), Vector2(-26, -208), Vector2(-23, -215), Vector2(-11, -216), Vector2(-11, -221), Vector2(-18, -221), Vector2(-22, -215), Vector2(-26, -212)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Moth6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 0.916667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(18, -237), Vector2(18, -231), Vector2(11, -232.2), Vector2(13, -233), Vector2(14.6666, -246.333), Vector2(26.3333, -238.667), Vector2(22.1668, -230.833), Vector2(27.0004, -236.999)]
+}
+
+[sub_resource type="Animation" id="Animation_8mstk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moth1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(38, -224)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Moth2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -230)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Moth3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, -210)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moth4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-24, -237)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moth5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, -205)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Moth6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, -237)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_260eo"]
+_data = {
+"RESET": SubResource("Animation_8mstk"),
+"moth_fly": SubResource("Animation_4yi4x")
+}
+
+[node name="Lantern" type="Sprite2D"]
+texture = ExtResource("1_4fbga")
+offset = Vector2(0, -120)
+hframes = 2
+script = ExtResource("2_ptu86")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-1, -209)
+texture = SubResource("GradientTexture2D_so2ih")
+
+[node name="animationplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_piutb")
+}
+
+[node name="Collision" type="StaticBody2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8gstq")
+
+[node name="Moths" type="Node2D" parent="."]
+
+[node name="Moth1" type="ColorRect" parent="Moths"]
+offset_left = 38.0
+offset_top = -224.0
+offset_right = 41.0
+offset_bottom = -221.0
+
+[node name="Moth2" type="ColorRect" parent="Moths"]
+offset_left = -32.0
+offset_top = -230.0
+offset_right = -29.0
+offset_bottom = -227.0
+
+[node name="Moth3" type="ColorRect" parent="Moths"]
+offset_left = 22.0
+offset_top = -210.0
+offset_right = 25.0
+offset_bottom = -207.0
+
+[node name="Moth4" type="ColorRect" parent="Moths"]
+offset_left = -24.0
+offset_top = -237.0
+offset_right = -21.0
+offset_bottom = -234.0
+
+[node name="Moth5" type="ColorRect" parent="Moths"]
+offset_left = -30.0
+offset_top = -205.0
+offset_right = -27.0
+offset_bottom = -202.0
+
+[node name="Moth6" type="ColorRect" parent="Moths"]
+offset_left = 18.0
+offset_top = -237.0
+offset_right = 21.0
+offset_bottom = -234.0
+
+[node name="moth_player" type="AnimationPlayer" parent="Moths"]
+libraries = {
+"": SubResource("AnimationLibrary_260eo")
+}
+autoplay = "moth_fly"

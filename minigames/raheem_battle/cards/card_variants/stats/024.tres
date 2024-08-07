@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bjk0ok3xe5eue"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_nmiv6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nmiv6")
+card_name = "Changed"
+card_series = "Wibr"
+card_number = "024"
+base_attack = 4
+base_defense = 3
+size = 2
+can_get_bonuses = true
+ability_name = "The Goop"
+one_use_ability = false
+ability_description = "Copies the opposing card's ability when played, but not their stats."
+should_remove = true

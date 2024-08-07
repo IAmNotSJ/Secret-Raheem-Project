@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cab86n3uf3qul"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_cth8c"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_cth8c")
+card_name = "Status Message"
+card_series = "Wibr"
+card_number = "025"
+base_attack = 4
+base_defense = 3
+can_get_bonuses = true
+ability_name = "Other Priorities"
+one_use_ability = false
+ability_description = "If this card wins, put this card back into its user's deck, and its attack/defense to another card for the game (This will render this card with 0 attack and 0 defense)"
+should_remove = true

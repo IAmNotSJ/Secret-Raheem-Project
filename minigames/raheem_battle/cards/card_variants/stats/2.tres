@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cf1kka1e4rs8x"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_cg2m4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_cg2m4")
+card_name = "Weetabix"
+card_series = "Test Series"
+card_number = "2"
+base_attack = 5
+base_defense = 1
+size = 1
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

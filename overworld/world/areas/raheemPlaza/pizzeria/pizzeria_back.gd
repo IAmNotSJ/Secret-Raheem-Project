@@ -1,7 +1,7 @@
 extends OverworldBase
 
 func _ready():
-	if global.items["Pizza"]:
+	if Saves.items["Pizza"]:
 		$Pizza.queue_free()
 	DiscordSDKLoader.run_preset("Pizzeria")
 	super()

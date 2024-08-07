@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b6wpklkkb3esw"]
+
+[node name="chat_message" type="Label"]
+custom_minimum_size = Vector2(0, 23)
+offset_right = 457.0
+offset_bottom = 23.0
+text = "This is a chat message"

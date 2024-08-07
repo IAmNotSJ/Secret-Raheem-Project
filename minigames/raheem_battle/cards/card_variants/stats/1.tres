@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c2gkwa5u8dw14"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_h0ndj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_h0ndj")
+card_name = "Boss Baby"
+card_series = "Test Series"
+card_number = "1"
+base_attack = 0
+base_defense = 0
+size = 2
+can_get_bonuses = false
+ability_name = "Wealth"
+one_use_ability = false
+ability_description = "This card wins, no matter what. Fuck you."
+should_remove = true

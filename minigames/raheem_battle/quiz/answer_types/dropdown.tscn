@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq3tmnfxq7asm"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/dropdown.gd" id="1_hec30"]
+
+[node name="OptionButton" type="OptionButton"]
+offset_right = 155.0
+offset_bottom = 26.0
+script = ExtResource("1_hec30")

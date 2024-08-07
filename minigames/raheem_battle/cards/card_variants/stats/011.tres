@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b1rkcabp2qjx8"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_is1jp"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_is1jp")
+card_name = "Cost"
+card_series = "Cost"
+card_number = "011"
+base_attack = 0
+base_defense = 0
+size = 2
+can_get_bonuses = true
+ability_name = "Price Goes Up Yearly"
+one_use_ability = false
+ability_description = "Both stats increase by one at the start of every attacking turn."
+should_remove = true
