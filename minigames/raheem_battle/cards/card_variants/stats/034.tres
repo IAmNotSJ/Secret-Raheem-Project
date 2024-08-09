@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://vbttt6qfbmch"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_8fabf"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_8fabf")
+card_name = "Markiplier"
+card_series = "SJ"
+card_number = "034"
+base_attack = 2
+base_defense = 2
+can_get_bonuses = true
+ability_name = "Freddy Mask"
+one_use_ability = false
+ability_description = "If this card loses within the first 3 rounds of the game, the loss does not count and no cards are removed.
+"
+should_remove = true

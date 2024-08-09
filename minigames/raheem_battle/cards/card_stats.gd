@@ -16,12 +16,12 @@ class_name CardStats extends Resource
 		emit_changed()
 
 @export_category("Stats")
-@export var base_attack:int = 1 :
+@export var base_attack:float = 1 :
 	set(value):
 		base_attack = value
 		_recalculate_attack()
 		emit_changed()
-@export var base_defense:int = 1 :
+@export var base_defense:float = 1 :
 	set(value):
 		base_defense = value
 		_recalculate_defense()
@@ -47,6 +47,8 @@ class_name CardStats extends Resource
 
 @export_category("Miscellaneous")
 @export var should_remove:bool = true
+## Hides the card's stats until use
+@export var hide_stats:bool = false
 
 # UNCHANGEABLE STATS
 
@@ -61,18 +63,24 @@ var bonuses:Dictionary = {
 	"Speeding" : [0, 0],
 	"Deadline" : [0, 0],
 	"Other Priorities" : [0, 0],
-	"Cash Out": [0, 0]
+	"Cash Out": [0, 0],
+	"Rising" : [0, 0],
+	"Post-Mortem" : [0, 0],
+	"Winter Scavenging" : [0, 0],
+	"Nectar of the Gods" : [0, 0]
 }
 
 #Update this with every single ability that can give stat bonuses
 var penalties:Dictionary = {
 	"Unfunny Tag" : [0, 0],
 	"Speeding" : [0, 0],
-	"Other Priorities" : [0, 0]
+	"Other Priorities" : [0, 0],
+	"All Powerful" : [0, 0],
+	"Acidic" : [0, 0]
 }
 
-var true_attack:int
-var true_defense:int
+var true_attack:float
+var true_defense:float
 
 func _ready():
 	_recalculate_attack()
@@ -84,13 +92,13 @@ func clear_bonuses():
 		bonuses[bonus] = [0, 0]
 
 func get_bonus_attack():
-	var bonus_attack:int = 0
+	var bonus_attack:float = 0
 	for bonus in bonuses.keys():
 		bonus_attack += bonuses[bonus][0]
 	return bonus_attack
 
 func get_bonus_defense():
-	var bonus_defense:int = 0
+	var bonus_defense:float = 0
 	for bonus in bonuses.keys():
 		bonus_defense += bonuses[bonus][1]
 	return bonus_defense
@@ -111,6 +119,7 @@ func get_penalty_defense():
 func add_bonus_attack(amount, key):
 	if can_get_bonuses:
 		bonuses[key][0] += amount
+		floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
 
@@ -118,6 +127,7 @@ func add_bonus_attack(amount, key):
 func set_bonus_attack(amount, key):
 	if can_get_bonuses:
 		bonuses[key][0] = amount
+		floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
 
@@ -125,6 +135,7 @@ func set_bonus_attack(amount, key):
 func add_bonus_defense(amount, key):
 	if can_get_bonuses:
 		bonuses[key][1] += amount
+		floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
 
@@ -132,26 +143,35 @@ func add_bonus_defense(amount, key):
 func set_bonus_defense(amount, key):
 	if can_get_bonuses:
 		bonuses[key][1] = amount
+		floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
 
+@rpc("any_peer")
 func add_penalty_attack(amount, key):
 	penalties[key][0] += amount
+	floor(base_attack)
 	_recalculate_attack()
 	emit_changed()
 
+@rpc("any_peer")
 func set_penalty_attack(amount, key):
 	penalties[key][0] = amount
+	floor(base_attack)
 	_recalculate_attack()
 	emit_changed()
 
+@rpc("any_peer")
 func add_penalty_defense(amount, key):
 	penalties[key][1] += amount
+	floor(base_defense)
 	_recalculate_defense()
 	emit_changed()
 
+@rpc("any_peer")
 func set_penalty_defense(amount, key):
 	penalties[key][1] = amount
+	floor(base_defense)
 	_recalculate_defense()
 	emit_changed()
 

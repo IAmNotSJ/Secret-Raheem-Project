@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cv7qr1tg8vti8"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_clqjj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_clqjj")
+card_name = "Dough Roll"
+card_series = "SJ"
+card_number = "036"
+base_attack = 2
+base_defense = 2
+can_get_bonuses = true
+ability_name = "Rising"
+one_use_ability = false
+ability_description = "Any ability that boosts this card's stats will have double the effect."
+should_remove = true

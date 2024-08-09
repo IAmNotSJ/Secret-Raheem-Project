@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://casptkv5eu5om"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_y8a7y"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_y8a7y")
+card_name = "Fortnite Jimmy"
+card_series = "Cleft"
+card_number = "040"
+base_attack = 2
+base_defense = 4
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

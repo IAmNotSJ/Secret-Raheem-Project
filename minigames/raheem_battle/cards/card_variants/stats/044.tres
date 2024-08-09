@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c7m7anjadwch6"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_0p4m6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_0p4m6")
+card_name = "Scratch Cat"
+card_series = "Cleft"
+card_number = "044"
+base_attack = 2.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "The HUD"
+one_use_ability = false
+ability_description = "After this card is played, you will be notified of your opponent's card's abilities before they are played."
+should_remove = true
+hide_stats = false

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://d3mlmyhlsnjc6"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_d3nst"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_d3nst")
+card_name = "Blocklist"
+card_series = "SJ"
+card_number = "035"
+base_attack = 4
+base_defense = 3
+can_get_bonuses = true
+ability_name = "Clean Timeline"
+one_use_ability = false
+ability_description = "If this card wins, disable half of your opponent's deck next turn."
+should_remove = true

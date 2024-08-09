@@ -1,5 +1,8 @@
 extends Control
 
+signal card_removed
+signal card_brought_back
+
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
 @onready var ui = get_parent()
@@ -65,6 +68,7 @@ func remove_card(index, victory_chest:bool = true):
 			for i in range(%held_cards.get_children().size()):
 				if card == %held_cards.get_children()[i]:
 					card.index = i
+	card_removed.emit()
 
 func readd_card(index):
 	print('Card readded?')
@@ -82,7 +86,14 @@ func readd_card(index):
 					card.index = i
 			for i in range($victory_chest.get_children().size()):
 				if card == $victory_chest.get_children()[i]:
-					card.index = i
+					card.indx = i
+
+@rpc("any_peer")
+func remove_all_cards():
+	print(ui.game.get_player().player_name + " has had all their cards removed!")
+	for card in cards_in_hand:
+		remove_card(card.index)
+
 # Disables the card with the matching index from the card hand, for the duration specified
 func disable_card(index, duration):
 	for card in %held_cards.get_children():

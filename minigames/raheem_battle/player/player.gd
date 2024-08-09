@@ -13,6 +13,10 @@ var is_player:bool = false
 
 var cards_left
 
+var turn_history:Dictionary = {
+	"First Card" : {}
+}
+
 var side:Sides :
 	set(value):
 		side = value

@@ -4,6 +4,8 @@ extends Label
 
 var show_stats:bool = false
 var stats_timer = 0
+var show_ability:bool = false
+var ability_timer = 0
 
 func _ready():
 	ui.turn_ended.connect(_on_turn_finished)
@@ -13,13 +15,23 @@ func _on_turn_finished():
 		stats_timer -= 1
 		if stats_timer == 0:
 			show_stats = false
+	if ability_timer > 0 and show_ability:
+		ability_timer -= 1
+		if ability_timer == 0:
+			show_ability = false
 
 @rpc("any_peer")
 func activate_text(exported_card):
 	if show_stats:
-		text = ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["Attack"]) + " ATTACK and " + str(exported_card["Defense"]) + " DEFENSE"
+		if show_ability:
+			text = ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["Attack"]) + " ATTACK and " + str(exported_card["Defense"]) + " DEFENSE and the ability " + exported_card["Ability"]
+		else:
+			text = ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["Attack"]) + " ATTACK and " + str(exported_card["Defense"]) + " DEFENSE"
 	else:
-		text = ui.game.get_opponent().player_name + " has chosen their card."
+		if show_ability:
+			text = ui.game.get_opponent().player_name + " has chosen a card with the ability " + exported_card["Ability"]
+		else:
+			text = ui.game.get_opponent().player_name + " has chosen their card."
 
 @rpc("any_peer")
 func clear():

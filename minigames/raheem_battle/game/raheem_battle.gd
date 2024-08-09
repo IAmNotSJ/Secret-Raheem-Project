@@ -23,6 +23,7 @@ var player_path = preload("res://minigames/raheem_battle/player/player.tscn")
 var opponent_path = preload("res://minigames/raheem_battle/opponents/opponent.tscn")
 
 var started:bool = false
+var turn_count:int = 0
 
 func add_player(player_name, peer_id):
 	playing_peer_ids.append(peer_id)
@@ -86,9 +87,19 @@ func start_game_request():
 @rpc()
 func start_game(side:Sides):
 	print('game has started!')
+	
 	started = true
-	get_player().side = side
+	match side:
+		Sides.ATTACKING:
+			get_player().side = Sides.ATTACKING
+			get_opponent().side = Sides.DEFENDING
+		Sides.DEFENDING:
+			get_player().side = Sides.DEFENDING
+			get_opponent().side = Sides.ATTACKING
 	
 	ui.starting_card_effects()
+	ui.turn_started.emit()
+	
+	turn_count += 1
 
 

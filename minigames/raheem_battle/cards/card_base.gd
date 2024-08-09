@@ -2,6 +2,7 @@
 extends Control
 
 signal selected(card)
+signal bonus_added(key)
 
 @export_category("Resource")
 @export var stats:CardStats = load("res://minigames/raheem_battle/cards/card_variants/stats/0.tres")
@@ -75,8 +76,18 @@ func _on_stats_changed():
 		%Series.text = stats.card_series
 		%Number.text = stats.card_number
 		
-		%Attack.text = str(stats.true_attack)
-		%Defense.text = str(stats.true_defense)
+		if stats.hide_stats:
+			%Ability.text = "X"
+			%Defense.text = "X"
+		else:
+			if stats.true_attack == 6.5:
+				%Attack.text = "Ϫ"
+			else:
+				%Attack.text = str(stats.true_attack)
+			if stats.true_defense == 6.5:
+				%Defense.text = "Ϫ"
+			else:
+				%Defense.text = str(stats.true_defense)
 		
 		%icon.texture = load("res://minigames/raheem_battle/cards/card_variants/assets/" + stats.card_number + ".png")
 		

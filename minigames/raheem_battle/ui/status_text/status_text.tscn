@@ -3,8 +3,10 @@
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/status_text/status_text.gd" id="1_33xe4"]
 
 [node name="locked_text" type="Label"]
-offset_right = 1280.0
-offset_bottom = 23.0
+offset_left = 120.0
+offset_right = 1140.0
+offset_bottom = 26.0
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
+autowrap_mode = 3
 script = ExtResource("1_33xe4")

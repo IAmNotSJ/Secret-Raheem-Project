@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dmweioq20k13l"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_lbtua"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_lbtua")
+card_name = "Bowersound"
+card_series = "Cleft"
+card_number = "045"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Winter Scavenging"
+one_use_ability = false
+ability_description = "When this card is played, gain +2 to both stats of your next losing card."
+should_remove = true
+hide_stats = false

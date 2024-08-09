@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bhstubie5oynt"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_dc6gq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_dc6gq")
+card_name = "Scratch Cat"
+card_series = "Cleft"
+card_number = "042"
+base_attack = 4
+base_defense = 3
+can_get_bonuses = true
+ability_name = ""
+one_use_ability = false
+ability_description = ""
+should_remove = true

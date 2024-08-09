@@ -6,7 +6,10 @@ enum Sides {
 	DEFENDING,
 	TIE
 }
-var rng = RandomNumberGenerator.new()
+
+@onready var game = get_parent()
+
+
 
 
 # Returns the side that wins, duh
@@ -62,17 +65,27 @@ func _factor_side(card, opposing_card):
 			match card["Side"]:
 				Sides.ATTACKING:
 					if opposing_card["Defense"] >= card["Attack"]:
-						if rng.randi_range(0, 1) == 0:
+						if randi_range(0, 1) == 0:
 							#print("Tie should be occuring!")
 							return -1
 				Sides.DEFENDING:
 					if opposing_card["Attack"] > card["Defense"]:
-						if rng.randi_range(0, 1) == 0:
+						if randi_range(0, 1) == 0:
 							#print("Tie should be occuring!")
 							return -1
 		"True Gamer":
 			if card["Side"] == Sides.ATTACKING:
 				if card["Attack"] == opposing_card["Defense"]:
 					return 1
+		"Freddy Mask":
+			match card["Side"]:
+				Sides.ATTACKING:
+					if opposing_card["Defense"] >= card["Attack"]:
+						if game.turn_count <= 3:
+							return -1
+				Sides.DEFENDING:
+					if opposing_card["Attack"] > card["Defense"]:
+						if game.turn_count <= 3:
+							return -1
 		
 	return 0

@@ -9,6 +9,10 @@ enum Sides {
 	DEFENDING,
 	TIE
 }
+enum FutureEvents {
+	NEXT_CARD,
+	NEXT_LOSS
+}
 
 @onready var game = get_parent()
 
@@ -17,9 +21,7 @@ enum Sides {
 @onready var deck_preview = $deck_preview_holder
 @onready var locked_text = $locked_text
 
-var rng = RandomNumberGenerator.new()
-
-var cards_to_generate = ["006", "1", "010", "012", "015", "016", "018", "019"]
+var cards_to_generate = ["006", "1", "010", "012", "015", "016", "043", "019"]
 var card_to_play
 
 var is_in_preview:bool :
@@ -31,10 +33,14 @@ var is_in_preview:bool :
 			%darken.visible = false
 
 # Bonuses to add onto the next card played
-# Check to see if any of these values are not [0, 0] when played
+# Check to see if any of these values are not [FutureEvents._, 0, 0] when played
 # Can currently only be used in pre_card_effects
 var future_events:Dictionary = {
-	"Pass It On" : [0, 0]
+	"Pass It On" : [[0, 0]],
+	"Winter Scavenging" : [[0, 0]]
+}
+var turn_history:Dictionary = {
+	"Reminiscing" : [0, 0]
 }
 
 var cash_out:bool = false
@@ -60,8 +66,11 @@ func generate_deck_preview(exclude:Array = [-1], reason:String = ""):
 func play_card(card):
 	card_to_play = card
 	game.get_player().lock()
-	#print(card.stats.card_name)
-	activate_locked_text.rpc(card.export())
+	
+	var card_export = card.export()
+	
+	turn_history["Reminiscing"] = [FutureEvents.NEXT_CARD, [card_export["Attack"], card_export["Defense"]]]
+	activate_locked_text.rpc(card_export)
 
 @rpc("any_peer")
 func ability_check(card_index):
@@ -122,10 +131,11 @@ func receive_card(exported_card, exported_future):
 	
 	#Clear future events as this will set them?
 	for key in future_events.keys():
-		future_events[key] = [0, 0]
+		if future_events[key][0] == FutureEvents.NEXT_CARD:
+			future_events[key][1] = [0, 0]
 	
-	post_card_effects.rpc(card_to_play.export(), decision)
-	post_card_effects(exported_card, decision)
+	post_card_effects.rpc(card_to_play.export(), decision, future_events)
+	post_card_effects(exported_card, decision, exported_future)
 	
 	passive_card_abilities.rpc(card_to_play.export(), decision)
 	passive_card_abilities(exported_card, decision)
@@ -166,6 +176,9 @@ func end_turn(decision:Sides):
 	game.get_player().cards_left = card_hand.cards_in_hand.size()
 	
 	starting_card_effects()
+	turn_started.emit()
+	
+	game.turn_count += 1
 	
 	#if player.cards_in_hand.size == 1 or opponent.cards_in_hand.size == 1:
 	#	print('Game is over!')
@@ -174,6 +187,12 @@ func end_turn(decision:Sides):
 @rpc("any_peer")
 func on_turn_ended(cards_left):
 	game.get_opponent().cards_left = cards_left
+
+func _on_card_removed(cards_left):
+	for card in card_hand.cards_in_hand:
+		if card.stats.ability_name == "Post-Mortem":
+			card.add_bonus_attack(1, "Post-Mortem")
+			card.add_bonus_defense(1, "Post-Mortem")
 
 #For cards thats abilities start at the beginning of a turn
 func starting_card_effects():
@@ -185,7 +204,7 @@ func starting_card_effects():
 						card.stats.add_bonus_attack(1, "Price Goes Up Yearly")
 						card.stats.add_bonus_defense(1, "Price Goes Up Yearly")
 				"No Show":
-					var random = rng.randi_range(0, 20)
+					var random = randi_range(0, 20)
 					if random == 7:
 						card_hand.remove_card(card.index)
 				"Deadline":
@@ -198,17 +217,17 @@ func starting_card_effects():
 # Version with the exported card
 func pre_card_effects(card, affecting_card, playing_future_events, affecting_future_events):
 	for key in playing_future_events.keys():
-		if playing_future_events[key] != [0, 0]:
-			card["Attack"] += playing_future_events[key][0]
-			card["Defense"] += playing_future_events[key][1]
-			card["Bonus Attack"] += playing_future_events[key][0]
-			card["Bonus Defense"] += playing_future_events[key][1]
+		if playing_future_events[key][0] == FutureEvents.NEXT_CARD and playing_future_events[key][1] != [0, 0]:
+			card["Attack"] += playing_future_events[key][1][0]
+			card["Defense"] += playing_future_events[key][1][1]
+			card["Bonus Attack"] += playing_future_events[key][1][0]
+			card["Bonus Defense"] += playing_future_events[key][1][1]
 	for key in affecting_future_events.keys():
-		if affecting_future_events[key] != [0, 0]:
-			affecting_card["Attack"] += affecting_future_events[key][0]
-			affecting_card["Defense"] += affecting_future_events[key][1]
-			affecting_card["Bonus Attack"] += affecting_future_events[key][0]
-			affecting_card["Bonus Defense"] += affecting_future_events[key][1]
+		if affecting_future_events[key][0] == FutureEvents.NEXT_CARD and affecting_future_events[key][1] != [0, 0]:
+			affecting_card["Attack"] += affecting_future_events[key[1]][0]
+			affecting_card["Defense"] += affecting_future_events[key][1][1]
+			affecting_card["Bonus Attack"] += affecting_future_events[key][1][0]
+			affecting_card["Bonus Defense"] += affecting_future_events[key][1][1]
 	if !card["Ability Used"]:
 		match card["Ability"]:
 			"Neuralyzer":
@@ -225,7 +244,7 @@ func pre_card_effects(card, affecting_card, playing_future_events, affecting_fut
 
 
 @rpc("authority")
-func post_card_effects(opposing_card, decision):
+func post_card_effects(opposing_card, decision, opposing_future_events):
 	# Abilities that affect the OPPOSING player
 	if !opposing_card["Ability Used"]:
 		match opposing_card["Ability"]:
@@ -236,7 +255,7 @@ func post_card_effects(opposing_card, decision):
 				if decision == opposing_card["Side"]:
 					card_hand.disable_card(card_to_play.index, 2)
 			"Strategist":
-				var random_card = card_hand.cards_in_hand[rng.randi_range(0, card_hand.cards_in_hand.size() - 1)]
+				var random_card = card_hand.cards_in_hand[randi_range(0, card_hand.cards_in_hand.size() - 1)]
 				card_preview.generate_preview_from_export.rpc(random_card.export())
 			"Kindness":
 				if decision == opposing_card["Side"]:
@@ -253,6 +272,17 @@ func post_card_effects(opposing_card, decision):
 					
 					card_hand.add_card.rpc(card_hand.get_card_from_index(card_to_play.index))
 					card_hand.remove_card(card_to_play.index)
+			"Clean Timeline":
+				if decision == opposing_card["Side"]:
+					for i in range(int(card_hand.cards_in_hand.size() / 2)):
+						var index:int = randi_range(0, card_hand.cards_in_hand.size() - 1)
+						while card_hand.get_card_from_index(index).disabled == true:
+							index = randi_range(0, card_hand.cards_in_hand.size() - 1)
+						card_hand.get_card_from_index(index).disable()
+			"Acidic":
+				if decision == opposing_card["Side"]:
+					for card in card_hand.cards_to_play:
+						card.stats.add_penalty_defense(1, "Acidic")
 	
 	
 	#Abilities that affect the PLAYER
@@ -260,7 +290,7 @@ func post_card_effects(opposing_card, decision):
 		match card_to_play.stats.ability_name:
 			"The 1K Race":
 				if decision == opposing_card["Side"] and card_hand.removed_cards.size() > 0:
-					card_hand.readd_card(rng.randi_range(0, card_hand.removed_cards.size() - 1))
+					card_hand.readd_card(randi_range(0, card_hand.removed_cards.size() - 1))
 			"Boost":
 				for card in card_hand.cards_in_hand:
 					if card != card_to_play:
@@ -275,8 +305,7 @@ func post_card_effects(opposing_card, decision):
 				locked_text.stats_timer = 3
 			"Pass It On":
 				if decision == opposing_card["Side"]:
-					future_events["Pass It On"][0] = floor(float(card_to_play.stats.true_attack) / 2)
-					future_events["Pass It On"][1] = floor(float(card_to_play.stats.true_defense) / 2)
+					future_events["Pass It On"] = [FutureEvents.NEXT_CARD, [floor(float(card_to_play.stats.true_attack) / 2), floor(float(card_to_play.stats.true_defense) / 2)]]
 			"The Goop":
 				card_to_play.stats.ability_name = opposing_card["Ability"]
 				card_to_play.ability_description = opposing_card["Ability Description"]
@@ -288,6 +317,30 @@ func post_card_effects(opposing_card, decision):
 					# NEEDS STATUS MESSAGE
 					card_hand.add_card.rpc(card_to_play.export())
 					card_hand.remove_card(card_to_play.index)
+			"All Powerful":
+				card_to_play.stats.add_penalty_attack(1, "All Powerful")
+				card_to_play.stats.add_penalty_defense(1, "All Powerful")
+			"The HUD":
+				locked_text.show_ability = true
+				locked_text.ability_timer = 0
+			"Winter Scavenging":
+				future_events["Winter Scavenging"] = [FutureEvents.NEXT_LOSS, [1, 1]]
+			"Fear of God":
+				var fate = randi_range(1, 5)
+				if fate == 1:
+					card_hand.remove_all_cards()
+				else:
+					card_hand.remove_all_cards.rpc()
+			"Nectar of the Gods":
+				for card in card_hand.cards_in_hand:
+					card.add_bonus_attack(1, "Nectar of the Gods")
+					card.add_bonus_defense(1, "Nectar of the Gods")
+	
+	for key in future_events.keys():
+		if future_events[key][0] == FutureEvents.NEXT_LOSS and decision == opposing_card["Side"]:
+			card_to_play.add_bonus_attack(future_events[key][0], key)
+			card_to_play.add_bonus_defense(future_events[key][0], key)
+			future_events[key][1] = [0, 0]
 
 #Called at the end of every turn for EVERY card in your hand. 
 @rpc("authority")
@@ -318,6 +371,15 @@ func passive_card_abilities(_opposing_card, decision):
 					else:
 						card.stats.add_bonus_defense(1, "Speeding")
 						card.stats.add_penalty_attack(1, "Speeding")
+			"Rising":
+				card.stats.set_bonus_attack(0, "Rising")
+				card.stats.set_bonus_defense(0, "Rising")
+				
+				card.stats.add_bonus_attack(card.stats.get_bonus_attack() * 2, "Rising")
+				card.stats.add_bonus_defense(card.stats.get_bonus_defense() * 2, "Rising")
+			"Reminiscing":
+				card.stats.set_bonus_attack(future_events["Reminiscing"][0], "Reminiscing")
+				card.stats.set_bonus_defense(future_events["Reminiscing"][1], "Reminiscing")
 		card.ability_check()
 		if cash_out and card.bonuses["Cash Out"] == [0, 0]:
 			if card.stats.true_attack <= 3:

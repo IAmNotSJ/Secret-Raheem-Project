@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dkljn4yh1l6r0"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_f8mjt"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_f8mjt")
+card_name = "Galactose Pizza"
+card_series = "Cleft"
+card_number = "039"
+base_attack = 3
+base_defense = 3
+can_get_bonuses = true
+ability_name = "Acidic"
+one_use_ability = false
+ability_description = "If this card wins, -1 Defense to all opponent's cards."
+should_remove = true

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://be384h1kp3c33"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_3m025"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3m025")
+card_name = "Golden Toilet"
+card_series = "SJ"
+card_number = "038"
+base_attack = 8
+base_defense = 8
+can_get_bonuses = true
+ability_name = "All Powerful"
+one_use_ability = false
+ability_description = "-1 to both stats of this card, per use."
+should_remove = true

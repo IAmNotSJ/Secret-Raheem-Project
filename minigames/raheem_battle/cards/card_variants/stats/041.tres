@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cx352xolecw7t"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_o2iwx"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_o2iwx")
+card_name = "Quasi"
+card_series = "Cleft"
+card_number = "041"
+base_attack = 1
+base_defense = 1
+can_get_bonuses = true
+ability_name = "Post-Mortem"
+one_use_ability = false
+ability_description = "This card gets +1 attack for every card thats removed from your deck."
+should_remove = true
