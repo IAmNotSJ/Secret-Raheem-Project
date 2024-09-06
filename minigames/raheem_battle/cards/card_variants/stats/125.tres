@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cvv2vcw8aydv1"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_yy71k"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yy71k")
+card_name = "Cereal Killer"
+card_series = "BBB"
+card_number = "125"
+base_attack = 7.0
+base_defense = 7.0
+can_get_bonuses = true
+ability_name = "Crack"
+ability_description = "This card loses 1 attack/defense at the start of every turn."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dqh6431j58juj"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_r0a57"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_r0a57")
+card_name = "9-5"
+card_series = "Wibr"
+card_number = "022"
+base_attack = 3.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Worker's Revolution"
+ability_description = "If the player holding this card is currently employed, +2 to both stats."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cqldvjpp4imxl"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_4loe3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_4loe3")
+card_name = "Wojackula Fragment"
+card_series = "Luna"
+card_number = "114"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Double It And Pass It To The Next Person"
+ability_description = "The stat bonuses applied to this card will instead be applied to the card played after it."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

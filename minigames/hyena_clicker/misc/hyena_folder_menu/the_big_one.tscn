@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://srlbbrd3n2vu"]
+
+[ext_resource type="Texture2D" uid="uid://bdrdkepextf12" path="res://minigames/hyena_clicker/assets/buttons/the big one.png" id="1_gvp6w"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/hyena_folder_menu/the_big_one.gd" id="2_ksxw7"]
+[ext_resource type="AudioStream" uid="uid://chgacx6d75r8q" path="res://minigames/hyena_clicker/sound effects/card_upgrade.ogg" id="3_b0h2a"]
+
+[node name="TheBigOne" type="TextureButton"]
+texture_normal = ExtResource("1_gvp6w")
+script = ExtResource("2_ksxw7")
+
+[node name="price_label" type="Label" parent="."]
+offset_right = 499.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0.117647, 0, 0.231373, 1)
+theme_override_font_sizes/font_size = 80
+text = "COST"
+horizontal_alignment = 1
+
+[node name="kaching" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b0h2a")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://be6l10n1pjtvy"]
+
+[ext_resource type="Texture2D" uid="uid://bu2h3n57w43r6" path="res://minigames/hyena_clicker/assets/buttons/stats_bg.png" id="1_hl1ld"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/stats_menu/stats_menu.gd" id="1_kbhvy"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="3_ettgt"]
+
+[node name="stats_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 191.0
+offset_top = 75.0
+offset_right = 1110.0
+offset_bottom = 606.0
+script = ExtResource("1_kbhvy")
+
+[node name="ShopBg" type="Sprite2D" parent="."]
+position = Vector2(442, 266)
+scale = Vector2(1, 0.8)
+texture = ExtResource("1_hl1ld")
+
+[node name="Info" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 194.0
+offset_bottom = 57.0
+
+[node name="hyenas" type="Label" parent="Info"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ettgt")
+text = "Total Hyenas Collected: 0"
+
+[node name="clicks" type="Label" parent="Info"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ettgt")
+text = "Times Clicked: 0"
+
+[node name="Idle" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 210.0
+offset_top = 7.0
+offset_right = 404.0
+offset_bottom = 543.0
+theme_override_constants/separation = 3

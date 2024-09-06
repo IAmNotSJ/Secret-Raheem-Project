@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dtqlsdgg51dpo"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_wue8a"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wue8a")
+card_name = "Joseph Biden"
+card_series = "Luna"
+card_number = "122"
+base_attack = 2.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Presidential Pardon"
+ability_description = "When played, remove 1 attack and defense from each penalty applied to each card in your deck other than this one."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

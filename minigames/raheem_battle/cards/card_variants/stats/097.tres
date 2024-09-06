@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dhomkovfxjd2f"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_s45ih"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_s45ih")
+card_name = "Subscriber Count"
+card_series = "Composty"
+card_number = "097"
+base_attack = 2.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = "Top 100"
+ability_description = "If the player using this card has more subscribers than the opposing player, this card gets +2 to both stats."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

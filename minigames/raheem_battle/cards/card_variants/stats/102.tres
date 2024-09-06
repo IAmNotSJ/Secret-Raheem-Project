@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dixaunbkx7cwx"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_d0ib1"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_d0ib1")
+card_name = "Existy"
+card_series = "Composty"
+card_number = "102"
+base_attack = 0.0
+base_defense = 0.0
+can_get_bonuses = true
+ability_name = "."
+ability_description = "When played, add this card into your opponent's deck. The match will tie, but your opponent cannot get rid of the new card."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

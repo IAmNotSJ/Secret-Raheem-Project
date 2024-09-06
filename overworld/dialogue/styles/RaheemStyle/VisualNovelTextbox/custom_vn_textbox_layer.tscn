@@ -398,7 +398,6 @@ offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7odrn")
 
 [node name="NameHolder" type="TextureRect" parent="Anchor/AnimationParent/Sizer/DialogTextPanel/NameLabelHolder/NameLabelPanel"]
-unique_name_in_owner = true
 layout_mode = 2
 offset_right = 116.0
 offset_bottom = 141.0

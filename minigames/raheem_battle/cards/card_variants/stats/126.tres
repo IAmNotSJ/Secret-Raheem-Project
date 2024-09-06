@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://exyb2uqhxn78"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_5wr8p"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5wr8p")
+card_name = "Missing Content"
+card_series = "BBB"
+card_number = "126"
+base_attack = 2.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Null Reference"
+ability_description = "This card loses 1 attack/defense at the start of every turn."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

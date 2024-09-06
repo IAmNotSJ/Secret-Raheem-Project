@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://ddwwrwvdoc44m"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_k3l76"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_k3l76")
+card_name = "Monika (BBB Mod)"
+card_series = "BBB"
+card_number = "139"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Deceiver"
+ability_description = "The turn after this card is played, the card that you select will correlate to the card in your opponent's deck that they select."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

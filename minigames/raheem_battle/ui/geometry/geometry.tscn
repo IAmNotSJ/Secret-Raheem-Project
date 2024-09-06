@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://be1ltam2gq4ds"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/geometry/geometry.gd" id="1_4wo20"]
+
+[node name="geometry" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4wo20")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 1250.0
+offset_bottom = 225.0
+theme_override_font_sizes/font_size = 32
+text = "THIS IS THE PROBLEM"
+horizontal_alignment = 1
+
+[node name="image" type="Sprite2D" parent="."]
+position = Vector2(640, 310)
+
+[node name="answer" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 573.0
+offset_right = 840.0
+offset_bottom = 613.0
+placeholder_text = "Type Answer Here"
+alignment = 1
+
+[node name="submit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 616.0
+offset_right = 840.0
+offset_bottom = 716.0
+text = "SUBMIT"
+
+[connection signal="pressed" from="submit" to="." method="_on_submit"]

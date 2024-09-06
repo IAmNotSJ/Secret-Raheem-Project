@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bvpfwueyg6r1p"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_j8777"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_j8777")
+card_name = "Unmuted Microphone"
+card_series = "Block"
+card_number = "056"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Bathroom Break"
+ability_description = "If the opposing player has sent any chat messages this game before the turn where this card is played starts, this card gets -1 to both stats."
+one_use_ability = false
+should_remove = true
+hide_stats = false

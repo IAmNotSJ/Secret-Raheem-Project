@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwgw4v7c2omg2"]
+
+[ext_resource type="Texture2D" uid="uid://dp31ifh624hxv" path="res://minigames/raheem_battle/ui/paper clutter/crumple.png" id="1_epged"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/paper clutter/crumple.gd" id="1_gsj1n"]
+[ext_resource type="AudioStream" uid="uid://rxpehac11usa" path="res://minigames/raheem_battle/sound_effects/paper.mp3" id="3_f4j2r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_djewo"]
+rough = true
+bounce = 0.1
+absorbent = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7ggj"]
+radius = 90.0
+
+[node name="paper_crumple" type="RigidBody2D"]
+mass = 0.03
+physics_material_override = SubResource("PhysicsMaterial_djewo")
+inertia = 13.1
+constant_force = Vector2(1.855, 1.855)
+constant_torque = 22.425
+script = ExtResource("1_gsj1n")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_epged")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 4)
+shape = SubResource("CircleShape2D_d7ggj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f4j2r")
+bus = &"SFX"

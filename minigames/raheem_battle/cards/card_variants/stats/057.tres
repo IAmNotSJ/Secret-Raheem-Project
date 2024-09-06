@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dskit0ghnq12c"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_2uifs"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_2uifs")
+card_name = "Let's Play"
+card_series = "Cherry"
+card_number = "057"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Editing"
+ability_description = "If the player using this card has 5 or more hours on their save file, this card gets +2 attack."
+one_use_ability = false
+should_remove = true
+hide_stats = false

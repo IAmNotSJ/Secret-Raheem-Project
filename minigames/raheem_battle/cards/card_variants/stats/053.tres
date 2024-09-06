@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b1oovstwtoac5"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_b2qoy"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_b2qoy")
+card_name = "Broken Promises"
+card_series = "Block"
+card_number = "053"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Last Live: 3 Months Ago"
+ability_description = "If your opponent has streamed on Twitch, this card receives -2 attack for the turn."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

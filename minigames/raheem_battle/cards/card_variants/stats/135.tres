@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bb1rn4bx5g8ns"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_41ire"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_41ire")
+card_name = "Geode"
+card_series = "BBB"
+card_number = "135"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Fangirl"
+ability_description = "This card gets +2 to both stats when a Shark Meter card is in the deck with it."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

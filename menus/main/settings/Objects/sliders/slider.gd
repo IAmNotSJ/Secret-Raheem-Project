@@ -23,6 +23,6 @@ func _on_drag_started():
 
 func _on_drag_ended(_value_change):
 	updating = false
-	global.settings["audioSettings"][AudioServer.get_bus_name(bus_index)] = value
-	global.save_settings()
+	Saves.audioSettings[AudioServer.get_bus_name(bus_index)] = value
+	Saves.save(Saves.SaveTypes.SETTINGS)
 

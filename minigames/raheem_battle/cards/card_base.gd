@@ -1,22 +1,39 @@
 @tool
 extends Control
 
-signal selected(card)
+enum Rarity {
+	COMMON,
+	HOLO
+}
+var rarity:Rarity = Rarity.COMMON
+
+
+signal left_clicked(card)
+signal right_clicked(card)
 signal bonus_added(key)
 
 @export_category("Resource")
 @export var stats:CardStats = load("res://minigames/raheem_battle/cards/card_variants/stats/0.tres")
 
+@export var is_preview:bool = false
+@export var selectable:bool = true
 
-@onready var game = get_parent().get_parent().get_parent().get_parent()
-@onready var ui = get_parent().get_parent().get_parent()
-@onready var card_hand = get_parent().get_parent()
+const holoShader = preload("res://minigames/raheem_battle/cards/holographic.gdshader")
 
+var game
 var can_click:bool = false
 
 var index:int
 
+var fire:bool = false :
+	set(value) :
+		fire = value
+		if fire == true:
+			stats.set_penalty_attack(2, "Fire")
+			stats.set_penalty_defense(2, "Fire")
+
 var offset:int = 0
+var shader_offset:float = 0.1
 
 #For one use abilities. Set to true to make ability not work
 var ability_used:bool = false
@@ -28,11 +45,12 @@ var disabled:bool = false :
 	set(value):
 		disabled = value
 		if disabled:
-			%Base.color = Color(100, 100, 100, 255)
+			#$visible.material.set("shader_parameter/darkened", true)
 			can_click = false
 			$visible.position.y = 0 + offset
 		else:
-			%Base.color = Color(255, 255, 255, 255)
+			#$visible.material.set("shader_parameter/darkened", false)
+			pass
 var disabled_time:int = 0
 
 # True if the card is generated to be seen as a preview
@@ -42,10 +60,14 @@ func _ready():
 	if index % 2 != 0:
 		offset = -30
 	
-	stats.changed.connect(_on_stats_changed)
-	if !Engine.is_editor_hint():
-		ui.turn_ended.connect(_on_turn_ended)
+	if !is_preview:
+		game = get_parent().get_parent().get_parent().get_parent()
+	
+	if rarity == Rarity.HOLO:
+		$visible.material.set("shader_parameter/active", true)
+	
 	_on_stats_changed()
+	stats.changed.connect(_on_stats_changed)
 	
 	var random = randi_range(0, 1)
 	if random == 0:
@@ -58,23 +80,30 @@ func _process(_delta):
 		if !disabled:
 			if !block_input:
 				if $mouse_detection.has_overlapping_areas():
-					$visible.position.y = -50 + offset
+					if !is_preview:
+						$visible.position.y = -50 + offset
 					can_click = true
 				else:
-					$visible.position.y = 0 + offset
-					can_click = false
+					if !is_preview:
+						$visible.position.y = 0 + offset
+					if selectable:
+						can_click = false
 				if can_click:
-					if Input.is_action_just_pressed('right_click'):
-						ui.card_preview.generate_card_preview(stats)
-					if Input.is_action_just_pressed("click") and game.started:
-						selected.emit(self)
-
+						if Input.is_action_just_pressed('right_click'):
+							right_clicked.emit(stats)
+						if Input.is_action_just_pressed("click"):
+							left_clicked.emit(self)
 
 func _on_stats_changed():
 	if stats != null:
 		%Name.text = stats.card_name
+		
+		_update_label_size(%Name)
+		
 		%Series.text = stats.card_series
 		%Number.text = stats.card_number
+		
+		change_color(stats.card_series)
 		
 		if stats.hide_stats:
 			%Ability.text = "X"
@@ -93,6 +122,7 @@ func _on_stats_changed():
 		
 		%Ability_Name.text = stats.ability_name
 		%Ability_Description.text = stats.ability_description
+		
 		
 		if stats.ability_name == "" or stats.ability_name == " ":
 			%Ability_Holder.visible = false
@@ -129,11 +159,85 @@ func export():
 	"Ability Description" : stats.ability_description,
 	"One Use Ability" : stats.one_use_ability,
 	"Ability Used" : ability_used,
+	"Is Human" : stats.is_human,
+	"Has Hands" : stats.has_hands,
 	"Bonuses" : stats.bonuses,
 	"Penalties" : stats.penalties,
-	"Should Remove" : stats.should_remove,
-	"Player Name" : game.get_player().player_name,
-	"Side" : game.get_player().side,
-	"Index" : index
+	"Should Remove" : stats.should_remove
 	}
+	if !is_preview:
+		daExport["Player Name"] = game.get_player().player_name
+		daExport["Player ID"] = game.get_player().name
+		daExport["Side"] = game.get_player().side
+		daExport["Index"] = index
 	return daExport
+
+func _update_label_size(label):
+	var sizes:Dictionary = {
+		"41" : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+		"39" : [12, 13],
+		"34" : [14],
+		"30" : [15],
+		"26" : [16, 17, 18],
+		"23" : [19, 20, 21, 22]
+	}
+	for key in sizes.keys():
+		for length in sizes[key]:
+			if label.text.length() == length:
+				label.add_theme_font_size_override("font_size", int(key))
+
+func set_base_attack(val):
+	stats.base_attack = val
+func set_base_defense(val):
+	stats.base_defense = val
+
+func change_color(series):
+	var last_color = modulate
+	var color = Color8(255, 255, 255, 255)
+	match series:
+		"Raheem":
+			color = Color8(61, 158, 255)
+		"Wibr":
+			color = Color8(255, 61, 145)
+		"SJ":
+			color = Color8(46, 255, 171)
+		"Cleft":
+			color = Color8(76, 191, 0)
+		"Block":
+			color = Color8(171, 220, 235)
+		"Cherry":
+			color = Color8(63, 54, 181)
+		"Dapper":
+			color = Color8(0, 255, 157)
+		"Slime":
+			color = Color8(255, 183, 0)
+		"Atlas":
+			color = Color8(217, 217, 217)
+		"Dile":
+			color = Color8(255, 69, 239)
+		"Composty":
+			color = Color8(56, 255, 69)
+		"Cost":
+			color = Color8(255, 177, 135)
+		"Lambda":
+			color = Color8(255, 103, 20)
+		"Luna":
+			color = Color8(17, 168, 70)
+	
+	%Base.modulate = color
+	%border.modulate = color
+	%Ability_Holder.modulate = color.lightened(0.2)
+	
+	
+	if last_color != color:
+		if rarity == Rarity.HOLO:
+			var gradient = Gradient.new()
+			gradient.add_point(0, Color.WHITE.lerp(color, 0.6))
+			gradient.add_point(0.309, Color("45d5fc").lerp(color, 0.6))
+			gradient.add_point(0.614, Color("60d665").lerp(color, 0.6))
+			gradient.add_point(0.831, Color("ffd319").lerp(color, 0.6))
+			gradient.add_point(1, Color.BLACK.lerp(color, 0.6))
+			
+			var texture_grad = GradientTexture1D.new()
+			texture_grad.gradient = gradient
+			$visible.material.set("shader_parameter/gradient", texture_grad)

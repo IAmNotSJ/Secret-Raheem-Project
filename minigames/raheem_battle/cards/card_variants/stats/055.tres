@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://rw50ahjcb0qk"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_y63k0"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_y63k0")
+card_name = "Sleep Schedule"
+card_series = "Block"
+card_number = "055"
+base_attack = 2.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Dazed and Confused"
+ability_description = "Negates your opponent's choice this round and chooses from a random card from their deck to play"
+one_use_ability = false
+should_remove = true
+hide_stats = false

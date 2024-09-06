@@ -10,6 +10,7 @@ script = ExtResource("1_nlfe7")
 
 [node name="Quiz" parent="." instance=ExtResource("2_6hlpp")]
 visible = false
+mouse_filter = 2
 
 [node name="Menu" parent="." instance=ExtResource("1_ti5sv")]
 
@@ -39,3 +40,7 @@ text = "RoomAddress:"
 [node name="side" type="Label" parent="NetworkInfo"]
 layout_mode = 2
 text = "Side: "
+
+[node name="turn_count" type="Label" parent="NetworkInfo"]
+layout_mode = 2
+text = "TurnCount:"

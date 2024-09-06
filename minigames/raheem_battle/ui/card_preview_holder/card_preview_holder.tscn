@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbgmnpk5xwwi7"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/card_preview_holder/card_preview_holder.gd" id="1_34rs7"]
+
+[node name="card_preview_holder" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_34rs7")
+
+[node name="card_preview_center" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 910.0
+offset_bottom = 154.0
+mouse_filter = 2

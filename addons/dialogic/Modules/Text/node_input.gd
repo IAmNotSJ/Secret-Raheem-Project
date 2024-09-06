@@ -11,10 +11,11 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
-		mouse_filter = Control.MOUSE_FILTER_STOP
-	else:
-		mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if Dialogic.Styles.has_active_layout_node() and Dialogic.Styles.get_layout_node().is_inside_tree():
+		if Dialogic.Styles.get_layout_node().allow_input == true:
+			mouse_filter = Control.MOUSE_FILTER_STOP
+		else:
+			mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
 func _on_gui_input(event:InputEvent) -> void:

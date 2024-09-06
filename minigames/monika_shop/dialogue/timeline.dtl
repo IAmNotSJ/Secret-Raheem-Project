@@ -1,0 +1,28 @@
+set {Monika Shop.randomness} = range(0,6).pick_random()
+#set {Monika Shop.randomness} = 6
+if {Monika Shop.first_time} == true:
+	monika: HI-
+	monika: <Empty Text Event>
+	monika: Oh. It's one of you.
+	monika: Welcome to my shop! What can I get you?
+	set {Monika Shop.first_time} = false
+else:
+	if {Monika Shop.randomness} == 0:
+		monika: Welcome back! What do you want?
+	elif {Monika Shop.randomness} == 1:
+		monika: Your friends are pretty loud, you know. I can hear them even this deep in the forest.
+	elif {Monika Shop.randomness} == 2:
+		monika: Items. Buy.
+	elif {Monika Shop.randomness} == 3:
+		monika: What do I need the money for? Well aren't you awfully nosey?
+	elif {Monika Shop.randomness} == 4:
+		monika: Some kid ran up to me trying to sing. I wonder if he ever got out of that tree stump I shoved him into.
+	elif {Monika Shop.randomness} == 5:
+		monika: The sun distribution in this forest is awful. I need to move to a new neighborhood.
+	elif {Monika Shop.randomness} == 6:
+		monika: I've seen a lot of faces come through here before,
+		monika: but you're different.
+		monika: Above everything else, you must remember.
+		monika: Singing is key.
+		monika: ...
+		monika: Just kidding.

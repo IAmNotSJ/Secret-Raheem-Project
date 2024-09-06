@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://p0r84876eoue"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ebqpr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ebqpr")
+card_name = "Earth Box"
+card_series = "BBB"
+card_number = "129"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Foliage"
+ability_description = "Scrambles the abilities of all of your opponent's cards when played."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

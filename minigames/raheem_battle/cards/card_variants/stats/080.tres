@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://blnp23p0wck0w"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_57fkh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_57fkh")
+card_name = "Motivational Gif"
+card_series = "Slime"
+card_number = "080"
+base_attack = 2.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Good Morning"
+ability_description = "Adds +3 defense to the next card played."
+one_use_ability = false
+should_remove = true
+hide_stats = false

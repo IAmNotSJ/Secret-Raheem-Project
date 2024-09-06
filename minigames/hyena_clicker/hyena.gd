@@ -13,7 +13,7 @@ extends Node2D
 @onready var musicPlayer = $Music
 
 
-var counterScene = preload("res://minigames/hyena_clicker/Counter.tscn")
+var counterScene = preload("res://minigames/hyena_clicker/misc/counter/counter.tscn")
 
 const SAVE_PATH: String = "user://hyena.bin"
 

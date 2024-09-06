@@ -105,16 +105,16 @@ func parse_text(text:String, type:int=TextTypes.DIALOG_TEXT, variables := true, 
 ## the dialog text box.
 ## This method is async.
 func update_textbox(text: String, instant := false) -> void:
-	if text.is_empty():
-		await hide_textbox(instant)
-	else:
-		await show_textbox(instant)
+	#if text.is_empty():
+	#	await hide_textbox(instant)
+	#else:
+	await show_textbox(instant)
 
-		if !dialogic.current_state_info['text'].is_empty():
-			animation_textbox_new_text.emit()
+	if !dialogic.current_state_info['text'].is_empty():
+		animation_textbox_new_text.emit()
 
-			if dialogic.Animations.is_animating():
-				await dialogic.Animations.finished
+		if dialogic.Animations.is_animating():
+			await dialogic.Animations.finished
 
 
 ## Shows the given text on all visible DialogText nodes.

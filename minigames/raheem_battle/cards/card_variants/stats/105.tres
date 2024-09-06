@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://xthv6wbljmme"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_oh4ac"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_oh4ac")
+card_name = "Fall Guys Average"
+card_series = "Cost"
+card_number = "105"
+base_attack = 3.0
+base_defense = 4.0
+can_get_bonuses = true
+ability_name = "Spreadsheet"
+ability_description = "If the player using this card has a higher win/loss average than the opposing player, this card gets +2 attack when played."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

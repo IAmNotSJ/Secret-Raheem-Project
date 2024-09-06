@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cvoiir7ojgyu7"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_lnlwk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_lnlwk")
+card_name = "Patience"
+card_series = "Cherry"
+card_number = "065"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Simping"
+ability_description = "-2 to both stats of the opposing card if it is in the Dapper Series."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cpkva1dx6onan"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_yiv8o"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yiv8o")
+card_name = "Lost Reanimated Files"
+card_series = "Cost"
+card_number = "108"
+base_attack = 1.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Office GIF"
+ability_description = "If the next card has an ability that increases stats, that bonus is doubled for the turn it is played."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

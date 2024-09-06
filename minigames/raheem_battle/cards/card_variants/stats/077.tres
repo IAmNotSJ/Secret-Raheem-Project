@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://i2fm88t3mjpe"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_knui0"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_knui0")
+card_name = "Chuck McGill"
+card_series = "Slime"
+card_number = "077"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Electromagnetic Hypersensitivity"
+ability_description = "This card receives +2 to both stats if the game is being played between 9pm and 5am (In the player's timezone)"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

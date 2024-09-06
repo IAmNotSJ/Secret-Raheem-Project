@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://y3wwqaoeef37"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_3ku5o"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3ku5o")
+card_name = "Everyone's Favorite"
+card_series = "Cherry"
+card_number = "061"
+base_attack = 4.0
+base_defense = 4.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false

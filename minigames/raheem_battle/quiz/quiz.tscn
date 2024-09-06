@@ -314,7 +314,7 @@ offset_left = -0.0240021
 offset_top = -10.5
 offset_right = 23.976
 offset_bottom = 13.5
-answerKey = "Twitch"
+answerKey = "Autistic"
 metadata/_edit_use_anchors_ = true
 
 [node name="Question 9" type="Label" parent="ScrollContainer/VBoxContainer"]
@@ -370,10 +370,10 @@ popup/item_11/text = "Lambda"
 popup/item_11/id = 11
 popup/item_12/text = "Luna"
 popup/item_12/id = 12
-popup/item_13/text = "Other"
+popup/item_13/text = "None"
 popup/item_13/id = 13
 answerKey = "Favorite Member"
-answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "Other"])
+answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "None"])
 metadata/_edit_use_anchors_ = true
 
 [node name="Question 10" type="Label" parent="ScrollContainer/VBoxContainer"]
@@ -409,7 +409,7 @@ popup/item_1/text = "Jacksepticeye"
 popup/item_1/id = 1
 popup/item_2/text = "Pewdiepie"
 popup/item_2/id = 2
-answerKey = "Favorite Member"
+answerKey = "Youtubers"
 answers = Array[String](["Markiplier", "Jacksepticeye", "Pewdiepie"])
 metadata/_edit_use_anchors_ = true
 
@@ -438,5 +438,5 @@ offset_left = 2.0
 offset_top = -15.466
 offset_right = 157.0
 offset_bottom = 15.534
-answerKey = "Math"
+answerKey = "Lucky Number"
 metadata/_edit_use_anchors_ = true

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://c6no3wex64aff"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_d5usi"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_d5usi")
+card_name = "Monika"
+card_series = "BBB"
+card_number = "138"
+base_attack = 2.0
+base_defense = 5.0
+can_get_bonuses = true
+ability_name = "Dance"
+ability_description = "If the opposing player has more cards in their victory chest, this card gets +2 to both stats when played"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

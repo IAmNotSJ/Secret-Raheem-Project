@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc1so2qeimjbu"]
+
+[ext_resource type="Texture2D" uid="uid://de6503ajp5rhn" path="res://minigames/hyena_clicker/assets/mouse_window.png" id="1_8ctnw"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/mouse_window/mouse_window.gd" id="2_4o5g3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j1j2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux2yk"]
+
+[node name="mouse_window" type="Sprite2D"]
+texture = ExtResource("1_8ctnw")
+centered = false
+script = ExtResource("2_4o5g3")
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 215.0
+offset_bottom = 88.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "bitch!"
+
+[node name="Price" type="RichTextLabel" parent="."]
+offset_left = 11.0
+offset_top = 25.0
+offset_right = 214.0
+offset_bottom = 110.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = " 
+"
+
+[node name="Description" type="RichTextLabel" parent="."]
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 226.0
+offset_bottom = 299.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 11
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j1j2f")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ux2yk")
+bbcode_enabled = true
+text = "Hyena Description"

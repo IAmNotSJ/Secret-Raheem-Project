@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="DialogicStyle" load_steps=21 format=3 uid="uid://jr6i4wi1nqvv"]
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=22 format=3 uid="uid://jr6i4wi1nqvv"]
 
 [ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="1_kv7pe"]
+[ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn" id="1_utlp3"]
 [ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_8wi4v"]
 [ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="3_fw33j"]
 [ext_resource type="PackedScene" uid="uid://c1f31yl3m41kn" path="res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/custom_vn_textbox_layer.tscn" id="4_03axh"]
@@ -41,7 +42,9 @@ overrides = {
 [sub_resource type="Resource" id="Resource_ga3xi"]
 script = ExtResource("2_8wi4v")
 scene = ExtResource("5_2br4k")
-overrides = {}
+overrides = {
+"disabled": "true"
+}
 
 [sub_resource type="Resource" id="Resource_1lc55"]
 script = ExtResource("2_8wi4v")
@@ -66,9 +69,10 @@ overrides = {}
 [resource]
 script = ExtResource("10_5hm8y")
 name = "Raheem"
+base_scene = ExtResource("1_utlp3")
 base_overrides = {
 "global_font_color": "Color(0, 0.00683594, 0.109375, 1)",
 "global_font_size": "28.0"
 }
 layers = Array[ExtResource("2_8wi4v")]([SubResource("Resource_ivhii"), SubResource("Resource_qoix7"), SubResource("Resource_d88gj"), SubResource("Resource_3g7wx"), SubResource("Resource_ga3xi"), SubResource("Resource_1lc55"), SubResource("Resource_8qiyj"), SubResource("Resource_f7dvm"), SubResource("Resource_egw2f")])
-metadata/_latest_layer = 2
+metadata/_latest_layer = -1

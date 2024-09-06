@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b8fnenkk287dw"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_12yus"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_12yus")
+card_name = "Pizza Job"
+card_series = "Block"
+card_number = "054"
+base_attack = 4.0
+base_defense = 5.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false

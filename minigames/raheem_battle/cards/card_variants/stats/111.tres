@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bw065vmwor111"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_gqnph"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gqnph")
+card_name = "Puzzle Failure"
+card_series = "Cost"
+card_number = "111"
+base_attack = 2.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Charity"
+ability_description = "When first used, if this card has received any increase or decrease to stats then all future cards will receive the same bonus."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

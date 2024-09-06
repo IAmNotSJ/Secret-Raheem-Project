@@ -1,9 +1,11 @@
 extends Node2D
 
-@onready var manager = get_parent()
-@onready var players = $players
+signal game_started
 
-@onready var turn_decider = $turn_decider
+@onready var manager = get_parent()
+@onready var players = %players
+
+@onready var turn_decider = %turn_decider
 
 enum Sides {
 	ATTACKING,
@@ -23,7 +25,27 @@ var player_path = preload("res://minigames/raheem_battle/player/player.tscn")
 var opponent_path = preload("res://minigames/raheem_battle/opponents/opponent.tscn")
 
 var started:bool = false
-var turn_count:int = 0
+var turn_count:int = 0 :
+	set(value):
+		turn_count = value
+		manager.get_node("NetworkInfo/turn_count").text = "TurnCount: " + str(turn_count)
+
+var last_decision:Sides
+
+var pixel_size:float = 1 :
+	set(value) :
+		pixel_size = value
+		if pixel_size > 1:
+			$Pixelate.visible = true
+		else:
+			$Pixelate.visible = false
+
+var glitch_timer:int = 0
+
+func _process(delta):
+	var dapixel:float = $Pixelate.get("material").get("shader_parameter/pixel_size")
+	dapixel = lerpf(dapixel, pixel_size, delta)
+	$Pixelate.get("material").set("shader_parameter/pixel_size", dapixel)
 
 func add_player(player_name, peer_id):
 	playing_peer_ids.append(peer_id)
@@ -34,7 +56,7 @@ func add_player(player_name, peer_id):
 	player.name = str(peer_id)
 	player.is_player = true
 	players_joined += 1
-	$players.add_child(player)
+	players.add_child(player)
 	
 	#Add the UI for the player
 	var daUI = ui_path.instantiate()
@@ -51,20 +73,20 @@ func add_opponent(opponent_id, opponent_name):
 	player.is_player = false
 	player.name = str(opponent_id)
 	players_joined += 1
-	$players.add_child(player)
+	players.add_child(player)
 	
 	#Add the opponent graphic
 	var opponent = opponent_path.instantiate()
-	$opponent_position.add_child(opponent)
+	%opponent_position.add_child(opponent)
 
 #Returns the player node that is currently linked to the PLAYER
 func get_player():
-	for player in $players.get_children():
+	for player in players.get_children():
 		if player.name == str(multiplayer.multiplayer_peer.get_unique_id()):
 			return player
 #Returns the player node that is currently linked to the OPPONENT
 func get_opponent():
-	for player in $players.get_children():
+	for player in players.get_children():
 		if player.name != str(multiplayer.multiplayer_peer.get_unique_id()):
 			return player
 
@@ -97,9 +119,11 @@ func start_game(side:Sides):
 			get_player().side = Sides.DEFENDING
 			get_opponent().side = Sides.ATTACKING
 	
+	turn_count += 1
+	
 	ui.starting_card_effects()
 	ui.turn_started.emit()
 	
-	turn_count += 1
-
+	
+	game_started.emit()
 

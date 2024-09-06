@@ -144,6 +144,12 @@ func get_layout_node() -> Node:
 		return get_tree().get_meta('dialogic_layout_node')
 	return null
 
+func has_box() -> bool:
+	return (
+		get_tree().has_meta('VN_TextboxLayer')
+		and is_instance_valid(get_tree().get_meta('VN_TextboxLayer'))
+		and not get_tree().get_meta('VN_TextboxLayer').is_queued_for_deletion()
+	)
 
 ## Similar to get_tree().get_first_node_in_group('group_name') but filtered to the active layout node subtree
 func get_first_node_in_layout(group_name : String) -> Node:

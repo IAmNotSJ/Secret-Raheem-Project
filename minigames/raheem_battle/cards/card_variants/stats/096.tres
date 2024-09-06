@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cufcebdxf31jm"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_xsrh3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_xsrh3")
+card_name = "Mobile Ad X"
+card_series = "Composty"
+card_number = "096"
+base_attack = 7.0
+base_defense = 7.0
+can_get_bonuses = true
+ability_name = "Extremely Pressable"
+ability_description = "If the opposing card has fingers, this card automatically loses. (Based on the character in the picture of the card, not what is visible within the picture)"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

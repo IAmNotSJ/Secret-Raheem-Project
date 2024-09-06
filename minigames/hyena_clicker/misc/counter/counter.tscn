@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3lrhjme40k3h"]
+
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/counter/counter.gd" id="1_4v3la"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_wdo2p"]
+
+[sub_resource type="Animation" id="Animation_r487a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("counter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_28b00"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("counter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.164706, 0.0705882, 0.454902, 0.00392157)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sv6c1"]
+_data = {
+"RESET": SubResource("Animation_r487a"),
+"fade": SubResource("Animation_28b00")
+}
+
+[node name="click_counter" type="CanvasGroup"]
+scale = Vector2(1.1, 1.1)
+script = ExtResource("1_4v3la")
+
+[node name="counter" type="Label" parent="."]
+offset_right = 234.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("2_wdo2p")
+theme_override_font_sizes/font_size = 28
+text = "+1
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sv6c1")
+}

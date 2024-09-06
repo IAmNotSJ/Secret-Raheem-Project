@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cxycpf70a3mwb"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_gfsxr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gfsxr")
+card_name = "Lexi"
+card_series = "Dapper"
+card_number = "070"
+base_attack = 4.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Walk"
+ability_description = "This card receives +2 defense if it took less than 30 seconds for cards to be chosen this turn."
+one_use_ability = false
+should_remove = true
+hide_stats = false

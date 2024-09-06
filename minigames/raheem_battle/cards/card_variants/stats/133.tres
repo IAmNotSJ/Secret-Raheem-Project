@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bw2or8hy3d34u"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_q4dcd"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_q4dcd")
+card_name = "Battery"
+card_series = "BBB"
+card_number = "133"
+base_attack = 5.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Voltage"
+ability_description = "If this card loses, half of your deck will be disabled."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

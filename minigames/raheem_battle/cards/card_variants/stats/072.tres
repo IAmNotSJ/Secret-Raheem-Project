@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cs70k2vq8t4x4"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_pdc6k"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_pdc6k")
+card_name = "Lazy League"
+card_series = "Dapper"
+card_number = "072"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Effort Tag"
+ability_description = "If the opposing player has made an object show in the past, this card gets -1 to both stats."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://biclyp2mcxn52"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_bn5ww"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_bn5ww")
+card_name = "Putty Knife"
+card_series = "BBB"
+card_number = "130"
+base_attack = 5.0
+base_defense = 5.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

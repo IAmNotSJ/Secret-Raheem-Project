@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://ddbp3lujb8cvd"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ggebh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ggebh")
+card_name = "Isaac"
+card_series = "Luna"
+card_number = "115"
+base_attack = 8.0
+base_defense = 0.0
+can_get_bonuses = true
+ability_name = "Tears"
+ability_description = "Can only be used if this player’s previous attack was unsuccessful OR as the last card used in an attempt to end the game."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = true
+has_hands = true

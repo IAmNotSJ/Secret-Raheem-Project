@@ -36,3 +36,14 @@ offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 250
+
+[node name="Cancel" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1091.0
+offset_top = 629.0
+offset_right = 1258.0
+offset_bottom = 704.0
+text = "CANCEL"
+
+[connection signal="pressed" from="Cancel" to="." method="clear"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4rbadsla4led"]
+
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/music_player/music.gd" id="1_a3riv"]
+
+[node name="Music" type="AudioStreamPlayer"]
+bus = &"Music"
+script = ExtResource("1_a3riv")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

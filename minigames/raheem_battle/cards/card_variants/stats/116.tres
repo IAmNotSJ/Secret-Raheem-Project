@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://s103mji1eqa5"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_nlebm"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nlebm")
+card_name = "Geometry Dash"
+card_series = "Luna"
+card_number = "116"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Curse"
+ability_description = "After this card is played, give the opposing player a geometry problem. If they do not answer it correctly, 3 of their cards (chosen at random) will receive -1 attack or defense."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

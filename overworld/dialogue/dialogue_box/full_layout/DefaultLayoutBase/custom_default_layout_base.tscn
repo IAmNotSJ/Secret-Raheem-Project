@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w2orro5rc71l"]
+
+[ext_resource type="Script" path="res://overworld/dialogue/dialogue_box/full_layout/DefaultLayoutBase/default_layout_base.gd" id="1_ifsho"]
+
+[node name="DefaultLayoutBase" type="CanvasLayer"]
+script = ExtResource("1_ifsho")

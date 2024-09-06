@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cj5lxqv83ptb3"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_rqe4v"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_rqe4v")
+card_name = "Banjo Backpack"
+card_series = "BBB"
+card_number = "127"
+base_attack = 3.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Extra Space"
+ability_description = "When played, have the option to choose a card from your deck to combine its stats with this. The card will be replaced with a 1-1 junk card."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

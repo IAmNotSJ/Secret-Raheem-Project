@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://b6wpklkkb3esw"]
+[gd_scene load_steps=2 format=3 uid="uid://b6wpklkkb3esw"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/chat/message/chat_message.gd" id="1_io2m6"]
 
 [node name="chat_message" type="Label"]
 custom_minimum_size = Vector2(0, 23)
 offset_right = 457.0
 offset_bottom = 23.0
 text = "This is a chat message"
+script = ExtResource("1_io2m6")

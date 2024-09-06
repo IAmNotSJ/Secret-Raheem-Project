@@ -3,7 +3,7 @@ extends Node2D
 var posThingy = 0
 
 func _ready():
-	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	DiscordSDKLoader.run_preset("Menu")
 	$ColorRect.visible = true
 func _process(delta):

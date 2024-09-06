@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dug1cm5pl00it"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_tk5uc"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_tk5uc")
+card_name = "Apology Letter"
+card_series = "BBB"
+card_number = "123"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = "Sorry!"
+ability_description = "Thanks for the card!
+-CWAF Jr"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

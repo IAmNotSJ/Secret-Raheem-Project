@@ -399,7 +399,7 @@ func add_subsystem(subsystem_name:String, script_path:String) -> DialogicSubsyst
 ## This handles the `Layout End Behaviour` setting that can be changed in the Dialogic settings.
 func _on_timeline_ended() -> void:
 	if self.Styles.has_active_layout_node() and self.Styles.get_layout_node().is_inside_tree():
-		match ProjectSettings.get_setting('dialogic/layout/end_behaviour', 0):
+		match self.Styles.get_layout_node().timeline_ending_effect:
 			0:
 				self.Styles.get_layout_node().get_parent().remove_child(self.Styles.get_layout_node())
 				self.Styles.get_layout_node().queue_free()

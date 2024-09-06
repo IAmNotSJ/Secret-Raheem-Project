@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bkrw2otpl1lfp"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_gwvrf"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_gwvrf")
+card_name = "Daily Animations"
+card_series = "Cost"
+card_number = "110"
+base_attack = 2.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "The Grind"
+ability_description = "This card gets +1 attack or defense for every day in the player's login streak. (caps at 3 attack and defense)"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b05t0ajqupbq3"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_w3c1f"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_w3c1f")
+card_name = "Balloon Boy"
+card_series = "Dile"
+card_number = "086"
+base_attack = 0.0
+base_defense = 4.0
+can_get_bonuses = true
+ability_name = "Take Batteries"
+ability_description = "Take one attack from the opposing card and put it towards this cards’ defense."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

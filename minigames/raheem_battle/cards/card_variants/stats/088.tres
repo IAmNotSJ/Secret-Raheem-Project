@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b6c7fpmovbfl1"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_h55uk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_h55uk")
+card_name = "Deafened"
+card_series = "Dile"
+card_number = "088"
+base_attack = 2.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Distracted"
+ability_description = "If this card wins, erase all ability descriptions from the opposing player's cards for the rest of the game."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

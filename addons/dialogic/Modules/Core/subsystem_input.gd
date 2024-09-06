@@ -12,6 +12,7 @@ signal dialogic_action
 signal autoskip_timer_finished
 
 
+
 var input_block_timer := Timer.new()
 var _auto_skip_timer_left: float = 0.0
 var action_was_consumed := false
@@ -89,28 +90,34 @@ func handle_input() -> void:
 
 ## Unhandled Input is used for all NON-Mouse based inputs.
 func _unhandled_input(event:InputEvent) -> void:
-	if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
-		if event is InputEventMouse:
-			return
-		handle_input()
+	if get_parent().Styles.has_active_layout_node() and get_parent().Styles.get_layout_node().is_inside_tree():
+		if get_parent().Styles.get_layout_node().allow_input == true:
+			if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
+				if event is InputEventMouse:
+					return
+				handle_input()
 
 
 ## Input is used for all mouse based inputs.
 ## If any DialogicInputNode is present this won't do anything (because that node handles MouseInput then).
 func _input(event:InputEvent) -> void:
-	if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
+	if get_parent().Styles.has_active_layout_node() and get_parent().Styles.get_layout_node().is_inside_tree():
+		if get_parent().Styles.get_layout_node().allow_input == true:
+			if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
 
-		if not event is InputEventMouse or get_tree().get_nodes_in_group('dialogic_input').any(func(node):return node.is_visible_in_tree()):
-			return
+				if not event is InputEventMouse or get_tree().get_nodes_in_group('dialogic_input').any(func(node):return node.is_visible_in_tree()):
+					return
 
-		handle_input()
+				handle_input()
 
 
 ## This is called from the gui_input of the InputCatcher and DialogText nodes
 func handle_node_gui_input(event:InputEvent) -> void:
-	if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
-		if event is InputEventMouseButton and event.pressed:
-			DialogicUtil.autoload().Inputs.handle_input()
+	if get_parent().Styles.has_active_layout_node() and get_parent().Styles.get_layout_node().is_inside_tree():
+		if get_parent().Styles.get_layout_node().allow_input == true:
+			if Input.is_action_just_pressed(ProjectSettings.get_setting('dialogic/text/input_action', 'dialogic_default_action')):
+				if event is InputEventMouseButton and event.pressed:
+					DialogicUtil.autoload().Inputs.handle_input()
 
 
 func is_input_blocked() -> bool:

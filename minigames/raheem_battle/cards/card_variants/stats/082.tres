@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://suklbprnui4t"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ket43"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ket43")
+card_name = "Lack of Motivation"
+card_series = "Slime"
+card_number = "082"
+base_attack = 2.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Placeholder"
+ability_description = "This card copies the ability of another card selected by the player for the rest of the game, when played."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

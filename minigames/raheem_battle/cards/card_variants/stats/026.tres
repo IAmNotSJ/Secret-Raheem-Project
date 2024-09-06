@@ -1,17 +1,20 @@
-[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cqy2l6h2n72j8"]
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://d37qk8s07fopt"]
 
-[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_wqfq6"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_1kk4x"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_wqfq6")
-card_name = "Cryptocurrency"
+script = ExtResource("1_1kk4x")
+card_name = "Minors DNI"
 card_series = "Wibr"
 card_number = "026"
-base_attack = 4
-base_defense = 4
+base_attack = 2.0
+base_defense = 4.0
 can_get_bonuses = true
-ability_name = "Cash Out"
-one_use_ability = false
-ability_description = "All future cards with a stat less than 3, will gain +2 to that stat."
+ability_name = "Angry and Senile"
+ability_description = "If the opposing player is a minor, this card gets +3 attack but -1 defense."
+one_use_ability = true
 should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

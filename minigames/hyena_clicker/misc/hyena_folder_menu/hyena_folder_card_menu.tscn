@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://sk3vvjdyknqo"]
+
+[ext_resource type="Texture2D" uid="uid://b030rwuik45gk" path="res://minigames/hyena_clicker/assets/buttons/hyena_folder_bg.png" id="1_o4qu0"]
+[ext_resource type="Script" path="res://minigames/hyena_clicker/misc/hyena_folder_menu/hyena_folder_card_menu.gd" id="1_qoi7r"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="5_730kq"]
+[ext_resource type="PackedScene" uid="uid://srlbbrd3n2vu" path="res://minigames/hyena_clicker/misc/hyena_folder_menu/the_big_one.tscn" id="6_lryp4"]
+[ext_resource type="Texture2D" uid="uid://bvldyvbvffaho" path="res://minigames/hyena_clicker/assets/buttons/x.png" id="7_585b0"]
+[ext_resource type="Texture2D" uid="uid://cju3wuk8do3d4" path="res://minigames/hyena_clicker/assets/buttons/x_selected.png" id="8_8joa0"]
+
+[sub_resource type="Animation" id="Animation_jnauj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hpiyv"]
+resource_name = "flash"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb0x5"]
+_data = {
+"RESET": SubResource("Animation_jnauj"),
+"flash": SubResource("Animation_hpiyv")
+}
+
+[node name="hyena_folder_card_menu" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 191.0
+offset_top = 75.0
+offset_right = 1099.0
+offset_bottom = 617.0
+script = ExtResource("1_qoi7r")
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(442, 266)
+scale = Vector2(1, 0.8)
+texture = ExtResource("1_o4qu0")
+
+[node name="card" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 551.0
+offset_top = 66.0
+offset_right = 700.0
+offset_bottom = 282.0
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 39.0
+offset_right = 539.0
+offset_bottom = 170.0
+theme_override_fonts/font = ExtResource("5_730kq")
+theme_override_font_sizes/font_size = 46
+text = "UPGRADE THE HYENA FOLDER CARD"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 175.0
+offset_right = 539.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("5_730kq")
+theme_override_font_sizes/font_size = 17
+text = "You currently own the Hyena Folder card for Raheem Battle. This card's stats are upgraded through the spending of hyenas within Hyena Clicker. Similar to any other Hyena Clicker upgrade, the price of this item increases exponentially with each purchase you make."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 343.0
+offset_right = 539.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("5_730kq")
+theme_override_font_sizes/font_size = 17
+text = "Upgrade Hyena Folder?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TheBigOne" parent="." instance=ExtResource("6_lryp4")]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 379.0
+offset_right = 539.0
+offset_bottom = 506.0
+
+[node name="flash" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -3.0
+offset_right = 911.0
+offset_bottom = 542.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="flash_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qb0x5")
+}
+
+[node name="X" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 846.0
+offset_top = 4.0
+offset_right = 906.0
+offset_bottom = 57.0
+texture_normal = ExtResource("7_585b0")
+texture_hover = ExtResource("8_8joa0")
+
+[connection signal="pressed" from="X" to="." method="_on_x_pressed"]

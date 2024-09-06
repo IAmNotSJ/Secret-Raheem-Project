@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bq3pxxavghdfd"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_jyaii"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_jyaii")
+card_name = "Bowling"
+card_series = "Slime"
+card_number = "078"
+base_attack = 3.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Strike"
+ability_description = "This card, when played, has a 25% chance to disable all of your opponent's cards except one, for one turn."
+one_use_ability = false
+should_remove = true
+hide_stats = false

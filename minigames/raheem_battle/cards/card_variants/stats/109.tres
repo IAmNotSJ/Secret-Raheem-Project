@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://3nma3dneae2e"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_u5vk4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_u5vk4")
+card_name = "Object Survivor"
+card_series = "Cost"
+card_number = "109"
+base_attack = 4.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

@@ -36,19 +36,23 @@ class_name CardStats extends Resource
 	set(value):
 		ability_name = value
 		emit_changed()
-@export var one_use_ability:bool = false :
-	set(value):
-		one_use_ability = value
-		emit_changed()
 @export_multiline var ability_description:String :
 	set(value):
 		ability_description = value
 		emit_changed()
 
-@export_category("Miscellaneous")
+@export var one_use_ability:bool = false :
+	set(value):
+		one_use_ability = value
+		emit_changed()
+
 @export var should_remove:bool = true
 ## Hides the card's stats until use
 @export var hide_stats:bool = false
+
+@export_category("Miscellaneous")
+@export var is_human:bool = false
+@export var has_hands:bool = false
 
 # UNCHANGEABLE STATS
 
@@ -67,16 +71,53 @@ var bonuses:Dictionary = {
 	"Rising" : [0, 0],
 	"Post-Mortem" : [0, 0],
 	"Winter Scavenging" : [0, 0],
-	"Nectar of the Gods" : [0, 0]
+	"Nectar of the Gods" : [0, 0],
+	"Reminiscing" : [0, 0],
+	"Paranoia" : [0, 0],
+	"What Day Is It?" : [0, 0],
+	"Editing" : [0, 0],
+	"Categorical Knowledge" : [0, 0],
+	"Transform" : [0, 0],
+	"Walk" : [0, 0],
+	"Grazing" : [0, 0],
+	"Chincanery" : [0, 0],
+	"The Answer" : [0, 0],
+	"Take Batteries" : [0, 0],
+	"Ambush Predator" : [0, 0],
+	"Employment" : [0, 0],
+	"Anrgry and Senile" : [0, 0],
+	"Debt" : [0, 0],
+	"Awareness" : [0, 0],
+	"Speedrun" : [0, 0],
+	"Top 100" : [0, 0],
+	"Leaderboard" : [0, 0],
+	"Spreadsheet" : [0, 0],
+	"Charity" : [0, 0],
+	"Truest Nemo" : [0, 0],
+	"Sensitive" : [0, 0],
+	"Three Handed" : [0, 0],
+	"Fangirl" : [0, 0],
+	"Dance" : [0, 0],
+	"Hosting" : [0, 0]
 }
 
 #Update this with every single ability that can give stat bonuses
 var penalties:Dictionary = {
+	"Fire" : [0, 0],
 	"Unfunny Tag" : [0, 0],
 	"Speeding" : [0, 0],
 	"Other Priorities" : [0, 0],
 	"All Powerful" : [0, 0],
-	"Acidic" : [0, 0]
+	"Acidic" : [0, 0],
+	"Bathroom Break" : [0, 0],
+	"Haunt" : [0, 0],
+	"Take Batteries" : [0, 0],
+	"Brainrot" : [0, 0],
+	"Anrgry and Senile" : [0, 0],
+	"Debt" : [0, 0],
+	"Last Live: 3 Months Ago" : [0, 0],
+	"Effort Tag" : [0, 0],
+	"Insults" : [0, 0],
 }
 
 var true_attack:float
@@ -119,7 +160,7 @@ func get_penalty_defense():
 func add_bonus_attack(amount, key):
 	if can_get_bonuses:
 		bonuses[key][0] += amount
-		floor(base_attack)
+		base_attack = floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
 
@@ -127,7 +168,7 @@ func add_bonus_attack(amount, key):
 func set_bonus_attack(amount, key):
 	if can_get_bonuses:
 		bonuses[key][0] = amount
-		floor(base_attack)
+		base_attack = floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
 
@@ -135,7 +176,7 @@ func set_bonus_attack(amount, key):
 func add_bonus_defense(amount, key):
 	if can_get_bonuses:
 		bonuses[key][1] += amount
-		floor(base_defense)
+		base_defense = floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
 
@@ -143,35 +184,35 @@ func add_bonus_defense(amount, key):
 func set_bonus_defense(amount, key):
 	if can_get_bonuses:
 		bonuses[key][1] = amount
-		floor(base_defense)
+		base_defense = floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
 
 @rpc("any_peer")
 func add_penalty_attack(amount, key):
 	penalties[key][0] += amount
-	floor(base_attack)
+	base_attack = floor(base_attack)
 	_recalculate_attack()
 	emit_changed()
 
 @rpc("any_peer")
 func set_penalty_attack(amount, key):
 	penalties[key][0] = amount
-	floor(base_attack)
+	base_attack = floor(base_attack)
 	_recalculate_attack()
 	emit_changed()
 
 @rpc("any_peer")
 func add_penalty_defense(amount, key):
 	penalties[key][1] += amount
-	floor(base_defense)
+	base_defense = floor(base_defense)
 	_recalculate_defense()
 	emit_changed()
 
 @rpc("any_peer")
 func set_penalty_defense(amount, key):
 	penalties[key][1] = amount
-	floor(base_defense)
+	base_defense = floor(base_defense)
 	_recalculate_defense()
 	emit_changed()
 

@@ -11,14 +11,17 @@ func _ready():
 	ui.turn_ended.connect(_on_turn_finished)
 
 func _on_turn_finished():
+	print('THE TURN HATH FINISHED')
 	if stats_timer > 0 and show_stats:
 		stats_timer -= 1
 		if stats_timer == 0:
 			show_stats = false
+		print("STATS TIMER: " + str(stats_timer))
 	if ability_timer > 0 and show_ability:
 		ability_timer -= 1
 		if ability_timer == 0:
 			show_ability = false
+		print("ABILITY TIMER: " + str(ability_timer))
 
 @rpc("any_peer")
 func activate_text(exported_card):

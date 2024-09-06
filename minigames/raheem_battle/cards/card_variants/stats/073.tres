@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cmlnpq7is1438"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_xn1ag"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_xn1ag")
+card_name = "PERSONA-l Dig"
+card_series = "Dapper"
+card_number = "073"
+base_attack = 3.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Awareness"
+ability_description = "If your opponent participated in the conversation of 03/20/2022, this card receives +2 attack."
+one_use_ability = true
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjftsvrpb34s7"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/paper clutter/paper.gd" id="1_f2gxl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvf0f"]
+size = Vector2(3831, 1002.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfpi4"]
+size = Vector2(1278.75, 1754)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwsd1"]
+radius = 6.0
+
+[node name="Paper" type="Node2D"]
+script = ExtResource("1_f2gxl")
+
+[node name="crumples" type="Node2D" parent="."]
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+position = Vector2(0, 736)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(632, 486)
+shape = SubResource("RectangleShape2D_nvf0f")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(623.5, -2266.13)
+shape = SubResource("RectangleShape2D_nvf0f")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-652.625, -892)
+shape = SubResource("RectangleShape2D_hfpi4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1899, -887)
+shape = SubResource("RectangleShape2D_hfpi4")
+
+[node name="Mouse" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
+shape = SubResource("CircleShape2D_gwsd1")

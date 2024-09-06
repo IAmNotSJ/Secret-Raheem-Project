@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dptuogxm6rx83"]
+
+[ext_resource type="Script" path="res://dialogue/Styles/Shop/Portraits/monika_portrait.gd" id="1_24ikh"]
+
+[node name="MonikaPortrait" type="Node2D"]
+script = ExtResource("1_24ikh")

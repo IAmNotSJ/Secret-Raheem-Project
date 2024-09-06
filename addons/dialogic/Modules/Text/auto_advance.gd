@@ -32,6 +32,7 @@ var await_playing_voice := true
 
 var override_delay_for_current_event: float = -1.0
 
+
 ## Private variable to track the last Auto-Advance state.
 ## This will be used to emit the [signal toggled] signal.
 var _last_enable_state := false
@@ -71,9 +72,10 @@ var enabled_until_user_input := false :
 
 func _init() -> void:
 	DialogicUtil.autoload().Inputs.add_child(autoadvance_timer)
-	autoadvance_timer.one_shot = true
+	autoadvance_timer.one_shot = false
 	autoadvance_timer.timeout.connect(_on_autoadvance_timer_timeout)
 	toggled.connect(_on_toggled)
+	toggled.emit(true)
 
 	enabled_forced = ProjectSettings.get_setting('dialogic/text/autoadvance_enabled', false)
 	fixed_delay = ProjectSettings.get_setting('dialogic/text/autoadvance_fixed_delay', 1)

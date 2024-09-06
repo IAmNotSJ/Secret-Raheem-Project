@@ -8,4 +8,5 @@ signal interacted
 
 func interact(_body):
 	interacted.emit()
+	Dialogic.Inputs.auto_advance.enabled_forced = false
 	Dialogic.start(dialoguePrefix + interaction_dialogue + '.dtl')

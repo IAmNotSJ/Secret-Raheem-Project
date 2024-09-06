@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b64daj65yf2lt"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_vby1v"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vby1v")
+card_name = "Ditto"
+card_series = "Dapper"
+card_number = "068"
+base_attack = 0.0
+base_defense = 0.0
+can_get_bonuses = true
+ability_name = "Transform"
+ability_description = "Copies the stats of your previously used card, but not the ability."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

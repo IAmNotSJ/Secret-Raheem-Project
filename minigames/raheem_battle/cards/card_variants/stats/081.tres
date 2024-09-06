@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://b2cycp4p5ft7d"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_av2so"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_av2so")
+card_name = "Goopy"
+card_series = "Slime"
+card_number = "081"
+base_attack = 4.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false

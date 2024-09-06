@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bcnxve3ehjkmn"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_tffv6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_tffv6")
+card_name = "Hyena Folder"
+card_series = "Wibr"
+card_number = "021"
+base_attack = 0.0
+base_defense = 0.0
+can_get_bonuses = true
+ability_name = "Enthusiast"
+ability_description = "This card can be upgraded in Hyena Clicker."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

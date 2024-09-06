@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://8kam011usr0s"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ub7d6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ub7d6")
+card_name = "CWAF Jr."
+card_series = "BBB"
+card_number = "123"
+base_attack = 3.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Thief"
+ability_description = "If this card wins, replace your opponent's card with a 1-1 card with no ability."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

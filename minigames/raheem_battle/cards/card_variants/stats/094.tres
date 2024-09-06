@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://oq5lhs4ulhmc"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_sg05y"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_sg05y")
+card_name = "Muppets"
+card_series = "Dile"
+card_number = "094"
+base_attack = 5.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = "Muppet of a Man"
+ability_description = "This card loses against any card that is a human. (Object characters are not counted as human unless they are the sona of a real person)"
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true

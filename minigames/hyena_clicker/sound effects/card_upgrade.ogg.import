@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://chgacx6d75r8q"
+path="res://.godot/imported/card_upgrade.ogg-3ae7996baf9955c6ae67c92562f0b09d.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/hyena_clicker/sound effects/card_upgrade.ogg"
+dest_files=["res://.godot/imported/card_upgrade.ogg-3ae7996baf9955c6ae67c92562f0b09d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://j4j2n4k6kjr7"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ckoow"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ckoow")
+card_name = "Flytrap"
+card_series = "BBB"
+card_number = "124"
+base_attack = 5.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = "Tag-Out"
+ability_description = "This card will swap stats between base stats of 5-1 and 2-3 every 2 turns."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
