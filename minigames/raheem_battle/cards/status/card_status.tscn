@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpp6pns7cjw43"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/status/card_status.gd" id="1_t5m20"]
+
+[sub_resource type="Animation" id="Animation_jnhnc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6l5qv"]
+resource_name = "blink"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqo76"]
+_data = {
+"RESET": SubResource("Animation_jnhnc"),
+"blink": SubResource("Animation_6l5qv")
+}
+
+[node name="status" type="Label"]
+offset_right = 149.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 20
+text = "+1 Defense"
+horizontal_alignment = 1
+script = ExtResource("1_t5m20")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jqo76")
+}
+autoplay = "blink"

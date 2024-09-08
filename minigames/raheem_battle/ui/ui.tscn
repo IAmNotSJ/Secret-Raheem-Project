@@ -51,6 +51,7 @@ mouse_filter = 2
 [node name="mouse_control" parent="." instance=ExtResource("10_s66i3")]
 
 [node name="paper" parent="." instance=ExtResource("7_r5th6")]
+visible = false
 
 [node name="locked_text" parent="." instance=ExtResource("6_whm06")]
 unique_name_in_owner = true

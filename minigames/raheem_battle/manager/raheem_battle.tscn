@@ -18,29 +18,49 @@ mouse_filter = 2
 visible = false
 
 [node name="NetworkInfo" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 450.0
+offset_bottom = 86.0
 
 [node name="game_type" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
 text = "GameType:"
 
 [node name="peer_id" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
 text = "PeerID:
 "
 
 [node name="room_address" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
 text = "RoomAddress:"
 
 [node name="side" type="Label" parent="NetworkInfo"]
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
 text = "Side: "
 
 [node name="turn_count" type="Label" parent="NetworkInfo"]
 layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 10
 text = "TurnCount:"

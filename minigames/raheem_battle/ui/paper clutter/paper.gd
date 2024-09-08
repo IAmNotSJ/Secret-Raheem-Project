@@ -8,6 +8,8 @@ var crumples = []
 var skip_turn:bool = false
 
 func _ready():
+	# This shit is just ugly in the editor
+	visible = true
 	ui.turn_ended.connect(_turn_ended)
 
 func _input(_event):

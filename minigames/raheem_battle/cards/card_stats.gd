@@ -1,6 +1,8 @@
 @tool
 class_name CardStats extends Resource
 
+signal bonus_added(amount:int, key:String)
+
 @export_category("Details")
 @export var card_name:String = "Test Card" :
 	set(value):
@@ -163,6 +165,7 @@ func add_bonus_attack(amount, key):
 		base_attack = floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
+		bonus_added.emit(amount, "Attack")
 
 @rpc("any_peer")
 func set_bonus_attack(amount, key):
@@ -171,6 +174,7 @@ func set_bonus_attack(amount, key):
 		base_attack = floor(base_attack)
 		_recalculate_attack()
 		emit_changed()
+		#bonus_added.emit(amount, "Attack")
 
 @rpc("any_peer")
 func add_bonus_defense(amount, key):
@@ -179,6 +183,7 @@ func add_bonus_defense(amount, key):
 		base_defense = floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
+		bonus_added.emit(amount, "Defense")
 
 @rpc("any_peer")
 func set_bonus_defense(amount, key):
@@ -187,6 +192,7 @@ func set_bonus_defense(amount, key):
 		base_defense = floor(base_defense)
 		_recalculate_defense()
 		emit_changed()
+		#bonus_added.emit(amount, "Defense")
 
 @rpc("any_peer")
 func add_penalty_attack(amount, key):

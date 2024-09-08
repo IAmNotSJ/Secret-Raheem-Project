@@ -10,7 +10,6 @@ var rarity:Rarity = Rarity.COMMON
 
 signal left_clicked(card)
 signal right_clicked(card)
-signal bonus_added(key)
 
 @export_category("Resource")
 @export var stats:CardStats = load("res://minigames/raheem_battle/cards/card_variants/stats/0.tres")
@@ -19,6 +18,10 @@ signal bonus_added(key)
 @export var selectable:bool = true
 
 const holoShader = preload("res://minigames/raheem_battle/cards/holographic.gdshader")
+
+const status_scene = preload("res://minigames/raheem_battle/cards/status/card_status.tscn")
+var statuses = []
+var status_timer:float = 0
 
 var game
 var can_click:bool = false
@@ -68,6 +71,7 @@ func _ready():
 	
 	_on_stats_changed()
 	stats.changed.connect(_on_stats_changed)
+	stats.bonus_added.connect(_on_bonus_added)
 	
 	var random = randi_range(0, 1)
 	if random == 0:
@@ -75,7 +79,7 @@ func _ready():
 	else:
 		favor = true
 
-func _process(_delta):
+func _process(delta):
 	if !Engine.is_editor_hint():
 		if !disabled:
 			if !block_input:
@@ -93,6 +97,17 @@ func _process(_delta):
 							right_clicked.emit(stats)
 						if Input.is_action_just_pressed("click"):
 							left_clicked.emit(self)
+		
+		status_timer -= delta
+		
+		if status_timer <= 0 and statuses.size() > 0:
+				print(statuses)
+				var status = status_scene.instantiate()
+				status.text = statuses[0]
+				status.position = Vector2i(0, -30)
+				add_child(status)
+				statuses.erase(status.text)
+				status_timer = 0.8
 
 func _on_stats_changed():
 	if stats != null:
@@ -128,6 +143,11 @@ func _on_stats_changed():
 			%Ability_Holder.visible = false
 		else:
 			%Ability_Holder.visible = true
+
+func _on_bonus_added(amount:int, type:String):
+	var status_message:String = "+" + str(amount) + " " + type
+	statuses.push_back(status_message)
+	#print(statuses)
 
 func _on_turn_ended():
 	#print('turn ended!')

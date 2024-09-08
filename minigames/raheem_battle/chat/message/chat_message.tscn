@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6wpklkkb3esw"]
+[gd_scene load_steps=3 format=3 uid="uid://b6wpklkkb3esw"]
 
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="1_54iss"]
 [ext_resource type="Script" path="res://minigames/raheem_battle/chat/message/chat_message.gd" id="1_io2m6"]
 
 [node name="chat_message" type="Label"]
-custom_minimum_size = Vector2(0, 23)
-offset_right = 457.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(380, 0)
+offset_right = 430.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("1_54iss")
+theme_override_font_sizes/font_size = 14
 text = "This is a chat message"
+autowrap_mode = 1
 script = ExtResource("1_io2m6")

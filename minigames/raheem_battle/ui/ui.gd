@@ -29,7 +29,7 @@ enum FutureEvents {
 @onready var paper = $paper
 @onready var locked_text = $locked_text
 
-var cards_to_generate = ["1", "080", "095", "096", "097", "098", "099", "100"]
+var cards_to_generate = ["1", "002", "095", "096", "097", "098", "099", "100"]
 var card_to_play
 
 var override_index:int = -1
