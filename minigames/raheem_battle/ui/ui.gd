@@ -1120,8 +1120,3 @@ func add_bonus_defense(index, amount, reason):
 func set_pixel_effect(pixels, duration):
 	game.pixel_size = pixels
 	pixel_timer = duration
-
-
-
-
-

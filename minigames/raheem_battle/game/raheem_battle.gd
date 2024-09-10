@@ -126,4 +126,3 @@ func start_game(side:Sides):
 	
 	
 	game_started.emit()
-

@@ -40,146 +40,14 @@ has_hands = false
 
 [sub_resource type="Animation" id="Animation_v4lug"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Card 1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(79, 229)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Card 2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(932, 239)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Card 2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0510003]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Card 1:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.0506145]
-}
 
 [sub_resource type="Animation" id="Animation_t5bxb"]
 resource_name = "attacking_wins"
 step = 0.0416667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Card 1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(72, 229), Vector2(82, 229), Vector2(149, 229), Vector2(247, 229)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Card 1:rotation")
-tracks/1/interp = 4
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-0.0506145, -0.173963, 0.149125, 0.346729]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Card 2:rotation")
-tracks/2/interp = 4
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0510003, 0.174533, -0.148353, -0.347321]
-}
 
 [sub_resource type="Animation" id="Animation_hk1hp"]
 resource_name = "wind_up"
 step = 0.0416667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Card 1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.208333, 0.333333, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(79, 229), Vector2(76, 229), Vector2(73, 229), Vector2(72, 229), Vector2(72, 229)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Card 2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.208333, 0.333333, 0.541667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(932, 239), Vector2(936, 239), Vector2(941, 239), Vector2(943, 239), Vector2(944, 239)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Card 2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0510003]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Card 1:rotation")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.0506145]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kknt"]
 _data = {
@@ -199,17 +67,16 @@ script = ExtResource("1_mfjyq")
 
 [node name="Card 1" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 79.0
+offset_left = 72.0
 offset_top = 229.0
-offset_right = 348.0
+offset_right = 341.0
 offset_bottom = 622.0
-rotation = -0.0506145
+rotation = 6.23257
 pivot_offset = Vector2(135, 395)
 metadata/_edit_group_ = true
 
 [node name="Card" parent="Card 1" instance=ExtResource("1_qyms6")]
 stats = SubResource("Resource_3bpd8")
-do_offset_bullshit = false
 
 [node name="visible" parent="Card 1/Card" index="0"]
 scale = Vector2(0.675, 0.675)
@@ -228,7 +95,6 @@ metadata/_edit_group_ = true
 offset_right = 268.0
 offset_bottom = 395.0
 stats = SubResource("Resource_iep05")
-do_offset_bullshit = false
 
 [node name="visible" parent="Card 2/Card2" index="0"]
 scale = Vector2(0.675, 0.675)
