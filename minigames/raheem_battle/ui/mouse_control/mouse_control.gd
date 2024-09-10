@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ui = get_parent()
+@onready var ui = get_parent().get_parent()
 
 var speed:float = 1
 

@@ -1,11 +1,9 @@
-extends Control
+extends ExtraScreen
 
 signal decision_made()
 
 # Shitty way of reading the decision, but whatever
 var last_decision:bool
-
-@onready var ui = get_parent()
 
 func generate_message(reason:String, card):
 	var text_to_show = ""
@@ -21,7 +19,6 @@ func generate_message(reason:String, card):
 	$True.text = choices[0]
 	$False.text = choices[1]
 	
-	visible = true
 	ui.is_in_preview = true
 	ui.card_hand.block_input()
 
@@ -46,4 +43,4 @@ func clear():
 	$True.pressed.disconnect(_on_decision_categorical_knowledge)
 	$False.pressed.disconnect(_on_decision_categorical_knowledge)
 	
-	visible = false
+	hide()

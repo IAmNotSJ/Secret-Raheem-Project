@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ui = get_parent()
+@onready var ui = get_parent().get_parent()
 
 const crumple_scene = preload("res://minigames/raheem_battle/ui/paper clutter/crumple.tscn")
 
@@ -16,6 +16,8 @@ func _input(_event):
 	$Mouse.global_position = get_global_mouse_position()
 
 func generate_crumple():
+	#await get_parent().finished
+	#print('guh?')
 	for i in range(10):
 		var crumple = crumple_scene.instantiate()
 		crumple.position = Vector2(randi_range(0, 720), randi_range(-932, -98))

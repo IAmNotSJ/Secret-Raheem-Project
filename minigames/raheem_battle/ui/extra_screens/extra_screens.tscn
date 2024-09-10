@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://btgw2da7dhlll"]
+
+[ext_resource type="PackedScene" uid="uid://cbgmnpk5xwwi7" path="res://minigames/raheem_battle/ui/card_preview_holder/card_preview_holder.tscn" id="1_1yxmd"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/extra_screens/extra_screens.gd" id="1_byesh"]
+[ext_resource type="PackedScene" uid="uid://yrw3wykomle6" path="res://minigames/raheem_battle/ui/deck_preview/deck_preview_holder.tscn" id="2_hk6gx"]
+[ext_resource type="PackedScene" uid="uid://cp843v8t42ok6" path="res://minigames/raheem_battle/ui/decision_holder/decision_holder.tscn" id="3_4u2ke"]
+[ext_resource type="PackedScene" uid="uid://be1ltam2gq4ds" path="res://minigames/raheem_battle/ui/geometry/geometry.tscn" id="4_b501o"]
+[ext_resource type="PackedScene" uid="uid://jsdik5ih32ki" path="res://minigames/raheem_battle/ui/matchup_preview/card_matchup.tscn" id="5_1d23b"]
+[ext_resource type="PackedScene" uid="uid://cicej1be3pheu" path="res://minigames/raheem_battle/ui/mouse_control/mouse_control.tscn" id="7_qy4gt"]
+[ext_resource type="PackedScene" uid="uid://bjftsvrpb34s7" path="res://minigames/raheem_battle/ui/paper clutter/paper.tscn" id="8_ma28c"]
+
+[node name="extra_screens" type="Node2D"]
+script = ExtResource("1_byesh")
+
+[node name="card_preview_holder" parent="." instance=ExtResource("1_1yxmd")]
+visible = false
+
+[node name="deck_preview_holder" parent="." instance=ExtResource("2_hk6gx")]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="decision_holder" parent="." instance=ExtResource("3_4u2ke")]
+visible = false
+
+[node name="geometry" parent="." instance=ExtResource("4_b501o")]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="card_matchup" parent="." instance=ExtResource("5_1d23b")]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="mouse_control" parent="." instance=ExtResource("7_qy4gt")]
+
+[node name="paper" parent="." instance=ExtResource("8_ma28c")]
+visible = false

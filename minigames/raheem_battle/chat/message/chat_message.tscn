@@ -7,8 +7,9 @@
 custom_minimum_size = Vector2(380, 0)
 offset_right = 430.0
 offset_bottom = 20.0
+theme_override_constants/line_spacing = -5
 theme_override_fonts/font = ExtResource("1_54iss")
 theme_override_font_sizes/font_size = 14
 text = "This is a chat message"
-autowrap_mode = 1
+autowrap_mode = 3
 script = ExtResource("1_io2m6")

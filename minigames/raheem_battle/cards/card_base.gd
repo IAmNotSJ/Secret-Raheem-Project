@@ -16,6 +16,7 @@ signal right_clicked(card)
 
 @export var is_preview:bool = false
 @export var selectable:bool = true
+@export var do_offset_bullshit:bool = false
 
 const holoShader = preload("res://minigames/raheem_battle/cards/holographic.gdshader")
 
@@ -60,7 +61,7 @@ var disabled_time:int = 0
 var block_input:bool = false
 
 func _ready():
-	if index % 2 != 0:
+	if index % 2 != 0 and do_offset_bullshit:
 		offset = -30
 	
 	if !is_preview:
@@ -179,6 +180,7 @@ func export():
 	"Ability Description" : stats.ability_description,
 	"One Use Ability" : stats.one_use_ability,
 	"Ability Used" : ability_used,
+	"Hide Stats" : stats.hide_stats,
 	"Is Human" : stats.is_human,
 	"Has Hands" : stats.has_hands,
 	"Bonuses" : stats.bonuses,

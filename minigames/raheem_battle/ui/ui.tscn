@@ -1,15 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bulnfxumppdej"]
+[gd_scene load_steps=7 format=3 uid="uid://bulnfxumppdej"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/ui.gd" id="1_m2ygg"]
 [ext_resource type="PackedScene" uid="uid://du2gx7mogli7y" path="res://minigames/raheem_battle/cards/hand/card_hand.tscn" id="2_pw22s"]
-[ext_resource type="PackedScene" uid="uid://cbgmnpk5xwwi7" path="res://minigames/raheem_battle/ui/card_preview_holder/card_preview_holder.tscn" id="3_e50yj"]
-[ext_resource type="PackedScene" uid="uid://yrw3wykomle6" path="res://minigames/raheem_battle/ui/deck_preview/deck_preview_holder.tscn" id="3_n2i5n"]
+[ext_resource type="PackedScene" uid="uid://btgw2da7dhlll" path="res://minigames/raheem_battle/ui/extra_screens/extra_screens.tscn" id="3_pbses"]
 [ext_resource type="PackedScene" uid="uid://d1m15jcaul4fp" path="res://minigames/raheem_battle/chat/chat_box.tscn" id="3_xil4r"]
-[ext_resource type="PackedScene" uid="uid://cp843v8t42ok6" path="res://minigames/raheem_battle/ui/decision_holder/decision_holder.tscn" id="5_12uc0"]
-[ext_resource type="PackedScene" uid="uid://be1ltam2gq4ds" path="res://minigames/raheem_battle/ui/geometry/geometry.tscn" id="6_5fpnp"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="6_otu6l"]
 [ext_resource type="PackedScene" uid="uid://y3pdhwpfalx2" path="res://minigames/raheem_battle/ui/status_text/status_text.tscn" id="6_whm06"]
-[ext_resource type="PackedScene" uid="uid://bjftsvrpb34s7" path="res://minigames/raheem_battle/ui/paper clutter/paper.tscn" id="7_r5th6"]
-[ext_resource type="PackedScene" uid="uid://cicej1be3pheu" path="res://minigames/raheem_battle/ui/mouse_control/mouse_control.tscn" id="10_s66i3"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -29,32 +25,17 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0.572549)
 
-[node name="card_preview_holder" parent="." instance=ExtResource("3_e50yj")]
-mouse_filter = 2
-
-[node name="deck_preview_holder" parent="." instance=ExtResource("3_n2i5n")]
-layout_mode = 1
-mouse_filter = 2
-
-[node name="decision_holder" parent="." instance=ExtResource("5_12uc0")]
-visible = false
-mouse_filter = 2
-
-[node name="geometry" parent="." instance=ExtResource("6_5fpnp")]
-visible = false
-layout_mode = 1
+[node name="extra_screens" parent="." instance=ExtResource("3_pbses")]
 
 [node name="chat_box" parent="." instance=ExtResource("3_xil4r")]
 layout_mode = 0
 mouse_filter = 2
 
-[node name="mouse_control" parent="." instance=ExtResource("10_s66i3")]
-
-[node name="paper" parent="." instance=ExtResource("7_r5th6")]
-visible = false
-
 [node name="locked_text" parent="." instance=ExtResource("6_whm06")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 0.0
-offset_right = 1020.0
+offset_right = 1280.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_otu6l")

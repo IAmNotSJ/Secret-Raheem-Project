@@ -1,8 +1,7 @@
-extends Control
+extends ExtraScreen
 
 signal card_chosen
 
-@onready var ui = get_parent()
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
 var bonuses_to_add = [0, 0]
@@ -11,6 +10,7 @@ func generate_deck(export_array, reason):
 	for i in range(export_array.size()):
 		var card = card_scene.instantiate()
 		card.get_node("visible").scale = Vector2(0.5, 0.5)
+		card.do_offset_bullshit = false
 		
 		#Change the stats
 		
@@ -28,7 +28,7 @@ func generate_deck(export_array, reason):
 		card.stats.should_remove = export_array[i]["Should Remove"]
 		card.stats.hide_stats = export_array[i]["Hide Stats"]
 		card.stats.is_human = export_array[i]["Is Human"]
-		card.stats.has_hands = export_array[i]["Has_Hands"]
+		card.stats.has_hands = export_array[i]["Has Hands"]
 		card.index = export_array[i]["Index"]
 		
 		match reason:
@@ -90,3 +90,4 @@ func clear():
 		child.queue_free()
 	ui.card_hand.allow_input()
 	ui.is_in_preview = false
+	hide()

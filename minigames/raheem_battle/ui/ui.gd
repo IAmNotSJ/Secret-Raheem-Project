@@ -21,15 +21,17 @@ enum FutureEvents {
 @onready var game = get_parent()
 
 @onready var card_hand = $card_hand
-@onready var card_preview = $card_preview_holder
-@onready var deck_preview = $deck_preview_holder
-@onready var geometry = $geometry
-@onready var decision_holder = $decision_holder
-@onready var mouse_control = $mouse_control
-@onready var paper = $paper
+@onready var extra_screens = $extra_screens
+@onready var card_preview = extra_screens.card_preview_holder
+@onready var deck_preview = extra_screens.deck_preview_holder
+@onready var geometry = extra_screens.geometry
+@onready var decision_holder = extra_screens.decision_holder
+@onready var card_matchup = extra_screens.card_matchup
+@onready var mouse_control = extra_screens.mouse_control
+@onready var paper = extra_screens.paper
 @onready var locked_text = $locked_text
 
-var cards_to_generate = ["1", "002", "095", "096", "097", "098", "099", "100"]
+var cards_to_generate = ["1", "062", "084", "082", "097", "098", "099", "100"]
 var card_to_play
 
 var override_index:int = -1
@@ -92,31 +94,35 @@ func generate_deck_preview(exclude:Array = [-1], reason:String = ""):
 				if i != excluded_i:
 					exported_array.append(card_hand.cards_in_hand[i].export())
 		deck_preview.generate_deck(exported_array, reason)
+		extra_screens.screens_to_show.push_front(extra_screens.deck_preview_holder)
 
 func play_card(card):
-	if card_hand.cards_in_hand.size() > 2:
-		if card.stats.ability_name == "Tears" and game.last_decision != game.get_player().side:
-			return
-	
-	if set_override_with_card_selection:
-		set_override_index(card.index)
-	card_to_play = card
-	game.get_player().lock()
-	
-	if card.stats.ability_name == "Categorical Knowledge":
-		decision_holder.generate_message("Categorical Knowledge", card)
-		await(decision_holder.decision_made)
-	if card.stats.ability_name == "Placeholder":
-		generate_deck_preview([card_to_play.index], "Placeholder")
-		await(deck_preview.card_chosen)
-	if card.stats.ability_name == "Extra Space":
-		generate_deck_preview([card_to_play.index], "Extra Space")
-		await(deck_preview.card_chosen)
-	
-	var card_export = card.export()
-	
-	turn_history["First Used Card"] = [card_export["Attack"], card_export["Defense"]]
-	activate_locked_text.rpc(card_export)
+	if game.started:
+		if card_hand.cards_in_hand.size() > 2:
+			if card.stats.ability_name == "Tears" and game.last_decision != game.get_player().side:
+				return
+		
+		if set_override_with_card_selection:
+			set_override_index(card.index)
+		card_to_play = card
+		game.get_player().lock()
+		
+		if card.stats.ability_name == "Categorical Knowledge":
+			decision_holder.generate_message("Categorical Knowledge", card)
+			extra_screens.screens_to_show.push_front(extra_screens.decision_holder)
+		if card.stats.ability_name == "Placeholder":
+			generate_deck_preview([card_to_play.index], "Placeholder")
+		if card.stats.ability_name == "Extra Space":
+			generate_deck_preview([card_to_play.index], "Extra Space")
+		
+		extra_screens.start_showing_screens()
+		if extra_screens.screens_to_show != []:
+			await extra_screens.finished
+		
+		var card_export = card.export()
+		
+		turn_history["First Used Card"] = [card_export["Attack"], card_export["Defense"]]
+		activate_locked_text.rpc(card_export)
 
 @rpc("any_peer")
 func ability_check(card_index):
@@ -219,8 +225,8 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 				defending_card = card_hand.return_random_card(defending_card["Index"])
 				has_shuffled = true
 	
-	print("ATTACKING CARD: " + attacking_card["Name"])
-	print("DEFENDING CARD: " + defending_card["Name"])
+	#print("ATTACKING CARD: " + attacking_card["Name"])
+	#print("DEFENDING CARD: " + defending_card["Name"])
 	
 	pre_card_effects_per_card(attacking_card, defending_card, attacking_info, defending_info)
 	
@@ -244,15 +250,18 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	passive_card_abilities.rpc(attacking_card, decision)
 	passive_card_abilities(defending_card, decision)
 	
-	print("ATTACKING CARD:")
-	print("ATTACK: " + str(attacking_card["Attack"]))
-	print("DEFENSE: " + str(attacking_card["Defense"]))
-	print("ABILITY: " + str(attacking_card["Ability"]))
-	print("")
-	print("DEFENDING CARD:")
-	print("ATTACK: " + str(defending_card["Attack"]))
-	print("DEFENSE: " + str(defending_card["Defense"]))
-	print("ABILITY: " + str(defending_card["Ability"]))
+	#print("ATTACKING CARD:")
+	#print("ATTACK: " + str(attacking_card["Attack"]))
+	#print("DEFENSE: " + str(attacking_card["Defense"]))
+	#print("ABILITY: " + str(attacking_card["Ability"]))
+	#print("")
+	#print("DEFENDING CARD:")
+	#print("ATTACK: " + str(defending_card["Attack"]))
+	#print("DEFENSE: " + str(defending_card["Defense"]))
+	#print("ABILITY: " + str(defending_card["Ability"]))
+	
+	card_matchup.start()
+	card_matchup.start.rpc()
 	
 	end_turn(decision)
 	end_turn.rpc(decision)
@@ -264,6 +273,9 @@ func end_turn(decision:Sides):
 	var _opponent = game.get_opponent()
 	
 	game.last_decision = decision
+	
+	extra_screens.start_showing_screens()
+	await extra_screens.finished
 	
 	if decision != Sides.TIE:
 		if decision == player.side:
@@ -748,6 +760,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 			"Strategist":
 				var random_card = card_hand.cards_in_hand[randi_range(0, card_hand.cards_in_hand.size() - 1)]
 				card_preview.generate_preview_from_export.rpc(random_card.export())
+				extra_screens.screens_to_show.push_front(extra_screens.card_preview_holder)
 			"Kindness":
 				if decision == opposing_card["Side"]:
 					#print('should be working?')
@@ -1001,7 +1014,8 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					card_hand.disable_card(rand3)
 		)
 		ability_check.rpc(opposing_card["Index"])
-		await(geometry.answered)
+		extra_screens.screens_to_show.push_front(extra_screens.geometry)
+		await(geometry.hidden)
 
 #Called at the end of every turn for EVERY card in your hand. 
 @rpc("authority")

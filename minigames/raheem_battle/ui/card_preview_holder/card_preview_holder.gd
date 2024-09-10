@@ -1,6 +1,4 @@
-extends Control
-
-@onready var ui = get_parent()
+extends ExtraScreen
 
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
@@ -15,6 +13,9 @@ func generate_card_preview(stats):
 		$card_preview_center.add_child(card)
 		
 		ui.card_hand.block_input()
+		screen_container.screens_to_show.push_front(screen_container.card_preview_holder)
+		screen_container.start_showing_screens()
+		
 
 @rpc("any_peer")
 func generate_preview_from_export(export):
@@ -48,3 +49,4 @@ func _unhandled_input(event):
 				card.queue_free()
 			ui.is_in_preview = false
 			ui.card_hand.allow_input()
+			hide()

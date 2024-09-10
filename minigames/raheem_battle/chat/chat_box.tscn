@@ -92,7 +92,7 @@ theme_override_fonts/font = ExtResource("2_ckeca")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_q1e0g")
 theme_override_styles/focus = SubResource("StyleBoxFlat_xiny7")
-placeholder_text = " Enter Your Text Here"
+placeholder_text = " Enter Your Message Here"
 
 [node name="send_button" type="Button" parent="input"]
 layout_mode = 1
@@ -109,6 +109,7 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_qi772")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qi772")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qi772")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qi772")
 text = ">"
 
 [node name="hide_button" type="Button" parent="input"]
@@ -128,6 +129,7 @@ grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_qi772")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qi772")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qi772")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qi772")
 text = "^"
 
 [node name="text_container" type="ColorRect" parent="."]

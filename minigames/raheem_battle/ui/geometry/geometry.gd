@@ -1,4 +1,4 @@
-extends Control
+extends ExtraScreen
 
 signal answered(correct:bool)
 
@@ -10,7 +10,6 @@ var problems = [
 ]
 var problem:int
 
-@onready var ui = get_parent()
 
 func start():
 	problem = randi_range(0, problems.size() - 1)
