@@ -1,131 +1,360 @@
-[gd_scene load_steps=3 format=3 uid="uid://dniq8ycjwht5m"]
+[gd_scene load_steps=19 format=3 uid="uid://dniq8ycjwht5m"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/menu/menu.gd" id="1_fnnwu"]
 [ext_resource type="PackedScene" uid="uid://buki7x0i4et4q" path="res://minigames/raheem_battle/quiz/quiz.tscn" id="2_8g1s8"]
+[ext_resource type="Texture2D" uid="uid://bkifl60rireni" path="res://minigames/raheem_battle/menu/assets/paper.png" id="2_41pih"]
+[ext_resource type="PackedScene" uid="uid://b1oyvx0nlu05y" path="res://minigames/raheem_battle/menu/camera/camera_2d.tscn" id="2_kb2py"]
+[ext_resource type="Texture2D" uid="uid://cwgkm52yr7irs" path="res://minigames/raheem_battle/menu/assets/bg.jpg" id="5_5hhqm"]
+[ext_resource type="PackedScene" uid="uid://b04wj00c3p8yq" path="res://minigames/raheem_battle/menu/deck_builder/deck_builder.tscn" id="6_r2hmy"]
+
+[sub_resource type="Animation" id="Animation_hf67y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cxaj8"]
+resource_name = "advanced-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.25, 0.333334, 0.416667, 0.541667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(994, 142), Vector2(998, 145), Vector2(1004, 151), Vector2(666, 74), Vector2(57, 17), Vector2(13, 4), Vector2(5, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1ajqq"]
+resource_name = "deck-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.208334, 0.291667, 0.333334, 0.416667, 0.541667, 0.625001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1173, -799), Vector2(1182, -807), Vector2(1184, -809), Vector2(997, -600), Vector2(99, -98), Vector2(43, -50), Vector2(2, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nkc82"]
+resource_name = "host-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.333334, 0.416667, 0.541667, 0.625001, 0.708334, 0.791667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(657, 1137), Vector2(661, 1142), Vector2(662, 1144), Vector2(660, 1142), Vector2(479, 666), Vector2(106, 134), Vector2(29, 41), Vector2(2, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_reaix"]
+resource_name = "initial-advanced"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.125, 0.25, 0.333334, 0.416667, 0.541667, 0.625, 0.708333, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-16, 0), Vector2(-19, 0), Vector2(296, 11), Vector2(816, 76), Vector2(968, 127), Vector2(984, 132), Vector2(991, 141), Vector2(993, 141), Vector2(994, 142)]
+}
+
+[sub_resource type="Animation" id="Animation_clb84"]
+resource_name = "initial-deck"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208333, 0.291667, 0.375, 0.458334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-11, 11), Vector2(-17, 17), Vector2(588, -365), Vector2(1161, -781), Vector2(1167, -785), Vector2(1173, -799)]
+}
+
+[sub_resource type="Animation" id="Animation_58eg5"]
+resource_name = "initial-host"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.416667, 0.5, 0.583333, 0.666666, 0.791667, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-5, -5), Vector2(-23, -27), Vector2(183, 200), Vector2(333, 821), Vector2(650, 1129), Vector2(652, 1132), Vector2(656, 1136), Vector2(657, 1137)]
+}
+
+[sub_resource type="Animation" id="Animation_1g0oo"]
+resource_name = "initial-join"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.416667, 0.5, 0.583334, 0.625001, 0.666667, 0.750001, 0.875001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(5, -5), Vector2(12, -12), Vector2(14, -14), Vector2(-79, 74), Vector2(-406, 443), Vector2(-835, 1003), Vector2(-925, 1087), Vector2(-931, 1093), Vector2(-935, 1099), Vector2(-936, 1100)]
+}
+
+[sub_resource type="Animation" id="Animation_gwige"]
+resource_name = "initial-quiz"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.375, 0.458333, 0.541667, 0.625, 0.708334, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(7, 0), Vector2(9, 0), Vector2(7, 0), Vector2(-217, 8), Vector2(-753, 16), Vector2(-1856, 16), Vector2(-1858, 16), Vector2(-1859, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_315i8"]
+resource_name = "join-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.166667, 0.333334, 0.416667, 0.5, 0.583334, 0.625001, 0.708334, 0.833334, 0.958334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-936, 1100), Vector2(-939, 1103), Vector2(-942, 1106), Vector2(-940, 1103), Vector2(-745, 927), Vector2(-654, 682), Vector2(-324, 363), Vector2(-82, 72), Vector2(-4, 1), Vector2(2, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nst5m"]
+resource_name = "quiz-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.208334, 0.375, 0.458333, 0.5, 0.583334, 0.666667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-1859, 16), Vector2(-1865, 16), Vector2(-1871, 21), Vector2(-1527, 21), Vector2(-935, 13), Vector2(-7, 13), Vector2(-7, 5), Vector2(-3, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ncw2"]
+_data = {
+"RESET": SubResource("Animation_hf67y"),
+"advanced-initial": SubResource("Animation_cxaj8"),
+"deck-initial": SubResource("Animation_1ajqq"),
+"host-initial": SubResource("Animation_nkc82"),
+"initial-advanced": SubResource("Animation_reaix"),
+"initial-deck": SubResource("Animation_clb84"),
+"initial-host": SubResource("Animation_58eg5"),
+"initial-join": SubResource("Animation_1g0oo"),
+"initial-quiz": SubResource("Animation_gwige"),
+"join-initial": SubResource("Animation_315i8"),
+"quiz-initial": SubResource("Animation_nst5m")
+}
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_fnnwu")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(1, 0, 1, 1)
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -2051.0
+offset_top = -602.0
+offset_right = 3314.0
+offset_bottom = 2059.0
+texture = ExtResource("5_5hhqm")
+stretch_mode = 1
 
-[node name="Title" type="Label" parent="."]
-offset_right = 1280.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 96
+[node name="camera" parent="." instance=ExtResource("2_kb2py")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -7
+offset_left = -3448.0
+offset_top = -1939.0
+offset_right = 4143.0
+offset_bottom = 2331.0
+color = Color(1, 0.767278, 0.985936, 1)
+
+[node name="ALL" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1278.0
+offset_bottom = 720.0
+metadata/_edit_group_ = true
+
+[node name="Initial" type="Node2D" parent="ALL"]
+position = Vector2(398, 10)
+rotation = -0.00872665
+
+[node name="Paper" type="Sprite2D" parent="ALL/Initial"]
+position = Vector2(259, 351)
+texture = ExtResource("2_41pih")
+
+[node name="Host" type="Button" parent="ALL/Initial"]
+offset_left = 169.0
+offset_top = 264.0
+offset_right = 360.0
+offset_bottom = 327.0
+text = "Host Game"
+
+[node name="Join" type="Button" parent="ALL/Initial"]
+offset_left = 175.0
+offset_top = 360.0
+offset_right = 366.0
+offset_bottom = 428.0
+text = "Join Game"
+
+[node name="Quiz" type="Button" parent="ALL/Initial"]
+offset_left = 300.0
+offset_top = 628.0
+offset_right = 394.0
+offset_bottom = 659.0
+text = "Open Quiz"
+
+[node name="Deck" type="Button" parent="ALL/Initial"]
+offset_left = 197.538
+offset_top = 626.748
+offset_right = 291.538
+offset_bottom = 657.748
+text = "Build Deck"
+
+[node name="Advanced" type="Button" parent="ALL/Initial"]
+offset_left = 418.0
+offset_top = 629.0
+offset_right = 502.0
+offset_bottom = 660.0
+text = "Advanced"
+
+[node name="Title" type="Label" parent="ALL/Initial"]
+offset_left = 5.0
+offset_top = 82.0
+offset_right = 512.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 61
 text = "RAHEEM BATTLE"
 horizontal_alignment = 1
 
-[node name="Advanced" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 553.0
-offset_top = 286.0
-offset_right = 593.0
-offset_bottom = 326.0
+[node name="Advanced" type="Node2D" parent="ALL"]
+position = Vector2(1216, 148)
+rotation = 0.010472
+skew = -0.0174533
 
-[node name="CheckBox" type="CheckBox" parent="Advanced"]
-layout_mode = 0
-offset_left = -66.0
-offset_top = 2.0
-offset_right = 161.0
-offset_bottom = 33.0
+[node name="Sprite2D" type="Sprite2D" parent="ALL/Advanced"]
+texture = ExtResource("2_41pih")
+centered = false
+
+[node name="CheckBox" type="CheckBox" parent="ALL/Advanced"]
+offset_left = 179.0
+offset_top = 255.0
+offset_right = 406.0
+offset_bottom = 286.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 button_pressed = true
 text = "Use Universal Plug In Play"
 flat = true
 
-[node name="Initial" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 553.0
-offset_top = 286.0
-offset_right = 593.0
-offset_bottom = 326.0
+[node name="Host" type="Node2D" parent="ALL"]
+position = Vector2(1183, 1137)
+rotation = 0.0349066
+skew = -0.0383972
 
-[node name="Host" type="Button" parent="Initial"]
-layout_mode = 0
-offset_right = 94.0
-offset_bottom = 31.0
-text = "Host Game"
+[node name="Sprite2D2" type="Sprite2D" parent="ALL/Host"]
+position = Vector2(256, 336)
+texture = ExtResource("2_41pih")
 
-[node name="Quiz" type="Button" parent="Initial"]
-layout_mode = 0
-offset_left = 506.0
-offset_top = 389.0
-offset_right = 600.0
-offset_bottom = 420.0
-text = "Open Quiz"
-
-[node name="Join" type="Button" parent="Initial"]
-layout_mode = 0
-offset_top = 74.0
-offset_right = 87.0
-offset_bottom = 105.0
-text = "Join Game"
-
-[node name="Advanced" type="Button" parent="Initial"]
-layout_mode = 0
-offset_left = 624.0
-offset_top = 390.0
-offset_right = 708.0
-offset_bottom = 421.0
-text = "Advanced"
-
-[node name="Host" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 5.0
-offset_top = 668.0
-offset_right = 45.0
-offset_bottom = 708.0
-
-[node name="Create Room" type="Button" parent="Host"]
-layout_mode = 0
-offset_left = 459.0
-offset_top = -410.0
-offset_right = 742.0
-offset_bottom = -351.0
+[node name="Create Room" type="Button" parent="ALL/Host"]
+offset_left = 145.0
+offset_top = 299.0
+offset_right = 428.0
+offset_bottom = 358.0
 text = "Create Room"
 
-[node name="Match Rules" type="Button" parent="Host"]
-layout_mode = 0
-offset_left = 459.0
-offset_top = -338.0
-offset_right = 742.0
-offset_bottom = -279.0
+[node name="Match Rules" type="Button" parent="ALL/Host"]
+offset_left = 145.0
+offset_top = 371.0
+offset_right = 428.0
+offset_bottom = 430.0
 text = "Set Match Rules"
 
-[node name="Join" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Join" type="Node2D" parent="ALL"]
+position = Vector2(-530, 1117)
+rotation = 0.0523599
 
-[node name="Join Room" type="Button" parent="Join"]
-layout_mode = 0
-offset_left = 464.0
-offset_top = 258.0
-offset_right = 747.0
-offset_bottom = 317.0
+[node name="Sprite2D3" type="Sprite2D" parent="ALL/Join"]
+texture = ExtResource("2_41pih")
+centered = false
+
+[node name="Join Room" type="Button" parent="ALL/Join"]
+offset_left = 133.0
+offset_top = 284.0
+offset_right = 416.0
+offset_bottom = 343.0
 text = "Join Room"
 
-[node name="address_bar" type="LineEdit" parent="Join"]
+[node name="address_bar" type="LineEdit" parent="ALL/Join"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 464.0
-offset_top = 322.0
-offset_right = 747.0
-offset_bottom = 381.0
+offset_left = 133.0
+offset_top = 348.0
+offset_right = 416.0
+offset_bottom = 407.0
 placeholder_text = "Enter Room Address"
 alignment = 1
 
-[node name="Quiz" parent="." instance=ExtResource("2_8g1s8")]
-visible = false
+[node name="Quiz" parent="ALL" instance=ExtResource("2_8g1s8")]
+offset_left = -1888.0
+offset_right = -1888.0
+
+[node name="deck_builder" parent="ALL" instance=ExtResource("6_r2hmy")]
+position = Vector2(1172, -780)
 
 [node name="display_name_box" type="LineEdit" parent="."]
 offset_left = 5.0
@@ -134,11 +363,18 @@ offset_right = 238.0
 offset_bottom = 717.0
 placeholder_text = "Display Name"
 
-[connection signal="toggled" from="Advanced/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="pressed" from="Initial/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Initial/Quiz" to="." method="_on_quiz_pressed"]
-[connection signal="pressed" from="Initial/Join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="Initial/Advanced" to="." method="_on_advanced_pressed"]
-[connection signal="pressed" from="Host/Create Room" to="." method="_on_create_room_pressed"]
-[connection signal="pressed" from="Join/Join Room" to="." method="_on_join_room_pressed"]
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8ncw2")
+}
+autoplay = "RESET"
+
+[connection signal="pressed" from="ALL/Initial/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="ALL/Initial/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="ALL/Initial/Quiz" to="." method="_on_quiz_pressed"]
+[connection signal="pressed" from="ALL/Initial/Deck" to="." method="_on_deck_pressed"]
+[connection signal="pressed" from="ALL/Initial/Advanced" to="." method="_on_advanced_pressed"]
+[connection signal="toggled" from="ALL/Advanced/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="ALL/Host/Create Room" to="." method="_on_create_room_pressed"]
+[connection signal="pressed" from="ALL/Join/Join Room" to="." method="_on_join_room_pressed"]
 [connection signal="text_changed" from="display_name_box" to="." method="_on_display_name_box_text_changed"]

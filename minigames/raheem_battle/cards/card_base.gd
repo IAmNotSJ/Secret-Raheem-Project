@@ -102,7 +102,8 @@ func _process(delta):
 		status_timer -= delta
 		
 		if status_timer <= 0 and statuses.size() > 0:
-				print(statuses)
+			print("GUH")
+			if game.ui.cur_stage == game.ui.Stages.PRE_TURN:
 				var status = status_scene.instantiate()
 				status.text = statuses[0]
 				status.position = Vector2i(0, -30)
@@ -148,10 +149,8 @@ func _on_stats_changed():
 func _on_bonus_added(amount:int, type:String):
 	var status_message:String = "+" + str(amount) + " " + type
 	statuses.push_back(status_message)
-	#print(statuses)
 
 func _on_turn_ended():
-	#print('turn ended!')
 	if disabled_time > 0 and disabled:
 		disabled_time -= 1
 		

@@ -1,21 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcf5cijtnm2sw"]
+[gd_scene load_steps=3 format=3 uid="uid://bcf5cijtnm2sw"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/manager/raheem_battle.gd" id="1_nlfe7"]
 [ext_resource type="PackedScene" uid="uid://dniq8ycjwht5m" path="res://minigames/raheem_battle/menu/menu.tscn" id="1_ti5sv"]
-[ext_resource type="PackedScene" uid="uid://buki7x0i4et4q" path="res://minigames/raheem_battle/quiz/quiz.tscn" id="2_6hlpp"]
-[ext_resource type="PackedScene" uid="uid://326mnhr5owui" path="res://minigames/raheem_battle/game/raheem_battle.tscn" id="3_phiap"]
 
-[node name="RaheemBattle" type="Node2D"]
+[node name="battle-manager" type="Node2D"]
 script = ExtResource("1_nlfe7")
 
-[node name="Quiz" parent="." instance=ExtResource("2_6hlpp")]
-visible = false
-mouse_filter = 2
-
 [node name="Menu" parent="." instance=ExtResource("1_ti5sv")]
-
-[node name="RaheemBattle" parent="." instance=ExtResource("3_phiap")]
-visible = false
 
 [node name="NetworkInfo" type="VBoxContainer" parent="."]
 visible = false
@@ -25,6 +16,7 @@ mouse_filter = 2
 
 [node name="game_type" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
+z_index = 4096
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -33,6 +25,7 @@ text = "GameType:"
 
 [node name="peer_id" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
+z_index = 4096
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -42,6 +35,7 @@ text = "PeerID:
 
 [node name="room_address" type="Label" parent="NetworkInfo"]
 unique_name_in_owner = true
+z_index = 4096
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -49,6 +43,7 @@ theme_override_font_sizes/font_size = 10
 text = "RoomAddress:"
 
 [node name="side" type="Label" parent="NetworkInfo"]
+z_index = 4096
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -56,6 +51,7 @@ theme_override_font_sizes/font_size = 10
 text = "Side: "
 
 [node name="turn_count" type="Label" parent="NetworkInfo"]
+z_index = 4096
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5

@@ -1,6 +1,7 @@
-extends Node
+extends Node2D
 
 @onready var sceneManager = get_tree().root.get_node("SceneManager")
+@onready var mouse = $Mouse.get_node("Mouse")
 
 const WEBHOOK_URL = "https://discord.com/api/webhooks/1279278515933679666/pL2CsmnHFZVozp1fkwophAjb4KDc5fxG9mIqIoqO5YhE9yGzERu7rYtsC_sDKaCULbe5"
 
@@ -67,6 +68,12 @@ func _ready():
 	#embed.set_color(Color.RED)
 	
 	#webhook.post()
+
+func _input(_event: InputEvent) -> void:
+	if get_viewport().get_camera_2d() != null:
+		$mouse_area.global_position = get_global_mouse_position()
+	else:
+		$mouse_area.global_position = get_global_mouse_position()
 
 func add_interaction(character:String):
 	if character == null:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_base.gd" id="1_8jnna"]
 [ext_resource type="Resource" uid="uid://c75vllqidw3mc" path="res://minigames/raheem_battle/cards/card_variants/stats/0.tres" id="2_8n2ow"]
 [ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="3_311j2"]
-[ext_resource type="Texture2D" uid="uid://cnhxyrdbcgyqa" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="3_ik8au"]
+[ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="3_ik8au"]
 [ext_resource type="Texture2D" uid="uid://bcj3rohj0g7nk" path="res://minigames/raheem_battle/cards/assets/ability_holder.png" id="5_mxjpk"]
 [ext_resource type="Texture2D" uid="uid://cd3pn6q8ksn0h" path="res://minigames/raheem_battle/cards/assets/card_border.png" id="5_ui7cc"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="6_8mybx"]
@@ -42,10 +42,10 @@ texture = ExtResource("5_mxjpk")
 
 [node name="Ability_Name" type="Label" parent="visible/Ability_Holder"]
 unique_name_in_owner = true
-offset_left = -159.459
-offset_top = -94.5946
-offset_right = 156.541
-offset_bottom = -58.5946
+offset_left = -159.0
+offset_top = -95.0
+offset_right = 157.0
+offset_bottom = -36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 26
@@ -97,10 +97,10 @@ text = "Test Series"
 [node name="Number" type="Label" parent="visible/Info"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 288.487
-offset_top = 8.40541
-offset_right = 380.487
-offset_bottom = 36.4054
+offset_left = 288.0
+offset_top = 8.0
+offset_right = 380.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 20
@@ -152,9 +152,10 @@ text = "1"
 horizontal_alignment = 2
 
 [node name="mouse_detection" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
-collision_mask = 536870912
+collision_mask = 536870976
+input_pickable = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
 position = Vector2(73.5, 84)

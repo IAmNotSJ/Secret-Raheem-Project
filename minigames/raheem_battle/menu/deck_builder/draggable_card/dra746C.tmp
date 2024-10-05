@@ -1,0 +1,173 @@
+[gd_scene load_steps=9 format=3 uid="uid://buu8iexqdweg0"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/deck_builder/draggable_card/draggable_card.gd" id="1_6dpia"]
+[ext_resource type="Resource" uid="uid://c75vllqidw3mc" path="res://minigames/raheem_battle/cards/card_variants/stats/0.tres" id="2_ckqq1"]
+[ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="3_ma3tb"]
+[ext_resource type="Texture2D" uid="uid://bcj3rohj0g7nk" path="res://minigames/raheem_battle/cards/assets/ability_holder.png" id="4_32sc4"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="5_vxo02"]
+[ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="6_dyo8b"]
+[ext_resource type="Texture2D" uid="uid://cd3pn6q8ksn0h" path="res://minigames/raheem_battle/cards/assets/card_border.png" id="7_msd08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
+size = Vector2(147, 264)
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(149, 216)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 149.0
+offset_bottom = 216.0
+script = ExtResource("1_6dpia")
+stats = ExtResource("2_ckqq1")
+
+[node name="visible" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 397.0
+offset_bottom = 584.0
+scale = Vector2(0.37, 0.37)
+
+[node name="Base" type="TextureRect" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 585.0
+texture = ExtResource("3_ma3tb")
+
+[node name="Ability_Holder" type="Sprite2D" parent="visible"]
+unique_name_in_owner = true
+visible = false
+use_parent_material = true
+position = Vector2(205.405, 478.378)
+texture = ExtResource("4_32sc4")
+
+[node name="Ability_Name" type="Label" parent="visible/Ability_Holder"]
+unique_name_in_owner = true
+offset_left = -159.459
+offset_top = -94.5946
+offset_right = 156.541
+offset_bottom = -58.5946
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Ability_Description" type="Label" parent="visible/Ability_Holder"]
+unique_name_in_owner = true
+offset_left = -153.459
+offset_top = -51.5946
+offset_right = 151.541
+offset_bottom = 88.4054
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="icon" type="Sprite2D" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(196, 176)
+texture = ExtResource("6_dyo8b")
+
+[node name="border" type="Sprite2D" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(197.297, 175.676)
+texture = ExtResource("7_msd08")
+
+[node name="Info" type="Control" parent="visible"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Series" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+use_parent_material = true
+layout_mode = 0
+offset_left = 15.4054
+offset_top = 6.7027
+offset_right = 122.405
+offset_bottom = 34.7027
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 20
+text = "Test Series"
+
+[node name="Number" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 288.487
+offset_top = 8.40541
+offset_right = 380.487
+offset_bottom = 36.4054
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 2
+
+[node name="Name" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 59.0
+offset_top = 314.703
+offset_right = 332.0
+offset_bottom = 371.703
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 41
+text = "Hampter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="visible"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 305.0
+offset_right = 400.0
+offset_bottom = 367.0
+
+[node name="Attack" type="Label" parent="visible/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.405
+offset_right = 88.405
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 51
+text = "1"
+
+[node name="Defense" type="Label" parent="visible/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 326.0
+offset_right = 390.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vxo02")
+theme_override_font_sizes/font_size = 51
+text = "1"
+horizontal_alignment = 2
+
+[node name="mouse_detection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 536870912
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
+position = Vector2(73.5, 84)
+shape = SubResource("RectangleShape2D_odvew")
+
+[node name="snap_detection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 536870914
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="snap_detection"]
+position = Vector2(73.5, 84)
+shape = SubResource("RectangleShape2D_odvew")
+
+[connection signal="let_go" from="." to="." method="_on_let_go"]

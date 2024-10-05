@@ -5,18 +5,29 @@ enum {
 	HOST,
 	JOIN,
 	ADVANCED,
-	QUIZ
+	QUIZ,
+	DECK
 }
 var current_screen = INITIAL
 
 @onready var manager = get_parent()
+
+@onready var initial = $ALL/Initial
+@onready var advanced = $ALL/Advanced
+@onready var host = $ALL/Host
+@onready var join = $ALL/Join
+@onready var quiz = $ALL/Quiz
+
+@onready var animation = $animation
+@onready var camera = $camera
 
 var display_name:String = "Random Player"
 
 var upnp:bool = false
 
 func _ready():
-	_switch_screen(INITIAL)
+	#_switch_screen(INITIAL)
+	pass
 func _unhandled_input(event):
 	if event.is_action_pressed("back"):
 		match current_screen:
@@ -30,41 +41,41 @@ func _unhandled_input(event):
 				_switch_screen(INITIAL)
 			QUIZ:
 				_switch_screen(INITIAL)
+			DECK:
+				if !$ALL/deck_builder.is_in_preview:
+					_switch_screen(INITIAL)
 
-func _switch_screen(screen, show_title = true):
+func _switch_screen(screen):
 	match screen:
 		INITIAL:
-			$Initial.visible = true
-			$Host.visible = false
-			$Join.visible = false
-			$Advanced.visible = false
-			$Quiz.visible = false
+			match current_screen:
+				HOST:
+					animation.play('host-initial')
+				JOIN:
+					animation.play('join-initial')
+				ADVANCED:
+					animation.play('advanced-initial')
+				QUIZ:
+					animation.play('quiz-initial')
+				DECK:
+					animation.play('deck-initial')
 		HOST:
-			$Initial.visible = false
-			$Host.visible = true
-			$Join.visible = false
-			$Advanced.visible = false
-			$Quiz.visible = false
+			animation.play('initial-host')
 		JOIN:
-			$Initial.visible = false
-			$Host.visible = false
-			$Join.visible = true
-			$Advanced.visible = false
-			$Quiz.visible = false
+			animation.play('initial-join')
 		ADVANCED:
-			$Initial.visible = false
-			$Host.visible = false
-			$Join.visible = false
-			$Advanced.visible = true
-			$Quiz.visible = false
+			animation.play('initial-advanced')
 		QUIZ:
-			$Initial.visible = false
-			$Host.visible = false
-			$Join.visible = false
-			$Advanced.visible = false
-			$Quiz.visible = true
-	$Title.visible = show_title
+			animation.play('initial-quiz')
+		DECK:
+			animation.play('initial-deck')
 	current_screen = screen
+	
+	if screen == QUIZ:
+		await animation.animation_finished
+		camera.can_scroll = true
+	else:
+		camera.can_scroll = false
 
 
 func _on_host_pressed():
@@ -74,7 +85,9 @@ func _on_join_pressed():
 func _on_advanced_pressed():
 	_switch_screen(ADVANCED)
 func _on_quiz_pressed():
-	_switch_screen(QUIZ, false)
+	_switch_screen(QUIZ)
+func _on_deck_pressed():
+	_switch_screen(DECK)
 
 func _on_display_name_box_text_changed(new_text):
 	display_name = new_text
@@ -91,6 +104,3 @@ func _on_create_room_pressed():
 
 func _on_check_box_toggled(toggled_on):
 	upnp = toggled_on
-
-
-

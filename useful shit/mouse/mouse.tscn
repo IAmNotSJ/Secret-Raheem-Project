@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds3w1xv8267a1"]
+[gd_scene load_steps=11 format=3 uid="uid://ds3w1xv8267a1"]
 
 [ext_resource type="Texture2D" uid="uid://dxhxflvkttjp8" path="res://useful shit/mouse/mouse-special.png" id="1_cscgm"]
 [ext_resource type="Script" path="res://useful shit/mouse/mouse.gd" id="6_bsoye"]
@@ -189,10 +189,7 @@ _data = {
 "release_single": SubResource("Animation_1igyn")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w76kw"]
-size = Vector2(0, 0)
-
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="mouse_layer" type="CanvasLayer"]
 layer = 128
 
 [node name="Mouse" type="Sprite2D" parent="."]
@@ -208,10 +205,3 @@ libraries = {
 "": SubResource("AnimationLibrary_rcjfs")
 }
 autoplay = "idle"
-
-[node name="mouse_area" type="Area2D" parent="Mouse"]
-collision_layer = 536870912
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse/mouse_area"]
-shape = SubResource("RectangleShape2D_w76kw")

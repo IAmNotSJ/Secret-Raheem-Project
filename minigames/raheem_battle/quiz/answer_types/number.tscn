@@ -1,8 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1hb74w06f06s"]
+[gd_scene load_steps=8 format=3 uid="uid://d1hb74w06f06s"]
 
+[ext_resource type="Texture2D" uid="uid://bssiilxxripuk" path="res://minigames/raheem_battle/menu/assets/updown.png" id="1_3mjur"]
 [ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/number.gd" id="1_726wc"]
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="1_hk7bh"]
+[ext_resource type="Texture2D" uid="uid://c6ljtl3qs6h1d" path="res://minigames/raheem_battle/menu/assets/dropdown.png" id="2_mdvk2"]
+[ext_resource type="AudioStream" uid="uid://d3i5k6bwurocu" path="res://minigames/raheem_battle/menu/sounds/quick.ogg" id="5_27sgd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7qfg"]
+content_margin_left = 8.0
+texture = ExtResource("2_mdvk2")
+
+[sub_resource type="Theme" id="Theme_loa2w"]
+LineEdit/colors/caret_color = Color(0.0885593, 0.0885601, 0.0885602, 1)
+LineEdit/colors/clear_button_color = Color(0, 0, 0, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_outline_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(0.875, 0.875, 0.875, 0.5)
+LineEdit/colors/selection_color = Color(0.5, 0.5, 0.5, 1)
+LineEdit/constants/caret_width = 1
+LineEdit/constants/outline_size = 3
+LineEdit/font_sizes/font_size = 18
+LineEdit/fonts/font = ExtResource("1_hk7bh")
+LineEdit/styles/focus = SubResource("StyleBoxTexture_x7qfg")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_x7qfg")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_x7qfg")
 
 [node name="SpinBox" type="SpinBox"]
 offset_right = 155.0
 offset_bottom = 31.0
+theme = SubResource("Theme_loa2w")
+theme_override_icons/updown = ExtResource("1_3mjur")
 script = ExtResource("1_726wc")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_27sgd")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

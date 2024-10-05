@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn6ousec2kubc"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/deck_builder/card_snap/card_snap.gd" id="1_dhqfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sae23"]
+size = Vector2(149, 214)
+
+[node name="card_snap" type="ColorRect"]
+z_index = -1
+custom_minimum_size = Vector2(149, 216)
+offset_right = 149.0
+offset_bottom = 216.0
+color = Color(0, 0, 0, 0.470588)
+script = ExtResource("1_dhqfr")
+
+[node name="snap" type="Marker2D" parent="."]
+
+[node name="snap_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="snap_area"]
+position = Vector2(74.5, 108)
+shape = SubResource("RectangleShape2D_sae23")
+
+[node name="snap_text" type="Label" parent="."]
+layout_mode = 0
+offset_right = 149.0
+offset_bottom = 126.0
+text = "SLOT 1"

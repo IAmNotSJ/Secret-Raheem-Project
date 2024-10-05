@@ -1,5 +1,13 @@
 extends Node2D
 
+const gamePath = preload("res://minigames/raheem_battle/game/raheem_battle.tscn")
+var game
+const menuPath = preload("res://minigames/raheem_battle/menu/menu.tscn")
+var menu
+@onready var current_scene = $Menu
+
+var display_name:String
+
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
 const PORT = 7890
@@ -28,6 +36,9 @@ var room_address :
 		room_address = value
 		%room_address.text = "RoomAddress: " + room_address
 
+func _ready():
+	game = gamePath.instantiate()
+
 func _unhandled_input(event):
 	if event.is_action_pressed("F3"):
 		if $NetworkInfo.visible == true:
@@ -35,29 +46,25 @@ func _unhandled_input(event):
 		else:
 			$NetworkInfo.visible = true
 
-#Scene manager
-func switch_screen(daScreen:String):
-	match daScreen:
-		"Raheem Battle":
-			$RaheemBattle.visible = true
-			$Menu.visible = false
-
 #Join commands
 @rpc
 func add_player(daPeer):
 	connected_peer_ids.append(daPeer)
-	$RaheemBattle.add_player($Menu.display_name, daPeer)
+	game.add_player(display_name, daPeer)
 @rpc("any_peer")
-func add_opponent(daPeer, display_name):
+func add_opponent(daPeer, opponent_name):
 	connected_peer_ids.append(daPeer)
-	$RaheemBattle.add_opponent(daPeer, display_name)
+	game.add_opponent(daPeer, opponent_name)
 
 func on_host_pressed():
+	make_game()
+	
 	multiplayer_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = multiplayer_peer
 	
+	display_name = current_scene.display_name
 	var address
-	if $Menu.upnp:
+	if current_scene.upnp:
 		address = upnp_setup()
 	else:
 		address = "localhost"
@@ -74,16 +81,20 @@ func on_host_pressed():
 			#Adds the PLAYER for the client that just connected
 			add_player.rpc(new_peer_id)
 			#Adds the OPPONENT for the client that just connected
-			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), $Menu.display_name)
+			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), display_name)
 			
 			# Just to give the client enough time to actually join.
 			# TODO: Find a better way to do this. Perhaps with a signal that is emitted by the player character when they join the game? idk 
 			await get_tree().create_timer(1).timeout
-			$RaheemBattle.start_game_request()
+			game.start_game_request()
 	)
 	
-	switch_screen("Raheem Battle")
+	current_scene.queue_free()
+	current_scene = game
+
 func on_join_pressed(ADDRESS):
+	make_game()
+	display_name = current_scene.display_name
 	if ADDRESS == "localhost":
 		multiplayer_peer.create_client(ADDRESS, PORT)
 	else:
@@ -92,14 +103,28 @@ func on_join_pressed(ADDRESS):
 	
 	multiplayer.connected_to_server.connect(
 		func():
-			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), $Menu.display_name)
+			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), display_name)
 	)
 	
 	game_type = CLIENT
 	peer_id = multiplayer.get_unique_id()
 	room_address = str(ADDRESS)
 	
-	switch_screen("Raheem Battle")
+	current_scene.queue_free()
+	current_scene = game
+
+func return_to_menu():
+	make_menu()
+	current_scene.queue_free()
+	current_scene = menu
+
+func make_game():
+	game = gamePath.instantiate()
+	add_child(game)
+
+func make_menu():
+	menu = menuPath.instantiate()
+	add_child(menu)
 
 #Internet stuff
 func upnp_setup():

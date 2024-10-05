@@ -2,8 +2,10 @@ extends ExtraScreen
 
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
-func generate_card_preview(stats):
+func generate_card_preview(stats, await_turn:bool = false):
 	if !ui.is_in_preview:
+		if await_turn:
+			await ui.turn_ended
 		var card = card_scene.instantiate()
 		card.stats = stats
 		card.block_input = true
@@ -19,10 +21,12 @@ func generate_card_preview(stats):
 
 @rpc("any_peer")
 func generate_preview_from_export(export):
+	print('GENERATING CARD PREVIEW!')
 	var card = card_scene.instantiate()
 	card.block_input = true
 	card.get_node("visible").scale = Vector2(1, 1)
 	ui.is_in_preview = true
+	
 	
 	card.stats.card_name = export["Name"]
 	card.stats.card_series = export["Series"]
@@ -31,11 +35,15 @@ func generate_preview_from_export(export):
 	card.stats.penalties = export["Penalties"]
 	card.stats.base_attack = export["Base Attack"]
 	card.stats.base_defense = export["Base Defense"]
-	card.stats.size = export["Size"]
 	card.stats.can_get_bonuses = export["Can Get Bonuses"]
 	card.stats.ability_name = export["Ability"]
 	card.stats.ability_description = export["Ability Description"]
 	card.stats.one_use_ability = export["One Use Ability"]
+	card.ability_used = export["Ability Used"]
+	card.stats.hide_stats = export["Hide Stats"]
+	card.stats.is_human = export["Is Human"]
+	card.stats.has_hands = export["Has Hands"]
+	card.stats.should_remove = export["Should Remove"]
 	card.index = export["Index"]
 	
 	$card_preview_center.add_child(card)

@@ -34,10 +34,7 @@ func _ready():
 
 func _input(event):
 	global_position = get_global_mouse_position()
-	$mouse_area.global_position = get_global_mouse_position()
 	
-	if !visible:
-		visible = true
 	if event.is_action_pressed("click"):
 		$AnimationPlayer.play("click")
 	if event.is_action_released("click"):
@@ -55,6 +52,9 @@ func _notification(what):
 
 func make_visible():
 	mouse_mode = MouseMode.VISIBLE
+
+func make_hidden():
+	mouse_mode = MouseMode.HIDDEN
 
 func change_mouse_type(type:MouseType):
 	match type:

@@ -3,6 +3,8 @@ extends Control
 signal turn_started
 signal turn_ended
 
+const LOG_PATH:String = "user://raheem_battle_log.log"
+
 #You get the drill by now
 enum Sides {
 	ATTACKING,
@@ -17,6 +19,23 @@ enum FutureEvents {
 	NEXT_CARD_BONUS_MULTIPLIER,
 	NEXT_CARD_PENALTY_MULTIPLIER
 }
+
+enum Stages {
+	NOT_STARTED,
+	PRE_TURN,
+	TURN,
+	POST_TURN
+}
+var cur_stage:Stages = Stages.NOT_STARTED :
+	set(value):
+		cur_stage = value
+		match value:
+			Stages.PRE_TURN:
+				print("ENTERING PRE-TURN")
+			Stages.TURN:
+				print("ENTERING TURN")
+			Stages.POST_TURN:
+				print("ENTERING POST-TURN")
 
 @onready var game = get_parent()
 
@@ -37,6 +56,9 @@ var card_to_play
 var override_index:int = -1
 var set_override_with_card_selection:bool = false
 
+var opponent_ready:bool = true
+
+var game_log:String
 
 var is_in_preview:bool :
 	set(value):
@@ -54,8 +76,6 @@ var time_turn:bool = false :
 		time_turn = value
 		if time_turn == true:
 			turn_timer = 0 
-		else:
-			print("TURN TIME: " + str(turn_timer))
 
 var has_shuffled:bool = false
 
@@ -77,13 +97,13 @@ var turn_history:Dictionary = {
 
 var cash_out:bool = false
 
-func _process(delta):
-	if time_turn:
-		turn_timer += delta
-
 func _ready():
 	card_hand.card_removed.connect(_on_card_removed)
 	game.game_started.connect(starting_game_card_effects)
+
+func _process(delta):
+	if time_turn:
+		turn_timer += delta
 
 func generate_deck_preview(exclude:Array = [-1], reason:String = ""):
 	if !is_in_preview:
@@ -97,7 +117,7 @@ func generate_deck_preview(exclude:Array = [-1], reason:String = ""):
 		extra_screens.screens_to_show.push_front(extra_screens.deck_preview_holder)
 
 func play_card(card):
-	if game.started:
+	if game.started and opponent_ready:
 		if card_hand.cards_in_hand.size() > 2:
 			if card.stats.ability_name == "Tears" and game.last_decision != game.get_player().side:
 				return
@@ -166,6 +186,7 @@ func send_card(resend:bool = false):
 # This is only received by the HOST
 @rpc("any_peer")
 func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported_quiz:Dictionary, exported_stats:Dictionary, exported_battle_info:Dictionary):
+	var host_attacking:bool
 	print('receiving card!')
 	var attacking_card:Dictionary
 	var defending_card:Dictionary
@@ -175,6 +196,7 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	
 	var decision:Sides
 	if exported_card["Side"] == Sides.ATTACKING:
+		host_attacking = false
 		attacking_card = exported_card
 		defending_card = card_to_play.export()
 		attacking_info["Future"] = exported_future
@@ -186,6 +208,7 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 		attacking_info["Info"] = exported_battle_info
 		defending_info["Info"] = get_info()
 	else:
+		host_attacking = true
 		defending_card = exported_card
 		attacking_card = card_to_play.export()
 		defending_info["Future"] = exported_future
@@ -244,11 +267,19 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	override_index = 0
 	set_override_with_card_selection = false
 	
-	post_card_effects.rpc(attacking_card, decision, attacking_info)
-	post_card_effects(defending_card, decision, defending_info)
+	if host_attacking:
+		post_card_effects.rpc(attacking_card, decision, attacking_info)
+		post_card_effects(defending_card, decision, defending_info)
+	else:
+		post_card_effects.rpc(defending_card, decision, attacking_info)
+		post_card_effects(attacking_card, decision, defending_info)
 	
-	passive_card_abilities.rpc(attacking_card, decision)
-	passive_card_abilities(defending_card, decision)
+	if host_attacking:
+		passive_card_abilities.rpc(attacking_card, decision)
+		passive_card_abilities(defending_card, decision)
+	else:
+		passive_card_abilities.rpc(defending_card, decision)
+		passive_card_abilities(attacking_card, decision)
 	
 	#print("ATTACKING CARD:")
 	#print("ATTACK: " + str(attacking_card["Attack"]))
@@ -260,8 +291,16 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	#print("DEFENSE: " + str(defending_card["Defense"]))
 	#print("ABILITY: " + str(defending_card["Ability"]))
 	
-	card_matchup.start()
-	card_matchup.start.rpc()
+	add_to_log(attacking_card, defending_card, decision)
+	if host_attacking:
+		card_matchup.start(decision, attacking_card, defending_card)
+		card_matchup.start.rpc(decision, defending_card, attacking_card)
+	else:
+		card_matchup.start(decision, defending_card, attacking_card)
+		card_matchup.start.rpc(decision, attacking_card, defending_card)
+	
+	set_ready(false)
+	set_ready.rpc(false)
 	
 	end_turn(decision)
 	end_turn.rpc(decision)
@@ -274,8 +313,12 @@ func end_turn(decision:Sides):
 	
 	game.last_decision = decision
 	
+	cur_stage = Stages.PRE_TURN
+	
 	extra_screens.start_showing_screens()
 	await extra_screens.finished
+	
+	cur_stage = Stages.PRE_TURN
 	
 	if decision != Sides.TIE:
 		if decision == player.side:
@@ -304,18 +347,31 @@ func end_turn(decision:Sides):
 	
 	has_shuffled = false
 	
+	turn_ended.emit()
+	on_turn_ended.rpc(card_hand.cards_in_hand.size())
+	
+	game.get_player().cards_left = card_hand.cards_in_hand.size()
+	
+	set_ready_call.rpc(opponent_ready)
+	locked_text.set_status("WAITING ON OPPONENT")
+
+
+@rpc("any_peer")
+func start_turn():
+	#print('STARTING TURN FOR ' + game.get_player().player_name)
+	var player = game.get_player()
+	var _opponent = game.get_opponent()
+	
+	locked_text.text = ""
+	
 	player.switch_side()
 	_opponent.switch_side()
 	player.unlock()
 	_opponent.unlock()
-	turn_ended.emit()
-	
-	
-	on_turn_ended.rpc(card_hand.cards_in_hand.size())
-	game.get_player().cards_left = card_hand.cards_in_hand.size()
 	
 	starting_card_effects()
 	turn_started.emit()
+	cur_stage = Stages.TURN
 	
 	game.turn_count += 1
 	
@@ -738,7 +794,6 @@ func pre_card_effects_per_card(attacking_card, defending_card, attacking_info, d
 			attacking_card["Penalty Defense"] = defending_penalty_defense
 			attacking_card["Penalties"] = defending_penalties
 			attacking_card["Bonueses"] = defending_bonuses
-
 @rpc("authority")
 func post_card_effects(opposing_card, decision, opposing_info):
 	if card_to_play.stats.ability_name == "The Goop":
@@ -1016,7 +1071,6 @@ func post_card_effects(opposing_card, decision, opposing_info):
 		ability_check.rpc(opposing_card["Index"])
 		extra_screens.screens_to_show.push_front(extra_screens.geometry)
 		await(geometry.hidden)
-
 #Called at the end of every turn for EVERY card in your hand. 
 @rpc("authority")
 func passive_card_abilities(_opposing_card, decision):
@@ -1025,7 +1079,7 @@ func passive_card_abilities(_opposing_card, decision):
 			"Revenge Shot":
 				if decision != game.get_player().side and decision != Sides.TIE:
 					if card.stats.bonuses["Revenge Shot"] == [0, 0]:
-						print("Revenge Shot (SJ) Activated!")
+						#print("Revenge Shot (SJ) Activated!")
 						card.stats.add_bonus_attack((card.stats.true_attack * 2) - card.stats.base_attack, "Revenge Shot")
 						card.stats.add_bonus_defense((card.stats.true_defense * 2)  - card.stats.base_defense, "Revenge Shot")
 				else:
@@ -1083,7 +1137,6 @@ func apply_next_card_bonus(card, le_future_events):
 			card["Penalty Attack"] += le_future_events[key][1][0]
 			card["Penalty Defense"] += le_future_events[key][1][1]
 			card["Penalties"][key] = le_future_events[key][1]
-
 func apply_next_card_bonus_multiplier(card, le_future_events):
 	for key in le_future_events.keys():
 		if le_future_events[key][0] == FutureEvents.NEXT_CARD_BONUS_MULTIPLIER and future_events[key][1] != [0, 0]:
@@ -1117,6 +1170,55 @@ func add_bonus_defense(index, amount, reason):
 	print("Adding bonus defense to " + card_hand.get_card_from_index(index).stats.card_name)
 	card_hand.get_card_from_index(index).stats.add_bonus_defense(amount, reason)
 
+@rpc("any_peer")
+func set_ready_call(curStatus):
+	#print(game.get_opponent().player_name + "IS READY!!")
+	opponent_ready = true
+	if curStatus == true:
+		start_turn()
+		start_turn.rpc()
+@rpc("any_peer")
+func set_ready(val):
+	opponent_ready = val
+
 func set_pixel_effect(pixels, duration):
 	game.pixel_size = pixels
 	pixel_timer = duration
+
+func add_to_log(attacking_card:Dictionary, defending_card:Dictionary, decision:Sides):
+	var addition:String = ""
+	addition += "--------------------------------------------------\n"
+	addition += "TURN NUMBER " + str(game.turn_count) + "\n\n"
+	addition += "ATTACKING CARD:\n" 
+	for key in attacking_card.keys():
+		if key != "Bonuses" and key != "Penalties":
+			addition += "\t" + key + ": " + str(attacking_card[key]) + "\n"
+		else:
+			addition += "\t" + key + ": \n"
+			for daKey in attacking_card[key].keys():
+				addition += "\t\t" + daKey + ": " + str(attacking_card[key][daKey]) + "\n"
+	addition += "\n"
+	addition += "DEFENDING CARD:\n" 
+	for key in defending_card.keys():
+		if key != "Bonuses" and key != "Penalties":
+			addition += "\t" + key + ": " + str(defending_card[key]) + "\n"
+		else:
+			addition += "\t" + key + ": \n"
+			for daKey in defending_card[key].keys():
+				addition += "\t\t" + daKey + ": " + str(defending_card[key][daKey]) + "\n"
+	addition += "\n"
+	addition += "WINNING SIDE: "
+	if decision == Sides.ATTACKING:
+		addition += "ATTACKING"
+	elif decision == Sides.DEFENDING:
+		addition += "DEFENDING"
+	elif decision == Sides.TIE:
+		addition += "TRUE TIE"
+	else:
+		addition += "ERROR! DECISION NOT STATED IN UI.SIDES ENUM!!"
+	addition += "\n\n"
+	addition += "--------------------------------------------------\n\n\n"
+	game_log += addition
+	
+	var file = FileAccess.open(LOG_PATH, FileAccess.WRITE)
+	file.store_line(game_log)

@@ -33,6 +33,7 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/confusable_identifier=0
@@ -256,6 +257,7 @@ locale/translations_pot_files=PackedStringArray("res://overworld/dialogue/script
 2d_physics/layer_4="bullet_pilk"
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="bullet_enemy"
+2d_physics/layer_7="mouse"
 
 [rendering]
 

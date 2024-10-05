@@ -61,7 +61,9 @@ func add_player(player_name, peer_id):
 	#Add the UI for the player
 	var daUI = ui_path.instantiate()
 	add_child(daUI)
-	daUI.card_hand.generate_cards(daUI.cards_to_generate)
+	
+	var deck = Saves.battle_deck.values()
+	daUI.card_hand.generate_cards(deck)
 	ui = daUI
 func add_opponent(opponent_id, opponent_name):
 	playing_peer_ids.append(opponent_id)
@@ -119,10 +121,6 @@ func start_game(side:Sides):
 			get_player().side = Sides.DEFENDING
 			get_opponent().side = Sides.ATTACKING
 	
-	turn_count += 1
-	
-	ui.starting_card_effects()
-	ui.turn_started.emit()
-	
+	ui.start_turn()
 	
 	game_started.emit()

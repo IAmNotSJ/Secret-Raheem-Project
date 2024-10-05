@@ -195,6 +195,13 @@ func set_bonus_defense(amount, key):
 		#bonus_added.emit(amount, "Defense")
 
 @rpc("any_peer")
+func set_bonuses(bonus_dict:Dictionary):
+	if can_get_bonuses:
+		bonuses = bonus_dict
+		_recalculate_attack()
+		_recalculate_defense()
+
+@rpc("any_peer")
 func add_penalty_attack(amount, key):
 	penalties[key][0] += amount
 	base_attack = floor(base_attack)
@@ -221,6 +228,12 @@ func set_penalty_defense(amount, key):
 	base_defense = floor(base_defense)
 	_recalculate_defense()
 	emit_changed()
+
+@rpc("any_peer")
+func set_penalties(penalty_dict:Dictionary):
+	penalties = penalty_dict
+	_recalculate_attack()
+	_recalculate_defense()
 
 func _recalculate_attack():
 	true_attack = base_attack + get_bonus_attack() - get_penalty_attack()

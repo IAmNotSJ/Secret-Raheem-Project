@@ -4,6 +4,7 @@ var posThingy = 0
 
 func _ready():
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	global.mouse.make_visible()
 	DiscordSDKLoader.run_preset("Menu")
 	$ColorRect.visible = true
 func _process(delta):

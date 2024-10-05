@@ -1,126 +1,332 @@
-[gd_scene load_steps=10 format=3 uid="uid://jsdik5ih32ki"]
+[gd_scene load_steps=11 format=3 uid="uid://jsdik5ih32ki"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/matchup_preview/card_matchup.gd" id="1_mfjyq"]
 [ext_resource type="PackedScene" uid="uid://edx2tlubwxi4" path="res://minigames/raheem_battle/cards/card.tscn" id="1_qyms6"]
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="2_lv8ck"]
 
-[sub_resource type="Resource" id="Resource_3bpd8"]
-resource_local_to_scene = true
-script = ExtResource("2_lv8ck")
-card_name = "Hampter"
-card_series = "Test Series"
-card_number = "0"
-base_attack = 1.0
-base_defense = 1.0
-can_get_bonuses = true
-ability_name = ""
-ability_description = ""
-one_use_ability = false
-should_remove = true
-hide_stats = false
-is_human = false
-has_hands = false
-
-[sub_resource type="Resource" id="Resource_iep05"]
-resource_local_to_scene = true
-script = ExtResource("2_lv8ck")
-card_name = "Hampter"
-card_series = "Test Series"
-card_number = "0"
-base_attack = 1.0
-base_defense = 1.0
-can_get_bonuses = true
-ability_name = ""
-ability_description = ""
-one_use_ability = false
-should_remove = true
-hide_stats = false
-is_human = false
-has_hands = false
-
 [sub_resource type="Animation" id="Animation_v4lug"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-309, 193)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Card2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(948, -464)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Card:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Card2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="Animation" id="Animation_t5bxb"]
-resource_name = "attacking_wins"
+[sub_resource type="Animation" id="Animation_0pwfi"]
+resource_name = "appear"
+length = 2.16667
 step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.291667, 0.416667, 1.29167, 1.41667, 1.54167, 1.625, 1.70833),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(27, 752), Vector2(27, 632), Vector2(27, 328), Vector2(27, 224), Vector2(27, 218), Vector2(19, 218), Vector2(16, 218), Vector2(18, 218), Vector2(146, 218), Vector2(378, 218)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Card2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.666667, 0.75, 0.875, 1, 1.29167, 1.41667, 1.54167, 1.625, 1.70833),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(948, -464), Vector2(948, -312), Vector2(948, -16), Vector2(948, 200), Vector2(948, 218), Vector2(956, 218), Vector2(958, 218), Vector2(955, 218), Vector2(835, 218), Vector2(563, 218)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.79167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Card:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Card2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_hk1hp"]
-resource_name = "wind_up"
+[sub_resource type="Animation" id="Animation_pl2u4"]
+resource_name = "card1_win"
 step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(491, 139)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Card2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Card:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_j1amc"]
+resource_name = "card2_win"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(491, 139)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Card:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Card2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2kknt"]
 _data = {
 "RESET": SubResource("Animation_v4lug"),
-"attacking_wins": SubResource("Animation_t5bxb"),
-"wind_up": SubResource("Animation_hk1hp")
+"appear": SubResource("Animation_0pwfi"),
+"card1_win": SubResource("Animation_pl2u4"),
+"card2_win": SubResource("Animation_j1amc")
 }
+
+[sub_resource type="Resource" id="Resource_0eich"]
+resource_local_to_scene = true
+script = ExtResource("2_lv8ck")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
+
+[sub_resource type="Resource" id="Resource_uur35"]
+resource_local_to_scene = true
+script = ExtResource("2_lv8ck")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
 
 [node name="card_matchup" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mfjyq")
-
-[node name="Card 1" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 72.0
-offset_top = 229.0
-offset_right = 341.0
-offset_bottom = 622.0
-rotation = 6.23257
-pivot_offset = Vector2(135, 395)
-metadata/_edit_group_ = true
-
-[node name="Card" parent="Card 1" instance=ExtResource("1_qyms6")]
-stats = SubResource("Resource_3bpd8")
-
-[node name="visible" parent="Card 1/Card" index="0"]
-scale = Vector2(0.675, 0.675)
-
-[node name="Card 2" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 932.0
-offset_top = 239.0
-offset_right = 1201.0
-offset_bottom = 636.0
-rotation = 0.0510003
-pivot_offset = Vector2(140, 396)
-metadata/_edit_group_ = true
-
-[node name="Card2" parent="Card 2" instance=ExtResource("1_qyms6")]
-offset_right = 268.0
-offset_bottom = 395.0
-stats = SubResource("Resource_iep05")
-
-[node name="visible" parent="Card 2/Card2" index="0"]
-scale = Vector2(0.675, 0.675)
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 117.0
-offset_right = 350.0
-offset_bottom = 190.0
-text = "Player 1"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 0
-offset_left = 932.0
-offset_top = 117.0
-offset_right = 1203.0
-offset_bottom = 190.0
-text = "Player 2"
-horizontal_alignment = 1
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2kknt")
 }
 
-[editable path="Card 1/Card"]
-[editable path="Card 2/Card2"]
+[node name="Card" parent="." instance=ExtResource("1_qyms6")]
+visible = false
+offset_left = -309.0
+offset_top = 193.0
+offset_right = -11.0
+offset_bottom = 634.0
+stats = SubResource("Resource_0eich")
+is_preview = true
+selectable = false
+metadata/_edit_group_ = true
+
+[node name="visible" parent="Card" index="0"]
+scale = Vector2(0.75, 0.75)
+
+[node name="Card2" parent="." instance=ExtResource("1_qyms6")]
+visible = false
+offset_left = 948.0
+offset_top = -464.0
+offset_right = 1246.0
+offset_bottom = -23.0
+stats = SubResource("Resource_uur35")
+is_preview = true
+selectable = false
+metadata/_edit_group_ = true
+
+[node name="visible" parent="Card2" index="0"]
+scale = Vector2(0.75, 0.75)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0)
+
+[editable path="Card"]
+[editable path="Card2"]

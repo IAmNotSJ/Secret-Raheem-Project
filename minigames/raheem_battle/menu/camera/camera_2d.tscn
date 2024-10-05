@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1oyvx0nlu05y"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/menu_cam.gd" id="1_ana6c"]
+
+[node name="Camera2D" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("1_ana6c")
+dimensions = Vector2(4, 3)
+scroll_magnitude = 12
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

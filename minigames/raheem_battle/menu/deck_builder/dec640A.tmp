@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://b04wj00c3p8yq"]
+
+[ext_resource type="PackedScene" uid="uid://buu8iexqdweg0" path="res://minigames/raheem_battle/menu/deck_builder/draggable_card/draggable_card.tscn" id="1_0vb8e"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/deck_builder/deck_builder.gd" id="1_tyml5"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="2_glkrg"]
+[ext_resource type="PackedScene" uid="uid://dn6ousec2kubc" path="res://minigames/raheem_battle/menu/deck_builder/card_snap/card_snap.tscn" id="4_xpfr8"]
+
+[sub_resource type="Resource" id="Resource_gbspd"]
+resource_local_to_scene = true
+script = ExtResource("2_glkrg")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
+
+[sub_resource type="Resource" id="Resource_oha8o"]
+resource_local_to_scene = true
+script = ExtResource("2_glkrg")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
+
+[sub_resource type="Resource" id="Resource_d24hd"]
+resource_local_to_scene = true
+script = ExtResource("2_glkrg")
+card_name = "Hampter"
+card_series = "Test Series"
+card_number = "0"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = ""
+ability_description = ""
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhc2u"]
+radius = 0.0
+
+[node name="deck_builder" type="Node2D"]
+script = ExtResource("1_tyml5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_right = 1280.0
+offset_bottom = 721.0
+
+[node name="Card" parent="." instance=ExtResource("1_0vb8e")]
+offset_left = 1082.0
+offset_top = 17.0
+offset_right = 1231.0
+offset_bottom = 233.0
+stats = SubResource("Resource_gbspd")
+
+[node name="Card2" parent="." instance=ExtResource("1_0vb8e")]
+offset_left = 721.0
+offset_top = 21.0
+offset_right = 870.0
+offset_bottom = 237.0
+stats = SubResource("Resource_oha8o")
+
+[node name="Card3" parent="." instance=ExtResource("1_0vb8e")]
+offset_left = 885.0
+offset_top = 19.0
+offset_right = 1034.0
+offset_bottom = 235.0
+stats = SubResource("Resource_d24hd")
+
+[node name="mouse" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse"]
+shape = SubResource("CircleShape2D_nhc2u")
+
+[node name="ColorRect2" parent="." instance=ExtResource("4_xpfr8")]
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 159.0
+offset_bottom = 225.0
+
+[node name="ColorRect3" parent="." instance=ExtResource("4_xpfr8")]
+offset_left = 178.0
+offset_top = 9.0
+offset_right = 327.0
+offset_bottom = 225.0

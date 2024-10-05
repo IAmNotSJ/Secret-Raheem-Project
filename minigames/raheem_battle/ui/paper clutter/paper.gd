@@ -18,6 +18,7 @@ func _input(_event):
 func generate_crumple():
 	#await get_parent().finished
 	#print('guh?')
+	await ui.turn_started
 	for i in range(10):
 		var crumple = crumple_scene.instantiate()
 		crumple.position = Vector2(randi_range(0, 720), randi_range(-932, -98))

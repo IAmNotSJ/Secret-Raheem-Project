@@ -114,6 +114,7 @@ func readd_card(index):
 			for i in range(victory_chest.get_children().size()):
 				if card == victory_chest.get_children()[i]:
 					card.indx = i
+			card_brought_back.emit()
 
 func replace_card(card_to_replace_index:int, card_to_add_number:String, carry_bonuses:bool = false):
 	var bonuses

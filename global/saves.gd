@@ -86,7 +86,16 @@ var battle_stats = {
 	"Wins" : 0,
 	"Losses" : 0,
 	"Hyena Upgrades" : 0}
-
+var battle_deck = {
+	"Card 1": "-1",
+	"Card 2": "-1",
+	"Card 3": "-1",
+	"Card 4": "-1",
+	"Card 5": "-1",
+	"Card 6": "-1",
+	"Card 7": "-1",
+	"Card 8": "-1",
+}
 # KARL PILKINGTON
 
 
@@ -129,7 +138,8 @@ func save(type:SaveTypes):
 		SaveTypes.BATTLE:
 			data = {
 				"Battle Quiz" : battle_quiz,
-				"Battle Stats" : battle_stats
+				"Battle Stats" : battle_stats,
+				"Battle Deck" : battle_deck
 			}
 	var jstr = JSON.stringify(data)
 	#print('saved!')
@@ -173,6 +183,8 @@ func load_save(type:SaveTypes):
 					load_specific_setting(battle_quiz, current_line, "Battle Quiz")
 				if keys.has("Battle Stats"):
 					load_specific_setting(battle_stats, current_line, "Battle Stats")
+				if keys.has("Battle Deck"):
+					load_specific_setting(battle_deck, current_line, "Battle Deck")
 				if keys.has("Hyena Stats"):
 					load_specific_setting(hyena_stats, current_line, "Hyena Stats")
 	

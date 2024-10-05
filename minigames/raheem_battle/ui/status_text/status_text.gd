@@ -11,7 +11,6 @@ func _ready():
 	ui.turn_ended.connect(_on_turn_finished)
 
 func _on_turn_finished():
-	print('THE TURN HATH FINISHED')
 	if stats_timer > 0 and show_stats:
 		stats_timer -= 1
 		if stats_timer == 0:
@@ -35,6 +34,10 @@ func activate_text(exported_card):
 			text = ui.game.get_opponent().player_name + " has chosen a card with the ability " + exported_card["Ability"]
 		else:
 			text = ui.game.get_opponent().player_name + " has chosen their card."
+
+@rpc("any_peer")
+func set_status(daText:String):
+	text = daText
 
 @rpc("any_peer")
 func clear():

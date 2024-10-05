@@ -1,73 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://buki7x0i4et4q"]
+[gd_scene load_steps=6 format=3 uid="uid://buki7x0i4et4q"]
 
 [ext_resource type="PackedScene" uid="uid://dq3tmnfxq7asm" path="res://minigames/raheem_battle/quiz/answer_types/dropdown.tscn" id="1_a7ota"]
 [ext_resource type="PackedScene" uid="uid://d1hb74w06f06s" path="res://minigames/raheem_battle/quiz/answer_types/number.tscn" id="2_wckwr"]
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="2_wi8pa"]
 [ext_resource type="PackedScene" uid="uid://dtirb10f05po3" path="res://minigames/raheem_battle/quiz/answer_types/binary.tscn" id="3_wpjmg"]
+[ext_resource type="Texture2D" uid="uid://bkifl60rireni" path="res://minigames/raheem_battle/menu/assets/paper.png" id="4_c4dbo"]
 
 [node name="Quiz" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_left = -1.0
-offset_right = 1279.0
-offset_bottom = 1339.0
-follow_focus = true
+[node name="Paper" type="Sprite2D" parent="."]
+position = Vector2(644, 358)
+texture = ExtResource("4_c4dbo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(1280, 1500)
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1280, 75)
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
+[node name="Title" type="Label" parent="Paper"]
+offset_left = -256.0
+offset_top = -293.0
+offset_right = 256.0
+offset_bottom = -218.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 46
 text = "Raheem Battle Quiz"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1280, 75)
-layout_mode = 2
-theme_override_font_sizes/font_size = 26
-horizontal_alignment = 1
-
-[node name="Question 1" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 1" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -254.0
+offset_right = 256.0
+offset_bottom = -220.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 1:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 1"]
+[node name="Label" type="Label" parent="Paper/Question 1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.214
 anchor_top = 1.403
 anchor_right = 0.214
 anchor_bottom = 1.403
-offset_left = -233.92
-offset_top = -11.493
-offset_right = 1.07999
-offset_bottom = 11.507
+offset_left = -26.92
+offset_top = -28.493
+offset_right = 208.08
+offset_bottom = -3.493
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "What server member are you?"
 
-[node name="OptionButton" parent="ScrollContainer/VBoxContainer/Question 1/Label" instance=ExtResource("1_a7ota")]
+[node name="OptionButton" parent="Paper/Question 1/Label" instance=ExtResource("1_a7ota")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.543
-anchor_right = 1.0
-anchor_bottom = 0.543
+anchor_left = 0.779311
+anchor_top = 0.5712
+anchor_right = 0.779311
+anchor_bottom = 0.5712
 offset_left = 1.0
 offset_top = -15.489
-offset_right = 156.0
-offset_bottom = 15.511
+offset_right = 151.0
+offset_bottom = 9.511
 grow_horizontal = 0
 grow_vertical = 2
-item_count = 14
 selected = 0
+item_count = 14
 popup/item_0/text = "Wibr"
-popup/item_0/id = 0
 popup/item_1/text = "SJ"
 popup/item_1/id = 1
 popup/item_2/text = "Cleft"
@@ -98,31 +96,38 @@ answerKey = "Server Member"
 answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "Other"])
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 2" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 2" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -217.0
+offset_right = 256.0
+offset_bottom = -183.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 2:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 2"]
+[node name="Label" type="Label" parent="Paper/Question 2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23
 anchor_top = 1.403
 anchor_right = 0.23
 anchor_bottom = 1.403
-offset_left = -254.4
-offset_top = -11.493
-offset_right = -117.4
-offset_bottom = 11.507
+offset_left = -35.4
+offset_top = -27.493
+offset_right = 101.6
+offset_bottom = -2.493
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "What is your age?"
 
-[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 2/Label" instance=ExtResource("2_wckwr")]
+[node name="SpinBox" parent="Paper/Question 2/Label" instance=ExtResource("2_wckwr")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.543
-anchor_right = 1.0
-anchor_bottom = 0.543
+anchor_left = 0.937299
+anchor_top = 0.3312
+anchor_right = 0.937299
+anchor_bottom = 0.3312
 offset_left = 4.0
 offset_top = -15.489
 offset_right = 159.0
@@ -130,32 +135,39 @@ offset_bottom = 15.511
 answerKey = "Age"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 3" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 3" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -162.0
+offset_right = 256.0
+offset_bottom = -128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 3:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 3"]
+[node name="Label" type="Label" parent="Paper/Question 3"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 1.403
-anchor_right = 0.366
-anchor_bottom = 1.403
+anchor_left = 0.997579
+anchor_top = 0.873588
+anchor_right = 1.14378
+anchor_bottom = 0.932412
 offset_left = -428.48
 offset_top = -11.493
 offset_right = -173.48
 offset_bottom = 11.507
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Have you ever made any Raheem/BBB related projects?"
 metadata/_edit_use_anchors_ = true
 
-[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 3/Label" instance=ExtResource("3_wpjmg")]
+[node name="CheckBox" parent="Paper/Question 3/Label" instance=ExtResource("3_wpjmg")]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 1.01212
+anchor_top = 0.38
+anchor_right = 1.03333
+anchor_bottom = 0.54
 offset_left = 2.0
 offset_top = -11.5
 offset_right = 26.0
@@ -165,62 +177,76 @@ grow_vertical = 2
 answerKey = "Projects"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 4" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 4" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -110.0
+offset_right = 256.0
+offset_bottom = -76.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 4:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 4"]
+[node name="Label" type="Label" parent="Paper/Question 4"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23
 anchor_top = 1.403
 anchor_right = 0.23
 anchor_bottom = 1.403
-offset_left = -254.4
-offset_top = -11.493
-offset_right = -28.4
-offset_bottom = 11.507
+offset_left = -34.4
+offset_top = -27.493
+offset_right = 191.6
+offset_bottom = -2.493
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Are you currently employed?"
 
-[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 4/Label" instance=ExtResource("3_wpjmg")]
+[node name="CheckBox" parent="Paper/Question 4/Label" instance=ExtResource("3_wpjmg")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.00885
-anchor_top = 0.521739
-anchor_right = 1.00885
-anchor_bottom = 0.521739
+anchor_left = 0.776151
+anchor_top = 0.351641
+anchor_right = 0.807124
+anchor_bottom = 0.511641
 offset_top = -12.0
 offset_bottom = 12.0
 grow_vertical = 2
 answerKey = "Employment"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 5" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 5" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -56.0
+offset_right = 256.0
+offset_bottom = -22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 5:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 5"]
+[node name="Label" type="Label" parent="Paper/Question 5"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23
 anchor_top = 1.403
 anchor_right = 0.23
 anchor_bottom = 1.403
-offset_left = -254.4
-offset_top = -11.493
-offset_right = -28.4
-offset_bottom = 11.507
+offset_left = -34.4
+offset_top = -26.493
+offset_right = 191.6
+offset_bottom = -1.493
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Are you a furry?"
 
-[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 5/Label" instance=ExtResource("3_wpjmg")]
+[node name="CheckBox" parent="Paper/Question 5/Label" instance=ExtResource("3_wpjmg")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.561
-anchor_top = 0.565
-anchor_right = 0.561
-anchor_bottom = 0.565
+anchor_left = 0.469894
+anchor_top = 0.351441
+anchor_right = 0.500867
+anchor_bottom = 0.511441
 offset_left = 1.21399
 offset_top = -11.995
 offset_right = 25.214
@@ -230,55 +256,70 @@ grow_vertical = 2
 answerKey = "Furry"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 6" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 6" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = -1.0
+offset_right = 256.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 6:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 6"]
+[node name="Label" type="Label" parent="Paper/Question 6"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 32.0
-offset_right = 287.0
-offset_bottom = 55.0
+offset_left = 83.0
+offset_top = 19.0
+offset_right = 330.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Do you stream on twitch?"
 autowrap_mode = 3
 
-[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 6" instance=ExtResource("3_wpjmg")]
+[node name="CheckBox" parent="Paper/Question 6/Label" instance=ExtResource("3_wpjmg")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.191
-anchor_top = 1.419
-anchor_right = 0.191
-anchor_bottom = 1.419
-offset_left = 0.519989
-offset_top = -11.989
-offset_right = 24.52
-offset_bottom = 12.011
+anchor_left = 0.553223
+anchor_top = 0.4
+anchor_right = 0.581563
+anchor_bottom = 0.56
+offset_left = 22.354
+offset_top = -12.0
+offset_right = 46.354
+offset_bottom = 12.0
 answerKey = "Twitch"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 7" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 7" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = 55.0
+offset_right = 256.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 17
 text = "Question 7:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 7"]
+[node name="Label" type="Label" parent="Paper/Question 7"]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 32.0
-offset_right = 930.0
-offset_bottom = 84.0
+offset_left = 81.0
+offset_top = 19.0
+offset_right = 521.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Use the Midpoint Rule to estimate the volume under f(x,y)x²+y and above the rectangle given by −1≤x≤3, 0≤y≤4 in the xy-plane. Use 4 subdivisions in the x direction and 2 subdivisions in the y direction."
 autowrap_mode = 3
 
-[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 7/Label" instance=ExtResource("2_wckwr")]
+[node name="SpinBox" parent="Paper/Question 7/Label" instance=ExtResource("2_wckwr")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.01125
-anchor_top = 0.412808
-anchor_right = 1.01125
-anchor_bottom = 0.412808
+anchor_left = -0.00227273
+anchor_top = 0.806594
+anchor_right = -0.00227273
+anchor_bottom = 0.806594
 offset_left = 2.0
 offset_top = -15.466
 offset_right = 157.0
@@ -286,30 +327,34 @@ offset_bottom = 15.534
 answerKey = "Math"
 metadata/_edit_use_anchors_ = true
 
-[node name="Break3" type="Control" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Question 8" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 8" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = 163.0
+offset_right = 1023.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 18
 text = "Question 8:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 8"]
+[node name="Label" type="Label" parent="Paper/Question 8"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 32.0
-offset_right = 176.0
-offset_bottom = 55.0
+offset_left = 81.0
+offset_top = 21.0
+offset_right = 217.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Are you autistic?"
 autowrap_mode = 3
 
-[node name="CheckBox" parent="ScrollContainer/VBoxContainer/Question 8/Label" instance=ExtResource("3_wpjmg")]
+[node name="CheckBox" parent="Paper/Question 8/Label" instance=ExtResource("3_wpjmg")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.059
-anchor_top = 0.5
-anchor_right = 1.059
-anchor_bottom = 0.5
+anchor_left = 0.794294
+anchor_top = 0.26
+anchor_right = 0.845765
+anchor_bottom = 0.42
 offset_left = -0.0240021
 offset_top = -10.5
 offset_right = 23.976
@@ -317,35 +362,41 @@ offset_bottom = 13.5
 answerKey = "Autistic"
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 9" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 9" type="Label" parent="Paper"]
+offset_left = -257.0
+offset_top = 217.0
+offset_right = 1023.0
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 18
 text = "Question 9:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 9"]
+[node name="Label" type="Label" parent="Paper/Question 9"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 32.0
-offset_right = 387.0
-offset_bottom = 57.0
+offset_left = 81.0
+offset_top = 21.0
+offset_right = 428.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Who is your favorite other raheem member?"
 autowrap_mode = 3
 
-[node name="OptionButton2" parent="ScrollContainer/VBoxContainer/Question 9/Label" instance=ExtResource("1_a7ota")]
+[node name="OptionButton2" parent="Paper/Question 9/Label" instance=ExtResource("1_a7ota")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.01691
-anchor_top = 0.5
-anchor_right = 1.01691
-anchor_bottom = 0.5
+anchor_left = 0.771957
+anchor_top = 0.58
+anchor_right = 0.771957
+anchor_bottom = 0.58
 offset_left = 0.130981
 offset_top = -15.5
-offset_right = 155.131
-offset_bottom = 15.5
-item_count = 14
+offset_right = 150.131
+offset_bottom = 9.5
 selected = 0
+item_count = 14
 popup/item_0/text = "Wibr"
-popup/item_0/id = 0
 popup/item_1/text = "SJ"
 popup/item_1/id = 1
 popup/item_2/text = "Cleft"
@@ -376,35 +427,45 @@ answerKey = "Favorite Member"
 answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Slime", "Atlas", "Dile", "Composty", "Cost", "Lambda", "Luna", "None"])
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 10" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Paper2" type="Sprite2D" parent="."]
+position = Vector2(644, 1078)
+texture = ExtResource("4_c4dbo")
+
+[node name="Question 10" type="Label" parent="Paper2"]
+offset_left = -257.0
+offset_top = -254.0
+offset_right = 1023.0
+offset_bottom = -220.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 18
 text = "Question 10:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 10"]
+[node name="Label" type="Label" parent="Paper2/Question 10"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 32.0
-offset_right = 416.0
-offset_bottom = 57.0
+offset_left = 83.0
+offset_top = 19.0
+offset_right = 459.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "Team Markiplier, Jacksepticeye, or Pewdiepie?"
 autowrap_mode = 3
 
-[node name="OptionButton2" parent="ScrollContainer/VBoxContainer/Question 10/Label" instance=ExtResource("1_a7ota")]
+[node name="OptionButton2" parent="Paper2/Question 10/Label" instance=ExtResource("1_a7ota")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.01691
-anchor_top = 0.5
-anchor_right = 1.01691
-anchor_bottom = 0.5
+anchor_left = 0.736354
+anchor_top = 0.58
+anchor_right = 0.736354
+anchor_bottom = 0.58
 offset_left = 0.130981
 offset_top = -15.5
-offset_right = 155.131
-offset_bottom = 15.5
-item_count = 3
+offset_right = 150.131
+offset_bottom = 9.5
 selected = 0
+item_count = 3
 popup/item_0/text = "Markiplier"
-popup/item_0/id = 0
 popup/item_1/text = "Jacksepticeye"
 popup/item_1/id = 1
 popup/item_2/text = "Pewdiepie"
@@ -413,27 +474,34 @@ answerKey = "Youtubers"
 answers = Array[String](["Markiplier", "Jacksepticeye", "Pewdiepie"])
 metadata/_edit_use_anchors_ = true
 
-[node name="Question 11" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
+[node name="Question 11" type="Label" parent="Paper2"]
+offset_left = -257.0
+offset_top = -199.0
+offset_right = 1023.0
+offset_bottom = -165.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 18
 text = "Question 11:"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Question 11"]
+[node name="Label" type="Label" parent="Paper2/Question 11"]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 32.0
-offset_right = 264.0
-offset_bottom = 84.0
+offset_left = 84.0
+offset_top = 20.0
+offset_right = 307.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
 text = "What's your lucky number?"
 autowrap_mode = 3
 
-[node name="SpinBox" parent="ScrollContainer/VBoxContainer/Question 11/Label" instance=ExtResource("2_wckwr")]
+[node name="SpinBox" parent="Paper2/Question 11/Label" instance=ExtResource("2_wckwr")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.01125
-anchor_top = 0.412808
-anchor_right = 1.01125
-anchor_bottom = 0.412808
+anchor_left = 0.735426
+anchor_top = 0.2205
+anchor_right = 0.735426
+anchor_bottom = 0.2205
 offset_left = 2.0
 offset_top = -15.466
 offset_right = 157.0
