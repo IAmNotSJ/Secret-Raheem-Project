@@ -102,8 +102,7 @@ func _process(delta):
 		status_timer -= delta
 		
 		if status_timer <= 0 and statuses.size() > 0:
-			print("GUH")
-			if game.ui.cur_stage == game.ui.Stages.PRE_TURN:
+			if game.ui.cur_stage == game.ui.Stages.TURN:
 				var status = status_scene.instantiate()
 				status.text = statuses[0]
 				status.position = Vector2i(0, -30)
@@ -147,8 +146,9 @@ func _on_stats_changed():
 			%Ability_Holder.visible = true
 
 func _on_bonus_added(amount:int, type:String):
-	var status_message:String = "+" + str(amount) + " " + type
-	statuses.push_back(status_message)
+	if amount > 0:
+		var status_message:String = "+" + str(amount) + " " + type
+		statuses.push_back(status_message)
 
 func _on_turn_ended():
 	if disabled_time > 0 and disabled:

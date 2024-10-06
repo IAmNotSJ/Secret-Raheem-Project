@@ -2,6 +2,7 @@ extends Control
 
 signal turn_started
 signal turn_ended
+signal sync
 
 const LOG_PATH:String = "user://raheem_battle_log.log"
 
@@ -31,11 +32,14 @@ var cur_stage:Stages = Stages.NOT_STARTED :
 		cur_stage = value
 		match value:
 			Stages.PRE_TURN:
-				print("ENTERING PRE-TURN")
+				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: PRE-TURN"
+				#print("GameStage: PRE-TURN")
 			Stages.TURN:
-				print("ENTERING TURN")
+				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: TURN"
+				#print("GameStage: TURN")
 			Stages.POST_TURN:
-				print("ENTERING POST-TURN")
+				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: POST-TURN"
+				#print("GameStage: POST-TURN")
 
 @onready var game = get_parent()
 
@@ -114,10 +118,10 @@ func generate_deck_preview(exclude:Array = [-1], reason:String = ""):
 				if i != excluded_i:
 					exported_array.append(card_hand.cards_in_hand[i].export())
 		deck_preview.generate_deck(exported_array, reason)
-		extra_screens.screens_to_show.push_front(extra_screens.deck_preview_holder)
+		extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW)
 
 func play_card(card):
-	if game.started and opponent_ready:
+	if game.started:
 		if card_hand.cards_in_hand.size() > 2:
 			if card.stats.ability_name == "Tears" and game.last_decision != game.get_player().side:
 				return
@@ -129,13 +133,12 @@ func play_card(card):
 		
 		if card.stats.ability_name == "Categorical Knowledge":
 			decision_holder.generate_message("Categorical Knowledge", card)
-			extra_screens.screens_to_show.push_front(extra_screens.decision_holder)
+			extra_screens.add_screen_queue(extra_screens.DECISION_HOLDER)
 		if card.stats.ability_name == "Placeholder":
 			generate_deck_preview([card_to_play.index], "Placeholder")
 		if card.stats.ability_name == "Extra Space":
 			generate_deck_preview([card_to_play.index], "Extra Space")
 		
-		extra_screens.start_showing_screens()
 		if extra_screens.screens_to_show != []:
 			await extra_screens.finished
 		
@@ -188,6 +191,9 @@ func send_card(resend:bool = false):
 func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported_quiz:Dictionary, exported_stats:Dictionary, exported_battle_info:Dictionary):
 	var host_attacking:bool
 	print('receiving card!')
+	
+	cur_stage = Stages.POST_TURN
+	
 	var attacking_card:Dictionary
 	var defending_card:Dictionary
 	
@@ -291,20 +297,23 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	#print("DEFENSE: " + str(defending_card["Defense"]))
 	#print("ABILITY: " + str(defending_card["Ability"]))
 	
+	#set_ready_call.rpc(opponent_ready)
+	#await sync
+	
 	add_to_log(attacking_card, defending_card, decision)
-	if host_attacking:
+	process_turn(decision, attacking_card, defending_card, host_attacking)
+	process_turn.rpc(decision, attacking_card, defending_card, !host_attacking)
+
+@rpc('authority')
+func process_turn(decision, attacking_card, defending_card, attacking):
+	
+	if attacking:
 		card_matchup.start(decision, attacking_card, defending_card)
-		card_matchup.start.rpc(decision, defending_card, attacking_card)
 	else:
 		card_matchup.start(decision, defending_card, attacking_card)
-		card_matchup.start.rpc(decision, attacking_card, defending_card)
 	
 	set_ready(false)
-	set_ready.rpc(false)
-	
 	end_turn(decision)
-	end_turn.rpc(decision)
-
 
 @rpc("authority")
 func end_turn(decision:Sides):
@@ -313,9 +322,8 @@ func end_turn(decision:Sides):
 	
 	game.last_decision = decision
 	
-	cur_stage = Stages.PRE_TURN
-	
-	extra_screens.start_showing_screens()
+	if !extra_screens.showing_screens:
+		extra_screens.start_showing_screens()
 	await extra_screens.finished
 	
 	cur_stage = Stages.PRE_TURN
@@ -354,11 +362,15 @@ func end_turn(decision:Sides):
 	
 	set_ready_call.rpc(opponent_ready)
 	locked_text.set_status("WAITING ON OPPONENT")
+	
+	await sync
+	start_turn()
 
 
 @rpc("any_peer")
 func start_turn():
 	#print('STARTING TURN FOR ' + game.get_player().player_name)
+	set_ready(false)
 	var player = game.get_player()
 	var _opponent = game.get_opponent()
 	
@@ -813,9 +825,9 @@ func post_card_effects(opposing_card, decision, opposing_info):
 				if decision == opposing_card["Side"]:
 					card_hand.disable_card(card_to_play.index, 2)
 			"Strategist":
+				print("STRATEGIST CODE HAPPENING NOW")
 				var random_card = card_hand.cards_in_hand[randi_range(0, card_hand.cards_in_hand.size() - 1)]
-				card_preview.generate_preview_from_export.rpc(random_card.export())
-				extra_screens.screens_to_show.push_front(extra_screens.card_preview_holder)
+				card_preview.generate_preview_from_export.rpc(random_card.export(), true)
 			"Kindness":
 				if decision == opposing_card["Side"]:
 					#print('should be working?')
@@ -1069,7 +1081,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					card_hand.disable_card(rand3)
 		)
 		ability_check.rpc(opposing_card["Index"])
-		extra_screens.screens_to_show.push_front(extra_screens.geometry)
+		extra_screens.add_screen_queue(extra_screens.GEOMETRY)
 		await(geometry.hidden)
 #Called at the end of every turn for EVERY card in your hand. 
 @rpc("authority")
@@ -1175,11 +1187,14 @@ func set_ready_call(curStatus):
 	#print(game.get_opponent().player_name + "IS READY!!")
 	opponent_ready = true
 	if curStatus == true:
-		start_turn()
-		start_turn.rpc()
+		sync.emit()
+		emit_sync.rpc()
 @rpc("any_peer")
 func set_ready(val):
 	opponent_ready = val
+@rpc("any_peer")
+func emit_sync():
+	sync.emit()
 
 func set_pixel_effect(pixels, duration):
 	game.pixel_size = pixels

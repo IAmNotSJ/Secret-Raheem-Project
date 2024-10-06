@@ -11,4 +11,3 @@ func _process(delta):
 	if modulate.a <= 0:
 		#ui.statuses.erase(text)
 		queue_free()
-

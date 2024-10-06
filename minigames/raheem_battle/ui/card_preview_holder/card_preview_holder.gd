@@ -2,10 +2,8 @@ extends ExtraScreen
 
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
-func generate_card_preview(stats, await_turn:bool = false):
+func generate_card_preview(stats, back:bool = false, force:bool = true):
 	if !ui.is_in_preview:
-		if await_turn:
-			await ui.turn_ended
 		var card = card_scene.instantiate()
 		card.stats = stats
 		card.block_input = true
@@ -15,17 +13,20 @@ func generate_card_preview(stats, await_turn:bool = false):
 		$card_preview_center.add_child(card)
 		
 		ui.card_hand.block_input()
-		screen_container.screens_to_show.push_front(screen_container.card_preview_holder)
-		screen_container.start_showing_screens()
+		screen_container.add_screen_queue(screen_container.CARD_PREVIEW, back)
+		if force:
+			screen_container.start_showing_screens()
 		
 
 @rpc("any_peer")
-func generate_preview_from_export(export):
-	print('GENERATING CARD PREVIEW!')
+func generate_preview_from_export(export, back:bool = false, force:bool = false):
+	print("Code is being executed for card preview")
+	ui.is_in_preview = true
+	ui.card_hand.block_input()
 	var card = card_scene.instantiate()
 	card.block_input = true
 	card.get_node("visible").scale = Vector2(1, 1)
-	ui.is_in_preview = true
+	
 	
 	
 	card.stats.card_name = export["Name"]
@@ -48,13 +49,15 @@ func generate_preview_from_export(export):
 	
 	$card_preview_center.add_child(card)
 	
-	ui.card_hand.block_input()
+	screen_container.add_screen_queue(screen_container.CARD_PREVIEW, back)
+	if force:
+		screen_container.start_showing_screens()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("back"):
-		if $card_preview_center.get_children() != []:
-			for card in $card_preview_center.get_children():
-				card.queue_free()
-			ui.is_in_preview = false
-			ui.card_hand.allow_input()
+	if visible:
+		if event.is_action_pressed("back"):
+			print('card preview is being hidden')
+			if $card_preview_center.get_children() != []:
+				for card in $card_preview_center.get_children():
+					card.queue_free()
 			hide()

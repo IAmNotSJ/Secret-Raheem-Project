@@ -37,3 +37,5 @@ offset_bottom = 720.0
 
 [node name="paper" parent="." instance=ExtResource("8_ma28c")]
 visible = false
+
+[connection signal="finished" from="." to="." method="_on_finished"]
