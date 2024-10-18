@@ -1,0 +1,219 @@
+[gd_scene load_steps=16 format=3 uid="uid://k73860by8sx3"]
+
+[ext_resource type="Texture2D" uid="uid://bpa3k1akho30u" path="res://minigames/raheem_battle/opponents/lambda/base.png" id="1_2elbp"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/opponents/opponent.gd" id="2_7efpo"]
+[ext_resource type="Texture2D" uid="uid://dcb1ig0wlf54h" path="res://minigames/raheem_battle/opponents/lambda/lambda.png" id="3_l2kms"]
+[ext_resource type="Texture2D" uid="uid://qgft1mbnd157" path="res://minigames/raheem_battle/opponents/lambda/arm-f.png" id="4_kpmrn"]
+
+[sub_resource type="Animation" id="Animation_l15ac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ekibx"]
+resource_name = "angry"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wj7t5"]
+resource_name = "confused"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_0nqob"]
+resource_name = "happy"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_lc2cq"]
+resource_name = "neutral"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_esb6w"]
+resource_name = "pout"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_mc14d"]
+resource_name = "sad"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_34lyq"]
+resource_name = "shocked"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_1rj7o"]
+resource_name = "smug"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_sjm3a"]
+resource_name = "wut"
+length = 0.001
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lambda:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5wa1j"]
+_data = {
+"RESET": SubResource("Animation_l15ac"),
+"angry": SubResource("Animation_ekibx"),
+"confused": SubResource("Animation_wj7t5"),
+"happy": SubResource("Animation_0nqob"),
+"neutral": SubResource("Animation_lc2cq"),
+"pout": SubResource("Animation_esb6w"),
+"sad": SubResource("Animation_mc14d"),
+"shocked": SubResource("Animation_34lyq"),
+"smug": SubResource("Animation_1rj7o"),
+"wut": SubResource("Animation_sjm3a")
+}
+
+[node name="opponent" type="Sprite2D" node_paths=PackedStringArray("animation_player", "card_container")]
+texture = ExtResource("1_2elbp")
+offset = Vector2(0, -95)
+script = ExtResource("2_7efpo")
+animation_player = NodePath("AnimationPlayer")
+card_container = NodePath("card_container")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5wa1j")
+}
+autoplay = "neutral"
+
+[node name="Lambda" type="Sprite2D" parent="."]
+position = Vector2(-4, -94)
+texture = ExtResource("3_l2kms")
+hframes = 9
+
+[node name="card_container" type="HBoxContainer" parent="."]
+offset_left = -72.0
+offset_top = -29.0
+offset_right = 81.0
+offset_bottom = 43.0
+theme_override_constants/separation = -25
+alignment = 1
+
+[node name="Arm-f" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(3, 39)
+texture = ExtResource("4_kpmrn")

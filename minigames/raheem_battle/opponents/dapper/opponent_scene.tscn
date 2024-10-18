@@ -1,0 +1,232 @@
+[gd_scene load_steps=17 format=3 uid="uid://cl6trewrgicsy"]
+
+[ext_resource type="Texture2D" uid="uid://kpp5dps0heka" path="res://minigames/raheem_battle/opponents/dapper/base.png" id="1_vf7hn"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/opponents/opponent.gd" id="2_jyg5u"]
+[ext_resource type="Texture2D" uid="uid://ruvtf0yqs8iw" path="res://minigames/raheem_battle/opponents/dapper/dapper.png" id="3_1372k"]
+[ext_resource type="Texture2D" uid="uid://cj2vv41eo62v" path="res://minigames/raheem_battle/opponents/dapper/arm-f.png" id="4_lu1va"]
+[ext_resource type="Texture2D" uid="uid://b5s1iy437ahmd" path="res://minigames/raheem_battle/opponents/dapper/arm-b.png" id="5_oxl2l"]
+
+[sub_resource type="Animation" id="Animation_veso2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d31tu"]
+resource_name = "angry"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8dmjx"]
+resource_name = "confused"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_5du6k"]
+resource_name = "happy"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_2r1gs"]
+resource_name = "neutral"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_8limf"]
+resource_name = "pout"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_ssfr0"]
+resource_name = "sad"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_kpkq5"]
+resource_name = "shocked"
+length = 1.0001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_owljn"]
+resource_name = "smug"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_t8v4o"]
+resource_name = "wut"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dapper:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nhmcj"]
+_data = {
+"RESET": SubResource("Animation_veso2"),
+"angry": SubResource("Animation_d31tu"),
+"confused": SubResource("Animation_8dmjx"),
+"happy": SubResource("Animation_5du6k"),
+"neutral": SubResource("Animation_2r1gs"),
+"pout": SubResource("Animation_8limf"),
+"sad": SubResource("Animation_ssfr0"),
+"shocked": SubResource("Animation_kpkq5"),
+"smug": SubResource("Animation_owljn"),
+"wut": SubResource("Animation_t8v4o")
+}
+
+[node name="opponent" type="Sprite2D" node_paths=PackedStringArray("animation_player", "card_container")]
+texture = ExtResource("1_vf7hn")
+offset = Vector2(-4, -63)
+script = ExtResource("2_jyg5u")
+animation_player = NodePath("AnimationPlayer")
+card_container = NodePath("card_container")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nhmcj")
+}
+autoplay = "neutral"
+
+[node name="Dapper" type="Sprite2D" parent="."]
+position = Vector2(-6, -219)
+texture = ExtResource("3_1372k")
+hframes = 9
+
+[node name="Arm-b" type="Sprite2D" parent="."]
+position = Vector2(-23, 36)
+texture = ExtResource("5_oxl2l")
+
+[node name="Arm-b2" type="Sprite2D" parent="."]
+position = Vector2(20, 37)
+texture = ExtResource("5_oxl2l")
+flip_h = true
+
+[node name="card_container" type="HBoxContainer" parent="."]
+offset_left = -34.0
+offset_top = 15.0
+offset_right = 35.0
+offset_bottom = 87.0
+theme_override_constants/separation = -37
+alignment = 1
+
+[node name="Arm-f" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-64, 44)
+texture = ExtResource("4_lu1va")
+
+[node name="Arm-f2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(60.5, 44.5)
+texture = ExtResource("4_lu1va")
+flip_h = true

@@ -1,0 +1,218 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsmwygvpsxu3s"]
+
+[ext_resource type="Texture2D" uid="uid://dmsxx5e2s4l6a" path="res://minigames/raheem_battle/opponents/atlas/base.png" id="1_ef86t"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/opponents/opponent.gd" id="2_x0wdf"]
+[ext_resource type="Texture2D" uid="uid://da7ypypeiwx6l" path="res://minigames/raheem_battle/opponents/atlas/atlas.png" id="3_8c48k"]
+[ext_resource type="Texture2D" uid="uid://boqmmrxvps71f" path="res://minigames/raheem_battle/opponents/atlas/arm-f.png" id="4_ckxyr"]
+
+[sub_resource type="Animation" id="Animation_0mnwm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6e578"]
+resource_name = "angry"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v3goc"]
+resource_name = "confused"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_xeuew"]
+resource_name = "happy"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_0l6dr"]
+resource_name = "neutral"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_n1nst"]
+resource_name = "pout"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_dgx8j"]
+resource_name = "sad"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_vsowh"]
+resource_name = "shocked"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_njrqd"]
+resource_name = "smug"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_butck"]
+resource_name = "wut"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Atlas:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sm4es"]
+_data = {
+"RESET": SubResource("Animation_0mnwm"),
+"angry": SubResource("Animation_6e578"),
+"confused": SubResource("Animation_v3goc"),
+"happy": SubResource("Animation_xeuew"),
+"neutral": SubResource("Animation_0l6dr"),
+"pout": SubResource("Animation_n1nst"),
+"sad": SubResource("Animation_dgx8j"),
+"shocked": SubResource("Animation_vsowh"),
+"smug": SubResource("Animation_njrqd"),
+"wut": SubResource("Animation_butck")
+}
+
+[node name="opponent" type="Sprite2D" node_paths=PackedStringArray("animation_player", "card_container")]
+texture = ExtResource("1_ef86t")
+offset = Vector2(37.16, -158.695)
+script = ExtResource("2_x0wdf")
+animation_player = NodePath("AnimationPlayer")
+card_container = NodePath("card_container")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sm4es")
+}
+autoplay = "neutral"
+
+[node name="Atlas" type="Sprite2D" parent="."]
+position = Vector2(-1, -98)
+texture = ExtResource("3_8c48k")
+hframes = 9
+
+[node name="card_container" type="HBoxContainer" parent="."]
+offset_left = -69.0
+offset_top = -49.0
+offset_right = 35.0
+offset_bottom = 23.0
+theme_override_constants/separation = -34
+
+[node name="arm-f" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-53, 29)
+texture = ExtResource("4_ckxyr")

@@ -42,7 +42,7 @@ func _ready():
 func _input(_event: InputEvent) -> void:
 	# i GENUINELY have no idea what the fuck was wrong with this
 	if $mouse_detection.get_overlapping_areas() != []:
-		if Input.is_action_just_pressed("click"):
+		if Input.is_action_just_pressed("click") and get_parent().get_parent().get_parent().get_parent().get_parent().current_screen == get_parent().get_parent().get_parent().get_parent().get_parent().DECK:
 			get_parent().get_parent().get_parent().set_held(self)
 			picked_up.emit()
 			if snap != null:

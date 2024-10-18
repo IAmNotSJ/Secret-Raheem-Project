@@ -1,0 +1,436 @@
+[gd_scene load_steps=25 format=3 uid="uid://ba5tb1wjkc03y"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/profile_builder/profile_builder.gd" id="1_4kr3b"]
+[ext_resource type="Texture2D" uid="uid://bkifl60rireni" path="res://minigames/raheem_battle/menu/assets/paper.png" id="1_rjny5"]
+[ext_resource type="PackedScene" uid="uid://dry3u5u6ojx8v" path="res://minigames/raheem_battle/menu/profile_builder/dropdown.tscn" id="2_0ptwf"]
+[ext_resource type="Texture2D" uid="uid://tmpt0xbwswdd" path="res://minigames/raheem_battle/menu/profile_builder/characters.png" id="3_7e8da"]
+[ext_resource type="Texture2D" uid="uid://bvm6r6w0jf6qt" path="res://minigames/raheem_battle/menu/profile_builder/lineedit.png" id="4_dx20a"]
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="5_ms34l"]
+[ext_resource type="Texture2D" uid="uid://ci4psf2b1mmdp" path="res://minigames/raheem_battle/menu/profile_builder/color.png" id="6_wociv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5sn0"]
+texture = ExtResource("4_dx20a")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou16y"]
+
+[sub_resource type="Animation" id="Animation_kq7x6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tx5rt"]
+resource_name = "atlas"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ouasq"]
+resource_name = "block"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [23, 24]
+}
+
+[sub_resource type="Animation" id="Animation_v1rta"]
+resource_name = "cherry"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 25]
+}
+
+[sub_resource type="Animation" id="Animation_d1xaw"]
+resource_name = "cleft"
+length = 0.166675
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_dk7gf"]
+resource_name = "composty"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 12]
+}
+
+[sub_resource type="Animation" id="Animation_buhte"]
+resource_name = "cost"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 13]
+}
+
+[sub_resource type="Animation" id="Animation_2sxsa"]
+resource_name = "dapper"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_30guh"]
+resource_name = "dile"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_3epaw"]
+resource_name = "lambda"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_b5u5x"]
+resource_name = "luna"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_ms3lu"]
+resource_name = "sj"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 19]
+}
+
+[sub_resource type="Animation" id="Animation_8q4hb"]
+resource_name = "slime"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_rmkh7"]
+resource_name = "wibr"
+length = 1.00003
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper2/characters:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4s5sq"]
+_data = {
+"RESET": SubResource("Animation_kq7x6"),
+"atlas": SubResource("Animation_tx5rt"),
+"block": SubResource("Animation_ouasq"),
+"cherry": SubResource("Animation_v1rta"),
+"cleft": SubResource("Animation_d1xaw"),
+"composty": SubResource("Animation_dk7gf"),
+"cost": SubResource("Animation_buhte"),
+"dapper": SubResource("Animation_2sxsa"),
+"dile": SubResource("Animation_30guh"),
+"lambda": SubResource("Animation_3epaw"),
+"luna": SubResource("Animation_b5u5x"),
+"sj": SubResource("Animation_ms3lu"),
+"slime": SubResource("Animation_8q4hb"),
+"wibr": SubResource("Animation_rmkh7")
+}
+
+[node name="profile_builder" type="Node2D"]
+script = ExtResource("1_4kr3b")
+
+[node name="paper" type="Sprite2D" parent="."]
+texture = ExtResource("1_rjny5")
+centered = false
+
+[node name="dropdown" parent="paper" instance=ExtResource("2_0ptwf")]
+unique_name_in_owner = true
+offset_left = 249.0
+offset_top = 258.0
+offset_right = 499.0
+offset_bottom = 312.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ms34l")
+
+[node name="character_name_edit" type="LineEdit" parent="paper"]
+unique_name_in_owner = true
+offset_left = 233.0
+offset_top = 188.0
+offset_right = 497.0
+offset_bottom = 239.0
+theme_override_colors/selection_color = Color(0.0243233, 0.0527592, 0.165859, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.408329, 0.408329, 0.408329, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/caret_width = 2
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxTexture_a5sn0")
+placeholder_text = "Enter your name here"
+max_length = 21
+
+[node name="title" type="Label" parent="paper"]
+offset_left = 129.0
+offset_top = 105.0
+offset_right = 470.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 46
+text = "Create Your Profile!"
+
+[node name="Name" type="Label" parent="paper"]
+offset_left = 115.0
+offset_top = 187.0
+offset_right = 240.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 32
+text = "Name:"
+
+[node name="character" type="Label" parent="paper"]
+offset_left = 115.0
+offset_top = 259.0
+offset_right = 240.0
+offset_bottom = 308.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 32
+text = "Character:"
+
+[node name="profile_color" type="Label" parent="paper"]
+offset_left = 115.0
+offset_top = 331.0
+offset_right = 240.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 32
+text = "Color:"
+
+[node name="color_picker_button" type="Button" parent="paper/profile_color"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = -1.0
+offset_right = 130.0
+offset_bottom = 42.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ou16y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ou16y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ou16y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ou16y")
+
+[node name="ColorPicker" type="ColorPicker" parent="paper/profile_color"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -8.0
+offset_right = 301.0
+offset_bottom = 264.0
+grow_horizontal = 0
+grow_vertical = 0
+picker_shape = 1
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="color_picker_color" type="Sprite2D" parent="paper/profile_color"]
+unique_name_in_owner = true
+position = Vector2(108, 20)
+scale = Vector2(0.410714, 0.419048)
+texture = ExtResource("6_wociv")
+
+[node name="paper2" type="Sprite2D" parent="."]
+position = Vector2(624, -22)
+texture = ExtResource("1_rjny5")
+centered = false
+
+[node name="characters" type="Sprite2D" parent="paper2"]
+position = Vector2(289, 336)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("3_7e8da")
+hframes = 6
+vframes = 5
+
+[node name="character_name" type="Label" parent="paper2"]
+unique_name_in_owner = true
+offset_left = 36.0
+offset_top = 636.0
+offset_right = 549.0
+offset_bottom = 695.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_ms34l")
+theme_override_font_sizes/font_size = 46
+text = "Random Player"
+horizontal_alignment = 1
+
+[node name="character_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4s5sq")
+}
+
+[connection signal="item_selected" from="paper/dropdown" to="." method="on_dropdown_item_selected"]
+[connection signal="item_selected" from="paper/dropdown" to="." method="_on_dropdown_item_selected"]
+[connection signal="text_changed" from="paper/character_name_edit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="paper/profile_color/color_picker_button" to="." method="_on_color_picker_button_pressed"]
+[connection signal="color_changed" from="paper/profile_color/ColorPicker" to="." method="_on_color_picker_color_changed"]

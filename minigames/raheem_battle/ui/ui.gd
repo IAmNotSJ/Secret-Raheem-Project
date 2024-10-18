@@ -4,6 +4,9 @@ signal turn_started
 signal turn_ended
 signal sync
 
+signal entered_preview
+signal exited_preview
+
 const LOG_PATH:String = "user://raheem_battle_log.log"
 
 #You get the drill by now
@@ -52,6 +55,7 @@ var cur_stage:Stages = Stages.NOT_STARTED :
 @onready var card_matchup = extra_screens.card_matchup
 @onready var mouse_control = extra_screens.mouse_control
 @onready var paper = extra_screens.paper
+@onready var turn_info = $info
 @onready var locked_text = $locked_text
 
 var cards_to_generate = ["1", "062", "084", "082", "097", "098", "099", "100"]
@@ -69,8 +73,10 @@ var is_in_preview:bool :
 		is_in_preview = value
 		if is_in_preview:
 			%darken.visible = true
+			entered_preview.emit()
 		else:
 			%darken.visible = false
+			exited_preview.emit()
 
 var pixel_timer:int = 0
 var kromer:bool = false
@@ -103,7 +109,7 @@ var cash_out:bool = false
 
 func _ready():
 	card_hand.card_removed.connect(_on_card_removed)
-	game.game_started.connect(starting_game_card_effects)
+	card_hand.card_added.connect(_on_card_removed)
 
 func _process(delta):
 	if time_turn:
@@ -190,7 +196,7 @@ func send_card(resend:bool = false):
 @rpc("any_peer")
 func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported_quiz:Dictionary, exported_stats:Dictionary, exported_battle_info:Dictionary):
 	var host_attacking:bool
-	print('receiving card!')
+	#print('receiving card!')
 	
 	cur_stage = Stages.POST_TURN
 	
@@ -366,15 +372,21 @@ func end_turn(decision:Sides):
 	await sync
 	start_turn()
 
+@rpc("any_peer")
+func start_game():
+	starting_game_card_effects()
+	
+	start_turn()
 
 @rpc("any_peer")
 func start_turn():
-	#print('STARTING TURN FOR ' + game.get_player().player_name)
+	print('STARTING TURN FOR ' + game.get_player().player_name)
 	set_ready(false)
 	var player = game.get_player()
 	var _opponent = game.get_opponent()
 	
 	locked_text.text = ""
+	
 	
 	player.switch_side()
 	_opponent.switch_side()
@@ -386,6 +398,10 @@ func start_turn():
 	cur_stage = Stages.TURN
 	
 	game.turn_count += 1
+	
+	for card in card_hand.cards_in_hand:
+		card.stats.apply_bonuses()
+		card.stats.apply_penalties()
 	
 	
 	if game.glitch_timer > 0:
@@ -406,6 +422,13 @@ func _on_card_removed():
 		if card.stats.ability_name == "Post-Mortem":
 			card.stats.add_bonus_attack(1, "Post-Mortem")
 			card.stats.add_bonus_defense(1, "Post-Mortem")
+	
+	game.on_opponent_card_removed.rpc()
+	
+	turn_info.play()
+
+func _on_card_added():
+	game.on_opponent_card_added.rpc()
 
 func starting_game_card_effects():
 	for card in card_hand.cards_in_hand:
@@ -483,7 +506,8 @@ func starting_card_effects():
 						card.add_bonus_attack(2, "Deadline")
 					card.ability_check()
 				"What Day Is It?":
-					if Time.get_date_dict_from_system()["weekday"] == Time.Weekday.WEEKDAY_WEDNESDAY and card.stats.bonuses["What Day Is It?"] == [0, 0]:
+					if Time.get_date_dict_from_system()["weekday"] == Time.Weekday.WEEKDAY_WEDNESDAY:
+						print('errmmm?')
 						card.stats.set_bonus_attack(1, "What Day Is It?")
 						card.stats.set_bonus_defense(1, "What Day Is It?")
 				"Editing":
@@ -1128,13 +1152,15 @@ func passive_card_abilities(_opposing_card, decision):
 							card.stats.set_penalty_attack(1, "Bathroom Break")
 							card.stats.set_penalty_defense(1, "Bathroom Break")
 
+
+
+
 @rpc("authority")
 func clear_future_events():
 	#Clear future events as this will set them?
 	for key in future_events.keys():
 		if future_events[key][0] == FutureEvents.NEXT_CARD_BONUS or future_events[key][0] == FutureEvents.NEXT_CARD_PENALTY or future_events[key][0] == FutureEvents.NEXT_CARD_BONUS_MULTIPLIER or future_events[key][0] == FutureEvents.NEXT_CARD_PENALTY_MULTIPLIER:
 			future_events[key][1] = [0, 0]
-
 func apply_next_card_bonus(card, le_future_events):
 	for key in le_future_events.keys():
 		if le_future_events[key][0] == FutureEvents.NEXT_CARD_BONUS and le_future_events[key][1] != [0, 0]:
@@ -1162,6 +1188,8 @@ func apply_next_card_bonus_multiplier(card, le_future_events):
 			card["Defense"] += bonus_amount[1] * multiplier[1]
 			card["Bonus Attack"] += bonus_amount[0] * multiplier[0]
 			card["Bonus Defense"] += bonus_amount[1] * multiplier[1]
+
+
 
 @rpc("any_peer")
 func set_override_index(value:int):

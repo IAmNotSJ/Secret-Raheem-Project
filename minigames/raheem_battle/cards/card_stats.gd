@@ -56,7 +56,7 @@ signal bonus_added(amount:int, key:String)
 @export var is_human:bool = false
 @export var has_hands:bool = false
 
-# UNCHANGEABLE STATS
+# ########################################### UNCHANGEABLE STATS ######################################### #
 
 #Update this with every single ability that can give stat bonuses
 var bonuses:Dictionary = {
@@ -122,8 +122,21 @@ var penalties:Dictionary = {
 	"Insults" : [0, 0],
 }
 
+var stashed_bonuses = {}
+var stashed_penalties = {}
+
+# EXAMPLE OF A STASHED KEY
+#{
+#	"Revenge Shot" : [[2, 3], [false, false]]
+#}
+#	"Revenge Shot" is the key of the ability
+#	[2, 3] is the bonus array ([Attack/Defense])
+#	[false, false] is to OVERRIDE attack/defense. Because its false, it does not.
+
 var true_attack:float
 var true_defense:float
+
+
 
 func _ready():
 	_recalculate_attack()
@@ -161,38 +174,38 @@ func get_penalty_defense():
 @rpc("any_peer")
 func add_bonus_attack(amount, key):
 	if can_get_bonuses:
-		bonuses[key][0] += amount
-		base_attack = floor(base_attack)
-		_recalculate_attack()
-		emit_changed()
-		bonus_added.emit(amount, "Attack")
+		if stashed_bonuses.has(key):
+			if stashed_bonuses[key][1][0] == false:
+				stashed_bonuses[key][0][0] += amount
+		else:
+			stashed_bonuses[key] = [[amount, 0], [false, false]]
 
 @rpc("any_peer")
 func set_bonus_attack(amount, key):
 	if can_get_bonuses:
-		bonuses[key][0] = amount
-		base_attack = floor(base_attack)
-		_recalculate_attack()
-		emit_changed()
-		#bonus_added.emit(amount, "Attack")
+		if stashed_bonuses.has(key):
+			stashed_bonuses[key][0][0] = amount
+			stashed_bonuses[key][1][0] = true
+		else:
+			stashed_bonuses[key] = [[amount, 0], [true, true]]
 
 @rpc("any_peer")
 func add_bonus_defense(amount, key):
 	if can_get_bonuses:
-		bonuses[key][1] += amount
-		base_defense = floor(base_defense)
-		_recalculate_defense()
-		emit_changed()
-		bonus_added.emit(amount, "Defense")
+		if stashed_bonuses.has(key):
+			if stashed_bonuses[key][1][1] == false:
+				stashed_bonuses[key][0][1] += amount
+		else:
+			stashed_bonuses[key] = [[0, amount], [false, false]]
 
 @rpc("any_peer")
 func set_bonus_defense(amount, key):
 	if can_get_bonuses:
-		bonuses[key][1] = amount
-		base_defense = floor(base_defense)
-		_recalculate_defense()
-		emit_changed()
-		#bonus_added.emit(amount, "Defense")
+		if stashed_bonuses.has(key):
+			stashed_bonuses[key][0][1] = amount
+			stashed_bonuses[key][1][1] = true
+		else:
+			stashed_bonuses[key] = [[0, amount], [true, true]]
 
 @rpc("any_peer")
 func set_bonuses(bonus_dict:Dictionary):
@@ -203,37 +216,86 @@ func set_bonuses(bonus_dict:Dictionary):
 
 @rpc("any_peer")
 func add_penalty_attack(amount, key):
-	penalties[key][0] += amount
-	base_attack = floor(base_attack)
-	_recalculate_attack()
-	emit_changed()
+	if stashed_penalties.has(key):
+		if stashed_penalties[key][1][0] == false:
+			stashed_penalties[key][0][0] += amount
+	else:
+		stashed_penalties[key] = [[amount, 0], [false, false]]
 
 @rpc("any_peer")
 func set_penalty_attack(amount, key):
-	penalties[key][0] = amount
-	base_attack = floor(base_attack)
-	_recalculate_attack()
-	emit_changed()
+	if stashed_penalties.has(key):
+		stashed_penalties[key][0][0] = amount
+		stashed_penalties[key][1][0] = true
+	else:
+		stashed_penalties[key] = [[amount, 0], [true, true]]
 
 @rpc("any_peer")
 func add_penalty_defense(amount, key):
-	penalties[key][1] += amount
-	base_defense = floor(base_defense)
-	_recalculate_defense()
-	emit_changed()
+	if stashed_penalties.has(key):
+		if stashed_penalties[key][1][1] == false:
+			stashed_penalties[key][0][1] += amount
+	else:
+		stashed_penalties[key] = [[0, amount], [false, false]]
 
 @rpc("any_peer")
 func set_penalty_defense(amount, key):
-	penalties[key][1] = amount
-	base_defense = floor(base_defense)
-	_recalculate_defense()
-	emit_changed()
+	if stashed_penalties.has(key):
+		stashed_penalties[key][0][1] = amount
+		stashed_penalties[key][1][1] = true
+	else:
+		stashed_penalties[key] = [[0, amount], [true, true]]
 
 @rpc("any_peer")
 func set_penalties(penalty_dict:Dictionary):
 	penalties = penalty_dict
 	_recalculate_attack()
 	_recalculate_defense()
+
+func apply_bonuses():
+	#print('APPLYING BONUSES')
+	for bonus in stashed_bonuses.keys():
+		if stashed_bonuses[bonus][1][0] == false:
+			bonuses[bonus][0] += stashed_bonuses[bonus][0][0]
+			bonus_added.emit(stashed_bonuses[bonus][0][0], "Attack")
+		else:
+			bonuses[bonus][0] = stashed_bonuses[bonus][0][0]
+		
+		if stashed_bonuses[bonus][1][1] == false:
+			bonuses[bonus][1] += stashed_bonuses[bonus][0][1]
+			bonus_added.emit(stashed_bonuses[bonus][0][0], "Defense")
+		else:
+			bonuses[bonus][1] = stashed_bonuses[bonus][0][1]
+	
+	# Flooring for thrembo
+	base_attack = floor(base_attack)
+	base_defense = floor(base_defense)
+	
+	stashed_bonuses = {}
+	_recalculate_defense()
+	_recalculate_attack()
+	emit_changed()
+
+func apply_penalties():
+	for penalty in stashed_penalties.keys():
+		if stashed_penalties[penalty][1][0] == false:
+			penalties[penalty][0] += stashed_penalties[penalty][0][0]
+		else:
+			penalties[penalty][0] = stashed_penalties[penalty][0][0]
+		
+		if stashed_penalties[penalty][1][1] == false:
+			penalties[penalty][1] += stashed_penalties[penalty][0][1]
+		else:
+			penalties[penalty][1] = stashed_penalties[penalty][0][1]
+	
+	# Flooring for thrembo
+	base_attack = floor(base_attack)
+	base_defense = floor(base_defense)
+	
+	stashed_penalties = {}
+	_recalculate_defense()
+	_recalculate_attack()
+	emit_changed()
 
 func _recalculate_attack():
 	true_attack = base_attack + get_bonus_attack() - get_penalty_attack()

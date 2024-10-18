@@ -1,7 +1,7 @@
 extends Control
 
 signal card_removed
-signal card_brought_back
+signal card_added
 
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
@@ -12,6 +12,8 @@ const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
 var cards_in_hand = []
 var removed_cards = []
+
+var focused:bool = false
 
 
 func generate_cards(cards_to_generate):
@@ -73,22 +75,25 @@ func add_card_from_resource(number:String, forced_index:int = -1):
 
 @rpc("any_peer")
 func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true):
+	var card_destination:Variant
+	
+	if put_in_victory_chest:
+		card_destination = $victory_chest
+	else:
+		card_destination = $whatever_chest
 	for card in %held_cards.get_children():
 		if card.index == index:
 			cards_in_hand.erase(card)
-			if put_in_victory_chest:
-				card.reparent(victory_chest)
-				removed_cards.append(card)
-				
-				card.disabled = true
-				card.disabled_time = 0
-				
-				#Redo the index
-				for i in range(victory_chest.get_children().size()):
-					if card == victory_chest.get_children()[i]:
-						card.index = i
-			else:
-				card.queue_free()
+			card.reparent(card_destination)
+			removed_cards.append(card)
+			
+			card.disabled = true
+			card.disabled_time = 0
+			
+			#Redo the index
+			for i in range(card_destination.get_children().size()):
+				if card == card_destination.get_children()[i]:
+					card.index = i
 			
 			#Redo the index
 			if reindex:
@@ -114,7 +119,7 @@ func readd_card(index):
 			for i in range(victory_chest.get_children().size()):
 				if card == victory_chest.get_children()[i]:
 					card.indx = i
-			card_brought_back.emit()
+			card_added.emit()
 
 func replace_card(card_to_replace_index:int, card_to_add_number:String, carry_bonuses:bool = false):
 	var bonuses
@@ -178,3 +183,15 @@ func return_random_card(exclude:int):
 	var card_to_return:Dictionary = cards_in_hand[index].export()
 	print(card_to_return["Name"])
 	return card_to_return
+
+
+func _on_mouse_detection_area_entered(_area: Area2D) -> void:
+	if !ui.is_in_preview && !focused:
+		$card_hide.play("show")
+		focused = true
+
+
+func _on_mouse_detection_area_exited(_area: Area2D) -> void:
+	if !ui.is_in_preview && focused:
+		$card_hide.play("hide")
+		focused = false

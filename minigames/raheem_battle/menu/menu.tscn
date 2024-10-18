@@ -1,11 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://dniq8ycjwht5m"]
+[gd_scene load_steps=32 format=3 uid="uid://dniq8ycjwht5m"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/menu/menu.gd" id="1_fnnwu"]
 [ext_resource type="PackedScene" uid="uid://buki7x0i4et4q" path="res://minigames/raheem_battle/quiz/quiz.tscn" id="2_8g1s8"]
 [ext_resource type="Texture2D" uid="uid://bkifl60rireni" path="res://minigames/raheem_battle/menu/assets/paper.png" id="2_41pih"]
 [ext_resource type="PackedScene" uid="uid://b1oyvx0nlu05y" path="res://minigames/raheem_battle/menu/camera/camera_2d.tscn" id="2_kb2py"]
-[ext_resource type="Texture2D" uid="uid://cwgkm52yr7irs" path="res://minigames/raheem_battle/menu/assets/bg.jpg" id="5_5hhqm"]
+[ext_resource type="Texture2D" uid="uid://coti1hsi3ak8b" path="res://minigames/raheem_battle/menu/assets/bg.png" id="2_ujqw1"]
+[ext_resource type="Texture2D" uid="uid://cce8mf3vm3ipd" path="res://minigames/raheem_battle/menu/assets/Initial/main-drawings.png" id="5_4a1pf"]
+[ext_resource type="PackedScene" uid="uid://ba5tb1wjkc03y" path="res://minigames/raheem_battle/menu/profile_builder/profile_builder.tscn" id="5_4mcm6"]
+[ext_resource type="Texture2D" uid="uid://dsxiihb5mewlh" path="res://minigames/raheem_battle/menu/assets/Initial/host.png" id="5_klkot"]
+[ext_resource type="Texture2D" uid="uid://p3i60odrp1hg" path="res://minigames/raheem_battle/menu/assets/Initial/join.png" id="6_fqf0y"]
 [ext_resource type="PackedScene" uid="uid://b04wj00c3p8yq" path="res://minigames/raheem_battle/menu/deck_builder/deck_builder.tscn" id="6_r2hmy"]
+[ext_resource type="Texture2D" uid="uid://qra1u05p717" path="res://minigames/raheem_battle/menu/assets/Initial/deck.png" id="7_n5de5"]
+[ext_resource type="Texture2D" uid="uid://cv88cvllqygdc" path="res://minigames/raheem_battle/menu/assets/Initial/profile.png" id="8_15ou1"]
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="10_3vu6p"]
+[ext_resource type="Texture2D" uid="uid://cqwgk25h6wg3b" path="res://minigames/raheem_battle/menu/assets/Initial/pointer.png" id="13_xb4mq"]
 
 [sub_resource type="Animation" id="Animation_hf67y"]
 length = 0.001
@@ -48,10 +56,10 @@ tracks/0/path = NodePath("camera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.208334, 0.291667, 0.333334, 0.416667, 0.541667, 0.625001),
+"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.291667, 0.333334, 0.416667, 0.541667, 0.625001),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(1173, -799), Vector2(1182, -807), Vector2(1184, -809), Vector2(997, -600), Vector2(99, -98), Vector2(43, -50), Vector2(2, -5), Vector2(0, 0)]
+"values": [Vector2(1173, -785), Vector2(1175, -787), Vector2(1184, -795), Vector2(997, -600), Vector2(99, -98), Vector2(43, -50), Vector2(2, -5), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nkc82"]
@@ -99,7 +107,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0833334, 0.208333, 0.291667, 0.375, 0.458334, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(-11, 11), Vector2(-17, 17), Vector2(588, -365), Vector2(1161, -781), Vector2(1167, -785), Vector2(1173, -799)]
+"values": [Vector2(0, 0), Vector2(-11, 11), Vector2(-17, 17), Vector2(588, -365), Vector2(1161, -763), Vector2(1167, -770), Vector2(1173, -784)]
 }
 
 [sub_resource type="Animation" id="Animation_58eg5"]
@@ -134,6 +142,22 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(5, -5), Vector2(12, -12), Vector2(14, -14), Vector2(-79, 74), Vector2(-406, 443), Vector2(-835, 1003), Vector2(-925, 1087), Vector2(-931, 1093), Vector2(-935, 1099), Vector2(-936, 1100)]
 }
 
+[sub_resource type="Animation" id="Animation_1iklk"]
+resource_name = "initial-profile"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.333334, 0.458334, 0.541667, 0.625001, 0.708334, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(6, 6), Vector2(10, 10), Vector2(-380, -377), Vector2(-660, -721), Vector2(-738, -901), Vector2(-734, -889), Vector2(-730, -885), Vector2(-731, -886)]
+}
+
 [sub_resource type="Animation" id="Animation_gwige"]
 resource_name = "initial-quiz"
 step = 0.0416667
@@ -166,6 +190,22 @@ tracks/0/keys = {
 "values": [Vector2(-936, 1100), Vector2(-939, 1103), Vector2(-942, 1106), Vector2(-940, 1103), Vector2(-745, 927), Vector2(-654, 682), Vector2(-324, 363), Vector2(-82, 72), Vector2(-4, 1), Vector2(2, -1), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0lklf"]
+resource_name = "profile-initial"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.375, 0.458334, 0.541667, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-731, -886), Vector2(-743, -898), Vector2(-746, -901), Vector2(-532, -705), Vector2(-128, -287), Vector2(8, 16), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_nst5m"]
 resource_name = "quiz-initial"
 step = 0.0416667
@@ -192,26 +232,68 @@ _data = {
 "initial-deck": SubResource("Animation_clb84"),
 "initial-host": SubResource("Animation_58eg5"),
 "initial-join": SubResource("Animation_1g0oo"),
+"initial-profile": SubResource("Animation_1iklk"),
 "initial-quiz": SubResource("Animation_gwige"),
 "join-initial": SubResource("Animation_315i8"),
+"profile-initial": SubResource("Animation_0lklf"),
 "quiz-initial": SubResource("Animation_nst5m")
+}
+
+[sub_resource type="Animation" id="Animation_cca6p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jumtb"]
+resource_name = "bounce"
+length = 0.583338
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.25, 0.291667, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(7, 0), Vector2(-9, 0), Vector2(-7, 0), Vector2(-4, 0), Vector2(-1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_myb5i"]
+_data = {
+"RESET": SubResource("Animation_cca6p"),
+"bounce": SubResource("Animation_jumtb")
 }
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_fnnwu")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
+z_index = -5
 offset_left = -2051.0
-offset_top = -602.0
+offset_top = -1288.0
 offset_right = 3314.0
 offset_bottom = 2059.0
-texture = ExtResource("5_5hhqm")
+texture = ExtResource("2_ujqw1")
 stretch_mode = 1
 
 [node name="camera" parent="." instance=ExtResource("2_kb2py")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = -7
 offset_left = -3448.0
 offset_top = -1939.0
@@ -222,8 +304,9 @@ color = Color(1, 0.767278, 0.985936, 1)
 [node name="ALL" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 8.0
 offset_right = 1278.0
-offset_bottom = 720.0
+offset_bottom = 728.0
 metadata/_edit_group_ = true
 
 [node name="Initial" type="Node2D" parent="ALL"]
@@ -234,50 +317,66 @@ rotation = -0.00872665
 position = Vector2(259, 351)
 texture = ExtResource("2_41pih")
 
-[node name="Host" type="Button" parent="ALL/Initial"]
-offset_left = 169.0
-offset_top = 264.0
-offset_right = 360.0
-offset_bottom = 327.0
-text = "Host Game"
+[node name="Host" type="TextureButton" parent="ALL/Initial"]
+unique_name_in_owner = true
+offset_left = 152.283
+offset_top = 312.007
+offset_right = 397.283
+offset_bottom = 367.007
+focus_neighbor_top = NodePath("../Profile")
+focus_neighbor_bottom = NodePath("../Join")
+texture_normal = ExtResource("5_klkot")
 
-[node name="Join" type="Button" parent="ALL/Initial"]
-offset_left = 175.0
-offset_top = 360.0
-offset_right = 366.0
-offset_bottom = 428.0
-text = "Join Game"
+[node name="Join" type="TextureButton" parent="ALL/Initial"]
+unique_name_in_owner = true
+offset_left = 163.755
+offset_top = 372.581
+offset_right = 408.755
+offset_bottom = 421.581
+focus_neighbor_top = NodePath("../Host")
+focus_neighbor_bottom = NodePath("../Deck")
+texture_normal = ExtResource("6_fqf0y")
+
+[node name="Deck" type="TextureButton" parent="ALL/Initial"]
+unique_name_in_owner = true
+offset_left = 161.18
+offset_top = 438.404
+offset_right = 388.18
+offset_bottom = 478.404
+focus_neighbor_top = NodePath("../Join")
+focus_neighbor_bottom = NodePath("../Profile")
+texture_normal = ExtResource("7_n5de5")
+
+[node name="Profile" type="TextureButton" parent="ALL/Initial"]
+unique_name_in_owner = true
+offset_left = 172.709
+offset_top = 492.526
+offset_right = 399.709
+offset_bottom = 532.526
+focus_neighbor_top = NodePath("../Deck")
+focus_neighbor_bottom = NodePath("../Host")
+texture_normal = ExtResource("8_15ou1")
 
 [node name="Quiz" type="Button" parent="ALL/Initial"]
-offset_left = 300.0
-offset_top = 628.0
-offset_right = 394.0
-offset_bottom = 659.0
+unique_name_in_owner = true
+offset_left = 212.382
+offset_top = 644.698
+offset_right = 306.382
+offset_bottom = 675.698
 text = "Open Quiz"
 
-[node name="Deck" type="Button" parent="ALL/Initial"]
-offset_left = 197.538
-offset_top = 626.748
-offset_right = 291.538
-offset_bottom = 657.748
-text = "Build Deck"
-
 [node name="Advanced" type="Button" parent="ALL/Initial"]
-offset_left = 418.0
-offset_top = 629.0
-offset_right = 502.0
-offset_bottom = 660.0
+unique_name_in_owner = true
+offset_left = 330.382
+offset_top = 645.698
+offset_right = 414.382
+offset_bottom = 676.698
 text = "Advanced"
 
-[node name="Title" type="Label" parent="ALL/Initial"]
-offset_left = 5.0
-offset_top = 82.0
-offset_right = 512.0
-offset_bottom = 214.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 61
-text = "RAHEEM BATTLE"
-horizontal_alignment = 1
+[node name="Main-drawings" type="Sprite2D" parent="ALL/Initial"]
+position = Vector2(254.041, 340.23)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("5_4a1pf")
 
 [node name="Advanced" type="Node2D" parent="ALL"]
 position = Vector2(1216, 148)
@@ -307,47 +406,53 @@ position = Vector2(1183, 1137)
 rotation = 0.0349066
 skew = -0.0383972
 
-[node name="Sprite2D2" type="Sprite2D" parent="ALL/Host"]
+[node name="paper" type="Sprite2D" parent="ALL/Host"]
 position = Vector2(256, 336)
 texture = ExtResource("2_41pih")
 
-[node name="Create Room" type="Button" parent="ALL/Host"]
-offset_left = 145.0
-offset_top = 299.0
-offset_right = 428.0
-offset_bottom = 358.0
+[node name="Create Room" type="Button" parent="ALL/Host/paper"]
+offset_left = -130.172
+offset_top = 21.6108
+offset_right = 152.828
+offset_bottom = 80.6108
 text = "Create Room"
-
-[node name="Match Rules" type="Button" parent="ALL/Host"]
-offset_left = 145.0
-offset_top = 371.0
-offset_right = 428.0
-offset_bottom = 430.0
-text = "Set Match Rules"
 
 [node name="Join" type="Node2D" parent="ALL"]
 position = Vector2(-530, 1117)
 rotation = 0.0523599
 
-[node name="Sprite2D3" type="Sprite2D" parent="ALL/Join"]
+[node name="paper" type="Sprite2D" parent="ALL/Join"]
 texture = ExtResource("2_41pih")
 centered = false
 
+[node name="title" type="Label" parent="ALL/Join/paper"]
+offset_left = 159.018
+offset_top = 110.83
+offset_right = 450.018
+offset_bottom = 193.829
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 64
+text = "JOIN GAME"
+
 [node name="Join Room" type="Button" parent="ALL/Join"]
-offset_left = 133.0
-offset_top = 284.0
-offset_right = 416.0
-offset_bottom = 343.0
+offset_left = 159.129
+offset_top = 378.762
+offset_right = 442.129
+offset_bottom = 437.762
 text = "Join Room"
 
 [node name="address_bar" type="LineEdit" parent="ALL/Join"]
 unique_name_in_owner = true
-offset_left = 133.0
-offset_top = 348.0
-offset_right = 416.0
-offset_bottom = 407.0
+offset_left = 161.682
+offset_top = 311.966
+offset_right = 444.682
+offset_bottom = 370.966
 placeholder_text = "Enter Room Address"
 alignment = 1
+
+[node name="Profile" parent="ALL" instance=ExtResource("5_4mcm6")]
+position = Vector2(-695, -898)
 
 [node name="Quiz" parent="ALL" instance=ExtResource("2_8g1s8")]
 offset_left = -1888.0
@@ -356,25 +461,30 @@ offset_right = -1888.0
 [node name="deck_builder" parent="ALL" instance=ExtResource("6_r2hmy")]
 position = Vector2(1172, -780)
 
-[node name="display_name_box" type="LineEdit" parent="."]
-offset_left = 5.0
-offset_top = 668.0
-offset_right = 238.0
-offset_bottom = 717.0
-placeholder_text = "Display Name"
-
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8ncw2")
 }
 autoplay = "RESET"
 
+[node name="Pointer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(528, 355)
+texture = ExtResource("13_xb4mq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
+libraries = {
+"": SubResource("AnimationLibrary_myb5i")
+}
+autoplay = "bounce"
+
+[connection signal="mouse_entered" from="ALL/Initial/Host" to="." method="_on_host_mouse_entered"]
 [connection signal="pressed" from="ALL/Initial/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="ALL/Initial/Join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="ALL/Initial/Quiz" to="." method="_on_quiz_pressed"]
 [connection signal="pressed" from="ALL/Initial/Deck" to="." method="_on_deck_pressed"]
+[connection signal="pressed" from="ALL/Initial/Profile" to="." method="_on_profile_pressed"]
+[connection signal="pressed" from="ALL/Initial/Quiz" to="." method="_on_quiz_pressed"]
 [connection signal="pressed" from="ALL/Initial/Advanced" to="." method="_on_advanced_pressed"]
 [connection signal="toggled" from="ALL/Advanced/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="pressed" from="ALL/Host/Create Room" to="." method="_on_create_room_pressed"]
+[connection signal="pressed" from="ALL/Host/paper/Create Room" to="." method="_on_create_room_pressed"]
 [connection signal="pressed" from="ALL/Join/Join Room" to="." method="_on_join_room_pressed"]
-[connection signal="text_changed" from="display_name_box" to="." method="_on_display_name_box_text_changed"]

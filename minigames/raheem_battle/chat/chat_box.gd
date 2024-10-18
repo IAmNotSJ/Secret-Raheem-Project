@@ -19,28 +19,32 @@ func _on_input_text_submitted(new_text):
 		if chr != "" and chr != " ":
 			can_send = true
 	if can_send:
-		add_new_message(new_text, ui.game.get_player().player_name)
-		add_sent_message.rpc(new_text, ui.game.get_player().player_name)
+		add_new_message(new_text, ui.game.get_player().player_color, ui.game.get_player().player_name, "nvm")
+		add_sent_message.rpc(new_text, ui.game.get_player().player_color, ui.game.get_player().player_name, %emotion_button.cur_emotion)
 		%input.clear()
 
 
-func add_new_message(message, player_name):
+func add_new_message(message, message_color, player_name, player_emotion):
 	if collapsed:
 		_on_hide_button_pressed()
 	var new_message = chat_message_scene.instantiate()
 	new_message.text = player_name + ": " + message
 	new_message.sender = player_name
+	new_message.add_theme_color_override("font_color", message_color)
 	text_box.add_child(new_message)
 	
 	chat_log.push_front(new_message.text)
+	
+	if ui.game.opponent != null:
+		ui.game.opponent.change_emotion(player_emotion)
 	
 	await get_tree().process_frame
 	await get_tree().process_frame 
 	scroll_c.scroll_vertical = scroll_b.max_value
 
 @rpc("any_peer")
-func add_sent_message(message, player_name):
-	add_new_message(message, player_name)
+func add_sent_message(message, message_color, player_name, player_emotion):
+	add_new_message(message, message_color, player_name, player_emotion)
 
 
 func _on_send_button_pressed():

@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_td7q4")
-card_name = "Who Is Chuck McGrill"
+card_name = "Spoony Toast"
 card_series = "Slime"
 card_number = "079"
 base_attack = 3.0
@@ -16,3 +16,5 @@ ability_description = "This card gets +2 to both stats if Chuck McGill is curren
 one_use_ability = false
 should_remove = true
 hide_stats = false
+is_human = false
+has_hands = false

@@ -81,6 +81,11 @@ var battle_quiz = {
 	"College Years" : 1,
 	"Subscribers" : 0,
 	"Speedrun" : false}
+var battle_info = {
+	"Name" : "",
+	"Character" : "wibr",
+	"Color" : Color(1, 1, 1, 1)
+}
 var battle_stats = {
 	"Games Played" : 0,
 	"Wins" : 0,
@@ -139,7 +144,8 @@ func save(type:SaveTypes):
 			data = {
 				"Battle Quiz" : battle_quiz,
 				"Battle Stats" : battle_stats,
-				"Battle Deck" : battle_deck
+				"Battle Deck" : battle_deck,
+				"Battle Info" : battle_info
 			}
 	var jstr = JSON.stringify(data)
 	#print('saved!')
@@ -185,6 +191,8 @@ func load_save(type:SaveTypes):
 					load_specific_setting(battle_stats, current_line, "Battle Stats")
 				if keys.has("Battle Deck"):
 					load_specific_setting(battle_deck, current_line, "Battle Deck")
+				if keys.has("Battle Info"):
+					load_specific_setting(battle_info, current_line, "Battle Info")
 				if keys.has("Hyena Stats"):
 					load_specific_setting(hyena_stats, current_line, "Hyena Stats")
 	

@@ -18,17 +18,18 @@ var players_joined:int = 1
 
 var playing_peer_ids:Array = []
 
-var ui_path = preload("res://minigames/raheem_battle/ui/ui.tscn")
-var ui
+@onready var ui = $UI
 
 var player_path = preload("res://minigames/raheem_battle/player/player.tscn")
-var opponent_path = preload("res://minigames/raheem_battle/opponents/opponent.tscn")
+var opponent = null
 
 var started:bool = false
 var turn_count:int = 0 :
 	set(value):
 		turn_count = value
 		manager.get_node("NetworkInfo/turn_count").text = "TurnCount: " + str(turn_count)
+		ui.turn_info.turn.text = "Turn " + str(turn_count)
+		ui.turn_info.bop()
 
 var last_decision:Sides
 
@@ -47,38 +48,49 @@ func _process(delta):
 	dapixel = lerpf(dapixel, pixel_size, delta)
 	$Pixelate.get("material").set("shader_parameter/pixel_size", dapixel)
 
+@rpc("any_peer")
+func on_opponent_card_removed():
+	opponent.cards_left -= 1
+@rpc("any_peer")
+func on_opponent_card_added():
+	opponent.cards_left += 1
+
+
+
+
+
 func add_player(player_name, peer_id):
 	playing_peer_ids.append(peer_id)
 	
 	#Add the player Node
 	var player = player_path.instantiate()
 	player.player_name = player_name
+	player.player_color = Color(Saves.battle_info["Color"][0], Saves.battle_info["Color"][1], Saves.battle_info["Color"][2])
 	player.name = str(peer_id)
 	player.is_player = true
 	players_joined += 1
 	players.add_child(player)
 	
 	#Add the UI for the player
-	var daUI = ui_path.instantiate()
-	add_child(daUI)
 	
 	var deck = Saves.battle_deck.values()
-	daUI.card_hand.generate_cards(deck)
-	ui = daUI
-func add_opponent(opponent_id, opponent_name):
+	ui.card_hand.generate_cards(deck)
+func add_opponent(opponent_id, opponent_info):
 	playing_peer_ids.append(opponent_id)
 	
 	#Add the second player Node
 	
 	var player = player_path.instantiate()
-	player.player_name = opponent_name
+	player.player_name = opponent_info["Name"]
+	player.player_color = Color(opponent_info["Color"][0],opponent_info["Color"][1], opponent_info["Color"][2])
+	print("Player Color: " + str(player.player_color))
 	player.is_player = false
 	player.name = str(opponent_id)
 	players_joined += 1
 	players.add_child(player)
 	
 	#Add the opponent graphic
-	var opponent = opponent_path.instantiate()
+	opponent = load("res://minigames/raheem_battle/opponents/" + opponent_info["Character"] + "/opponent_scene.tscn").instantiate()
 	%opponent_position.add_child(opponent)
 
 #Returns the player node that is currently linked to the PLAYER
@@ -121,6 +133,6 @@ func start_game(side:Sides):
 			get_player().side = Sides.DEFENDING
 			get_opponent().side = Sides.ATTACKING
 	
-	ui.start_turn()
-	
 	game_started.emit()
+	
+	ui.start_game()

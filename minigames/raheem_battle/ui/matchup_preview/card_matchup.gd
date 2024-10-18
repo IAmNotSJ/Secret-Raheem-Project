@@ -6,7 +6,7 @@ extends ExtraScreen
 
 @rpc("any_peer")
 func start(decision, card, opposing_card):
-	print('HELLOO???')
+	#print('HELLOO???')
 	ui.card_hand.block_input()
 	screen_container.add_screen_queue(screen_container.CARD_MATCHUP)
 	ui.is_in_preview = true

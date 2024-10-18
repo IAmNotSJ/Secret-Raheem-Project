@@ -1,0 +1,134 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhbl4ewyxy0vh"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/chat/emotions/send_button_2.gd" id="1_28xnk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi772"]
+bg_color = Color(0, 0, 0, 0.352941)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1c41"]
+bg_color = Color(0, 0, 0, 0.352941)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdrvk"]
+bg_color = Color(0, 0, 0, 0.352941)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.325441, 0.325441, 0.325441, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgcxb"]
+bg_color = Color(0, 0, 0, 0.352941)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.162066, 0.162066, 0.162065, 1)
+
+[node name="send_button2" type="Button"]
+anchors_preset = -1
+anchor_left = 0.024
+anchor_top = 0.022
+anchor_right = 0.024
+anchor_bottom = 0.022
+offset_left = -30.72
+offset_top = -15.84
+offset_right = 0.279999
+offset_bottom = 15.16
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_qi772")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qi772")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qi772")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qi772")
+text = "'_'"
+script = ExtResource("1_28xnk")
+
+[node name="emotions" type="GridContainer" parent="."]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 40.0
+offset_bottom = 71.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="surprised" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = "o_o"
+
+[node name="happy" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = ":)"
+
+[node name="pout" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = ":["
+
+[node name="shocked" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = ":o"
+
+[node name="neutral" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = "'_'"
+
+[node name="smug" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = "|:)"
+
+[node name="sad" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = ":("
+
+[node name="confused" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = "?_?"
+
+[node name="angry" type="Button" parent="emotions" groups=["buttons"]]
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_d1c41")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdrvk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgcxb")
+text = ">:("
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

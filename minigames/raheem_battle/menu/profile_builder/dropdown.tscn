@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://dry3u5u6ojx8v"]
+
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="1_fo1kv"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/profile_builder/dropdown.gd" id="1_sk1pw"]
+[ext_resource type="Texture2D" uid="uid://bssgo0fhdxu3i" path="res://minigames/raheem_battle/menu/profile_builder/dropdown.png" id="1_w664v"]
+[ext_resource type="Texture2D" uid="uid://ocj8cmpvfkv0" path="res://minigames/raheem_battle/menu/assets/check.png" id="1_wrie4"]
+[ext_resource type="Texture2D" uid="uid://s4ae75bb4b0c" path="res://minigames/raheem_battle/menu/profile_builder/dropdown_arrow.png" id="2_ap3y6"]
+[ext_resource type="Texture2D" uid="uid://b4scisrq4ui87" path="res://minigames/raheem_battle/menu/assets/uncheck.png" id="2_cgsy2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c62ui"]
+bg_color = Color(0.777865, 0.917749, 0.975033, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6lda"]
+bg_color = Color(0.965249, 0.986947, 0.996041, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wvcr7"]
+color = Color(0.541722, 0.690846, 1, 1)
+
+[sub_resource type="Theme" id="Theme_fsqqn"]
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_hover_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_outline_color = Color(1, 1, 1, 1)
+PopupMenu/constants/close_h_offset = 4
+PopupMenu/constants/outline_size = 2
+PopupMenu/fonts/font = ExtResource("1_fo1kv")
+PopupMenu/icons/checked = ExtResource("1_wrie4")
+PopupMenu/icons/checked_disabled = null
+PopupMenu/icons/radio_checked = ExtResource("1_wrie4")
+PopupMenu/icons/radio_unchecked = ExtResource("2_cgsy2")
+PopupMenu/icons/unchecked = ExtResource("2_cgsy2")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_c62ui")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_e6lda")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_wvcr7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hraey"]
+texture = ExtResource("1_w664v")
+
+[node name="dropdown" type="OptionButton"]
+offset_right = 250.0
+offset_bottom = 54.0
+theme = SubResource("Theme_fsqqn")
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/align_to_largest_stylebox = 4
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxTexture_hraey")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hraey")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hraey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hraey")
+theme_override_constants/arrow_margin = 12
+theme_override_icons/arrow = ExtResource("2_ap3y6")
+script = ExtResource("1_sk1pw")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

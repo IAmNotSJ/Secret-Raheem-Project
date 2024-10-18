@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdivs1ym2gg15"]
+
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="1_5hiug"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/popup/popup.gd" id="1_u1i3g"]
+
+[node name="popup" type="ColorRect"]
+offset_right = 434.0
+offset_bottom = 284.0
+color = Color(0.843184, 0.843184, 0.843184, 1)
+script = ExtResource("1_u1i3g")
+
+[node name="holdup" type="Label" parent="."]
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_5hiug")
+theme_override_font_sizes/font_size = 46
+text = ":( HOLD UP! :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="holdup2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 64.0
+offset_right = 438.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_5hiug")
+theme_override_font_sizes/font_size = 18
+text = "The game has encountered a fatal error and cannot continue with the match. Please report this issue to sj (hi). If possible, please attach the game log found in the appdata folder and any other relevant information to her!!"
+autowrap_mode = 3
+
+[node name="appdata" type="Button" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 244.0
+offset_right = 147.0
+offset_bottom = 281.0
+text = "Open AppData Folder"
+
+[connection signal="pressed" from="appdata" to="." method="_on_appdata_pressed"]

@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="6_8mybx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
-size = Vector2(147, 264)
+size = Vector2(147, 216)
 
 [node name="Card" type="Control"]
 layout_mode = 3
@@ -158,5 +158,5 @@ input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
-position = Vector2(73.5, 84)
+position = Vector2(73.5, 108)
 shape = SubResource("RectangleShape2D_odvew")

@@ -42,8 +42,8 @@ func _create_cards():
 		for i in Saves.battle_deck.keys().size():
 			var card_num = Saves.battle_deck["Card " + str(i + 1)]
 			if num == card_num:
-				print(num + " has found a match")
-				for snap in $snap_grid.get_children():
+				#print(num + " has found a match")
+				for snap in $snap_container.get_children():
 					if snap.deck_index == i + 1:
 						snap.lock_card(card)
 		

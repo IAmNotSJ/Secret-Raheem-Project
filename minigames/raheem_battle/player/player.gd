@@ -9,6 +9,7 @@ enum Sides {
 @onready var game = get_parent().get_parent()
 
 var player_name:String
+var player_color:Color
 var is_player:bool = false
 
 var cards_left
@@ -24,8 +25,13 @@ var side:Sides :
 			match side:
 				Sides.ATTACKING:
 					game.manager.get_node("NetworkInfo/side").text = "Side: Attacking"
+					game.ui.turn_info.side.text = "Attacking"
+					game.ui.turn_info.bop()
 				Sides.DEFENDING:
 					game.manager.get_node("NetworkInfo/side").text = "Side: Defending"
+					game.ui.turn_info.side.text = "Defending"
+					game.ui.turn_info.bop()
+
 
 var locked_in:bool = false
 

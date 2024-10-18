@@ -1,0 +1,189 @@
+[gd_scene load_steps=11 format=3 uid="uid://be3gmc7kis6ma"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/ui/victory chest/victory_chest.gd" id="1_8u4e4"]
+[ext_resource type="Texture2D" uid="uid://c4rpyqs8545g6" path="res://minigames/raheem_battle/ui/victory chest/spritesheet.png" id="1_55w7w"]
+[ext_resource type="FontFile" uid="uid://w3y7ctlsee70" path="res://fonts/SuperMario256.ttf" id="3_b0ko3"]
+
+[sub_resource type="Animation" id="Animation_cstir"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1183, -76)]
+}
+
+[sub_resource type="Animation" id="Animation_xi5yl"]
+resource_name = "close"
+length = 1.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.458333, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.833334, 0.958334, 1.04167, 1.16667, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1183, 94), Vector2(1183, 96), Vector2(1183, 48), Vector2(1183, -32), Vector2(1185, -71), Vector2(1185, -76)]
+}
+
+[sub_resource type="Animation" id="Animation_w58ni"]
+resource_name = "open"
+length = 1.25
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.916667, 1.125, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.458333, 0.583333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1183, -76), Vector2(1183, -61), Vector2(1183, -11), Vector2(1183, 85), Vector2(1183, 91), Vector2(1183, 93), Vector2(1183, 94)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvrgl"]
+_data = {
+"RESET": SubResource("Animation_cstir"),
+"close": SubResource("Animation_xi5yl"),
+"open": SubResource("Animation_w58ni")
+}
+
+[sub_resource type="Animation" id="Animation_eydr3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chest/VBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_8vjbi"]
+resource_name = "bop"
+length = 0.300003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chest/VBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rdng"]
+_data = {
+"RESET": SubResource("Animation_eydr3"),
+"bop": SubResource("Animation_8vjbi")
+}
+
+[node name="info" type="Node2D"]
+script = ExtResource("1_8u4e4")
+wait_time = 3
+
+[node name="chest" type="Sprite2D" parent="."]
+position = Vector2(1183, -76)
+texture = ExtResource("1_55w7w")
+hframes = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="chest"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -261.0
+offset_top = 87.0
+offset_right = -81.0
+offset_bottom = 283.0
+grow_horizontal = 0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(180, 0)
+mouse_filter = 2
+
+[node name="turn" type="Label" parent="chest/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("3_b0ko3")
+theme_override_font_sizes/font_size = 28
+text = "Turn 0"
+horizontal_alignment = 2
+
+[node name="side" type="Label" parent="chest/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("3_b0ko3")
+theme_override_font_sizes/font_size = 28
+text = "Attacking"
+horizontal_alignment = 2
+
+[node name="chest_animations" type="AnimationPlayer" parent="."]
+root_node = NodePath("../chest")
+libraries = {
+"": SubResource("AnimationLibrary_qvrgl")
+}
+
+[node name="text_animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0rdng")
+}

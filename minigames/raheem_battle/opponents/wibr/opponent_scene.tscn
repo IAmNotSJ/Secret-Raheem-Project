@@ -1,0 +1,235 @@
+[gd_scene load_steps=17 format=3 uid="uid://dtmnpe2xtyl0b"]
+
+[ext_resource type="Texture2D" uid="uid://17328cw6a72m" path="res://minigames/raheem_battle/opponents/wibr/base.png" id="1_oh167"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/opponents/opponent.gd" id="1_xu78w"]
+[ext_resource type="Texture2D" uid="uid://dnbtyxkdrk371" path="res://minigames/raheem_battle/opponents/wibr/wibr.png" id="3_jtfqr"]
+[ext_resource type="Texture2D" uid="uid://cpkxqaw18dncf" path="res://minigames/raheem_battle/opponents/wibr/arm-b.png" id="4_360ht"]
+[ext_resource type="Texture2D" uid="uid://b1007rll0g4t1" path="res://minigames/raheem_battle/opponents/wibr/arm-f.png" id="5_w7140"]
+
+[sub_resource type="Animation" id="Animation_fg2e7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_snolq"]
+resource_name = "angry"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ykhs0"]
+resource_name = "confused"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_gt8d2"]
+resource_name = "happy"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ilceb"]
+resource_name = "neutral"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_1poo3"]
+resource_name = "pout"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_6agcj"]
+resource_name = "sad"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_u33mu"]
+resource_name = "shocked"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_f7or8"]
+resource_name = "smug"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_x2soq"]
+resource_name = "wut"
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wibr:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_anpl7"]
+_data = {
+"RESET": SubResource("Animation_fg2e7"),
+"angry": SubResource("Animation_snolq"),
+"confused": SubResource("Animation_ykhs0"),
+"happy": SubResource("Animation_gt8d2"),
+"neutral": SubResource("Animation_ilceb"),
+"pout": SubResource("Animation_1poo3"),
+"sad": SubResource("Animation_6agcj"),
+"shocked": SubResource("Animation_u33mu"),
+"smug": SubResource("Animation_f7or8"),
+"wut": SubResource("Animation_x2soq")
+}
+
+[node name="opponent" type="Sprite2D" node_paths=PackedStringArray("animation_player", "card_container")]
+texture = ExtResource("1_oh167")
+offset = Vector2(0, -128)
+script = ExtResource("1_xu78w")
+animation_player = NodePath("AnimationPlayer")
+card_container = NodePath("card_container")
+
+[node name="Wibr" type="Sprite2D" parent="."]
+position = Vector2(0, -163)
+texture = ExtResource("3_jtfqr")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_anpl7")
+}
+autoplay = "neutral"
+
+[node name="Arm_b_r" type="Sprite2D" parent="."]
+position = Vector2(-26, -9)
+texture = ExtResource("4_360ht")
+
+[node name="Arm_b_l" type="Sprite2D" parent="."]
+position = Vector2(34, -9)
+texture = ExtResource("4_360ht")
+flip_h = true
+
+[node name="card_container" type="HBoxContainer" parent="."]
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 43.0
+offset_bottom = 41.0
+theme_override_constants/separation = -36
+alignment = 1
+
+[node name="Arm_f_r" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-52, 10)
+texture = ExtResource("5_w7140")
+
+[node name="Arm_f_l" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(61, 9.5)
+texture = ExtResource("5_w7140")
+flip_h = true

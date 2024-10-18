@@ -57,11 +57,11 @@ func add_screen_queue(screenEnum, end:bool = false):
 		screens_to_show.push_back(screen)
 	else:
 		screens_to_show.push_front(screen)
-	print("SCREEN QUEUE: " + str(screens_to_show))
+	#print("SCREEN QUEUE: " + str(screens_to_show))
 
 func start_showing_screens():
 	if screens_to_show.size() > 0:
-		print("--------STARTING TO SHOW SCREENS--------")
+		#print("--------STARTING TO SHOW SCREENS--------")
 		screens_to_show[0].visible = true
 		showing_screens = true
 
