@@ -9,7 +9,7 @@ var bonuses_to_add = [0, 0]
 func generate_deck(export_array, reason):
 	for i in range(export_array.size()):
 		var card = card_scene.instantiate()
-		card.get_node("visible").scale = Vector2(0.5, 0.5)
+		card.set_card_scale(Vector2(0.5, 0.5))
 		card.do_offset_bullshit = false
 		
 		#Change the stats

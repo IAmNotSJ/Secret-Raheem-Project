@@ -305,9 +305,6 @@ is_preview = true
 selectable = false
 metadata/_edit_group_ = true
 
-[node name="visible" parent="Card" index="0"]
-scale = Vector2(0.75, 0.75)
-
 [node name="Card2" parent="." instance=ExtResource("1_qyms6")]
 visible = false
 offset_left = 948.0
@@ -319,14 +316,8 @@ is_preview = true
 selectable = false
 metadata/_edit_group_ = true
 
-[node name="visible" parent="Card2" index="0"]
-scale = Vector2(0.75, 0.75)
-
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(1, 1, 1, 0)
-
-[editable path="Card"]
-[editable path="Card2"]

@@ -7,10 +7,17 @@ func generate_card_preview(stats, back:bool = false, force:bool = true):
 		var card = card_scene.instantiate()
 		card.stats = stats
 		card.block_input = true
-		card.get_node("visible").scale = Vector2(1, 1)
+		card.set_card_scale(Vector2(1, 1))
 		ui.is_in_preview = true
 		
-		$card_preview_center.add_child(card)
+		#card.position.y += 50
+		
+		$card_container.add_child(card)
+		
+		#var tween = get_tree().create_tween()
+		#tween.tween_property($Sprite, "modulate", Color.RED, 1)
+		#tween.tween_property($Sprite, "scale", Vector2(), 1)
+		#tween.tween_callback($Sprite.queue_free)
 		
 		ui.card_hand.block_input()
 		screen_container.add_screen_queue(screen_container.CARD_PREVIEW, back)
@@ -25,7 +32,7 @@ func generate_preview_from_export(export, back:bool = false, force:bool = false)
 	ui.card_hand.block_input()
 	var card = card_scene.instantiate()
 	card.block_input = true
-	card.get_node("visible").scale = Vector2(1, 1)
+	card.set_card_scale(Vector2(1, 1))
 	
 	
 	
@@ -47,7 +54,7 @@ func generate_preview_from_export(export, back:bool = false, force:bool = false)
 	card.stats.should_remove = export["Should Remove"]
 	card.index = export["Index"]
 	
-	$card_preview_center.add_child(card)
+	$card_container.add_child(card)
 	
 	screen_container.add_screen_queue(screen_container.CARD_PREVIEW, back)
 	if force:
@@ -57,7 +64,7 @@ func _unhandled_input(event):
 	if visible:
 		if event.is_action_pressed("back"):
 			print('card preview is being hidden')
-			if $card_preview_center.get_children() != []:
-				for card in $card_preview_center.get_children():
+			if $card_container.get_children() != []:
+				for card in $card_container.get_children():
 					card.queue_free()
 			hide()

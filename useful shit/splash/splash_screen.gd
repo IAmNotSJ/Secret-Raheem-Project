@@ -1,5 +1,9 @@
 extends Node2D
 
+func _ready():
+	if randi_range(1, 1000) == 1:
+		$Logo.texture = load("res://useful shit/splash/assets/jeff.png")
+		$bg.visible = true
 func _unhandled_input(event):
 	if event.is_pressed():
 		$AnimationPlayer.stop()

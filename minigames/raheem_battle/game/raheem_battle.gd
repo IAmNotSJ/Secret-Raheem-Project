@@ -18,7 +18,12 @@ var players_joined:int = 1
 
 var playing_peer_ids:Array = []
 
-@onready var ui = $UI
+@onready var ui = %UI
+
+var game_info:Dictionary = {
+	"Messages Sent" : 0,
+	"Turns" : 0
+}
 
 var player_path = preload("res://minigames/raheem_battle/player/player.tscn")
 var opponent = null
@@ -27,7 +32,6 @@ var started:bool = false
 var turn_count:int = 0 :
 	set(value):
 		turn_count = value
-		manager.get_node("NetworkInfo/turn_count").text = "TurnCount: " + str(turn_count)
 		ui.turn_info.turn.text = "Turn " + str(turn_count)
 		ui.turn_info.bop()
 
@@ -37,16 +41,16 @@ var pixel_size:float = 1 :
 	set(value) :
 		pixel_size = value
 		if pixel_size > 1:
-			$Pixelate.visible = true
+			%Pixelate.visible = true
 		else:
-			$Pixelate.visible = false
+			%Pixelate.visible = false
 
 var glitch_timer:int = 0
 
 func _process(delta):
-	var dapixel:float = $Pixelate.get("material").get("shader_parameter/pixel_size")
+	var dapixel:float = %Pixelate.get("material").get("shader_parameter/pixel_size")
 	dapixel = lerpf(dapixel, pixel_size, delta)
-	$Pixelate.get("material").set("shader_parameter/pixel_size", dapixel)
+	%Pixelate.get("material").set("shader_parameter/pixel_size", dapixel)
 
 @rpc("any_peer")
 func on_opponent_card_removed():

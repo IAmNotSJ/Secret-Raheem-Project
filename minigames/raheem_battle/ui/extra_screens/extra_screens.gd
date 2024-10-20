@@ -10,7 +10,8 @@ enum {
 	GEOMETRY,
 	CARD_MATCHUP,
 	MOUSE_CONTROL,
-	PAPER
+	PAPER,
+	RESULTS
 }
 @onready var card_preview_holder = $card_preview_holder
 @onready var deck_preview_holder = $deck_preview_holder
@@ -19,8 +20,9 @@ enum {
 @onready var card_matchup = $card_matchup
 @onready var mouse_control = $mouse_control
 @onready var paper = $paper
+@onready var results = $results
 
-var screens_to_show:Array[ExtraScreen] = []
+var screens_to_show:Array = []
 var showing_screens:bool = false
 
 func _process(_delta: float) -> void:
@@ -35,7 +37,7 @@ func _process(_delta: float) -> void:
 				showing_screens = false
 
 @rpc("any_peer")
-func add_screen_queue(screenEnum, end:bool = false):
+func add_screen_queue(screenEnum, end:bool = false, force:bool = false):
 	var screen
 	match screenEnum:
 		CARD_PREVIEW:
@@ -52,11 +54,18 @@ func add_screen_queue(screenEnum, end:bool = false):
 			screen = $mouse_control
 		PAPER:
 			screen = $paper
+		RESULTS:
+			screen = $results
 	#print(str(screen) + "HAS BEEN ADDED FOR " + get_parent().get_parent().get_player().player_name)
-	if end:
-		screens_to_show.push_back(screen)
+	if force:
+		for daScreen in screens_to_show:
+			daScreen.visible = false
+		screen.visible = true
 	else:
-		screens_to_show.push_front(screen)
+		if end:
+			screens_to_show.push_back(screen)
+		else:
+			screens_to_show.push_front(screen)
 	#print("SCREEN QUEUE: " + str(screens_to_show))
 
 func start_showing_screens():

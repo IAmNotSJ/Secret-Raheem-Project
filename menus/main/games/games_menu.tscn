@@ -16,42 +16,42 @@ offset_right = 1224.0
 offset_bottom = 693.0
 color = Color(0.129412, 1, 0.929412, 1)
 
-[node name="Hyena" type="TextureButton" parent="."]
-offset_left = 77.0
-offset_top = 77.0
-offset_right = 175.0
-offset_bottom = 175.0
-scale = Vector2(1.5, 1.5)
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 145.0
+offset_top = 72.0
+offset_right = 1195.0
+offset_bottom = 676.0
+theme_override_constants/h_separation = 123
+columns = 5
+
+[node name="Hyena" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(147, 147)
+layout_mode = 2
 texture_normal = ExtResource("2_238f5")
 texture_hover = ExtResource("3_7wdc0")
+stretch_mode = 0
 
-[node name="Karl" type="TextureButton" parent="."]
-offset_left = 88.0
-offset_top = 258.0
-offset_right = 137.0
-offset_bottom = 307.0
-scale = Vector2(3, 3)
+[node name="Karl" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(147, 147)
+layout_mode = 2
 texture_normal = ExtResource("4_mjd6l")
 texture_hover = ExtResource("5_bucjh")
+stretch_mode = 0
 
-[node name="Battle" type="TextureButton" parent="."]
-offset_left = 286.0
-offset_top = 75.0
-offset_right = 335.0
-offset_bottom = 124.0
-scale = Vector2(3, 3)
+[node name="Battle" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(147, 147)
+layout_mode = 2
 texture_normal = ExtResource("4_mjd6l")
 texture_hover = ExtResource("5_bucjh")
+stretch_mode = 0
 
-[node name="Paint" type="TextureButton" parent="."]
-offset_left = 89.0
-offset_top = 437.0
-offset_right = 187.0
-offset_bottom = 535.0
-scale = Vector2(1.5, 1.5)
+[node name="Paint" type="TextureButton" parent="GridContainer"]
+custom_minimum_size = Vector2(147, 147)
+layout_mode = 2
 texture_normal = ExtResource("2_238f5")
+stretch_mode = 0
 
-[connection signal="pressed" from="Hyena" to="." method="_on_hyena_pressed"]
-[connection signal="pressed" from="Karl" to="." method="_on_karl_pressed"]
-[connection signal="pressed" from="Battle" to="." method="_on_battle_pressed"]
-[connection signal="pressed" from="Paint" to="." method="_on_paint_pressed"]
+[connection signal="pressed" from="GridContainer/Hyena" to="." method="_on_hyena_pressed"]
+[connection signal="pressed" from="GridContainer/Karl" to="." method="_on_karl_pressed"]
+[connection signal="pressed" from="GridContainer/Battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="GridContainer/Paint" to="." method="_on_paint_pressed"]

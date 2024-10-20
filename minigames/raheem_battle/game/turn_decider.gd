@@ -7,7 +7,7 @@ enum Sides {
 	TIE
 }
 
-@onready var game = get_parent()
+@onready var game = get_parent().get_parent()
 
 
 

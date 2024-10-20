@@ -59,15 +59,21 @@ var time_end = 0
 func _ready():
 	time_start = Time.get_unix_time_from_system()
 	
-	#var webhook := DiscordWebHook.new(WEBHOOK_URL)
-
-	# Create the embed object and set some properties
-	#var embed = webhook.add_embed()
-	#embed.set_title("An awesome title") 
-	#embed.set_description("This is my embeds description")
-	#embed.set_color(Color.RED)
+	var webhook := DiscordWebHook.new(WEBHOOK_URL)
+	var embed = webhook.add_embed()
+	embed.set_title("MATCH SET") 
+	embed.set_description("This is my embeds description")
+	embed.set_color(Color8(66, 236, 255))
+	embed.image("https://media.discordapp.net/attachments/1119033198551236783/1297062342948950026/image.jpg?ex=67148ef0&is=67133d70&hm=18aef4348cc63238c90d64ac185e2c9062e0702249667ee168b1ae49451719c7&=&format=webp&width=889&height=889")
 	
-	#webhook.post()
+	embed.add_field("Host", "Yo Mama")
+	embed.add_field("Client", "Your Mom")
+	embed.add_field("\u200B", "\u200B")
+	embed.add_field("Messages Sent", "10000", true)
+	embed.add_field("Turns", "0", true)
+	
+	
+	webhook.post()
 
 func _input(_event: InputEvent) -> void:
 	if get_viewport().get_camera_2d() != null:

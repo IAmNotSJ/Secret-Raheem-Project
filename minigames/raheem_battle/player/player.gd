@@ -6,7 +6,7 @@ enum Sides {
 	DEFENDING,
 	TIE
 }
-@onready var game = get_parent().get_parent()
+@onready var game = get_parent().get_parent().get_parent()
 
 var player_name:String
 var player_color:Color
@@ -24,11 +24,9 @@ var side:Sides :
 		if is_player:
 			match side:
 				Sides.ATTACKING:
-					game.manager.get_node("NetworkInfo/side").text = "Side: Attacking"
 					game.ui.turn_info.side.text = "Attacking"
 					game.ui.turn_info.bop()
 				Sides.DEFENDING:
-					game.manager.get_node("NetworkInfo/side").text = "Side: Defending"
 					game.ui.turn_info.side.text = "Defending"
 					game.ui.turn_info.bop()
 

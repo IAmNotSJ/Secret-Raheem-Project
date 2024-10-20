@@ -12,6 +12,7 @@
 size = Vector2(147, 216)
 
 [node name="Card" type="Control"]
+custom_minimum_size = Vector2(149, 216)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 149.0
@@ -159,4 +160,5 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
 position = Vector2(73.5, 108)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_odvew")

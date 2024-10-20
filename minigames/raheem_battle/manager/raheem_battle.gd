@@ -1,7 +1,10 @@
 extends Node2D
 
+signal game_made
+signal player_joined(id)
+
 const gamePath = preload("res://minigames/raheem_battle/game/raheem_battle.tscn")
-var game
+var game = null
 const menuPath = preload("res://minigames/raheem_battle/menu/menu.tscn")
 var menu
 @onready var current_scene = $Menu
@@ -17,44 +20,34 @@ enum {
 	SERVER,
 	CLIENT
 }
-var game_type :
+var game_type
+var peer_id:int  = -1
+var room_address : 
 	set(value):
-		match value:
-			SERVER:
-				%game_type.text = "GameType: Server"
-			CLIENT:
-				%game_type.text = "GameType: Client"
-		game_type = value
-var peer_id:int  = -1:
-	set(value) :
-		peer_id = value
-		%peer_id.text = "PeerID: " + str(peer_id)
-var room_address :	
-	set(value) :
 		room_address = value
-		%room_address.text = "RoomAddress: " + room_address
-
-func _ready():
-	game = gamePath.instantiate()
+		if game != null:
+			game.ui.turn_info.set_address(room_address)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("F3"):
-		if $NetworkInfo.visible == true:
-			$NetworkInfo.visible = false
-		else:
-			$NetworkInfo.visible = true
 	if event.is_action_pressed("hyena"):
-		_disconnect()
+		disconnect_from_game()
 
-func return_to_menu(error_code:String):
+func return_to_menu(error_code:String = "-1"):
+	var send_error:bool = true
 	make_menu()
-	menu.make_popup(error_code)
+	
+	if error_code == "":
+		send_error = false
+	
+	if send_error:
+		menu.make_popup(error_code)
 	current_scene.queue_free()
 	current_scene = menu
 
 func make_game():
 	game = gamePath.instantiate()
 	add_child(game)
+	game_made.emit()
 
 func make_menu():
 	menu = menuPath.instantiate()
@@ -107,7 +100,7 @@ func on_host_pressed():
 	#Adds the PLAYER for the host
 	add_player(peer_id)
 	
-	multiplayer_peer.peer_connected.connect(
+	player_joined.connect(
 		func(new_peer_id):
 			#Adds the PLAYER for the client that just connected
 			add_player.rpc(new_peer_id)
@@ -120,13 +113,14 @@ func on_host_pressed():
 			game.start_game_request()
 	)
 	if !multiplayer_peer.is_connected("peer_disconnected", _on_peer_disconnect):
+		print("GOIP???")
 		multiplayer.peer_disconnected.connect(_on_peer_disconnect)
 	
 	current_scene.queue_free()
 	current_scene = game
 
 func on_join_pressed(ADDRESS):
-	make_game()
+	multiplayer_peer = ENetMultiplayerPeer.new()
 	if ADDRESS == "localhost":
 		multiplayer_peer.create_client(ADDRESS, PORT)
 	else:
@@ -135,16 +129,40 @@ func on_join_pressed(ADDRESS):
 	
 	multiplayer.connected_to_server.connect(
 		func():
-			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
+			var id = multiplayer.get_unique_id()
+			_receive_join_request.rpc_id(1, id, ADDRESS)
 	)
-	multiplayer.peer_disconnected.connect(_on_peer_disconnect)
+
+@rpc("any_peer")
+func _receive_join_request(id, address):
+	if connected_peer_ids.size() >= 2:
+		#BAD
+		multiplayer_peer.close()
+		current_scene.make_popup("005")
+	else:
+		#GOOD
+		join_game.rpc_id(id, address)
+
+@rpc("authority")
+func join_game(ADDRESS):
+	if !multiplayer_peer.is_connected("peer_disconnected", _on_peer_disconnect):
+		multiplayer.peer_disconnected.connect(_on_peer_disconnect)
+	make_game()
 	
-	game_type = CLIENT
+	add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
+	
 	peer_id = multiplayer.get_unique_id()
+	game_type = CLIENT
 	room_address = str(ADDRESS)
 	
 	current_scene.queue_free()
 	current_scene = game
+	
+	send_join_notification.rpc_id(1, peer_id)
+
+@rpc("any_peer")
+func send_join_notification(id):
+	player_joined.emit(id)
 
 #Internet stuff
 func upnp_setup():
@@ -169,15 +187,27 @@ func upnp_setup():
 	
 	return(daAddress)
 
-func _disconnect():
+@rpc("any_peer")
+func disconnect_from_game(code:String = ""):
 	if peer_id != -1:
 		print('disconnecting!')
 		multiplayer_peer.close()
-	return_to_menu("-1")
+	return_to_menu(code)
+
+#Used to DISCRETELY disconnect. Will not trigger opponent to disconnect either
+@rpc("any_peer")
+func disconnect_discrete():
+	clear_peer_ids.rpc()
+	multiplayer_peer.close()
+
+@rpc("any_peer")
+func clear_peer_ids():
+	connected_peer_ids = []
 
 func _on_peer_disconnect(id):
-	print("PLAYER WITH ID " + str(id) + " DISCONNECTED")
-	return_to_menu("0")
+	if connected_peer_ids.find(id) != -1:
+		print("PLAYER WITH ID " + str(id) + " DISCONNECTED")
+		disconnect_from_game("0")
 
 func encrypt_address(address):
 	var address_array = address.split(".")

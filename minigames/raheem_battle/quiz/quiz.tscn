@@ -428,7 +428,7 @@ answers = Array[String](["Wibr", "SJ", "Cleft", "Block", "Cherry", "Dapper", "Sl
 metadata/_edit_use_anchors_ = true
 
 [node name="Paper2" type="Sprite2D" parent="."]
-position = Vector2(644, 1078)
+position = Vector2(644, 1054)
 texture = ExtResource("4_c4dbo")
 
 [node name="Question 10" type="Label" parent="Paper2"]

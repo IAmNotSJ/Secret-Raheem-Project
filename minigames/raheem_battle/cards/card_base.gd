@@ -65,7 +65,7 @@ func _ready():
 		offset = -30
 	
 	if !is_preview:
-		game = get_parent().get_parent().get_parent().get_parent()
+		game = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 	
 	if rarity == Rarity.HOLO:
 		$visible.material.set("shader_parameter/active", true)
@@ -262,3 +262,9 @@ func change_color(series):
 			var texture_grad = GradientTexture1D.new()
 			texture_grad.gradient = gradient
 			$visible.material.set("shader_parameter/gradient", texture_grad)
+
+func set_card_scale(theScale:Vector2):
+	$visible.scale = theScale
+	$mouse_detection.scale = theScale
+	custom_minimum_size = Vector2(398, 585) * theScale
+	size = Vector2(398, 585) * theScale

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btgw2da7dhlll"]
+[gd_scene load_steps=10 format=3 uid="uid://btgw2da7dhlll"]
 
 [ext_resource type="PackedScene" uid="uid://cbgmnpk5xwwi7" path="res://minigames/raheem_battle/ui/card_preview_holder/card_preview_holder.tscn" id="1_1yxmd"]
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/extra_screens/extra_screens.gd" id="1_byesh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jsdik5ih32ki" path="res://minigames/raheem_battle/ui/matchup_preview/card_matchup.tscn" id="5_1d23b"]
 [ext_resource type="PackedScene" uid="uid://cicej1be3pheu" path="res://minigames/raheem_battle/ui/mouse_control/mouse_control.tscn" id="7_qy4gt"]
 [ext_resource type="PackedScene" uid="uid://bjftsvrpb34s7" path="res://minigames/raheem_battle/ui/paper clutter/paper.tscn" id="8_ma28c"]
+[ext_resource type="PackedScene" uid="uid://c3d5dd5twm7lp" path="res://minigames/raheem_battle/results_screen/results_screen.tscn" id="9_6fuh3"]
 
 [node name="extra_screens" type="Node2D"]
 script = ExtResource("1_byesh")
@@ -36,6 +37,9 @@ offset_bottom = 720.0
 [node name="mouse_control" parent="." instance=ExtResource("7_qy4gt")]
 
 [node name="paper" parent="." instance=ExtResource("8_ma28c")]
+visible = false
+
+[node name="results" parent="." instance=ExtResource("9_6fuh3")]
 visible = false
 
 [connection signal="finished" from="." to="." method="_on_finished"]

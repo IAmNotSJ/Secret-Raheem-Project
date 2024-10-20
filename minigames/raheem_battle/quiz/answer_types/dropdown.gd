@@ -1,7 +1,6 @@
-@tool
 extends OptionButton
 
-@export var answerKey:String
+@export var answerKey:String = ""
 
 var play_audio = false
 
@@ -12,8 +11,7 @@ var play_audio = false
 
 func _ready():
 	_remake_answers()
-	if answerKey in Saves.battle_quiz:
-		selected = answers.find(Saves.battle_quiz[answerKey])
+	selected = answers.find(Saves.battle_quiz[answerKey])
 	play_audio = true
 
 func _remake_answers():

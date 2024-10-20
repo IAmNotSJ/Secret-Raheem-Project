@@ -11,9 +11,11 @@ enum {
 }
 var current_screen = INITIAL
 
+
 @onready var initial_buttons = [%Host, %Join, %Deck, %Profile]
 
 const popup_scene = preload("res://minigames/raheem_battle/menu/popup/popup.tscn")
+var in_popup:bool = false
 
 @onready var manager = get_parent()
 
@@ -32,10 +34,17 @@ var key_pressed:bool = false
 var upnp:bool = false
 
 func make_popup(error_code:String = ""):
-	var popup = popup_scene.instantiate()
-	popup.position = Vector2(455, 205)
-	popup.error_code = error_code
-	add_child(popup)
+	if !in_popup:
+		var popup = popup_scene.instantiate()
+		#popup.position = Vector2(671, 359)
+		popup.error_code = error_code
+		add_child(popup)
+		if current_screen != INITIAL:
+			_switch_screen(INITIAL)
+		in_popup = true
+		
+		await popup.tree_exited
+		in_popup = false
 
 func _ready():
 	for button in initial_buttons:
@@ -46,22 +55,23 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("back"):
-		match current_screen:
-			INITIAL:
-				pass
-			HOST:
-				_switch_screen(INITIAL)
-			JOIN:
-				_switch_screen(INITIAL)
-			ADVANCED:
-				_switch_screen(INITIAL)
-			QUIZ:
-				_switch_screen(INITIAL)
-			DECK:
-				if !$ALL/deck_builder.is_in_preview:
+		if !in_popup:
+			match current_screen:
+				INITIAL:
+					pass
+				HOST:
 					_switch_screen(INITIAL)
-			PROFILE:
-				_switch_screen(INITIAL)
+				JOIN:
+					_switch_screen(INITIAL)
+				ADVANCED:
+					_switch_screen(INITIAL)
+				QUIZ:
+					_switch_screen(INITIAL)
+				DECK:
+					if !$ALL/deck_builder.is_in_preview:
+						_switch_screen(INITIAL)
+				PROFILE:
+					_switch_screen(INITIAL)
 
 func _switch_screen(screen):
 	match screen:
@@ -109,14 +119,15 @@ func _switch_screen(screen):
 		camera.can_scroll = false
 
 func _on_button_entered(button):
-	button.grab_focus()
+	if button.get_focus_mode() == Control.FocusMode.FOCUS_ALL:
+		button.grab_focus()
 
 func _on_button_exited(_button):
 	#$Pointer.visible = false
 	pass
 
 func _on_button_focused(button):
-	print('focused')
+	#print('focused')
 	$Pointer.visible = true
 	$Pointer.global_position = button.global_position
 	$Pointer.global_position.x -= 30
@@ -137,13 +148,24 @@ func _on_profile_pressed():
 
 
 func _on_join_room_pressed():
+	if check_playability() == false:
+		make_popup("004")
+		return
 	if !upnp:
 		manager.on_join_pressed("localhost")
 	elif %address_bar.text != "":
 		manager.on_join_pressed(%address_bar.text)
 func _on_create_room_pressed():
+	if check_playability() == false:
+		make_popup("004")
+		return
 	manager.on_host_pressed()
 
+func check_playability() -> bool:
+	for card in Saves.battle_deck.values():
+		if card == "-1":
+			return false
+	return true
 
 func _on_check_box_toggled(toggled_on):
 	upnp = toggled_on

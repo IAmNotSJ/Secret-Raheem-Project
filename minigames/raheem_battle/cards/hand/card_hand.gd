@@ -27,7 +27,7 @@ func generate_cards(cards_to_generate):
 		card.left_clicked.connect(ui.play_card)
 		card.right_clicked.connect(ui.card_preview.generate_card_preview)
 		ui.turn_ended.connect(card._on_turn_ended)
-		$held_cards.add_child(card)
+		%held_cards.add_child(card)
 
 @rpc("any_peer")
 func add_card(export:Dictionary):
@@ -47,7 +47,7 @@ func add_card(export:Dictionary):
 	
 	cards_in_hand.append(card)
 	card.left_clicked.connect(ui.play_card)
-	$held_cards.add_child(card)
+	%held_cards.add_child(card)
 	
 	for i in range(%held_cards.get_children().size()):
 		if card == %held_cards.get_children()[i]:

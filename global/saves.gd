@@ -18,6 +18,8 @@ var audioSettings:Dictionary = {
 	"Master":1.0, 
 	"Music": 1.0, 
 	"SFX": 1.0}
+var videoSettings:Dictionary = {
+	"VSync" : false}
 # Time is the seconds in the save file
 var playerInfo = {
 	"Time" : 0,
@@ -84,7 +86,7 @@ var battle_quiz = {
 var battle_info = {
 	"Name" : "",
 	"Character" : "wibr",
-	"Color" : Color(1, 1, 1, 1)
+	"Color" : [1, 1, 1]
 }
 var battle_stats = {
 	"Games Played" : 0,
@@ -109,6 +111,14 @@ func _ready():
 	load_save(SaveTypes.SETTINGS)
 	load_save(SaveTypes.HYENA)
 	load_save(SaveTypes.BATTLE)
+	
+	# APPLY SETTIGNS!
+	if videoSettings["VSync"]:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	
+	print(battle_info["Color"])
 
 func save(type:SaveTypes):
 	var PATH:String = ""
@@ -134,7 +144,8 @@ func save(type:SaveTypes):
 		SaveTypes.SETTINGS:
 			data = {
 				"Player Info" : playerInfo,
-				"Audio Settings" : audioSettings
+				"Audio Settings" : audioSettings,
+				"Video Settings" : videoSettings
 			}
 		SaveTypes.HYENA:
 			data = {
@@ -175,6 +186,8 @@ func load_save(type:SaveTypes):
 			if current_line:
 				if keys.has("Audio Settings"):
 					audioSettings = current_line["Audio Settings"]
+				if keys.has("Video Settings"):
+					videoSettings = current_line["Video Settings"]
 				if keys.has("Player Info"):
 					playerInfo = current_line["Player Info"]
 				if keys.has("Character Interactions"):

@@ -33,18 +33,8 @@ enum Stages {
 var cur_stage:Stages = Stages.NOT_STARTED :
 	set(value):
 		cur_stage = value
-		match value:
-			Stages.PRE_TURN:
-				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: PRE-TURN"
-				#print("GameStage: PRE-TURN")
-			Stages.TURN:
-				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: TURN"
-				#print("GameStage: TURN")
-			Stages.POST_TURN:
-				game.manager.get_node("NetworkInfo/game_stage").text = "GameStage: POST-TURN"
-				#print("GameStage: POST-TURN")
 
-@onready var game = get_parent()
+@onready var game = get_parent().get_parent()
 
 @onready var card_hand = $card_hand
 @onready var extra_screens = $extra_screens
@@ -58,7 +48,6 @@ var cur_stage:Stages = Stages.NOT_STARTED :
 @onready var turn_info = $info
 @onready var locked_text = $locked_text
 
-var cards_to_generate = ["1", "062", "084", "082", "097", "098", "099", "100"]
 var card_to_play
 
 var override_index:int = -1
@@ -426,6 +415,10 @@ func _on_card_removed():
 	game.on_opponent_card_removed.rpc()
 	
 	turn_info.play()
+	
+	if card_hand.cards_in_hand.size() == 1:
+		announce_winner(true)
+		announce_winner.rpc(false)
 
 func _on_card_added():
 	game.on_opponent_card_added.rpc()
@@ -457,7 +450,7 @@ func starting_game_card_effects():
 				"Debt":
 					var years_attended = Saves.battle_quiz["College Years"]
 					if years_attended > 0:
-						card.add_penalty_attack(years_attended, "Debt")
+						card.stats.add_penalty_attack(years_attended, "Debt")
 					else:
 						card.add_bonus_attack(2, "Debt")
 				"Speedrun":
@@ -1190,7 +1183,6 @@ func apply_next_card_bonus_multiplier(card, le_future_events):
 			card["Bonus Defense"] += bonus_amount[1] * multiplier[1]
 
 
-
 @rpc("any_peer")
 func set_override_index(value:int):
 	override_index = value
@@ -1223,6 +1215,17 @@ func set_ready(val):
 @rpc("any_peer")
 func emit_sync():
 	sync.emit()
+
+@rpc("any_peer")
+func announce_winner(has_won:bool):
+	if cur_stage == Stages.POST_TURN:
+		await turn_started
+	if has_won:
+		print(game.get_player().player_name + " HAS WON THE GAME!")
+	else:
+		print(game.get_opponent().player_name + " HAS WON THE GAME!")
+	
+	extra_screens.results.create(has_won)
 
 func set_pixel_effect(pixels, duration):
 	game.pixel_size = pixels

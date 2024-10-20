@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://du2gx7mogli7y"]
+[gd_scene load_steps=8 format=3 uid="uid://du2gx7mogli7y"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/hand/card_hand.gd" id="1_dlrp0"]
+[ext_resource type="PackedScene" uid="uid://cc1md6wtks64r" path="res://overworld/light/day_night_cycle/day_night_cycle.tscn" id="2_kdbcx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqfj3"]
 size = Vector2(1278, 220)
@@ -10,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +28,7 @@ step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,7 +45,7 @@ step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,15 +69,18 @@ offset_right = 1281.0
 offset_bottom = 723.0
 script = ExtResource("1_dlrp0")
 
-[node name="held_cards" type="HBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="held_cards" type="HBoxContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_left = 6.0
-offset_top = 559.0
-offset_right = 1070.0
-offset_bottom = 720.0
-theme_override_constants/separation = 160
+offset_top = 695.0
+offset_right = 1277.0
+offset_bottom = 911.0
 alignment = 1
+
+[node name="DayNightCycle" parent="CanvasLayer" instance=ExtResource("2_kdbcx")]
 
 [node name="victory_chest" type="Control" parent="."]
 visible = false
