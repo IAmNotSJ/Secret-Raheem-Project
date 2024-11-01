@@ -32,8 +32,4 @@ func _on_submit():
 		answered.emit(false)
 
 func clear():
-	ui.card_hand.allow_input()
-	ui.is_in_preview = false
-	
-	
 	visible = false

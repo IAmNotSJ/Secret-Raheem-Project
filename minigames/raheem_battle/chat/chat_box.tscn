@@ -9,6 +9,10 @@ bg_color = Color(0.0870161, 0.0870161, 0.0870161, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1e0g"]
 bg_color = Color(0, 0, 0, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi772"]
 bg_color = Color(0, 0, 0, 0.352941)
@@ -122,9 +126,9 @@ anchor_top = 0.468
 anchor_right = 0.0
 anchor_bottom = 0.468
 offset_left = -31.0
-offset_top = -15.508
+offset_top = -14.508
 offset_right = -1.90735e-06
-offset_bottom = 15.492
+offset_bottom = 16.492
 grow_vertical = 1
 
 [node name="hide_button" type="Button" parent="input"]

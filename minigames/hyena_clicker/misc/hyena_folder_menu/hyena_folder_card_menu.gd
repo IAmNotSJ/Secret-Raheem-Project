@@ -20,8 +20,7 @@ func generate_card():
 	var upgradeAttack = ceil(float(cur_upgrade) / 2)
 	var upgradeDefense = floor(float(cur_upgrade) / 2)
 	
-	card.stats.base_attack = upgradeAttack
-	card.stats.base_defense = upgradeDefense
+	card.stats["Base Attack"] = upgradeAttack
+	card.stats["Base Attack"] = upgradeDefense
 	
 	$card.add_child(card)
-

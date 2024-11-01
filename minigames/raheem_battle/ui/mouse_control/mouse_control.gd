@@ -8,7 +8,6 @@ var enabled:bool = false
 var enabled_timer = 3
 
 func _ready():
-	print(ui.name)
 	ui.turn_ended.connect(_on_turn_ended)
 
 func _process(delta):

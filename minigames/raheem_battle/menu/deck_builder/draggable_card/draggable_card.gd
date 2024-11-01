@@ -10,6 +10,7 @@ var rarity:Rarity = Rarity.COMMON
 
 signal picked_up
 signal let_go
+signal taken_out
 signal right_clicked
 
 @export_category("Resource")
@@ -46,9 +47,7 @@ func _input(_event: InputEvent) -> void:
 			get_parent().get_parent().get_parent().set_held(self)
 			picked_up.emit()
 			if snap != null:
-				Saves.battle_deck["Card " + str(snap.deck_index)] = "-1"
-				snap.card = null
-				snap = null
+				clear_snap()
 		if Input.is_action_just_pressed("right_click"):
 			print('poo')
 			get_parent().get_parent().get_parent().generate_preview(stats.card_number)
@@ -65,7 +64,7 @@ func _on_stats_changed():
 		change_color(stats.card_series)
 		
 		if stats.hide_stats:
-			%Ability.text = "X"
+			%Attack.text = "X"
 			%Defense.text = "X"
 		else:
 			if stats.true_attack == 6.5:
@@ -92,7 +91,7 @@ func _on_stats_changed():
 func export():
 	var daExport:Dictionary = {
 	"Name" : stats.card_name,
-	"Series" : stats.card_series,
+	"Card Series" : stats.card_series,
 	"Number" : stats.card_number,
 	"Attack" : stats.true_attack,
 	"Defense" : stats.true_defense,
@@ -103,7 +102,7 @@ func export():
 	"Penalty Attack" : stats.get_penalty_attack(),
 	"Penalty Defense" : stats.get_penalty_defense(),
 	"Can Get Bonuses" : stats.can_get_bonuses,
-	"Ability" : stats.ability_name,
+	"Ability Name" : stats.ability_name,
 	"Ability Description" : stats.ability_description,
 	"One Use Ability" : stats.one_use_ability,
 	"Ability Used" : ability_used,
@@ -186,6 +185,15 @@ func change_color(series):
 			texture_grad.gradient = gradient
 			$visible.material.set("shader_parameter/gradient", texture_grad)
 
+func clear_snap():
+	if snap != null:
+		reparent(get_parent().get_parent().get_parent().get_node("ScrollContainer/card_container"))
+		snap.card = null
+		Saves.battle_deck["Card " + str(snap.deck_index)] = "-1"
+		snap = null
+		taken_out.emit()
+
+
 func _on_let_go():
 	var snaps = []
 	if $snap_detection.has_overlapping_areas():
@@ -213,15 +221,7 @@ func _on_let_go():
 		if snaps[daIndex].card == null:
 			snaps[daIndex].lock_card(self)
 	else:
-		position = original_position
 		reparent(get_parent().get_parent().get_parent().get_node("ScrollContainer/card_container"))
-		
-		
-		var index = int(stats.card_number)
-		for num in get_parent().get_parent().get_parent().cards_removed:
-			if int(num) < index:
-				index -= 1
-		get_parent().move_child(self, index)
-		
-		get_parent().get_parent().get_parent().cards_removed.erase(stats.card_number)
-		print(get_parent().get_parent().get_parent().cards_removed)
+		if snap != null:
+			snap = null
+		taken_out.emit()

@@ -15,7 +15,7 @@ enum Sides {
 # Returns the side that wins, duh
 func decide_outcome(attacking_card, defending_card, attacking_info, defending_info):
 	var decision:Sides
-	if attacking_card["Attack"] > defending_card["Defense"]:
+	if attacking_card["True Attack"] > defending_card["True Defense"]:
 		decision = Sides.ATTACKING
 	else:
 		decision = Sides.DEFENDING
@@ -68,18 +68,20 @@ func _factor_abilities(decision, attacking_card, defending_card, attacking_info,
 	
 	return final_decision
 
-#Returns true if the card wins
+#Returns 1 if the card wins
 func _factor_side(card, opposing_card, info, opposing_info):
-	match card["Ability"]:
+	match card["Ability Name"]:
 		"Wealth":
 			return 1
 		"True Gamer":
 			if card["Side"] == Sides.ATTACKING:
-				if card["Attack"] == opposing_card["Defense"]:
+				if card["True Attack"] == opposing_card["True Defense"]:
 					return 1
+		"Nectar of the Gods":
+			return -1
 		"Espionage":
 			if card["Side"] == Sides.DEFENDING:
-				if opposing_card["Attack"] > card["Defense"] + 3:
+				if opposing_card["True Attack"] > card["True Defense"] + 3:
 					return 1
 		"Muppet of a Man":
 			if opposing_card["Is Human"] == true:
@@ -92,7 +94,7 @@ func _factor_side(card, opposing_card, info, opposing_info):
 			if random == 1 or random == 2 or random == 3:
 				return 1
 		"Bigger Fish":
-			var opposing_card_total = opposing_card["Attack"] + opposing_card["Defense"]
+			var opposing_card_total = opposing_card["True Attack"] + opposing_card["True Defense"]
 			
 			if opposing_card_total <= 6:
 				return 1
@@ -101,7 +103,7 @@ func _factor_side(card, opposing_card, info, opposing_info):
 				if randi_range(1, 2) == 1:
 					return 1
 		"Debug":
-			if opposing_card["Series"] == "SJ":
+			if opposing_card["Card Series"] == "SJ":
 				return -1
 		"Kill Count":
 			if info["Stats"]["Wins"] > opposing_info["Stats"]["Games Played"]:
@@ -113,7 +115,7 @@ func _factor_side(card, opposing_card, info, opposing_info):
 
 # Returns true if real tie
 func _factor_tie(card, opposing_card, decision):
-	match card["Ability"]:
+	match card["Ability Name"]:
 		"Sand Veil":
 			if decision == opposing_card["Side"] and randi_range(0, 1) == 0:
 				#print("Tie should be occuring!")

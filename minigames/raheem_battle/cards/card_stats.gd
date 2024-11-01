@@ -2,6 +2,7 @@
 class_name CardStats extends Resource
 
 signal bonus_added(amount:int, key:String)
+signal penalty_added(amount:int, key:String)
 
 @export_category("Details")
 @export var card_name:String = "Test Card" :
@@ -253,23 +254,32 @@ func set_penalties(penalty_dict:Dictionary):
 	_recalculate_defense()
 
 func apply_bonuses():
+	var bonuses_added:bool = false
 	#print('APPLYING BONUSES')
 	for bonus in stashed_bonuses.keys():
 		if stashed_bonuses[bonus][1][0] == false:
 			bonuses[bonus][0] += stashed_bonuses[bonus][0][0]
+			#print("Adding +" + stashed_bonuses[bonus][0][0] + " Bonus Attack!")
 			bonus_added.emit(stashed_bonuses[bonus][0][0], "Attack")
+			bonuses_added = true
 		else:
 			bonuses[bonus][0] = stashed_bonuses[bonus][0][0]
+			bonuses_added = true
 		
 		if stashed_bonuses[bonus][1][1] == false:
 			bonuses[bonus][1] += stashed_bonuses[bonus][0][1]
-			bonus_added.emit(stashed_bonuses[bonus][0][0], "Defense")
+			bonus_added.emit(stashed_bonuses[bonus][0][1], "Defense")
+			#print("Adding +" + stashed_bonuses[bonus][0][1] + " Bonus Defense!")
+			bonuses_added = true
 		else:
 			bonuses[bonus][1] = stashed_bonuses[bonus][0][1]
+			bonuses_added = true
 	
 	# Flooring for thrembo
-	base_attack = floor(base_attack)
-	base_defense = floor(base_defense)
+	if bonuses_added:
+		print("BONUSES HAVE BEEN ADDED")
+		base_attack = floor(base_attack)
+		base_defense = floor(base_defense)
 	
 	stashed_bonuses = {}
 	_recalculate_defense()
@@ -277,20 +287,28 @@ func apply_bonuses():
 	emit_changed()
 
 func apply_penalties():
+	var penalties_added:bool = false
 	for penalty in stashed_penalties.keys():
 		if stashed_penalties[penalty][1][0] == false:
 			penalties[penalty][0] += stashed_penalties[penalty][0][0]
+			penalty_added.emit(stashed_penalties[penalty][0][0], "Attack")
+			penalties_added = true
 		else:
 			penalties[penalty][0] = stashed_penalties[penalty][0][0]
+			penalties_added = true
 		
 		if stashed_penalties[penalty][1][1] == false:
 			penalties[penalty][1] += stashed_penalties[penalty][0][1]
+			penalty_added.emit(stashed_penalties[penalty][0][1], "Defense")
+			penalties_added = true
 		else:
 			penalties[penalty][1] = stashed_penalties[penalty][0][1]
+			penalties_added = true
 	
 	# Flooring for thrembo
-	base_attack = floor(base_attack)
-	base_defense = floor(base_defense)
+	if penalties_added:
+		base_attack = floor(base_attack)
+		base_defense = floor(base_defense)
 	
 	stashed_penalties = {}
 	_recalculate_defense()

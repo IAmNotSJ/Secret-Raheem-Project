@@ -15,13 +15,23 @@ var removed_cards = []
 
 var focused:bool = false
 
+var x_offset:int = 0
+
+func _ready():
+	%DayNightCycle.visible = Saves.battle_settings["DayNight"]
+
+func _process(delta):
+	if global.isWindowFocused:
+		var distance_from_center:float = (get_global_mouse_position().x - 720) / 720 * -1
+		var card_offset = cards_in_hand.size() - 8
+		if card_offset < 0:
+			card_offset = 0
+		%offset.position.x = lerpf(%offset.position.x, (150 * card_offset) * distance_from_center - x_offset, 20 * delta)
 
 func generate_cards(cards_to_generate):
 	for i in range(cards_to_generate.size()):
 		var card = card_scene.instantiate()
-		var stats_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + cards_to_generate[i] + ".tres"
-		#print(stats_path)
-		card.stats = load(stats_path)
+		card.stats = card.return_stats_from_resource("res://minigames/raheem_battle/cards/card_variants/stats/" + cards_to_generate[i] + ".tres")
 		card.index = i
 		cards_in_hand.append(card)
 		card.left_clicked.connect(ui.play_card)
@@ -30,35 +40,35 @@ func generate_cards(cards_to_generate):
 		%held_cards.add_child(card)
 
 @rpc("any_peer")
-func add_card(export:Dictionary):
+func add_card(export:Dictionary, wait:bool = false, playable:bool = true):
+	if wait:
+		await ui.turn_started
 	var card = card_scene.instantiate()
 	
-	card.stats.card_name = export["Name"]
-	card.stats.card_series = export["Series"]
-	card.stats.card_number = export["Number"]
-	card.stats.bonuses = export["Bonuses"]
-	card.stats.penalties = export["Penalties"]
-	card.stats.base_attack = export["Base Attack"]
-	card.stats.base_defense = export["Base Defense"]
-	card.stats.can_get_bonuses = export["Can Get Bonuses"]
-	card.stats.ability_name = export["Ability"]
-	card.stats.ability_description = export["Ability Description"]
-	card.stats.one_use_ability = export["One Use Ability"]
+	card.stats = card.return_stats_from_export(export)
 	
 	cards_in_hand.append(card)
 	card.left_clicked.connect(ui.play_card)
+	card.right_clicked.connect(ui.card_preview.generate_card_preview)
 	%held_cards.add_child(card)
+	
+	card.send_card_status("Added!")
 	
 	for i in range(%held_cards.get_children().size()):
 		if card == %held_cards.get_children()[i]:
 			card.index = i
+	
+	if cards_in_hand.size() > 8:
+		x_offset += card.size.x / 2
+	
+	if !playable:
+		disable_card(card.index, 100000)
 	
 	return card
 
 func add_card_from_resource(number:String, forced_index:int = -1):
 	var card = card_scene.instantiate()
 	var stats_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + number + ".tres"
-	#print(stats_path)
 	card.stats = load(stats_path)
 	cards_in_hand.append(card)
 	card.left_clicked.connect(ui.play_card)
@@ -74,7 +84,9 @@ func add_card_from_resource(number:String, forced_index:int = -1):
 	return card
 
 @rpc("any_peer")
-func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true):
+func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true, wait:bool = true):
+	if wait:
+		await ui.turn_started
 	var card_destination:Variant
 	
 	if put_in_victory_chest:
@@ -86,6 +98,8 @@ func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true):
 			cards_in_hand.erase(card)
 			card.reparent(card_destination)
 			removed_cards.append(card)
+			
+			card.visible = false
 			
 			card.disabled = true
 			card.disabled_time = 0
@@ -125,13 +139,13 @@ func replace_card(card_to_replace_index:int, card_to_add_number:String, carry_bo
 	var bonuses
 	var penalties
 	if carry_bonuses:
-		bonuses = get_card_from_index(card_to_replace_index).stats.bonuses
-		penalties = get_card_from_index(card_to_replace_index).stats.penalties
+		bonuses = get_card_from_index(card_to_replace_index).stats["Bonuses"]
+		penalties = get_card_from_index(card_to_replace_index).stats["Penalties"]
 	remove_card(card_to_replace_index, false, false)
 	var card = add_card_from_resource(card_to_add_number, card_to_replace_index)
 	if carry_bonuses:
-		card.stats.bonuses = bonuses
-		card.stats.penalties = penalties
+		card.stats["Bonuses"] = bonuses
+		card.stats["Penalties"] = penalties
 
 @rpc("any_peer")
 func remove_all_cards():
@@ -181,7 +195,6 @@ func return_random_card(exclude:int):
 		index = randi_range(0, cards_in_hand.size() - 1)
 	
 	var card_to_return:Dictionary = cards_in_hand[index].export()
-	print(card_to_return["Name"])
 	return card_to_return
 
 

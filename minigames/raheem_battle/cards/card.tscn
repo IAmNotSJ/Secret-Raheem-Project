@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://edx2tlubwxi4"]
+[gd_scene load_steps=12 format=3 uid="uid://edx2tlubwxi4"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_base.gd" id="1_8jnna"]
-[ext_resource type="Resource" uid="uid://c75vllqidw3mc" path="res://minigames/raheem_battle/cards/card_variants/stats/0.tres" id="2_8n2ow"]
 [ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="3_311j2"]
 [ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="3_ik8au"]
-[ext_resource type="Texture2D" uid="uid://bcj3rohj0g7nk" path="res://minigames/raheem_battle/cards/assets/ability_holder.png" id="5_mxjpk"]
 [ext_resource type="Texture2D" uid="uid://cd3pn6q8ksn0h" path="res://minigames/raheem_battle/cards/assets/card_border.png" id="5_ui7cc"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="6_8mybx"]
+[ext_resource type="Texture2D" uid="uid://dhnlmx76e6qhr" path="res://minigames/raheem_battle/cards/assets/icons/hand.png" id="7_73unf"]
+[ext_resource type="Texture2D" uid="uid://bxa6wkm5v5hdf" path="res://minigames/raheem_battle/cards/assets/icons/fire.png" id="8_7nwrc"]
+[ext_resource type="Texture2D" uid="uid://eliiob1uv4qb" path="res://minigames/raheem_battle/cards/assets/icons/human.png" id="9_m04fh"]
+[ext_resource type="Texture2D" uid="uid://cn3u0qi15q8k" path="res://minigames/raheem_battle/cards/assets/icons/one_use.png" id="10_x1ylh"]
+[ext_resource type="Texture2D" uid="uid://e3bje7jro8o2" path="res://minigames/raheem_battle/cards/assets/icons/upgrades.png" id="11_s5n0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
 size = Vector2(147, 216)
@@ -18,7 +21,6 @@ anchors_preset = 0
 offset_right = 149.0
 offset_bottom = 216.0
 script = ExtResource("1_8jnna")
-stats = ExtResource("2_8n2ow")
 
 [node name="visible" type="Control" parent="."]
 anchors_preset = 0
@@ -34,31 +36,43 @@ offset_right = 398.0
 offset_bottom = 585.0
 texture = ExtResource("3_ik8au")
 
-[node name="Ability_Holder" type="Sprite2D" parent="visible"]
+[node name="Ability_Holder" type="ColorRect" parent="visible"]
 unique_name_in_owner = true
 visible = false
-use_parent_material = true
-position = Vector2(205.405, 478.378)
-texture = ExtResource("5_mxjpk")
+layout_mode = 0
+offset_left = 30.0
+offset_top = 376.0
+offset_right = 368.0
+offset_bottom = 527.0
+color = Color(0.756863, 0.756863, 0.756863, 1)
 
 [node name="Ability_Name" type="Label" parent="visible/Ability_Holder"]
 unique_name_in_owner = true
-offset_left = -159.0
-offset_top = -95.0
-offset_right = 157.0
-offset_bottom = -36.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_top = 2.0
+offset_right = 338.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="Ability_Description" type="Label" parent="visible/Ability_Holder"]
+[node name="Ability_Description" type="Label" parent="visible/Ability_Holder/Ability_Name"]
 unique_name_in_owner = true
-offset_left = -153.459
-offset_top = -51.5946
-offset_right = 151.541
-offset_bottom = 88.4054
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.931
+anchor_right = 0.5
+anchor_bottom = 0.931
+offset_left = -167.0
+offset_top = -0.516003
+offset_right = 166.0
+offset_bottom = 112.484
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
@@ -84,25 +98,27 @@ offset_bottom = 40.0
 
 [node name="Series" type="Label" parent="visible/Info"]
 unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
 use_parent_material = true
 layout_mode = 0
 offset_left = 15.4054
 offset_top = 6.7027
 offset_right = 122.405
 offset_bottom = 34.7027
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 20
 text = "Test Series"
 
 [node name="Number" type="Label" parent="visible/Info"]
 unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 288.0
 offset_top = 8.0
 offset_right = 380.0
 offset_bottom = 54.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 20
 text = "0"
@@ -110,12 +126,13 @@ horizontal_alignment = 2
 
 [node name="Name" type="Label" parent="visible/Info"]
 unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 59.0
 offset_top = 314.703
 offset_right = 332.0
 offset_bottom = 371.703
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 41
 text = "Hampter"
@@ -126,33 +143,82 @@ vertical_alignment = 1
 layout_mode = 3
 anchors_preset = 0
 offset_top = 305.0
-offset_right = 400.0
+offset_right = 397.0
 offset_bottom = 367.0
 
 [node name="Attack" type="Label" parent="visible/Stats"]
 unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 8.405
 offset_right = 88.405
 offset_bottom = 71.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 51
 text = "1"
 
 [node name="Defense" type="Label" parent="visible/Stats"]
 unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
 layout_mode = 0
 offset_left = 326.0
 offset_right = 390.0
 offset_bottom = 71.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_8mybx")
 theme_override_font_sizes/font_size = 51
 text = "1"
 horizontal_alignment = 2
 
+[node name="icons" type="HBoxContainer" parent="visible"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 532.594
+offset_right = 383.0
+offset_bottom = 577.594
+alignment = 2
+
+[node name="hand" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("7_73unf")
+stretch_mode = 5
+
+[node name="fire" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("8_7nwrc")
+stretch_mode = 5
+
+[node name="chest" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 5
+
+[node name="human" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("9_m04fh")
+stretch_mode = 5
+
+[node name="one_use" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("10_x1ylh")
+stretch_mode = 5
+
+[node name="upgrades" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("11_s5n0j")
+stretch_mode = 5
+
 [node name="mouse_detection" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 536870976
 input_pickable = false
@@ -160,5 +226,4 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
 position = Vector2(73.5, 108)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_odvew")

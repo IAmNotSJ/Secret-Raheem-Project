@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://5nck3ajraa8u"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_syhlh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_syhlh")
+card_name = "Persona"
+card_series = "Dapper"
+card_number = "067"
+base_attack = 3.0
+base_defense = 3.0
+can_get_bonuses = true
+ability_name = "Golden"
+ability_description = "This card receives +2 to both stats if it is holo."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

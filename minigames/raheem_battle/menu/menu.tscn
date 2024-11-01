@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dniq8ycjwht5m"]
+[gd_scene load_steps=44 format=3 uid="uid://dniq8ycjwht5m"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/menu/menu.gd" id="1_fnnwu"]
 [ext_resource type="PackedScene" uid="uid://buki7x0i4et4q" path="res://minigames/raheem_battle/quiz/quiz.tscn" id="2_8g1s8"]
@@ -12,8 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://b04wj00c3p8yq" path="res://minigames/raheem_battle/menu/deck_builder/deck_builder.tscn" id="6_r2hmy"]
 [ext_resource type="Texture2D" uid="uid://qra1u05p717" path="res://minigames/raheem_battle/menu/assets/Initial/deck.png" id="7_n5de5"]
 [ext_resource type="Texture2D" uid="uid://cv88cvllqygdc" path="res://minigames/raheem_battle/menu/assets/Initial/profile.png" id="8_15ou1"]
+[ext_resource type="Texture2D" uid="uid://b1csnghb6oa3w" path="res://minigames/raheem_battle/menu/assets/Initial/quiz.png" id="9_8at78"]
 [ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="10_3vu6p"]
+[ext_resource type="Texture2D" uid="uid://q4bj7j1lqy2h" path="res://minigames/raheem_battle/menu/assets/Initial/advanced.png" id="10_ivtdl"]
 [ext_resource type="Texture2D" uid="uid://cqwgk25h6wg3b" path="res://minigames/raheem_battle/menu/assets/Initial/pointer.png" id="13_xb4mq"]
+[ext_resource type="Texture2D" uid="uid://ocj8cmpvfkv0" path="res://minigames/raheem_battle/menu/assets/check.png" id="13_xeiw8"]
+[ext_resource type="Texture2D" uid="uid://b4scisrq4ui87" path="res://minigames/raheem_battle/menu/assets/uncheck.png" id="14_p0sp5"]
+[ext_resource type="Texture2D" uid="uid://qklno4v37y8y" path="res://minigames/raheem_battle/menu/assets/box.png" id="15_l3adr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwotu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjfqx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jo8pn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kyvii"]
+texture = ExtResource("15_l3adr")
+modulate_color = Color(0.84375, 0.84375, 0.84375, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eq00q"]
+texture = ExtResource("15_l3adr")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b33yr"]
 
 [sub_resource type="Animation" id="Animation_hf67y"]
 length = 0.001
@@ -323,7 +345,7 @@ offset_left = 152.283
 offset_top = 312.007
 offset_right = 397.283
 offset_bottom = 367.007
-focus_neighbor_top = NodePath("../Profile")
+focus_neighbor_top = NodePath("../Advanced")
 focus_neighbor_bottom = NodePath("../Join")
 texture_normal = ExtResource("5_klkot")
 
@@ -354,24 +376,28 @@ offset_top = 492.526
 offset_right = 399.709
 offset_bottom = 532.526
 focus_neighbor_top = NodePath("../Deck")
-focus_neighbor_bottom = NodePath("../Host")
+focus_neighbor_bottom = NodePath("../Quiz")
 texture_normal = ExtResource("8_15ou1")
 
-[node name="Quiz" type="Button" parent="ALL/Initial"]
+[node name="Quiz" type="TextureButton" parent="ALL/Initial"]
 unique_name_in_owner = true
-offset_left = 212.382
-offset_top = 644.698
-offset_right = 306.382
-offset_bottom = 675.698
-text = "Open Quiz"
+offset_left = 171.237
+offset_top = 546.515
+offset_right = 386.237
+offset_bottom = 586.515
+focus_neighbor_top = NodePath("../Profile")
+focus_neighbor_bottom = NodePath("../Advanced")
+texture_normal = ExtResource("9_8at78")
 
-[node name="Advanced" type="Button" parent="ALL/Initial"]
+[node name="Advanced" type="TextureButton" parent="ALL/Initial"]
 unique_name_in_owner = true
-offset_left = 330.382
-offset_top = 645.698
-offset_right = 414.382
-offset_bottom = 676.698
-text = "Advanced"
+offset_left = 160.775
+offset_top = 599.426
+offset_right = 404.775
+offset_bottom = 641.426
+focus_neighbor_top = NodePath("../Quiz")
+focus_neighbor_bottom = NodePath("../Host")
+texture_normal = ExtResource("10_ivtdl")
 
 [node name="Main-drawings" type="Sprite2D" parent="ALL/Initial"]
 position = Vector2(254.041, 340.23)
@@ -387,18 +413,78 @@ skew = -0.0174533
 texture = ExtResource("2_41pih")
 centered = false
 
-[node name="CheckBox" type="CheckBox" parent="ALL/Advanced"]
-offset_left = 179.0
-offset_top = 255.0
-offset_right = 406.0
-offset_bottom = 286.0
+[node name="UPNP" type="CheckBox" parent="ALL/Advanced"]
+unique_name_in_owner = true
+offset_left = 122.227
+offset_top = 111.723
+offset_right = 349.227
+offset_bottom = 142.723
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vwotu")
+theme_override_icons/checked = ExtResource("13_xeiw8")
+theme_override_icons/unchecked = ExtResource("14_p0sp5")
 button_pressed = true
 text = "Use Universal Plug In Play"
+flat = true
+
+[node name="DayNight" type="CheckBox" parent="ALL/Advanced"]
+unique_name_in_owner = true
+offset_left = 118.982
+offset_top = 146.758
+offset_right = 345.982
+offset_bottom = 177.758
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vwotu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vwotu")
+theme_override_icons/checked = ExtResource("13_xeiw8")
+theme_override_icons/unchecked = ExtResource("14_p0sp5")
+button_pressed = true
+text = "Follow Day/Night Cycle"
 flat = true
 
 [node name="Host" type="Node2D" parent="ALL"]
@@ -411,11 +497,52 @@ position = Vector2(256, 336)
 texture = ExtResource("2_41pih")
 
 [node name="Create Room" type="Button" parent="ALL/Host/paper"]
-offset_left = -130.172
-offset_top = 21.6108
-offset_right = 152.828
-offset_bottom = 80.6108
+unique_name_in_owner = true
+offset_left = -129.808
+offset_top = -82.4025
+offset_right = 153.192
+offset_bottom = -23.4025
+theme_override_colors/font_hover_pressed_color = Color(0.298039, 0.337255, 0.368627, 1)
+theme_override_colors/font_hover_color = Color(0.384766, 0.448785, 0.5, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_jo8pn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kyvii")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eq00q")
 text = "Create Room"
+
+[node name="Label" type="Label" parent="ALL/Host/paper"]
+offset_left = -162.211
+offset_top = -259.273
+offset_right = 230.789
+offset_bottom = -154.273
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 82
+text = "HOST GAME"
+
+[node name="Explanation" type="Label" parent="ALL/Host/paper"]
+offset_left = -173.214
+offset_top = 26.1131
+offset_right = 227.786
+offset_bottom = 325.113
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 28
+text = "How to Host:
+Press the \"Create Room\" button, and give the code on the top right of your screen to the person who will join you"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Join" type="Node2D" parent="ALL"]
 position = Vector2(-530, 1117)
@@ -436,10 +563,27 @@ theme_override_font_sizes/font_size = 64
 text = "JOIN GAME"
 
 [node name="Join Room" type="Button" parent="ALL/Join"]
+unique_name_in_owner = true
 offset_left = 159.129
 offset_top = 378.762
 offset_right = 442.129
 offset_bottom = 437.762
+theme_override_colors/font_hover_pressed_color = Color(0.29834, 0.338142, 0.367188, 1)
+theme_override_colors/font_hover_color = Color(0.384314, 0.447059, 0.501961, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3cqon")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kyvii")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kjfqx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eq00q")
 text = "Join Room"
 
 [node name="address_bar" type="LineEdit" parent="ALL/Join"]
@@ -448,6 +592,14 @@ offset_left = 161.682
 offset_top = 311.966
 offset_right = 444.682
 offset_bottom = 370.966
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.570313, 0.570313, 0.570313, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_3vu6p")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b33yr")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_b33yr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eq00q")
 placeholder_text = "Enter Room Address"
 alignment = 1
 
@@ -485,6 +637,8 @@ autoplay = "bounce"
 [connection signal="pressed" from="ALL/Initial/Profile" to="." method="_on_profile_pressed"]
 [connection signal="pressed" from="ALL/Initial/Quiz" to="." method="_on_quiz_pressed"]
 [connection signal="pressed" from="ALL/Initial/Advanced" to="." method="_on_advanced_pressed"]
-[connection signal="toggled" from="ALL/Advanced/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="ALL/Advanced/UPNP" to="." method="_on_upnp_toggled"]
+[connection signal="toggled" from="ALL/Advanced/DayNight" to="." method="_on_check_box_2_toggled"]
+[connection signal="toggled" from="ALL/Advanced/DayNight" to="." method="_on_day_night_toggled"]
 [connection signal="pressed" from="ALL/Host/paper/Create Room" to="." method="_on_create_room_pressed"]
 [connection signal="pressed" from="ALL/Join/Join Room" to="." method="_on_join_room_pressed"]

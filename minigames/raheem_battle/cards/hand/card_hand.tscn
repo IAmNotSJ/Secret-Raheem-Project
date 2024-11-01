@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/offset/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +28,7 @@ step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/offset/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +45,7 @@ step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/held_cards:position")
+tracks/0/path = NodePath("CanvasLayer/offset/held_cards:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,8 +72,18 @@ script = ExtResource("1_dlrp0")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="held_cards" type="HBoxContainer" parent="CanvasLayer"]
+[node name="offset" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = -2.0
+offset_right = 1258.0
+offset_bottom = 214.0
+
+[node name="held_cards" type="HBoxContainer" parent="CanvasLayer/offset"]
+unique_name_in_owner = true
+layout_mode = 0
 offset_left = 6.0
 offset_top = 695.0
 offset_right = 1277.0
@@ -81,6 +91,7 @@ offset_bottom = 911.0
 alignment = 1
 
 [node name="DayNightCycle" parent="CanvasLayer" instance=ExtResource("2_kdbcx")]
+unique_name_in_owner = true
 
 [node name="victory_chest" type="Control" parent="."]
 visible = false

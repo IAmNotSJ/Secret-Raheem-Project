@@ -12,7 +12,7 @@ base_attack = 2.0
 base_defense = 2.0
 can_get_bonuses = true
 ability_name = "Freddy Mask"
-ability_description = "If this card loses within the first 3 rounds of the game, the loss does not count and no cards are removed.
+ability_description = "If this card loses within the first 3 rounds of the game, the loss is counted as a tie and no cards are removed.
 "
 one_use_ability = false
 should_remove = true

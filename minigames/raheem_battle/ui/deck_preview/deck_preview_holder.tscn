@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://yrw3wykomle6"]
+[gd_scene load_steps=3 format=3 uid="uid://yrw3wykomle6"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/deck_preview/deck_preview_holder.gd" id="1_s70l3"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_m58f2"]
 
 [node name="deck_preview_holder" type="Control"]
 layout_mode = 3
@@ -16,26 +17,27 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 159.0
 offset_top = 97.0
-offset_right = -130.0
+offset_right = -1.0
 offset_bottom = -303.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 250
+theme_override_constants/separation = 100
+alignment = 1
 
 [node name="Row2" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 132.0
+offset_left = 1.0
 offset_top = 418.0
-offset_right = -193.0
+offset_right = 1.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 250
+theme_override_constants/separation = 100
+alignment = 1
 
 [node name="Cancel" type="Button" parent="."]
 visible = false
@@ -45,5 +47,16 @@ offset_top = 629.0
 offset_right = 1258.0
 offset_bottom = 704.0
 text = "CANCEL"
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1278.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("2_m58f2")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Cancel" to="." method="clear"]

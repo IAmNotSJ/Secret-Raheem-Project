@@ -12,7 +12,7 @@ enum {
 var current_screen = INITIAL
 
 
-@onready var initial_buttons = [%Host, %Join, %Deck, %Profile]
+@onready var initial_buttons = [%Host, %Join, %Deck, %Profile, %Quiz, %Advanced]
 
 const popup_scene = preload("res://minigames/raheem_battle/menu/popup/popup.tscn")
 var in_popup:bool = false
@@ -31,7 +31,6 @@ var in_popup:bool = false
 
 var key_pressed:bool = false
 
-var upnp:bool = false
 
 func make_popup(error_code:String = ""):
 	if !in_popup:
@@ -51,6 +50,8 @@ func _ready():
 		button.mouse_entered.connect(_on_button_entered.bind(button))
 		button.mouse_exited.connect(_on_button_exited.bind(button))
 		button.focus_entered.connect(_on_button_focused.bind(button))
+		%UPNP.button_pressed = Saves.battle_settings["UPNP"]
+		%DayNight.button_pressed = Saves.battle_settings["DayNight"]
 	%Host.grab_focus()
 
 func _unhandled_input(event):
@@ -130,28 +131,34 @@ func _on_button_focused(button):
 	#print('focused')
 	$Pointer.visible = true
 	$Pointer.global_position = button.global_position
-	$Pointer.global_position.x -= 30
-	$Pointer.global_position.y += 30
+	$Pointer.global_position.x -= 20
+	$Pointer.global_position.y += button.size.y / 2
 
 func _on_host_pressed():
-	_switch_screen(HOST)
+	if !in_popup:
+		_switch_screen(HOST)
 func _on_join_pressed():
-	_switch_screen(JOIN)
+	if !in_popup:
+		_switch_screen(JOIN)
 func _on_advanced_pressed():
-	_switch_screen(ADVANCED)
+	if !in_popup:
+		_switch_screen(ADVANCED)
 func _on_quiz_pressed():
-	_switch_screen(QUIZ)
+	if !in_popup:
+		_switch_screen(QUIZ)
 func _on_deck_pressed():
-	_switch_screen(DECK)
+	if !in_popup:
+		_switch_screen(DECK)
 func _on_profile_pressed():
-	_switch_screen(PROFILE)
+	if !in_popup:
+		_switch_screen(PROFILE)
 
 
 func _on_join_room_pressed():
 	if check_playability() == false:
 		make_popup("004")
 		return
-	if !upnp:
+	if !Saves.battle_settings["UPNP"]:
 		manager.on_join_pressed("localhost")
 	elif %address_bar.text != "":
 		manager.on_join_pressed(%address_bar.text)
@@ -167,5 +174,12 @@ func check_playability() -> bool:
 			return false
 	return true
 
-func _on_check_box_toggled(toggled_on):
-	upnp = toggled_on
+ 
+func _on_day_night_toggled(toggled_on: bool) -> void:
+	Saves.battle_settings["DayNight"] = toggled_on
+	Saves.save(Saves.SaveTypes.BATTLE)
+
+
+func _on_upnp_toggled(toggled_on: bool) -> void:
+	Saves.battle_settings["UPNP"] = toggled_on
+	Saves.save(Saves.SaveTypes.BATTLE)

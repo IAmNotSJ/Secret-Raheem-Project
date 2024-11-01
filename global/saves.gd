@@ -23,6 +23,7 @@ var videoSettings:Dictionary = {
 # Time is the seconds in the save file
 var playerInfo = {
 	"Time" : 0,
+	"Last Login" : Time.get_unix_time_from_system(),
 	"Login Streak" : 0,
 	"Copper Coins" : 0}
 
@@ -77,11 +78,13 @@ var battle_quiz = {
 	"Twitch" : false,
 	"Math" : 0,
 	"Autistic" : false,
+	"Object Show" : false,
 	"Favorite Member" : "None",
 	"Youtubers" : "Pewdiepie",
 	"Lucky Number" : 0,
-	"College Years" : 1,
+	"College Years" : 0,
 	"Subscribers" : 0,
+	"Most Views" : 0,
 	"Speedrun" : false}
 var battle_info = {
 	"Name" : "",
@@ -103,6 +106,169 @@ var battle_deck = {
 	"Card 7": "-1",
 	"Card 8": "-1",
 }
+var battle_unlocks = {
+	"000" : 1,
+	"001" : 1,
+	"002" : 1,
+	"003" : 1,
+	"004" : 1,
+	"005" : 1,
+	"006" : 1,
+	"007" : 1,
+	"008" : 1,
+	"009" : 1,
+	"010" : 1,
+	"011" : 1,
+	"012" : 1,
+	"013" : 1,
+	"014" : 1,
+	"015" : 1,
+	"016" : 1,
+	"017" : 1,
+	"018" : 1,
+	"019" : 1,
+	"020" : 1,
+	"021" : 1,
+	"022" : 1,
+	"023" : 1,
+	"024" : 1,
+	"025" : 1,
+	"026" : 1,
+	"027" : 1,
+	"028" : 1,
+	"029" : 1,
+	"030" : 1,
+	"031" : 1,
+	"032" : 1,
+	"033" : 1,
+	"034" : 1,
+	"035" : 1,
+	"036" : 1,
+	"037" : 1,
+	"038" : 1,
+	"039" : 1,
+	"040" : 1,
+	"041" : 1,
+	"042" : 1,
+	"043" : 1,
+	"044" : 1,
+	"045" : 1,
+	"046" : 1,
+	"047" : 1,
+	"048" : 1,
+	"049" : 1,
+	"050" : 1,
+	"051" : 1,
+	"052" : 1,
+	"053" : 1,
+	"054" : 1,
+	"055" : 1,
+	"056" : 1,
+	"057" : 1,
+	"058" : 1,
+	"059" : 1,
+	"060" : 1,
+	"061" : 1,
+	"062" : 1,
+	"063" : 1,
+	"064" : 1,
+	"065" : 1,
+	"066" : 1,
+	"067" : 1,
+	"068" : 1,
+	"069" : 1,
+	"070" : 1,
+	"071" : 1,
+	"072" : 1,
+	"073" : 1,
+	"074" : 1,
+	"075" : 1,
+	"076" : 1,
+	"077" : 1,
+	"078" : 1,
+	"079" : 1,
+	"080" : 1,
+	"081" : 1,
+	"082" : 1,
+	"083" : 1,
+	"084" : 1,
+	"085" : 1,
+	"086" : 1,
+	"087" : 1,
+	"088" : 1,
+	"089" : 1,
+	"090" : 1,
+	"091" : 1,
+	"092" : 1,
+	"093" : 1,
+	"094" : 1,
+	"095" : 1,
+	"096" : 1,
+	"097" : 1,
+	"098" : 1,
+	"099" : 1,
+	"100" : 1,
+	"101" : 1,
+	"102" : 1,
+	"103" : 1,
+	"104" : 1,
+	"105" : 1,
+	"106" : 1,
+	"107" : 1,
+	"108" : 1,
+	"109" : 1,
+	"110" : 1,
+	"111" : 1,
+	"112" : 1,
+	"113" : 1,
+	"114" : 1,
+	"115" : 1,
+	"116" : 1,
+	"117" : 1,
+	"118" : 1,
+	"119" : 1,
+	"120" : 1,
+	"121" : 1,
+	"122" : 1,
+	"123" : 1,
+	"124" : 1,
+	"125" : 1,
+	"126" : 1,
+	"127" : 1,
+	"128" : 1,
+	"129" : 1,
+	"130" : 1,
+	"131" : 1,
+	"132" : 1,
+	"133" : 1,
+	"134" : 1,
+	"135" : 1,
+	"136" : 1,
+	"137" : 1,
+	"138" : 1,
+	"139" : 1,
+	"140" : 1,
+	"141" : 1,
+	"142" : 1,
+	"143" : 1,
+	"144" : 1,
+	"145" : 1,
+	"146" : 1,
+	"147" : 1,
+	"148" : 1,
+	"149" : 1,
+	"150" : 1,
+	"151" : 1,
+	"152" : 1,
+	"153" : 1,
+	"154" : 1,
+	"155" : 1,
+	"156" : 1
+}
+var battle_settings = {
+	"UPNP" : true,
+	"DayNight" : true
+}
 # KARL PILKINGTON
 
 
@@ -111,6 +277,18 @@ func _ready():
 	load_save(SaveTypes.SETTINGS)
 	load_save(SaveTypes.HYENA)
 	load_save(SaveTypes.BATTLE)
+	
+	var difference:float = float(playerInfo["Last Login"] - Time.get_unix_time_from_system()) / float(24 * 60 * 60)
+	if difference > 1 and difference < 2:
+		playerInfo["Login Streak"] += 1
+	elif difference > 2:
+		playerInfo["Login Streak"] = 0
+	
+	print(playerInfo["Login Streak"])
+	
+	playerInfo["Last Login"] = Time.get_unix_time_from_system()
+	
+	save(SaveTypes.SETTINGS)
 	
 	# APPLY SETTIGNS!
 	if videoSettings["VSync"]:
@@ -156,7 +334,8 @@ func save(type:SaveTypes):
 				"Battle Quiz" : battle_quiz,
 				"Battle Stats" : battle_stats,
 				"Battle Deck" : battle_deck,
-				"Battle Info" : battle_info
+				"Battle Info" : battle_info,
+				"Battle Settings" : battle_settings
 			}
 	var jstr = JSON.stringify(data)
 	#print('saved!')
@@ -185,13 +364,13 @@ func load_save(type:SaveTypes):
 			var keys = current_line.keys()
 			if current_line:
 				if keys.has("Audio Settings"):
-					audioSettings = current_line["Audio Settings"]
+					load_specific_setting(audioSettings, current_line, "Audio Settings")
 				if keys.has("Video Settings"):
-					videoSettings = current_line["Video Settings"]
+					load_specific_setting(videoSettings, current_line, "Video Settings")
 				if keys.has("Player Info"):
-					playerInfo = current_line["Player Info"]
+					load_specific_setting(playerInfo, current_line, "Player Info")
 				if keys.has("Character Interactions"):
-					characterInteractions = current_line["Character Interactions"]
+					load_specific_setting(characterInteractions, current_line, "Character Interactions")
 				if keys.has("Items"):
 					load_specific_setting(items, current_line, "Items")
 				if keys.has("Unlocks"):
@@ -206,6 +385,8 @@ func load_save(type:SaveTypes):
 					load_specific_setting(battle_deck, current_line, "Battle Deck")
 				if keys.has("Battle Info"):
 					load_specific_setting(battle_info, current_line, "Battle Info")
+				if keys.has("Battle Settings"):
+					load_specific_setting(battle_settings, current_line, "Battle Settings")
 				if keys.has("Hyena Stats"):
 					load_specific_setting(hyena_stats, current_line, "Hyena Stats")
 	

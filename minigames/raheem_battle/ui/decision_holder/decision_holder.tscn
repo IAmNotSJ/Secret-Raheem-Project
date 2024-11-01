@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp843v8t42ok6"]
+[gd_scene load_steps=3 format=3 uid="uid://cp843v8t42ok6"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/decision_holder/decision_holder.gd" id="1_mr1py"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_0tvl6"]
 
 [node name="decision_holder" type="Control"]
 layout_mode = 3
@@ -11,13 +12,29 @@ script = ExtResource("1_mr1py")
 
 [node name="Message" type="Label" parent="."]
 layout_mode = 0
-offset_top = 128.0
+offset_top = 32.0
 offset_right = 1278.0
-offset_bottom = 207.0
+offset_bottom = 299.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_0tvl6")
 theme_override_font_sizes/font_size = 52
 text = "Test Message"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="bottom_message" type="Label" parent="."]
+layout_mode = 0
+offset_top = 640.0
+offset_right = 1278.0
+offset_bottom = 719.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_0tvl6")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="True" type="Button" parent="."]
 layout_mode = 0

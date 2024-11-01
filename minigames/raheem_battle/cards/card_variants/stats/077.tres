@@ -5,14 +5,14 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_knui0")
-card_name = "Chuck McGill"
+card_name = "Following the Algorithm"
 card_series = "Slime"
 card_number = "077"
-base_attack = 3.0
-base_defense = 3.0
+base_attack = 0.0
+base_defense = 0.0
 can_get_bonuses = true
-ability_name = "Electromagnetic Hypersensitivity"
-ability_description = "This card receives +2 to both stats if the game is being played between 9pm and 5am (In the player's timezone)"
+ability_name = "Pro-Youtuber"
+ability_description = "This card's attack and defense is equivalent to the player's most viewed video / 5000, rounded down to the nearest integer."
 one_use_ability = false
 should_remove = true
 hide_stats = false

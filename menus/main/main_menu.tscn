@@ -60,18 +60,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -103.631
+offset_left = -89.9114
 offset_top = 662.0
-offset_right = 1582.37
+offset_right = 1596.09
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -334.561
+offset_left = -348.278
 offset_top = -10.0
-offset_right = 1351.45
+offset_right = 1337.73
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -148,6 +148,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 stream = ExtResource("11_ygtk5")
+volume_db = 24.0
 bus = &"SFX"
 
 [connection signal="pressed" from="Main/Begin" to="." method="_on_begin_pressed"]

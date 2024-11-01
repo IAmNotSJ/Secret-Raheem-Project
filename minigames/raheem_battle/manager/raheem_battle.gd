@@ -11,6 +11,8 @@ var menu
 
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
+var waiting_to_join:bool = false
+
 const PORT = 7890
 
 #Array of all the peer ids connected to the server. Will be a STRING
@@ -62,7 +64,6 @@ func make_menu():
 func add_player(daPeer):
 	connected_peer_ids.append(daPeer)
 	var player_name = Saves.battle_info["Name"]
-	print("PLAYER NAME: " + player_name)
 	if player_name == "":
 		player_name = "Random Player"
 	game.add_player(player_name, daPeer)
@@ -88,7 +89,7 @@ func on_host_pressed():
 	multiplayer.multiplayer_peer = multiplayer_peer
 	
 	var address
-	if current_scene.upnp:
+	if Saves.battle_settings["UPNP"]:
 		address = upnp_setup()
 	else:
 		address = "localhost"
@@ -100,24 +101,30 @@ func on_host_pressed():
 	#Adds the PLAYER for the host
 	add_player(peer_id)
 	
-	player_joined.connect(
-		func(new_peer_id):
-			#Adds the PLAYER for the client that just connected
-			add_player.rpc(new_peer_id)
-			#Adds the OPPONENT for the client that just connected
-			add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
-			
-			# Just to give the client enough time to actually join.
-			# TODO: Find a better way to do this. Perhaps with a signal that is emitted by the player character when they join the game? idk 
-			await get_tree().create_timer(1).timeout
-			game.start_game_request()
-	)
-	if !multiplayer_peer.is_connected("peer_disconnected", _on_peer_disconnect):
-		print("GOIP???")
-		multiplayer.peer_disconnected.connect(_on_peer_disconnect)
+	#Disconnect the player_joined code
+	if player_joined.is_connected(_on_player_joined):
+		player_joined.disconnect(_on_player_joined)
+	player_joined.connect(_on_player_joined)
+	
+	#Disconnect the peer_disconnected code
+	if multiplayer.multiplayer_peer.peer_disconnected.is_connected(_on_peer_disconnect):
+		multiplayer.multiplayer_peer.peer_disconnected.disconnect(_on_peer_disconnect)
+	multiplayer.multiplayer_peer.peer_disconnected.connect(_on_peer_disconnect)
 	
 	current_scene.queue_free()
 	current_scene = game
+
+func _on_player_joined(new_peer_id):
+	#Adds the PLAYER for the client that just connected
+	add_player.rpc(new_peer_id)
+	#Adds the OPPONENT for the client that just connected
+	add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
+	
+	# Just to give the client enough time to actually join.
+	# TODO: Find a better way to do this. Perhaps with a signal that is emitted by the player character when they join the game? idk 
+	await get_tree().create_timer(1).timeout
+	if game != null:
+		game.start_game_request()
 
 func on_join_pressed(ADDRESS):
 	multiplayer_peer = ENetMultiplayerPeer.new()
@@ -127,41 +134,57 @@ func on_join_pressed(ADDRESS):
 		multiplayer_peer.create_client(decrypt_address(ADDRESS), PORT)
 	multiplayer.multiplayer_peer = multiplayer_peer
 	
-	multiplayer.connected_to_server.connect(
-		func():
-			var id = multiplayer.get_unique_id()
-			_receive_join_request.rpc_id(1, id, ADDRESS)
-	)
+	if multiplayer.connected_to_server.is_connected(_on_join_connected):
+		multiplayer.connected_to_server.disconnect(_on_join_connected)
+	multiplayer.connected_to_server.connect(_on_join_connected.bind(ADDRESS))
+	
+	waiting_to_join = true
+	await get_tree().create_timer(1).timeout
+	if waiting_to_join:
+		waiting_to_join = false
+		print("FAIL!")
+		multiplayer.connected_to_server.disconnect(_on_join_connected)
+		current_scene.make_popup("006")
+
+func _on_join_connected(ADDRESS):
+	var id = multiplayer.get_unique_id()
+	_receive_join_request.rpc_id(1, id, ADDRESS)
 
 @rpc("any_peer")
 func _receive_join_request(id, address):
-	if connected_peer_ids.size() >= 2:
+	# Can't be lower than one (room isnt open) and can't be greater than one (room is full)
+	if connected_peer_ids.size() != 1:
 		#BAD
-		multiplayer_peer.close()
-		current_scene.make_popup("005")
+		close_peer.rpc_id(id)
+		current_scene.make_popup.rpc_id(id, "005")
 	else:
 		#GOOD
 		join_game.rpc_id(id, address)
 
 @rpc("authority")
 func join_game(ADDRESS):
-	if !multiplayer_peer.is_connected("peer_disconnected", _on_peer_disconnect):
-		multiplayer.peer_disconnected.connect(_on_peer_disconnect)
-	make_game()
-	
-	add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
-	
-	peer_id = multiplayer.get_unique_id()
-	game_type = CLIENT
-	room_address = str(ADDRESS)
-	
-	current_scene.queue_free()
-	current_scene = game
-	
-	send_join_notification.rpc_id(1, peer_id)
+	if waiting_to_join:
+		if multiplayer.multiplayer_peer.peer_disconnected.is_connected(_on_peer_disconnect):
+			multiplayer.multiplayer_peer.peer_disconnected.disconnect(_on_peer_disconnect)
+		multiplayer.multiplayer_peer.peer_disconnected.connect(_on_peer_disconnect)
+		make_game()
+		
+		waiting_to_join = false
+		
+		add_opponent.rpc(multiplayer.multiplayer_peer.get_unique_id(), Saves.battle_info)
+		
+		peer_id = multiplayer.get_unique_id()
+		game_type = CLIENT
+		room_address = str(ADDRESS)
+		
+		current_scene.queue_free()
+		current_scene = game
+		
+		send_join_notification.rpc_id(1, peer_id)
 
 @rpc("any_peer")
 func send_join_notification(id):
+	print('what about this')
 	player_joined.emit(id)
 
 #Internet stuff
@@ -191,9 +214,13 @@ func upnp_setup():
 func disconnect_from_game(code:String = ""):
 	if peer_id != -1:
 		print('disconnecting!')
-		multiplayer_peer.close()
+		close_peer()
 	return_to_menu(code)
 
+@rpc("any_peer")
+func close_peer():
+	multiplayer_peer.close()
+	connected_peer_ids = []
 #Used to DISCRETELY disconnect. Will not trigger opponent to disconnect either
 @rpc("any_peer")
 func disconnect_discrete():

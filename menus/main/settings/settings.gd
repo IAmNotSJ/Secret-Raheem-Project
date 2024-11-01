@@ -16,4 +16,5 @@ func _on_v_sync_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	Saves.videoSettings["VSync"] = true
 	Saves.save(Saves.SaveTypes.SETTINGS)

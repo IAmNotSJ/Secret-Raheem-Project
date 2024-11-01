@@ -6,11 +6,19 @@ extends Node2D
 var started:bool = false
 
 func create(won:bool):
-	ui.game.manager.disconnect_discrete()
+	ui.game.manager.clear_peer_ids()
+	ui.game.manager.clear_peer_ids.rpc()
 	ui.card_hand.block_input()
 	screen_container.add_screen_queue(screen_container.RESULTS, false, true)
 	
-	var money = money_calculation()
+	Saves.battle_stats["Games Played"] += 1
+	if won:
+		Saves.battle_stats["Wins"] += 1
+	else:
+		Saves.battle_stats["Losses"] += 1
+	Saves.save(Saves.SaveTypes.BATTLE)
+	
+	var money = money_calculation(ui.game.turn_count, won)
 	started = true
 	#visible = true
 	if won:
@@ -47,5 +55,21 @@ func _input(event: InputEvent) -> void:
 				print('gurp')
 				ui.game.manager.return_to_menu("")
 				pass
-func money_calculation():
-	return 100
+func money_calculation(turn_count:int, won:bool) -> int:
+	
+	var amount:int = 60
+	# See how many different series you have
+	var series_array = []
+	for card in Saves.battle_deck:
+		if !series_array.has(card.stats["Card Series"]):
+			series_array.append(card.stats["Card Series"])
+	
+	if turn_count > 8:
+		amount += randi_range(20, 30) * (turn_count - 8)
+	
+	for i in range(series_array.size()):
+		amount += i * randi_range(30, 60)
+	
+	if won:
+		amount += randi_range(70, 100)
+	return amount

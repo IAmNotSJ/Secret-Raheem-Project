@@ -194,6 +194,7 @@ layer = 128
 
 [node name="Mouse" type="Sprite2D" parent="."]
 z_index = 4096
+position = Vector2(-84, -79)
 texture = ExtResource("1_cscgm")
 offset = Vector2(25, 59)
 hframes = 5
@@ -201,6 +202,7 @@ frame = 1
 script = ExtResource("6_bsoye")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Mouse"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_rcjfs")
 }

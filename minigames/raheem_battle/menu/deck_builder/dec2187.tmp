@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://b04wj00c3p8yq"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/deck_builder/deck_builder.gd" id="1_tyml5"]
+[ext_resource type="PackedScene" uid="uid://dn6ousec2kubc" path="res://minigames/raheem_battle/menu/deck_builder/card_snap/card_snap.tscn" id="4_xpfr8"]
+
+[node name="deck_builder" type="Node2D"]
+script = ExtResource("1_tyml5")
+
+[node name="snaps" type="Node2D" parent="."]
+
+[node name="snap_container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 790.0
+offset_top = 35.0
+offset_right = 830.0
+offset_bottom = 75.0
+
+[node name="card_1" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+deck_index = 1
+
+[node name="card_2" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 302.0
+deck_index = 2
+
+[node name="card_3" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 306.0
+offset_right = 455.0
+deck_index = 3
+
+[node name="card_4" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_top = 220.0
+offset_bottom = 436.0
+deck_index = 4
+
+[node name="card_5" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 220.0
+offset_right = 302.0
+offset_bottom = 436.0
+deck_index = 5
+
+[node name="card_6" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 220.0
+offset_right = 455.0
+offset_bottom = 436.0
+deck_index = 6
+
+[node name="card_7" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 440.0
+offset_right = 221.0
+offset_bottom = 656.0
+size_flags_horizontal = 8
+deck_index = 7
+
+[node name="card_8" parent="snap_container" instance=ExtResource("4_xpfr8")]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 440.0
+offset_right = 374.0
+offset_bottom = 656.0
+size_flags_horizontal = 8
+deck_index = 8
+
+[node name="grabbed_cards" type="Node2D" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 10.0
+offset_top = -14.0
+offset_right = 1279.0
+offset_bottom = 714.0
+horizontal_scroll_mode = 0
+
+[node name="card_container" type="Control" parent="ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1280, 14400)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="save" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 644.0
+offset_right = 774.0
+offset_bottom = 689.0
+text = "SAVE DECK"
+
+[node name="dark" type="ColorRect" parent="."]
+visible = false
+offset_left = -357.0
+offset_top = -243.0
+offset_right = 1684.0
+offset_bottom = 1010.0
+color = Color(0, 0, 0, 0.396078)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]

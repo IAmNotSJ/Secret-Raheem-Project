@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 	if screens_to_show.size() > 0 and showing_screens:
 		if screens_to_show[0].visible == false:
 			screens_to_show.remove_at(0)
-			print("SCREEN QUEUE: " + str(screens_to_show))
+			#print("SCREEN QUEUE: " + str(screens_to_show))
 			if screens_to_show.size() > 0:
 				screens_to_show[0].visible = true
 			else:
@@ -56,10 +56,13 @@ func add_screen_queue(screenEnum, end:bool = false, force:bool = false):
 			screen = $paper
 		RESULTS:
 			screen = $results
-	#print(str(screen) + "HAS BEEN ADDED FOR " + get_parent().get_parent().get_player().player_name)
+	#print(str(screen) + "HAS BEEN ADDED")
 	if force:
 		for daScreen in screens_to_show:
-			daScreen.visible = false
+			if daScreen.has_method("clear"):
+				daScreen.clear()
+			else:
+				daScreen.visible = false
 		screen.visible = true
 	else:
 		if end:
@@ -73,6 +76,8 @@ func start_showing_screens():
 		#print("--------STARTING TO SHOW SCREENS--------")
 		screens_to_show[0].visible = true
 		showing_screens = true
+		ui.is_in_preview = true
+		ui.card_hand.block_input()
 
 
 func _on_finished() -> void:

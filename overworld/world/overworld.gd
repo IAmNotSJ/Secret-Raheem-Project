@@ -1,8 +1,8 @@
 extends Node
 
-const MINUTES_PER_HOUR = 60
-const MINUTES_PER_DAY = 24 * MINUTES_PER_HOUR
-const INGAME_TO_REAL_MINUTE_DURATION = (2*PI) / MINUTES_PER_DAY
+const MINUTES_PER_HOUR:int = 60
+const MINUTES_PER_DAY:int = 24 * MINUTES_PER_HOUR
+const INGAME_TO_REAL_MINUTE_DURATION:float = (2*PI) / MINUTES_PER_DAY
 
 signal time_tick(hour:int, minute:int)
 signal hour_passed(hour:int)
@@ -15,7 +15,7 @@ var last_hour:int
 var initial_hour
 var initial_minute
 
-const INGAME_SPEED:float = 1 / 60
+const INGAME_SPEED:float = 1.0 / 60.0
 
 func _ready():
 	initial_hour = int(Time.get_time_dict_from_system()["hour"])
@@ -66,6 +66,15 @@ func get_current_minutes():
 	var minute = int(current_day_minutes % MINUTES_PER_HOUR)
 	
 	return minute
+
+func is_time_between(starting_hour:int, starting_minute:int, ending_hour:int, ending_minute:int) -> bool:
+	var hour = get_current_hour()
+	var minute = get_current_minutes()
+	
+	if hour >= starting_hour && minute >= starting_minute or hour < ending_hour && hour < ending_minute:
+		return true
+	else:
+		return false
 
 var positions:Dictionary = {
 	"Main World" : Vector2(0, 0),

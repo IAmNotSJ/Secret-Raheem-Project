@@ -1,3 +1,4 @@
+class_name Player
 extends Node
 
 #Mirror enum of the Sides enum in game. 

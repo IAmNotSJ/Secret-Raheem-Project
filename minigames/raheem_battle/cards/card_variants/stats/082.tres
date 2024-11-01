@@ -5,13 +5,13 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ket43")
-card_name = "Lack of Motivation"
+card_name = "Cereal Connoisseur"
 card_series = "Slime"
 card_number = "082"
 base_attack = 2.0
 base_defense = 2.0
 can_get_bonuses = true
-ability_name = "Placeholder"
+ability_name = "Brands"
 ability_description = "This card copies the ability of another card selected by the player for the rest of the game, when played."
 one_use_ability = false
 should_remove = true

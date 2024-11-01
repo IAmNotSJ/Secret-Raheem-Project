@@ -12,6 +12,7 @@ script = ExtResource("1_cpsov")
 [node name="Mouse" parent="." instance=ExtResource("2_o51yy")]
 
 [node name="mouse_area" type="Area2D" parent="."]
+position = Vector2(-77, -48)
 collision_layer = 64
 collision_mask = 0
 

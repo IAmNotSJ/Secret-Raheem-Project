@@ -6,6 +6,7 @@ extends Node2D
 const WEBHOOK_URL = "https://discord.com/api/webhooks/1279278515933679666/pL2CsmnHFZVozp1fkwophAjb4KDc5fxG9mIqIoqO5YhE9yGzERu7rYtsC_sDKaCULbe5"
 
 var isWindowFocused:bool = true
+var isMouseInside:bool = true
 
 const SAVE_PATH = "user://overworld.save"
 const SETTINGS_PATH = "user://settings.hellopersonlookingatthefiles"
@@ -73,7 +74,7 @@ func _ready():
 	embed.add_field("Turns", "0", true)
 	
 	
-	webhook.post()
+	#webhook.post()
 
 func _input(_event: InputEvent) -> void:
 	if get_viewport().get_camera_2d() != null:
@@ -105,6 +106,29 @@ func update_save_file_time():
 	Saves.playerInfo["Time"] += time_elapsed
 	Saves.save(Saves.SaveTypes.SETTINGS)
 
+func can_remove_coins(amount:int):
+	if Saves.playerInfo["Copper Coins"] >= amount:
+		return true
+	else:
+		return false
+	
+
+#Returns the amount of coins left after the transaction
+func remove_coins(amount:int):
+	if Saves.playerInfo["Copper Coins"] >= amount:
+		Saves.playerInfo["Copper Coins"] -= amount
+		Saves.save(Saves.SaveTypes.SETTINGS)
+		print("Remaining Copper Coins: " + str(Saves.playerInfo["Copper Coins"]))
+		return Saves.playerInfo["Copper Coins"]
+	else:
+		return -1
+
+#Returns the amount of coins left after the addition
+func add_coins(amount:int):
+	Saves.playerInfo["Copper Coins"] += amount
+	Saves.save(Saves.SaveTypes.SETTINGS)
+	return Saves.playerInfo["Copper Coins"]
+
 func _notification(what):
 	match what:
 		NOTIFICATION_WM_WINDOW_FOCUS_OUT:
@@ -117,7 +141,8 @@ func _notification(what):
 			update_save_file_time()
 
 func toggle_mouse_visibility():
-	if $Mouse.mouse_mode == $Mouse.MouseMode.VISIBLE:
-		$Mouse.mouse_mode = $Mouse.MouseMode.HIDDEN
-	if $Mouse.mouse_mode == $Mouse.MouseMode.HIDDEN:
-		$Mouse.mouse_mode = $Mouse.MouseMode.VISIBLE
+	var daMouse = $Mouse.get_node("Mouse")
+	if daMouse.mouse_mode == daMouse.MouseMode.VISIBLE:
+		daMouse.mouse_mode = daMouse.MouseMode.HIDDEN
+	if daMouse.mouse_mode == daMouse.MouseMode.HIDDEN:
+		daMouse.mouse_mode = daMouse.MouseMode.VISIBLE

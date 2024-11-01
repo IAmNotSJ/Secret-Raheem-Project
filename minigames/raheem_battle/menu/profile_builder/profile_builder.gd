@@ -1,7 +1,6 @@
 extends Node2D
 
 func _ready():
-	print(Saves.battle_info["Color"])
 	%character_name.text = Saves.battle_info["Name"]
 	%character_name_edit.text = Saves.battle_info["Name"]
 	%color_picker_color.modulate = Color(Saves.battle_info["Color"][0], Saves.battle_info["Color"][1], Saves.battle_info["Color"][2])

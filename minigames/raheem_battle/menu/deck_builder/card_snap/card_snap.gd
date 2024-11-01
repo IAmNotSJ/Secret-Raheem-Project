@@ -14,7 +14,6 @@ func lock_card(daCard):
 		
 		Saves.battle_deck["Card " + str(deck_index)] = card.stats.card_number
 		#print(Saves.battle_deck)
-		#print("Saved to " + "card " + str(deck_index) + " the card " + card.stats.card_name)
 		card.get_parent().get_parent().get_parent().cards_removed.append(card.stats.card_number)
 		#print(card.get_parent().get_parent().get_parent().cards_removed)
 		card.reparent(self)

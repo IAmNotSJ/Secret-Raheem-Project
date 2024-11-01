@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vrudn4iuu20u"]
+[gd_scene load_steps=10 format=3 uid="uid://vrudn4iuu20u"]
 
 [ext_resource type="Script" path="res://menus/main/settings/Objects/windowModePopup/WindowModeButton.gd" id="1_irj87"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="1_y5r4v"]
@@ -22,6 +22,8 @@ default_font = ExtResource("1_y5r4v")
 default_font_size = 19
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_0p20i")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_31i3o")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wimqa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6r01"]
 bg_color = Color(0.0313726, 0.419608, 0.556863, 1)
@@ -71,6 +73,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 theme_override_constants/h_separation = 10
 theme_override_font_sizes/font_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wimqa")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r6r01")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_oablx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_j38nu")

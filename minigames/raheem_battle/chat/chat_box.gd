@@ -12,6 +12,8 @@ var collapsed:bool = false
 
 var chat_log:Array[String] = []
 
+var message_sent_in_turn:bool = false
+
 
 func _on_input_text_submitted(new_text):
 	var can_send:bool = false
@@ -25,6 +27,7 @@ func _on_input_text_submitted(new_text):
 
 
 func add_new_message(message, message_color, player_name, player_emotion):
+	message_sent_in_turn = true
 	if collapsed:
 		_on_hide_button_pressed()
 	var new_message = chat_message_scene.instantiate()

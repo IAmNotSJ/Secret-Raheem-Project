@@ -47,6 +47,20 @@ var pixel_size:float = 1 :
 
 var glitch_timer:int = 0
 
+func _ready():
+	%DayNightCycle.visible = Saves.battle_settings["DayNight"]
+	if Overworld.is_time_between(12 + 8, 0, 6, 0):
+		%lights.visible = true
+	else:
+		%lights.visible = false
+	Overworld.time_tick.connect(_on_time_tick)
+
+func _on_time_tick(hour, minute):
+	if hour == 12+8 && minute == 0:
+		%lights.visible = true
+	if hour == 6 && minute == 0:
+		%lights.visible = false
+
 func _process(delta):
 	var dapixel:float = %Pixelate.get("material").get("shader_parameter/pixel_size")
 	dapixel = lerpf(dapixel, pixel_size, delta)
@@ -87,7 +101,6 @@ func add_opponent(opponent_id, opponent_info):
 	var player = player_path.instantiate()
 	player.player_name = opponent_info["Name"]
 	player.player_color = Color(opponent_info["Color"][0],opponent_info["Color"][1], opponent_info["Color"][2])
-	print("Player Color: " + str(player.player_color))
 	player.is_player = false
 	player.name = str(opponent_id)
 	players_joined += 1
@@ -112,8 +125,8 @@ func get_opponent():
 # that each person will be assigned. Once that calc is complete, the actual start_game function 
 # will be called, assigning that side to each player
 func start_game_request():
-	var rng = RandomNumberGenerator.new()
 	if playing_peer_ids.size() == 2:
+		var rng = RandomNumberGenerator.new()
 		if rng.randi_range(0, 1) == 0:
 			start_game(Sides.ATTACKING)
 			start_game.rpc(Sides.DEFENDING)

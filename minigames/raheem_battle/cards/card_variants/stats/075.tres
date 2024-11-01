@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cqbyng6boklok"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_hyisj"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_hyisj")
+card_name = "Prosecution"
+card_series = "Slime"
+card_number = "075"
+base_attack = 7.0
+base_defense = 7.0
+can_get_bonuses = true
+ability_name = "Legal Fees"
+ability_description = "This card costs 200 coins to play."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = false
+has_hands = false

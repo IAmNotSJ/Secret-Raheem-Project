@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfdmgwylj72h6"]
+
+[ext_resource type="Script" path="res://useful shit/time_light/time_light.gd" id="1_ct1uq"]
+
+[sub_resource type="Gradient" id="Gradient_thhmx"]
+offsets = PackedFloat32Array(0, 0.701299)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pwpfa"]
+gradient = SubResource("Gradient_thhmx")
+fill = 1
+fill_from = Vector2(0.522936, 0.568807)
+fill_to = Vector2(1, 1)
+
+[node name="time_light" type="PointLight2D"]
+texture = SubResource("GradientTexture2D_pwpfa")
+script = ExtResource("1_ct1uq")

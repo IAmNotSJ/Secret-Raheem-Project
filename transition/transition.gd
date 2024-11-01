@@ -31,6 +31,8 @@ func change_scene_to_preset(target: String, useTrans:bool = true, money:int = 0)
 		if money != 0:
 			Saves.playerInfo["Copper Coins"] += money
 			Saves.save(Saves.SaveTypes.SETTINGS)
+			%coin_animations.play("add_coin")
+			await %coin_animations.animation_finished
 		animationPlayer.play('trans_back')
 	else:
 		global.sceneManager.changeScene(sceneTransitions[target])

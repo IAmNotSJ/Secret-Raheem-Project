@@ -12,6 +12,10 @@ func _on_error_code_changed(code):
 	match code:
 		"":
 			$Sorry.visible = false
+		"003":
+			$text.text = "Connection to server failed!"
+			$Sorry.visible = false
+			$appdata.visible = false
 		"004":
 			$text.text = "You do not have enough cards to play! Please select 8 cards from your deck in order to continue to a match!"
 			$Sorry.visible = false
