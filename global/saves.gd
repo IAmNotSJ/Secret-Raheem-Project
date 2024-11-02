@@ -85,7 +85,8 @@ var battle_quiz = {
 	"College Years" : 0,
 	"Subscribers" : 0,
 	"Most Views" : 0,
-	"Speedrun" : false}
+	"Speedrun" : false,
+	"Country" : "United States"}
 var battle_info = {
 	"Name" : "",
 	"Character" : "wibr",

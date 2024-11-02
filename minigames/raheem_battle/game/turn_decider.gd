@@ -111,6 +111,11 @@ func _factor_side(card, opposing_card, info, opposing_info):
 		"The Yellow One":
 			if randi_range(1, 12) == 1:
 				return -1
+		"Troll":
+			if randi_range(1, 4) == 1:
+				return 1
+			else:
+				return -1
 	return 0
 
 # Returns true if real tie

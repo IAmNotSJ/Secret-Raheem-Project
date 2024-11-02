@@ -21,7 +21,7 @@ func generate_deck(export_array, reason, ref_card):
 		#Change the stats
 		
 		card.stats = card.return_stats_from_export(export_array[i])
-		card.index = i
+		card.index = export_array[i]["Index"]
 		
 		match reason:
 			"Catalyst":
@@ -33,7 +33,11 @@ func generate_deck(export_array, reason, ref_card):
 				card.left_clicked.connect(_card_selected_brands)
 				message.text = "Pick a card to copy the ability of"
 			"Extra Space":
+				message.text = "Pick a card to steal the stats of"
 				card.left_clicked.connect(_card_selected_extra_space)
+			"Annoying":
+				message.text = "Pick a card to remove"
+				card.left_clicked.connect(_card_selected_annoying)
 		
 		if i < 4:
 			$Row1.add_child(card)
@@ -47,11 +51,15 @@ func generate_deck(export_array, reason, ref_card):
 			$Cancel.visible = true
 
 func _card_selected_extra_space(daCard):
+	var index = daCard.index
+	if index >= affecting_card.index:
+		index += 1
 	var card = ui.card_hand.get_card_from_index(daCard.index)
-	ui.card_to_play.add_bonus_attack(card.stats["True Attack"], "Extra Space")
-	ui.card_to_play.add_bonus_defense(card.stats["True Defense"], "Extra Space")
-	ui.card_hand.replace_card(card.index, "-1", false)
+	affecting_card.add_bonus_attack(card.stats["True Attack"], "Extra Space")
+	affecting_card.add_bonus_defense(card.stats["True Defense"], "Extra Space")
+	ui.card_hand.replace_card(daCard.index, "-1", false)
 	
+	card.apply_bonuses()
 	clear()
 
 func _card_selected_catalyst(card):
@@ -84,6 +92,10 @@ func _card_selected_brands(card):
 		card_chosen.emit()
 	else:
 		print('ERM!! CARD IS NULL IN THE DECK PREVIEW HOLDER!!')
+	clear()
+
+func _card_selected_annoying(daCard):
+	ui.card_hand.remove_card(daCard.index)
 	clear()
 
 func clear():

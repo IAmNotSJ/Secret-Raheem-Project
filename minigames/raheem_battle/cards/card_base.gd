@@ -113,7 +113,9 @@ var stats:Dictionary = {
 		"Hosting" : [0, 0],
 		"Awesome Ogre" : [0, 0],
 		"Generic Response" : [0, 0],
-		"The Grind" : [0, 0]
+		"The Grind" : [0, 0],
+		"Denmark" : [0, 0],
+		"Dice Roll" : [0, 0]
 		},
 	"Penalties": 
 		{
@@ -132,6 +134,9 @@ var stats:Dictionary = {
 		"Last Live: 3 Months Ago" : [0, 0],
 		"Effort Tag" : [0, 0],
 		"Insults" : [0, 0],
+		"Crack" : [0, 0],
+		"Comments" : [0, 0],
+		"Donkey Kong" : [0, 0]
 		},
 	"True Attack": 1,
 	"True Defense": 1,
@@ -331,6 +336,8 @@ func change_color(series):
 			color = Color8(255, 103, 20)
 		"Luna":
 			color = Color8(17, 168, 70)
+		"BBB":
+			color = Color8(61, 255, 151)
 	
 	var base_colored = [%Base, %border, %hand, %fire, %chest, %human, %one_use, %upgrades]
 	var lighter_colored = [%Ability_Holder]
@@ -607,7 +614,9 @@ func return_stats_from_resource(resource_path:String) -> Dictionary:
 		"Hosting" : [0, 0],
 		"Awesome Ogre" : [0, 0],
 		"Generic Response" : [0, 0],
-		"The Grind" : [0, 0]
+		"The Grind" : [0, 0],
+		"Denmark" : [0, 0],
+		"Dice Roll" : [0, 0]
 		},
 	"Penalties": 
 		{
@@ -626,6 +635,9 @@ func return_stats_from_resource(resource_path:String) -> Dictionary:
 		"Last Live: 3 Months Ago" : [0, 0],
 		"Effort Tag" : [0, 0],
 		"Insults" : [0, 0],
+		"Crack" : [0, 0],
+		"Comments" : [0, 0],
+		"Donkey Kong" : [0, 0]
 		},
 	"True Attack": stats_resource.base_attack,
 	"True Defense": stats_resource.base_defense,

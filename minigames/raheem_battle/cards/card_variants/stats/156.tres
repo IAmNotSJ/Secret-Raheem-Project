@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://gvx1cb1t1itu"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_paoit"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_paoit")
+card_name = "Chu"
+card_series = "Third Party"
+card_number = "156"
+base_attack = 2.0
+base_defense = 5.0
+can_get_bonuses = true
+ability_name = "Magic"
+ability_description = "If this card wins, replace every card in both you and your opponent's deck with random cards."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = true
+has_hands = true

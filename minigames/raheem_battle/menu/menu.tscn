@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cqwgk25h6wg3b" path="res://minigames/raheem_battle/menu/assets/Initial/pointer.png" id="13_xb4mq"]
 [ext_resource type="Texture2D" uid="uid://ocj8cmpvfkv0" path="res://minigames/raheem_battle/menu/assets/check.png" id="13_xeiw8"]
 [ext_resource type="Texture2D" uid="uid://b4scisrq4ui87" path="res://minigames/raheem_battle/menu/assets/uncheck.png" id="14_p0sp5"]
-[ext_resource type="Texture2D" uid="uid://qklno4v37y8y" path="res://minigames/raheem_battle/menu/assets/box.png" id="15_l3adr"]
+[ext_resource type="Texture2D" uid="uid://4l2isi3gxwsk" path="res://minigames/raheem_battle/menu/assets/box.png" id="15_l3adr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwotu"]
 

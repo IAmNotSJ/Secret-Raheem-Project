@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://be1ltam2gq4ds"]
+[gd_scene load_steps=6 format=3 uid="uid://be1ltam2gq4ds"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/geometry/geometry.gd" id="1_4wo20"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_xvr4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li257"]
+bg_color = Color(0, 0, 0, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_st5fm"]
+bg_color = Color(0.172115, 0.172115, 0.172115, 0.498039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym1iw"]
+bg_color = Color(0, 0, 0, 0.678431)
 
 [node name="geometry" type="Control"]
 layout_mode = 3
@@ -14,11 +24,17 @@ script = ExtResource("1_4wo20")
 [node name="title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 30.0
+offset_top = 19.0
 offset_right = 1250.0
-offset_bottom = 225.0
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_xvr4b")
 theme_override_font_sizes/font_size = 32
 text = "THIS IS THE PROBLEM"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="image" type="Sprite2D" parent="."]
 position = Vector2(640, 310)
@@ -26,18 +42,24 @@ position = Vector2(640, 310)
 [node name="answer" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 440.0
-offset_top = 573.0
+offset_top = 561.0
 offset_right = 840.0
-offset_bottom = 613.0
+offset_bottom = 601.0
+theme_override_fonts/font = ExtResource("2_xvr4b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_li257")
 placeholder_text = "Type Answer Here"
 alignment = 1
 
 [node name="submit" type="Button" parent="."]
 layout_mode = 0
 offset_left = 440.0
-offset_top = 616.0
+offset_top = 611.0
 offset_right = 840.0
-offset_bottom = 716.0
+offset_bottom = 711.0
+theme_override_fonts/font = ExtResource("2_xvr4b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_st5fm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ym1iw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_li257")
 text = "SUBMIT"
 
 [connection signal="pressed" from="submit" to="." method="_on_submit"]

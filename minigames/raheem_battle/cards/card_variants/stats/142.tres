@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_82i4p")
 card_name = "Marbles"
-card_series = "BBB"
+card_series = "Projects"
 card_number = "142"
 base_attack = 5.0
 base_defense = 5.0

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://ca5dj1o0v0igs"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_sqewa"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_sqewa")
+card_name = "Bubins"
+card_series = "Third Party"
+card_number = "153"
+base_attack = 1.0
+base_defense = 1.0
+can_get_bonuses = true
+ability_name = "Dice Roll"
+ability_description = "Each stat of this card has a 2/5 chance to double every turn, but also a 1/5 chance to reset to 1."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = true
+has_hands = true

@@ -81,6 +81,10 @@ var time_turn:bool = false :
 
 var has_shuffled:bool = false
 
+var extra_space_played:bool = false
+
+var override_chest:bool = false
+
 # Bonuses to add onto the next card played
 # Check to see if any of these values are not [FutureEvents._, 0, 0] when played
 # Can currently only be used in pre_card_effects
@@ -116,8 +120,7 @@ func generate_deck_preview(card_ref, exclude:Array = [-1], reason:String = ""):
 				if i != excluded_i:
 					exported_array.append(card_hand.cards_in_hand[i].export())
 		deck_preview.generate_deck(exported_array, reason, card_ref)
-		extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW)
-		extra_screens.start_showing_screens()
+		extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW, true)
 
 func play_card(card):
 	if game.started && cur_stage == Stages.TURN:
@@ -134,14 +137,16 @@ func play_card(card):
 		if card.stats["Ability Name"] == "Brands":
 			generate_deck_preview(card, [card.index], "Brands")
 		if card.stats["Ability Name"] == "Extra Space":
-			generate_deck_preview(card, [card.index], "Extra Space")
+			if !extra_space_played:
+				generate_deck_preview(card, [card.index], "Extra Space")
+			extra_space_played = true
 		
 		if extra_screens.screens_to_show != []:
 			await extra_screens.finished
 		
 		if !extra_screens.decision_holder.cancelled:
 			if set_override_with_card_selection:
-				set_override_index(card.index)
+				set_override_index.rpc(card.index)
 			card_to_play = card
 			game.get_player().lock()
 			
@@ -151,9 +156,6 @@ func play_card(card):
 			turn_history["First Used Card"] = [card_export["True Attack"], card_export["True Defense"]]
 			activate_locked_text.rpc(card_export)
 		extra_screens.decision_holder.cancelled = false
-
-func _on_card_played(card):
-	pass
 
 @rpc("any_peer")
 func ability_check(card_index):
@@ -279,7 +281,7 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	clear_future_events()
 	clear_future_events.rpc()
 	
-	override_index = 0
+	override_index = -1
 	set_override_with_card_selection = false
 	
 	#Use the actual dictionaries for this
@@ -330,7 +332,7 @@ func end_turn(decision:Sides):
 	
 	if decision != Sides.TIE:
 		if decision == player.side:
-			if card_to_play.stats["Should Remove"]:
+			if card_to_play.stats["Should Remove"] and !override_chest:
 				card_hand.remove_card(card_to_play.index)
 			else:
 				match card_to_play.stats["Ability Name"]:
@@ -379,6 +381,8 @@ func start_turn():
 	
 	locked_text.text = ""
 	
+	extra_space_played = false
+	override_chest = false
 	
 	player.switch_side()
 	_opponent.switch_side()
@@ -401,6 +405,10 @@ func start_turn():
 		game.glitch_timer -= 1
 		if game.glitch_timer <= 0:
 			game.get_node("Glitch").visible = false
+	if game.blur_timer > 0:
+		game.blur_timer -= 1
+		if game.blur_timer <= 0:
+			game.get_node("Blur").visible = false
 	
 	#card_to_play = null
 
@@ -482,6 +490,8 @@ func starting_game_card_effects(specific_cards = []):
 					
 					card.add_bonus_attack(login_attack, "The Grind")
 					card.add_bonus_defense(login_defense, "The Grind")
+				"Molten":
+					card.stats["Fire"] = true
 				"Pro-Youtuber":
 					card.stats["Base Attack"] = floor(float(Saves.battle_quiz["Most Views"]) / 5000.0)
 					card.stats["Base Defense"] = floor(float(Saves.battle_quiz["Most Views"]) / 5000.0)
@@ -494,9 +504,24 @@ func starting_game_card_effects(specific_cards = []):
 func starting_card_effects():
 	time_turn = true
 	for card in card_hand.cards_in_hand:
-		if card.stats["Fire"]:
+		if card.stats["Fire"] and card.stats["Ability Name"] != "Molten":
 			if randi_range(1, 4) == 1:
 				card_hand.remove_card(card.index)
+		
+		if card.stats["Fire"]:
+			for i in range(2):
+				var random = randi_range(1, 20) 
+				if random == 1 or random == 2 or random == 3:
+					if i == 0:
+						if card_hand.card_exists(card.index - 1) and card_hand.get_card_from_index(card.index - 1).stats["Fire"] == false:
+							card_hand.get_card_from_index(card.index - 1).stats["Fire"] = true
+							card_hand.get_card_from_index(card.index - 1).set_penalty_attack(2, "Fire")
+							card_hand.get_card_from_index(card.index - 1).set_penalty_defense(2, "Fire")
+					elif i == 1:
+						if card_hand.card_exists(card.index + 1) and card_hand.get_card_from_index(card.index + 1).stats["Fire"] == false:
+							card_hand.get_card_from_index(card.index + 1).stats["Fire"] = true
+							card_hand.get_card_from_index(card.index + 1).set_penalty_attack(2, "Fire")
+							card_hand.get_card_from_index(card.index + 1).set_penalty_defense(2, "Fire")
 		
 		if !card.ability_used:
 			match card.stats["Ability Name"]:
@@ -532,7 +557,7 @@ func starting_card_effects():
 					if card.stats["Bonuses"]["Grazing"] != [0, 0]:
 						card.set_bonus_attack(0, "Grazing")
 						card.set_bonus_defense(0, "Grazing")
-					if Time.get_time_dict_from_system()["hour"] >= 12 and Time.get_time_dict_from_system()["hour"] < 16:
+					if Overworld.get_current_hour() >= 12 and Overworld.get_current_hour() < 16:
 						card.set_bonus_attack(2, "Grazing")
 						card.set_bonus_defense(2, "Grazing")
 					else:
@@ -545,12 +570,12 @@ func starting_card_effects():
 				"Truest Nemo":
 					if card_to_play != null:
 						if card_to_play.stats["Card Series"] == "Luna":
-							card.set_bonus_attack(2, "Truest Nemo")
-							card.set_bonus_defense(2, "Truest Nemo")
-				"Sensitive":
-					if game.last_decision == game.get_player().side:
-						card.add_bonus_attack(2, "Sensitive")
-						card.add_bonus_defense(2, "Sensitive")
+							if card.stats["Bonuses"]["Truest Nemo"] == [0, 0]:
+								card.add_bonus_attack(2, "Truest Nemo")
+								card.add_bonus_defense(2, "Truest Nemo")
+						else:
+							card.set_bonus_attack(0, "Truest Nemo")
+							card.set_bonus_defense(0, "Truest Nemo")
 				"Tag-Out":
 					var turn_count = game.turn_count - 1
 					
@@ -562,6 +587,38 @@ func starting_card_effects():
 					if turn_count % 4 == 2 or turn_count % 4 == 3:
 						card.stats["Base Attack"] = 2
 						card.stats["Base Defense"] = 3
+				"Units":
+					var attack = 0
+					var defense = 0
+					var new_name:String = ""
+					match randi_range(1, 4):
+						1:
+							# NORMAL CAT
+							attack = 2
+							defense = 2
+							new_name = "Cat"
+						2:
+							# TANK CAT
+							attack = 1
+							defense = 5
+							new_name = "Tank Cat"
+						3:
+							# AXE CAT
+							attack = 5
+							defense = 1
+							new_name = "Axe Cat"
+						4:
+							# GROSS CAT
+							attack = 4
+							defense = 4
+							new_name = "Gross Cat"
+					if randi_range(1, 50) == 21:
+						attack = 9
+						defense = 9
+						new_name = "Superfeline"
+					card.stats["Base Attack"] = attack
+					card.stats["Base Defense"] = defense
+					card.stats["Card Name"] = new_name
 				"Crack":
 					if game.turn_count > 1:
 						if game.turn_count % 2 == 1:
@@ -578,22 +635,8 @@ func starting_card_effects():
 							random_string = "0" + random_string
 						var random_card = randi_range(0, card_hand.cards_in_hand.size() - 1)
 						card_hand.replace_card(random_card, random_string, false)
-				"Molten":
-					for i in range(2):
-						var random = randi_range(1, 20) 
-						if random == 1 or random == 2 or random == 3:
-							if i == 0:
-								if card_hand.card_exists(card_to_play - 1) and card_hand.get_card_from_index(card_to_play - 1)["Fire"] == false:
-									card_hand.get_card_from_index(card_to_play - 1).stats["Fire"] = true
-									card_hand.get_card_from_index(card_to_play - 1).set_penalty_attack(2, "Fire")
-									card_hand.get_card_from_index(card_to_play - 1).set_penalty_defense(2, "Fire")
-							elif i == 1:
-								if card_hand.card_exists(card_to_play + 1) and card_hand.get_card_from_index(card_to_play + 1)["Fire"] == false:
-									card_hand.get_card_from_index(card_to_play + 1).stats["Fire"] = true
-									card_hand.get_card_from_index(card_to_play + 1).set_penalty_attack(2, "Fire")
-									card_hand.get_card_from_index(card_to_play + 1).set_penalty_defense(2, "Fire")
 				"Deception":
-					if card_hand.cards_in_hand.size() < 3:
+					if card_hand.cards_in_hand.size() < 4:
 						card.stats["Card Name"] = "Pocket Watch"
 						card.stats["Base Attack"] = 5
 						card.stats["Base Defense"] = 5
@@ -607,7 +650,21 @@ func starting_card_effects():
 							if card.stats["Bonuses"]["Fangirl"] == [0, 0]:
 								card.add_bonus_attack(2, "Fangirl")
 								card.add_bonus_defense(2, "Fangirl")
-				
+				"Dice Roll":
+					var rand_a = randi_range(1, 5)
+					if rand_a == 1 or rand_a == 2:
+						card.add_bonus_attack(card.stats["True Attack"], "Dice Roll")
+					elif rand_a == 3:
+						for bonus in card.stats["Bonuses"].keys():
+							card.set_bonus_attack(0, bonus)
+							card.stats["Base Attack"] = 1
+					var rand_d = randi_range(1, 5)
+					if rand_d == 1 or rand_d == 2:
+						card.add_bonus_defense(card.stats["True Attack"], "Dice Roll")
+					elif rand_d == 3:
+						for bonus in card.stats["Bonuses"].keys():
+							card.set_bonus_defense(0, bonus)
+							card.stats["Base Defense"] = 1
 
 # Called before a turn is decided. 
 # This will only be called on the host, so can't do anything really permanent
@@ -769,6 +826,22 @@ func pre_card_effects(card, affecting_card, info, affecting_info):
 					card["True Defense"] += 2
 					card["Bonus Defense"] += 2
 					card["Bonuses"]["Dance"][1] += 2
+			"Denmark":
+				print(affecting_info["Quiz"]["Country"])
+				print(info["Quiz"]["Country"])
+				if affecting_info["Quiz"]["Country"] != info["Quiz"]["Country"]:
+					card["True Attack"] += 2
+					card["Bonus Attack"] += 2
+					card["Bonuses"]["Denmark"][0] += 2
+			"Donkey Kong":
+				if affecting_card["Is Human"]:
+					card["True Attack"] -= 1
+					card["Penalty Attack"] += 1
+					card["Penalties"]["Donkey Kong"][0] += 1
+					
+					card["True Defense"] -= 1
+					card["Penalty Defense"] += 1
+					card["Penalties"]["Donkey Kong"][1] += 1
 # Not the best way to do this, but it stops the code being jumbled in the function already.
 # Similar to pre card effects, except not called twice
 func pre_card_effects_per_card(attacking_card, defending_card, attacking_info, defending_info):
@@ -927,6 +1000,27 @@ func post_card_effects(opposing_card, decision, opposing_info):
 				locked_text.show_stats = false
 				locked_text.ability_timer = 0
 				locked_text.stats_timer = 0
+			"Curse":
+				geometry.start()
+				geometry.answered.connect(
+					func (correct):
+						if !correct:
+							var rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+							while rand1 == card_to_play.index:
+								rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+								card_hand.disable_card(rand1, 2)
+							if card_hand.cards_in_hand.size() > 2:
+								var rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+								while rand2 == rand1 or rand2 == card_to_play.index:
+									rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+								card_hand.disable_card(rand2, 2)
+								if card_hand.cards_in_hand.size() > 3:
+									var rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+									while rand3 == rand1 or rand3 == rand2 or rand1 == card_to_play.index:
+										rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+									card_hand.disable_card(rand3, 2)
+				)
+				ability_check.rpc(opposing_card["Index"])
 			"Take Batteries":
 				card_to_play.add_penalty_attack(1, "Take Batteries")
 			"Distracted":
@@ -944,15 +1038,18 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					card_to_play.add_penalty_attack(2, "Insults")
 					card_to_play.add_penalty_defense(2, "Insults")
 			"Thief":
+				await turn_started
 				if decision == opposing_card["Side"]:
 					card_hand.replace_card(card_to_play.index, "-1", false)
 			"Null Reference":
-				game.get_node("Glitch").visible = true
+				await turn_started
+				game.get_node("non-light-affected/Glitch").visible = true
 				game.glitch_timer = 3
 			"Foliage":
+				await turn_started
 				var ability_packed_array = []
 				for card in card_hand.cards_in_hand:
-					ability_packed_array.append([card.stats["Ability Name"], card.stats["Ability Description"], card.stats["One Use Ability"], card.stats["Should Remove"], card.hide_stats])
+					ability_packed_array.append([card.stats["Ability Name"], card.stats["Ability Description"], card.stats["One Use Ability"], card.stats["Should Remove"], card.stats["Hide Stats"]])
 				ability_packed_array.shuffle()
 				for i in card_hand.cards_in_hand.size():
 					card_hand.cards_in_hand[i].stats["Ability Name"] = ability_packed_array[i][0]
@@ -960,11 +1057,54 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					card_hand.cards_in_hand[i].stats["One Use Ability"] = ability_packed_array[i][2]
 					card_hand.cards_in_hand[i].stats["Should Remove"] = ability_packed_array[i][3]
 					card_hand.cards_in_hand[i].stats["Hide Stats"] = ability_packed_array[i][4]
+					card_hand.cards_in_hand[i].send_card_status("Ability Changed!")
 				ability_check.rpc(opposing_card["Index"])
 			"Telekenesis":
 				mouse_control.enabled = true
 				mouse_control.enabled_timer = 3
-	
+			"I Am The Xenomorph!":
+				if decision == game.get_player().side:
+					override_chest = true
+			"Comments":
+				for card in card_hand.cards_in_hand:
+					if card.stats["True Attack"] > 3:
+						card.add_penalty_attack(1, "Comments")
+					if card.stats["True Defense"] > 3:
+						card.add_penalty_defense(1, "Comments")
+				ability_check.rpc(opposing_card["Index"])
+			"False Identity":
+				extra_screens.card_matchup.hide_opposing = true
+			"Shadows":
+				await turn_started
+				Overworld.set_time((10 + 12) * 60 * 60)
+			"Goggles":
+				await turn_started
+				game.get_node("non-light-affected/Blur").visible = true
+				game.blur_timer = 3
+			"Magic":
+				if decision == opposing_card["Side"]:
+					await turn_started
+					var cards = []
+					for num in range(card_hand.cards_in_hand.size()):
+						num = randi_range(0, 156)
+						for daNum in cards:
+							while num == daNum:
+								num = randi_range(0, 156)
+						cards.append(num)
+					
+					var string_cards = []
+					for num in cards:
+						var string_num:String
+						if str(num).length() == 1:
+							string_num = "00" + str(num)
+						if str(num).length() == 2:
+							string_num = "0" + str(num)
+						if str(num).length() == 3:
+							string_num = str(num)
+						string_cards.append(string_num)
+					
+					for i in range(card_hand.cards_in_hand.size()):
+						card_hand.replace_card(i, string_cards[i], true)
 	
 	#Abilities of the PLAYER's card
 	if !card_to_play.ability_used:
@@ -1104,8 +1244,10 @@ func post_card_effects(opposing_card, decision, opposing_info):
 								card.add_penalty_defense(-1, penalty)
 				card_to_play.ability_check()
 			"Voltage":
+				await turn_started
 				if decision == opposing_card["Side"]:
 					var half_of_deck:int = floor(float(card_hand.cards_in_hand.size()) / 2)
+					print("HALF OF DECK:" + str(half_of_deck))
 					var indexes_to_disable = []
 					for i in range(half_of_deck):
 						var index = randi_range(0, card_hand.cards_in_hand.size() - 1)
@@ -1113,8 +1255,45 @@ func post_card_effects(opposing_card, decision, opposing_info):
 							while index == leIndex:
 								index = randi_range(0, card_hand.cards_in_hand.size() - 1)
 						indexes_to_disable.append(index)
+					for index in indexes_to_disable:
+						card_hand.disable_card(index, 3)
 			"Deceiver":
 				set_override_with_card_selection = true
+			"Annoying":
+				if decision == game.get_player().side:
+					generate_deck_preview(card_to_play, [card_to_play.index], "Annoying")
+			"Denmark":
+				if Saves.battle_quiz["Country"] != opposing_info["Quiz"]["Country"] and card_to_play.stats["Bonuses"]["Denmark"] == [0, 0]:
+					card_to_play.add_bonus_attack(2, "Denmark")
+			"I Am The Xenomorph!":
+				if decision == opposing_card["Side"]:
+					card_hand.remove_card(card_to_play.index)
+			"Magic":
+				if decision == game.get_player().side:
+					await turn_started
+					var cards = []
+					for num in range(card_hand.cards_in_hand.size()):
+						num = randi_range(0, 156)
+						for daNum in cards:
+							while num == daNum:
+								num = randi_range(0, 156)
+						cards.append(num)
+					
+					var string_cards = []
+					for num in cards:
+						var string_num:String
+						if str(num).length() == 1:
+							string_num = "00" + str(num)
+						if str(num).length() == 2:
+							string_num = "0" + str(num)
+						if str(num).length() == 3:
+							string_num = str(num)
+						string_cards.append(string_num)
+					
+					for i in range(card_hand.cards_in_hand.size()):
+						card_hand.replace_card(i, string_cards[i], true)
+			"False Identity":
+				extra_screens.card_matchup.hide_self = true
 	
 	for key in future_events.keys():
 		if future_events[key][0] == FutureEvents.NEXT_LOSS_BONUS and decision == opposing_card["Side"] and future_events[key][1] != [0, 0]:
@@ -1126,27 +1305,6 @@ func post_card_effects(opposing_card, decision, opposing_info):
 			card_to_play.add_penalty_attack(future_events[key][1][0], key)
 			card_to_play.add_penalty_defense(future_events[key][1][1], key)
 			future_events[key][1] = [0, 0]
-	if opposing_card["Ability Name"] == "Curse":
-		geometry.start()
-		geometry.answered.connect(
-			func (correct):
-				if !correct:
-					var rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					while rand1 == card_to_play.index:
-						rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					var rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					while rand2 == rand1 or rand2 == card_to_play.index:
-						rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					var rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					while rand3 == rand1 or rand3 == rand2 or rand1 == card_to_play.index:
-						rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-					card_hand.disable_card(rand1)
-					card_hand.disable_card(rand2)
-					card_hand.disable_card(rand3)
-		)
-		ability_check.rpc(opposing_card["Index"])
-		extra_screens.add_screen_queue(extra_screens.GEOMETRY)
-		await(geometry.hidden)
 #Called at the end of every turn for EVERY card in your hand. 
 @rpc("authority")
 func passive_card_abilities(_opposing_card, decision):
@@ -1225,6 +1383,7 @@ func apply_next_card_bonus_multiplier(card, le_future_events):
 @rpc("any_peer")
 func set_override_index(value:int):
 	override_index = value
+	send_card()
 
 func get_info():
 	var dict = {}

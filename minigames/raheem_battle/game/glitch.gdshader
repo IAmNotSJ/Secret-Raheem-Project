@@ -1,32 +1,54 @@
+/*
+	Glitch Effect Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+
 shader_type canvas_item;
 
+// 振動の強さ
+uniform float shake_power = 0.03;
+// 振動率
+uniform float shake_rate : hint_range( 0.0, 1.0 ) = 0.2;
+// 振動速度
+uniform float shake_speed = 5.0;
+// 振動ブロックサイズ
+uniform float shake_block_size = 30.5;
+// 色の分離率
+uniform float shake_color_rate : hint_range( 0.0, 1.0 ) = 0.01;
+// スクリーン
+uniform sampler2D screen_texture : hint_screen_texture;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, repeat_disable,filter_nearest;
-
-uniform float red_displacement : hint_range(-1.0,1.0) = 0.0;
-uniform float green_displacement : hint_range(-1.0,1.0) = 0.0;
-uniform float blue_displacement : hint_range(-1.0,1.0) = 0.0;
-uniform float ghost : hint_range(0.0, 1.0) = 0.0;
-uniform float intensity : hint_range(0.0,1.0) = 0.0;
-uniform float scan_effect : hint_range(0.0,1.0) = 0.0;
-uniform float distortion_effect : hint_range(0.0,1.0) = 0.0;
-uniform float negative_effect : hint_range(0.0,1.0) = 0.0;
-
-
-void fragment()
+float random( float seed )
 {
-	vec4 baseTexture = texture(SCREEN_TEXTURE, UV);
-	vec4 color1 = texture(SCREEN_TEXTURE, UV+vec2(sin(TIME*0.2*intensity), tan(UV.y)));
-	COLOR = (1.0-scan_effect)*baseTexture*0.75 + scan_effect*color1;
-	
-	vec4 color2 = texture(SCREEN_TEXTURE, UV+vec2(fract(TIME*0.01*intensity), cos(fract(TIME*intensity)*10.0)));
-	COLOR = COLOR + ((1.0-distortion_effect)*baseTexture*0.75 + distortion_effect*color2);
-	
-	vec4 color3 = texture(SCREEN_TEXTURE, UV + vec2(fract(TIME*0.1*intensity), tan(TIME*0.02*intensity) ));
-	COLOR = COLOR - ((1.0-negative_effect)*baseTexture*0.5 + negative_effect*color3);
-	
-	COLOR.r = (1.0-red_displacement)*baseTexture.r + red_displacement*texture(SCREEN_TEXTURE, UV-vec2(sin(TIME*0.1*intensity) + 0.2, 0.1)).r;
-	COLOR.g = (1.0-green_displacement)*baseTexture.g +  green_displacement*texture(SCREEN_TEXTURE, UV+vec2(- 0.2, sin(TIME*0.1*intensity))).g;
-	COLOR.b = (1.0-blue_displacement)*baseTexture.b + blue_displacement*texture(SCREEN_TEXTURE, UV+vec2(sin(TIME*0.1*intensity) + 0.2, 0.1)).b;
-	COLOR = COLOR + texture(SCREEN_TEXTURE, UV + UV*ghost)*ghost;
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46, -54.3415 ) ) ) );
+}
+
+void fragment( )
+{
+	float enable_shift = float(
+		random( trunc( TIME * shake_speed ) )
+	<	shake_rate
+	);
+
+	vec2 fixed_uv = SCREEN_UV;
+	fixed_uv.x += (
+		random(
+			( trunc( SCREEN_UV.y * shake_block_size ) / shake_block_size )
+		+	TIME
+		) - 0.5
+	) * shake_power * enable_shift;
+
+	vec4 pixel_color = textureLod( screen_texture, fixed_uv, 0.0 );
+	pixel_color.r = mix(
+		pixel_color.r
+	,	textureLod( screen_texture, fixed_uv + vec2( shake_color_rate, 0.0 ), 0.0 ).r
+	,	enable_shift
+	);
+	pixel_color.b = mix(
+		pixel_color.b
+	,	textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
+	,	enable_shift
+	);
+	COLOR = pixel_color;
 }

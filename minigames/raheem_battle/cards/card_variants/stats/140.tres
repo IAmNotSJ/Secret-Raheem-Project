@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_26840")
 card_name = "Monika (B3 Mini)"
-card_series = "BBB"
+card_series = "Projects"
 card_number = "140"
 base_attack = 4.0
 base_defense = 4.0

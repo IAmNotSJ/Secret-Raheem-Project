@@ -48,11 +48,11 @@ script = ExtResource("1_fp7mi")
 position = Vector2(1153, 214)
 
 [node name="change_timer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1acnr")
 }
-autoplay = "poo"
 
 [connection signal="timeout" from="change_timer" to="." method="_on_change_timer_timeout"]

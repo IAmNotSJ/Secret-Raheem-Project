@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bnhcavqtxm3nq"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_mk3lr"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_mk3lr")
+card_name = "Olivia"
+card_series = "Third Party"
+card_number = "144"
+base_attack = 1.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Annoying"
+ability_description = "If this card wins, put another card in your victory chest along with it."
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = true
+has_hands = true

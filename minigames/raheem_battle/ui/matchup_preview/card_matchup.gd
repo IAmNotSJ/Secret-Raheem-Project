@@ -5,6 +5,9 @@ extends ExtraScreen
 @onready var card1 = $Card
 @onready var card2 = $Card2
 
+var hide_opposing:bool = false
+var hide_self:bool = false
+
 func _ready():
 	card1.set_card_scale(Vector2(0.75, 0.75))
 	card2.set_card_scale(Vector2(0.75, 0.75))
@@ -45,6 +48,33 @@ func load_card(card, export):
 	
 	if card.stats["Ability Name"] == "Speeding":
 		card.stats["Hide Stats"] = false
+	
+	if card == card2 and hide_opposing:
+		card.stats["Ability Name"] = ""
+		card.stats["Hide Stats"] = true
+		card.stats["Card Name"] = "Hidden Card"
+		card.stats["Card Number"] = "-151"
+		card.stats["Card Series"] = "Hidden"
+		
+		card.stats["Can Get Bonuses"] = true
+		card.stats["One Use Ability"] = false
+		card.stats["Should Remove"] = true
+		card.stats["Is Human"] = false
+		card.stats["Has Hands"] = false
+		card.stats["Fire"] = false
+	if card == card1 and hide_self:
+		card.stats["Ability Name"] = ""
+		card.stats["Hide Stats"] = true
+		card.stats["Card Name"] = "Hidden Card"
+		card.stats["Card Number"] = "-151"
+		card.stats["Card Series"] = "Hidden"
+		
+		card.stats["Can Get Bonuses"] = true
+		card.stats["One Use Ability"] = false
+		card.stats["Should Remove"] = true
+		card.stats["Is Human"] = false
+		card.stats["Has Hands"] = false
+		card.stats["Fire"] = false
 	card._on_stats_changed()
 
 func clear():

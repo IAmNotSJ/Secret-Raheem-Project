@@ -690,3 +690,46 @@ offset_bottom = 15.534
 max_value = 8.0
 answerKey = "College Years"
 metadata/_edit_use_anchors_ = true
+
+[node name="Question 17" type="Label" parent="Paper2"]
+offset_left = -257.0
+offset_top = 158.0
+offset_right = 1023.0
+offset_bottom = 192.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+theme_override_font_sizes/font_size = 18
+text = "Question 17:"
+
+[node name="Label" type="Label" parent="Paper2/Question 17"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 19.0
+offset_right = 335.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wi8pa")
+text = "What country do you live in?"
+autowrap_mode = 3
+
+[node name="OptionButton2" parent="Paper2/Question 17/Label" instance=ExtResource("1_a7ota")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.736354
+anchor_top = 0.58
+anchor_right = 0.736354
+anchor_bottom = 0.58
+offset_left = 0.130981
+offset_top = -15.5
+offset_right = 150.131
+offset_bottom = 9.5
+selected = 0
+item_count = 3
+popup/item_0/text = "Markiplier"
+popup/item_1/text = "Jacksepticeye"
+popup/item_1/id = 1
+popup/item_2/text = "Pewdiepie"
+popup/item_2/id = 2
+answerKey = "Country"
+answers = Array[String](["United States", "United Kingdom", "Canda"])
+metadata/_edit_use_anchors_ = true

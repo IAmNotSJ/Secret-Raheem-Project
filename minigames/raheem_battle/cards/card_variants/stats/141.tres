@@ -6,8 +6,8 @@
 resource_local_to_scene = true
 script = ExtResource("1_sko0j")
 card_name = "Damp Cloth Jr."
-card_series = "BBB"
-card_number = "142"
+card_series = "Projects"
+card_number = "141"
 base_attack = 6.0
 base_defense = 1.0
 can_get_bonuses = true

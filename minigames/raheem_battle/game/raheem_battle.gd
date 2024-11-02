@@ -46,6 +46,7 @@ var pixel_size:float = 1 :
 			%Pixelate.visible = false
 
 var glitch_timer:int = 0
+var blur_timer:int = 0
 
 func _ready():
 	%DayNightCycle.visible = Saves.battle_settings["DayNight"]

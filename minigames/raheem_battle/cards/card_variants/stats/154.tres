@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bi76aryij2edq"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_wbuff"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wbuff")
+card_name = "Nova"
+card_series = "Third Party"
+card_number = "154"
+base_attack = 5.0
+base_defense = 2.0
+can_get_bonuses = true
+ability_name = "Shadows"
+ability_description = "After this card is played, make your opponent's game turn to 10PM. "
+one_use_ability = false
+should_remove = true
+hide_stats = false
+is_human = true
+has_hands = true

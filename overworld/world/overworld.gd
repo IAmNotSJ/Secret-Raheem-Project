@@ -76,6 +76,14 @@ func is_time_between(starting_hour:int, starting_minute:int, ending_hour:int, en
 	else:
 		return false
 
+func set_time(seconds:int):
+	time = seconds
+	
+	initial_hour = int(seconds / 60 / 60)
+	initial_minute = (seconds - (initial_hour * 60 * 60)) * 60
+	
+	last_hour = initial_hour
+
 var positions:Dictionary = {
 	"Main World" : Vector2(0, 0),
 	"Key House" : Vector2(0, 0),

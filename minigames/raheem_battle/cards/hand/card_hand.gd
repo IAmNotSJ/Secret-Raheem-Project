@@ -69,17 +69,32 @@ func add_card(export:Dictionary, wait:bool = false, playable:bool = true):
 func add_card_from_resource(number:String, forced_index:int = -1):
 	var card = card_scene.instantiate()
 	var stats_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + number + ".tres"
-	card.stats = load(stats_path)
+	var stats = load(stats_path)
+	
+	card.stats["Card Name"] = stats.card_name
+	card.stats["Card Series"] = stats.card_series
+	card.stats["Card Number"] = stats.card_number
+	card.stats["Base Attack"] = stats.base_attack
+	card.stats["Base Defense"] = stats.base_defense
+	card.stats["Can Get Bonuses"] = stats.can_get_bonuses
+	card.stats["Ability Name"] = stats.ability_name
+	card.stats["Ability Description"] = stats.ability_description
+	card.stats["One Use Ability"] = stats.one_use_ability
+	card.stats["Should Remove"] = stats.should_remove
+	card.stats["Hide Stats"] = stats.hide_stats
+	card.stats["Is Human"] = stats.is_human
+	card.stats["Has Hands"] = stats.has_hands
+	
 	cards_in_hand.append(card)
 	card.left_clicked.connect(ui.play_card)
 	card.right_clicked.connect(ui.card_preview.generate_card_preview)
 	ui.turn_ended.connect(card._on_turn_ended)
-	$held_cards.add_child(card)
+	%held_cards.add_child(card)
 	if forced_index == -1:
 		card.index = cards_in_hand.size() - 1
 	else:
-		move_child(card, forced_index)
-		reindex_deck()
+		%held_cards.move_child(card, forced_index)
+	reindex_deck()
 	
 	return card
 
@@ -87,34 +102,35 @@ func add_card_from_resource(number:String, forced_index:int = -1):
 func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true, wait:bool = true):
 	if wait:
 		await ui.turn_started
-	var card_destination:Variant
-	
-	if put_in_victory_chest:
-		card_destination = $victory_chest
-	else:
-		card_destination = $whatever_chest
-	for card in %held_cards.get_children():
-		if card.index == index:
-			cards_in_hand.erase(card)
-			card.reparent(card_destination)
-			removed_cards.append(card)
-			
-			card.visible = false
-			
-			card.disabled = true
-			card.disabled_time = 0
-			
-			#Redo the index
-			for i in range(card_destination.get_children().size()):
-				if card == card_destination.get_children()[i]:
-					card.index = i
-			
-			#Redo the index
-			if reindex:
-				for i in range(%held_cards.get_children().size()):
-					if card == %held_cards.get_children()[i]:
+	if !ui.override_chest:
+		var card_destination:Variant
+		
+		if put_in_victory_chest:
+			card_destination = $victory_chest
+		else:
+			card_destination = $whatever_chest
+		for card in %held_cards.get_children():
+			if card.index == index:
+				cards_in_hand.erase(card)
+				card.reparent(card_destination)
+				removed_cards.append(card)
+				
+				card.visible = false
+				
+				card.disabled = true
+				card.disabled_time = 0
+				
+				#Redo the index
+				for i in range(card_destination.get_children().size()):
+					if card == card_destination.get_children()[i]:
 						card.index = i
-	card_removed.emit()
+				
+				#Redo the index
+				if reindex:
+					for i in range(%held_cards.get_children().size()):
+						if card == %held_cards.get_children()[i]:
+							card.index = i
+		card_removed.emit()
 
 func readd_card(index):
 	print('Card readded?')
@@ -141,7 +157,7 @@ func replace_card(card_to_replace_index:int, card_to_add_number:String, carry_bo
 	if carry_bonuses:
 		bonuses = get_card_from_index(card_to_replace_index).stats["Bonuses"]
 		penalties = get_card_from_index(card_to_replace_index).stats["Penalties"]
-	remove_card(card_to_replace_index, false, false)
+	remove_card(card_to_replace_index, true, false, false)
 	var card = add_card_from_resource(card_to_add_number, card_to_replace_index)
 	if carry_bonuses:
 		card.stats["Bonuses"] = bonuses

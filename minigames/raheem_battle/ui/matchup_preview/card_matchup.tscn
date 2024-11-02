@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://jsdik5ih32ki"]
+[gd_scene load_steps=10 format=3 uid="uid://jsdik5ih32ki"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/matchup_preview/card_matchup.gd" id="1_mfjyq"]
 [ext_resource type="PackedScene" uid="uid://edx2tlubwxi4" path="res://minigames/raheem_battle/cards/card.tscn" id="1_qyms6"]
-[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="2_lv8ck"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="4_6h4nl"]
 
 [sub_resource type="Animation" id="Animation_v4lug"]
@@ -370,40 +369,6 @@ _data = {
 "tie": SubResource("Animation_dlo0x")
 }
 
-[sub_resource type="Resource" id="Resource_0eich"]
-resource_local_to_scene = true
-script = ExtResource("2_lv8ck")
-card_name = "Hampter"
-card_series = "Test Series"
-card_number = "0"
-base_attack = 1.0
-base_defense = 1.0
-can_get_bonuses = true
-ability_name = ""
-ability_description = ""
-one_use_ability = false
-should_remove = true
-hide_stats = false
-is_human = false
-has_hands = true
-
-[sub_resource type="Resource" id="Resource_uur35"]
-resource_local_to_scene = true
-script = ExtResource("2_lv8ck")
-card_name = "Hampter"
-card_series = "Test Series"
-card_number = "0"
-base_attack = 1.0
-base_defense = 1.0
-can_get_bonuses = true
-ability_name = ""
-ability_description = ""
-one_use_ability = false
-should_remove = true
-hide_stats = false
-is_human = false
-has_hands = true
-
 [node name="card_matchup" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -427,7 +392,6 @@ offset_left = -309.0
 offset_top = 193.0
 offset_right = -10.5
 offset_bottom = 631.75
-stats = SubResource("Resource_0eich")
 is_preview = true
 selectable = false
 metadata/_edit_group_ = true
@@ -439,7 +403,6 @@ offset_left = 948.0
 offset_top = -464.0
 offset_right = 1246.5
 offset_bottom = -25.25
-stats = SubResource("Resource_uur35")
 is_preview = true
 selectable = false
 metadata/_edit_group_ = true
