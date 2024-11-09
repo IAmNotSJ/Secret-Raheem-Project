@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://edx2tlubwxi4"]
+[gd_scene load_steps=17 format=3 uid="uid://edx2tlubwxi4"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_base.gd" id="1_8jnna"]
 [ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="3_311j2"]
@@ -9,10 +9,103 @@
 [ext_resource type="Texture2D" uid="uid://bxa6wkm5v5hdf" path="res://minigames/raheem_battle/cards/assets/icons/fire.png" id="8_7nwrc"]
 [ext_resource type="Texture2D" uid="uid://eliiob1uv4qb" path="res://minigames/raheem_battle/cards/assets/icons/human.png" id="9_m04fh"]
 [ext_resource type="Texture2D" uid="uid://cn3u0qi15q8k" path="res://minigames/raheem_battle/cards/assets/icons/one_use.png" id="10_x1ylh"]
+[ext_resource type="AudioStream" uid="uid://cpvlajawxawsl" path="res://minigames/raheem_battle/sound_effects/click.ogg" id="11_pvkx2"]
 [ext_resource type="Texture2D" uid="uid://e3bje7jro8o2" path="res://minigames/raheem_battle/cards/assets/icons/upgrades.png" id="11_s5n0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
 size = Vector2(147, 216)
+
+[sub_resource type="Animation" id="Animation_olhia"]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(0.37, 0.37), true],
+"method": &"set_card_scale"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visible:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nu427"]
+resource_name = "fade_in"
+length = 0.200003
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visible:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 20), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visible:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kqp4i"]
+resource_name = "place"
+length = 0.133337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visible:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.37, 0.37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visible:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eweb5"]
+_data = {
+"RESET": SubResource("Animation_olhia"),
+"fade_in": SubResource("Animation_nu427"),
+"place": SubResource("Animation_kqp4i")
+}
 
 [node name="Card" type="Control"]
 custom_minimum_size = Vector2(149, 216)
@@ -30,7 +123,6 @@ scale = Vector2(0.37, 0.37)
 
 [node name="Base" type="TextureRect" parent="visible"]
 unique_name_in_owner = true
-use_parent_material = true
 layout_mode = 0
 offset_right = 398.0
 offset_bottom = 585.0
@@ -80,13 +172,11 @@ autowrap_mode = 3
 
 [node name="icon" type="Sprite2D" parent="visible"]
 unique_name_in_owner = true
-use_parent_material = true
-position = Vector2(196, 176)
+position = Vector2(198.5, 176)
 texture = ExtResource("3_311j2")
 
 [node name="border" type="Sprite2D" parent="visible"]
 unique_name_in_owner = true
-use_parent_material = true
 position = Vector2(197.297, 175.676)
 texture = ExtResource("5_ui7cc")
 
@@ -227,3 +317,11 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
 position = Vector2(73.5, 108)
 shape = SubResource("RectangleShape2D_odvew")
+
+[node name="anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eweb5")
+}
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_pvkx2")

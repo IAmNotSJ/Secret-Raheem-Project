@@ -4,6 +4,7 @@ extends Node2D
 @onready var screen_container = get_parent()
 
 var started:bool = false
+var money:int = 0
 
 func create(won:bool):
 	ui.game.manager.clear_peer_ids()
@@ -18,7 +19,7 @@ func create(won:bool):
 		Saves.battle_stats["Losses"] += 1
 	Saves.save(Saves.SaveTypes.BATTLE)
 	
-	var money = money_calculation(ui.game.turn_count, won)
+	money = money_calculation(ui.game.turn_count, won)
 	started = true
 	#visible = true
 	if won:
@@ -53,16 +54,17 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventKey:
 			if event.pressed:
 				print('gurp')
-				ui.game.manager.return_to_menu("")
+				Transition.change_scene_to_preset("Battle", true, money)
 				pass
 func money_calculation(turn_count:int, won:bool) -> int:
 	
 	var amount:int = 60
 	# See how many different series you have
 	var series_array = []
-	for card in Saves.battle_deck:
-		if !series_array.has(card.stats["Card Series"]):
-			series_array.append(card.stats["Card Series"])
+	for card in Saves.battle_deck.values():
+		var resource_file = load("res://minigames/raheem_battle/cards/card_variants/stats/" + card + ".tres")
+		if !series_array.has(resource_file.card_series):
+			series_array.append(resource_file.card_series)
 	
 	if turn_count > 8:
 		amount += randi_range(20, 30) * (turn_count - 8)

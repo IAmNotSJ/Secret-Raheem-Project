@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbgmnpk5xwwi7"]
+[gd_scene load_steps=4 format=3 uid="uid://cbgmnpk5xwwi7"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/card_preview_holder/card_preview_holder.gd" id="1_34rs7"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_7t0pf"]
+[ext_resource type="AudioStream" uid="uid://bmc4sgp3veu82" path="res://minigames/raheem_battle/sound_effects/swipe.ogg" id="3_gkbki"]
 
 [node name="card_preview_holder" type="Control"]
 layout_mode = 3
@@ -25,3 +26,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_7t0pf")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
+
+[node name="swipe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gkbki")
+volume_db = -31.856

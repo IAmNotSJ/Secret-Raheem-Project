@@ -148,18 +148,27 @@ func on_join_pressed(ADDRESS):
 
 func _on_join_connected(ADDRESS):
 	var id = multiplayer.get_unique_id()
-	_receive_join_request.rpc_id(1, id, ADDRESS)
+	var data:Dictionary = {
+		"Address" : ADDRESS,
+		"Game Version" : ProjectSettings.get_setting("application/config/version")
+	}
+	_receive_join_request.rpc(id, data)
 
 @rpc("any_peer")
-func _receive_join_request(id, address):
+func _receive_join_request(id, data):
 	# Can't be lower than one (room isnt open) and can't be greater than one (room is full)
-	if connected_peer_ids.size() != 1:
-		#BAD
-		close_peer.rpc_id(id)
-		current_scene.make_popup.rpc_id(id, "005")
+	if data["Game Version"] == ProjectSettings.get_setting("application/config/version"):
+		if connected_peer_ids.size() != 1:
+			#BAD
+			print(connected_peer_ids.size())
+			close_peer.rpc_id(id)
+			current_scene.make_popup.rpc_id(id, "005")
+		else:
+			#GOOD
+			join_game.rpc_id(id, data["Address"])
 	else:
-		#GOOD
-		join_game.rpc_id(id, address)
+		close_peer.rpc_id(id)
+		current_scene.make_popup.rpc_id(id, "007")
 
 @rpc("authority")
 func join_game(ADDRESS):

@@ -105,7 +105,7 @@ var cash_out:bool = false
 
 func _ready():
 	card_hand.card_removed.connect(_on_card_removed)
-	card_hand.card_added.connect(_on_card_removed)
+	card_hand.card_added.connect(_on_card_added)
 
 func _process(delta):
 	if time_turn:
@@ -145,15 +145,21 @@ func play_card(card):
 			await extra_screens.finished
 		
 		if !extra_screens.decision_holder.cancelled:
+			locked_text.set_status(card.stats["Card Name"] + " Has Been Chosen")
 			if set_override_with_card_selection:
 				set_override_index.rpc(card.index)
 			card_to_play = card
 			game.get_player().lock()
 			
+			for daCard in card_hand.cards_in_hand:
+				daCard.selected = false
+			card.selected = true
+			
 			
 			var card_export = card.export()
 			
 			turn_history["First Used Card"] = [card_export["True Attack"], card_export["True Defense"]]
+			$selected.play()
 			activate_locked_text.rpc(card_export)
 		extra_screens.decision_holder.cancelled = false
 
@@ -355,7 +361,6 @@ func end_turn(decision:Sides):
 	has_shuffled = false
 	
 	turn_ended.emit()
-	on_turn_ended.rpc(card_hand.cards_in_hand.size())
 	
 	if game.manager.connected_peer_ids != []:
 		game.get_player().cards_left = card_hand.cards_in_hand.size()
@@ -379,7 +384,10 @@ func start_turn():
 	var player = game.get_player()
 	var _opponent = game.get_opponent()
 	
-	locked_text.text = ""
+	for card in card_hand.cards_in_hand:
+		card.selected = false
+	
+	locked_text.clear()
 	
 	extra_space_played = false
 	override_chest = false
@@ -404,17 +412,17 @@ func start_turn():
 	if game.glitch_timer > 0:
 		game.glitch_timer -= 1
 		if game.glitch_timer <= 0:
-			game.get_node("Glitch").visible = false
+			game.get_node("non-light-affected/Glitch").visible = false
 	if game.blur_timer > 0:
 		game.blur_timer -= 1
 		if game.blur_timer <= 0:
-			game.get_node("Blur").visible = false
+			game.get_node("non-light-affected/Blur").visible = false
 	
 	#card_to_play = null
 
 @rpc("any_peer")
-func on_turn_ended(cards_left):
-	game.get_opponent().cards_left = cards_left
+func update_opponent(cards_left):
+	game.opponent.cards_left = cards_left
 
 func _on_card_removed():
 	for card in card_hand.cards_in_hand:
@@ -422,7 +430,7 @@ func _on_card_removed():
 			card.add_bonus_attack(1, "Post-Mortem")
 			card.add_bonus_defense(1, "Post-Mortem")
 	
-	game.on_opponent_card_removed.rpc()
+	update_opponent.rpc(card_hand.cards_in_hand.size())
 	
 	turn_info.play()
 	
@@ -665,6 +673,10 @@ func starting_card_effects():
 						for bonus in card.stats["Bonuses"].keys():
 							card.set_bonus_defense(0, bonus)
 							card.stats["Base Defense"] = 1
+				"Fronting":
+					if randi_range(1, 4) == 1:
+						var new_card_num = str(randi_range(154, 156))
+						card_hand.replace_card(card.index, new_card_num, true)
 
 # Called before a turn is decided. 
 # This will only be called on the host, so can't do anything really permanent
@@ -1105,6 +1117,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					
 					for i in range(card_hand.cards_in_hand.size()):
 						card_hand.replace_card(i, string_cards[i], true)
+				update_opponent.rpc(card_hand.cards_in_hand.size())
 	
 	#Abilities of the PLAYER's card
 	if !card_to_play.ability_used:
@@ -1292,6 +1305,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					
 					for i in range(card_hand.cards_in_hand.size()):
 						card_hand.replace_card(i, string_cards[i], true)
+					update_opponent.rpc(card_hand.cards_in_hand.size())
 			"False Identity":
 				extra_screens.card_matchup.hide_self = true
 	

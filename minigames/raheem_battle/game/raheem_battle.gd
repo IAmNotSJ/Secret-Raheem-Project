@@ -106,7 +106,6 @@ func add_opponent(opponent_id, opponent_info):
 	player.name = str(opponent_id)
 	players_joined += 1
 	players.add_child(player)
-	
 	#Add the opponent graphic
 	opponent = load("res://minigames/raheem_battle/opponents/" + opponent_info["Character"] + "/opponent_scene.tscn").instantiate()
 	%opponent_position.add_child(opponent)

@@ -9,6 +9,7 @@ signal penalty_added(amount:int, key:String)
 	set(value):
 		card_name = value
 		emit_changed()
+@export var censored_name:String = ""
 @export var card_series:String = "Test Series" :
 	set(value):
 		card_series = value

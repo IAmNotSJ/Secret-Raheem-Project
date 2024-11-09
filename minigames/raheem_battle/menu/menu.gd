@@ -24,6 +24,7 @@ var in_popup:bool = false
 @onready var host = $ALL/Host
 @onready var join = $ALL/Join
 @onready var quiz = $ALL/Quiz
+@onready var deck = $ALL/deck_builder
 @onready var profile = $ALL/Profile
 
 @onready var animation = $animation
@@ -52,6 +53,13 @@ func _ready():
 		button.focus_entered.connect(_on_button_focused.bind(button))
 		%UPNP.button_pressed = Saves.battle_settings["UPNP"]
 		%DayNight.button_pressed = Saves.battle_settings["DayNight"]
+		%Food.button_pressed = Saves.battle_settings["Censor Food"]
+	
+	if Overworld.is_time_between(12 + 6, 0, 5, 0):
+		$ambience.stream = load("res://minigames/raheem_battle/music/night-ambience.ogg")
+		$ambience.play()
+	
+	$DayNightCycle.visible = true
 	%Host.grab_focus()
 
 func _unhandled_input(event):
@@ -112,6 +120,7 @@ func _switch_screen(screen):
 			button.set_focus_mode(Control.FocusMode.FOCUS_ALL)
 		%Host.grab_focus()
 	current_screen = screen
+	$paper_flip.play()
 	
 	if screen == QUIZ:
 		await animation.animation_finished
@@ -183,3 +192,14 @@ func _on_day_night_toggled(toggled_on: bool) -> void:
 func _on_upnp_toggled(toggled_on: bool) -> void:
 	Saves.battle_settings["UPNP"] = toggled_on
 	Saves.save(Saves.SaveTypes.BATTLE)
+
+func _on_food_toggled(toggled_on: bool) -> void:
+	Saves.battle_settings["Censor Food"] = toggled_on
+	Saves.save(Saves.SaveTypes.BATTLE)
+	
+	for card in deck.get_node("ScrollContainer/card_container").get_children():
+		card._on_stats_changed()
+
+
+func _on_ambience_finished() -> void:
+	$ambience.play()

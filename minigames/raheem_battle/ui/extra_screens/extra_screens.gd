@@ -1,5 +1,6 @@
 extends Node2D
 
+signal started
 signal finished
 
 @onready var ui = get_parent()
@@ -74,11 +75,12 @@ func add_screen_queue(screenEnum, end:bool = false, force:bool = false):
 func start_showing_screens():
 	if screens_to_show.size() > 0:
 		#print("--------STARTING TO SHOW SCREENS--------")
-		print("SCREENS TO SHOW: " + str(screens_to_show))
+		#print("SCREENS TO SHOW: " + str(screens_to_show))
 		screens_to_show[0].visible = true
 		showing_screens = true
 		ui.is_in_preview = true
 		ui.card_hand.block_input()
+		started.emit()
 
 
 func _on_finished() -> void:

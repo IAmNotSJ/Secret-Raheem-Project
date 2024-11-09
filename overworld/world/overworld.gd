@@ -67,22 +67,22 @@ func get_current_minutes():
 	
 	return minute
 
-func is_time_between(starting_hour:int, starting_minute:int, ending_hour:int, ending_minute:int) -> bool:
+func is_time_between(starting_hour:int, _starting_minute:int, ending_hour:int, _ending_minute:int) -> bool:
 	var hour = get_current_hour()
-	var minute = get_current_minutes()
+	var _minute = get_current_minutes()
 	
-	if hour >= starting_hour && minute >= starting_minute or hour < ending_hour && hour < ending_minute:
+	if hour >= starting_hour or hour < ending_hour:
 		return true
 	else:
 		return false
 
 func set_time(seconds:int):
-	time = seconds
-	
 	initial_hour = int(seconds / 60 / 60)
-	initial_minute = (seconds - (initial_hour * 60 * 60)) * 60
+	initial_minute = int((seconds - ((initial_hour * 60 * 60))) / 60)
 	
 	last_hour = initial_hour
+	
+	time = INGAME_TO_REAL_MINUTE_DURATION * initial_hour * MINUTES_PER_HOUR + INGAME_TO_REAL_MINUTE_DURATION * initial_minute 
 
 var positions:Dictionary = {
 	"Main World" : Vector2(0, 0),

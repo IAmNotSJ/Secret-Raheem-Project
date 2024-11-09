@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://coq1vpspwrw63"]
+[gd_scene load_steps=23 format=3 uid="uid://coq1vpspwrw63"]
 
 [ext_resource type="Script" path="res://menus/main/main_menu.gd" id="1_q88bu"]
 [ext_resource type="PackedScene" uid="uid://i5qncavij7f5" path="res://useful shit/parallax_tile.tscn" id="2_3g75t"]
@@ -7,10 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://cao6klfkstypv" path="res://menus/main/assets/bg.png" id="5_e2yv8"]
 [ext_resource type="Texture2D" uid="uid://b8utgw1mfobmv" path="res://menus/main/assets/buttons/start.png" id="5_oist7"]
 [ext_resource type="Texture2D" uid="uid://d0jl7qknbxfro" path="res://menus/main/assets/buttons/start-select.png" id="6_xu7us"]
+[ext_resource type="Texture2D" uid="uid://23rsmp0xn1lm" path="res://menus/main/assets/buttons/settings.png" id="7_g5d5i"]
+[ext_resource type="Texture2D" uid="uid://b34a0kmv7eugx" path="res://menus/main/assets/buttons/settings-select.png" id="8_dfa4t"]
+[ext_resource type="Texture2D" uid="uid://bgxfgtae7tpqc" path="res://menus/main/assets/buttons/games.png" id="9_jnfe1"]
+[ext_resource type="Texture2D" uid="uid://68ighfqmsglb" path="res://menus/main/assets/buttons/games-select.png" id="10_wxbyc"]
 [ext_resource type="VideoStream" path="res://menus/main/ahahah.ogv" id="11_ygtk5"]
 [ext_resource type="PackedScene" uid="uid://dnd1doq4yac7c" path="res://menus/main/settings/settings.tscn" id="12_po7vl"]
 [ext_resource type="AudioStream" uid="uid://05q0ybss2q8x" path="res://overworld/music/Title Screen.ogg" id="13_bdykl"]
 [ext_resource type="PackedScene" uid="uid://dmk0pvnookhar" path="res://menus/main/games/games_menu.tscn" id="13_gp170"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="13_ivpwh"]
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="16_sponl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqmiy"]
+bg_color = Color(0.195313, 0.195313, 0.195313, 0.356863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmexp"]
+bg_color = Color(0, 0, 0, 0.717647)
 
 [sub_resource type="Animation" id="Animation_6mkq2"]
 length = 0.001
@@ -60,18 +72,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -89.9114
+offset_left = -150.61
 offset_top = 662.0
-offset_right = 1596.09
+offset_right = 1535.39
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -348.278
+offset_left = -287.218
 offset_top = -10.0
-offset_right = 1337.73
+offset_right = 1398.8
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -87,26 +99,63 @@ offset_right = 559.0
 offset_bottom = 539.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("5_oist7")
+texture_pressed = ExtResource("6_xu7us")
 texture_hover = ExtResource("6_xu7us")
+stretch_mode = 0
 
-[node name="Settings" type="Button" parent="Main"]
-offset_left = 874.0
-offset_top = 487.0
-offset_right = 1239.0
-offset_bottom = 634.0
-text = "SETTINGS"
+[node name="Settings" type="TextureButton" parent="Main"]
+offset_left = 871.0
+offset_top = 490.0
+offset_right = 1236.0
+offset_bottom = 637.0
+texture_normal = ExtResource("7_g5d5i")
+texture_hover = ExtResource("8_dfa4t")
+texture_focused = ExtResource("8_dfa4t")
+stretch_mode = 0
 
-[node name="Games" type="Button" parent="Main"]
-offset_left = 33.0
-offset_top = 488.0
-offset_right = 398.0
-offset_bottom = 635.0
-text = "GAMES"
+[node name="Games" type="TextureButton" parent="Main"]
+offset_left = 24.0
+offset_top = 490.0
+offset_right = 389.0
+offset_bottom = 637.0
+texture_normal = ExtResource("9_jnfe1")
+texture_pressed = ExtResource("10_wxbyc")
+texture_hover = ExtResource("10_wxbyc")
+stretch_mode = 0
 
 [node name="Title" type="Sprite2D" parent="Main"]
 position = Vector2(640, 171)
 scale = Vector2(2.001, 2.001)
 texture = ExtResource("4_b5egf")
+
+[node name="debug" type="Button" parent="Main"]
+unique_name_in_owner = true
+offset_left = 418.0
+offset_top = 409.0
+offset_right = 844.0
+offset_bottom = 484.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("16_sponl")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/focus = SubResource("StyleBoxFlat_rqmiy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rqmiy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rqmiy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tmexp")
+text = "DEBUG"
+
+[node name="version" type="Label" parent="Main"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 688.0
+offset_right = 533.0
+offset_bottom = 720.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("13_ivpwh")
+theme_override_font_sizes/font_size = 23
+text = "3.0.0 BETA"
 
 [node name="Settings" parent="." instance=ExtResource("12_po7vl")]
 visible = false
@@ -150,8 +199,10 @@ mouse_filter = 2
 stream = ExtResource("11_ygtk5")
 volume_db = 24.0
 bus = &"SFX"
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Main/Begin" to="." method="_on_begin_pressed"]
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Games" to="." method="_on_games_pressed"]
+[connection signal="pressed" from="Main/debug" to="." method="_on_debug_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

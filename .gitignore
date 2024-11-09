@@ -1,2 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Overall ignores
+art/*
+
+# Address Encryption
+minigames/raheem_battle/manager/address_encryption.gd

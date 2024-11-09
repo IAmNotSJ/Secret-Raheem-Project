@@ -268,7 +268,8 @@ var battle_unlocks = {
 }
 var battle_settings = {
 	"UPNP" : true,
-	"DayNight" : true
+	"DayNight" : true,
+	"Censor Food" : false,
 }
 # KARL PILKINGTON
 

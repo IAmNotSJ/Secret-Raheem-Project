@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj5vri4pyykkn"]
+
+[ext_resource type="Shader" path="res://minigames/raheem_battle/shaders/holographic_v2_norm.gdshader" id="1_yks1s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aix3v"]
+render_priority = 0
+shader = ExtResource("1_yks1s")
+shader_parameter/hue_color = Color(0.136719, 1, 0.959534, 1)
+shader_parameter/color_density = null
+shader_parameter/shift = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytc84"]
+next_pass = SubResource("ShaderMaterial_aix3v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_h8y4g"]
+material = SubResource("StandardMaterial3D_ytc84")
+size = Vector2(1, 1.48)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.742081, 0.519944, -0.203643)
+mesh = SubResource("QuadMesh_h8y4g")

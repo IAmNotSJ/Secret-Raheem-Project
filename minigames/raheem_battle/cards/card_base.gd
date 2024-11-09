@@ -22,7 +22,8 @@ signal changed
 @export var selectable:bool = true
 @export var do_offset_bullshit:bool = false
 
-const holoShader = preload("res://minigames/raheem_battle/cards/holographic.gdshader")
+const holoShader = preload("res://minigames/raheem_battle/shaders/holographic.gdshader")
+@onready var shader_items = [[%Base, 0.2], [%Ability_Holder, 0.2], [%border, 0.2]]
 
 const status_scene = preload("res://minigames/raheem_battle/cards/status/card_status.tscn")
 var statuses = []
@@ -33,8 +34,10 @@ var can_click:bool = false
 
 var index:int
 
-var offset:int = 0
+var select_offset:int = 0
 var shader_offset:float = 0.1
+
+var selected:bool = false
 
 #For one use abilities. Set to true to make ability not work
 var ability_used:bool = false
@@ -49,7 +52,7 @@ var disabled:bool = false :
 			#$visible.material.set("shader_parameter/darkened", true)
 			send_card_status("Disabled!")
 			can_click = false
-			$visible.position.y = 0 + offset
+			select_offset = 0
 			$visible.modulate = Color(0.2, 0.2, 0.2)
 		else:
 			#$visible.material.set("shader_parameter/darkened", false)
@@ -155,14 +158,19 @@ var stashed_bonuses = {}
 var stashed_penalties = {}
 
 func _ready():
-	if index % 2 != 0 and do_offset_bullshit:
-		offset = -30
-	
 	if !is_preview:
 		game = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 	
 	if rarity == Rarity.HOLO:
-		$visible.material.set("shader_parameter/active", true)
+		for array in shader_items:
+			array[0].material = ShaderMaterial.new()
+			array[0].material.shader = holoShader
+			array[0].material.set("shader_parameter/minimum", array[1])
+			
+			var noise = NoiseTexture2D.new()
+			noise.color_ramp = GradientTexture1D.new()
+			noise.noise = FastNoiseLite.new()
+			array[0].material.set("shader_parameter/noise", noise)
 	
 	changed.connect(_on_stats_changed)
 	bonus_added.connect(_on_bonus_added)
@@ -182,13 +190,19 @@ func _process(delta):
 	if !Engine.is_editor_hint():
 		if !disabled:
 			if !block_input:
+				if !selected:
+					$visible.position.y = lerpf($visible.position.y, select_offset , 15 * delta)
+				else:
+					$visible.position.y = lerpf($visible.position.y, -50 + select_offset, 15 * delta)
 				if $mouse_detection.has_overlapping_areas():
 					if !is_preview:
-						$visible.position.y = -50 + offset
+						if select_offset != -50:
+							$click.play()
+						select_offset = -50
 					can_click = true
 				else:
 					if !is_preview:
-						$visible.position.y = 0 + offset
+						select_offset = 0
 					if selectable:
 						can_click = false
 				if can_click:
@@ -232,7 +246,12 @@ func _on_stats_changed():
 			else:
 				%Defense.text = str(stats["True Defense"])
 		
-		%icon.texture = load("res://minigames/raheem_battle/cards/card_variants/assets/" + stats["Card Number"] + ".png")
+		var path:String
+		if FileAccess.file_exists("res://minigames/raheem_battle/cards/card_variants/assets/" + stats["Card Number"] + "-c.png") and Saves.battle_settings["Censor Food"]:
+			path = "res://minigames/raheem_battle/cards/card_variants/assets/" + stats["Card Number"] + "-c.png"
+		else:
+			path = "res://minigames/raheem_battle/cards/card_variants/assets/" + stats["Card Number"] + ".png"
+		%icon.texture = load(path)
 		
 		%Ability_Name.text = stats["Ability Name"]
 		%Ability_Description.text = stats["Ability Description"]
@@ -305,6 +324,10 @@ func set_base_defense(val):
 	stats["Base Defense"] = val
 
 func change_color(series):
+	var base_colored = [%Base, %border, %hand, %fire, %chest, %human, %one_use, %upgrades]
+	var lighter_colored = [%Ability_Holder]
+	var darker_colored = [%Ability_Name, %Ability_Description, %Series, %Number, %Name, %Attack, %Defense]
+	
 	var last_color = modulate
 	var color = Color8(255, 255, 255, 255)
 	match series:
@@ -339,34 +362,35 @@ func change_color(series):
 		"BBB":
 			color = Color8(61, 255, 151)
 	
-	var base_colored = [%Base, %border, %hand, %fire, %chest, %human, %one_use, %upgrades]
-	var lighter_colored = [%Ability_Holder]
-	var darker_colored = [%Ability_Name, %Ability_Description, %Series, %Number, %Name, %Attack, %Defense]
-	for i in range(base_colored.size()):
-		base_colored[i].modulate = color
-	for lighter in lighter_colored:
-		lighter.modulate = color.lightened(0.3)
-	for darker in darker_colored:
-		darker.modulate = color.darkened(0.8)
-	
 	if last_color != color:
 		if rarity == Rarity.HOLO:
+			var grad_data = [["0513df", 0], ["4fffee", 0.114], ["e2fffc", 0.221], ["fffd8e", 0.329], ["ff5b3b", 0.45], ["ff4da9", 0.564], ["620dec", 0.678], ["1fffab", 0.785], ["33ddff", 0.893], ["4cff2d", 1]]
 			var gradient = Gradient.new()
-			gradient.add_point(0, Color.WHITE.lerp(color, 0.6))
-			gradient.add_point(0.309, Color("45d5fc").lerp(color, 0.6))
-			gradient.add_point(0.614, Color("60d665").lerp(color, 0.6))
-			gradient.add_point(0.831, Color("ffd319").lerp(color, 0.6))
-			gradient.add_point(1, Color.BLACK.lerp(color, 0.6))
+			for i in range(grad_data.size()):
+				gradient.add_point(grad_data[i][1], Color(grad_data[i][0]).lerp(color, 0.6))
 			
 			var texture_grad = GradientTexture1D.new()
 			texture_grad.gradient = gradient
-			$visible.material.set("shader_parameter/gradient", texture_grad)
+			for array in shader_items:
+				array[0].material.set("shader_parameter/gradient", texture_grad)
+				array[0].material.set("shader_parameter/tint_color", color)
+				print(array[0].material.get("shader_parameter/gradient"))
+		for i in range(base_colored.size()):
+			base_colored[i].modulate = color
+		for lighter in lighter_colored:
+			lighter.modulate = color.lightened(0.3)
+		for darker in darker_colored:
+			darker.modulate = color.darkened(0.8)
 
-func set_card_scale(theScale:Vector2):
+func set_card_scale(theScale:Vector2, offset_card:bool = false):
 	$visible.scale = theScale
 	$mouse_detection.scale = theScale / Vector2(0.37, 0.37)
-	custom_minimum_size = Vector2(398, 585) * theScale
+	custom_minimum_size = Vector2(397, 584) * theScale
 	size = Vector2(398, 585) * theScale
+	if offset_card:
+		var relative_scale:Vector2 = Vector2(0.37 / theScale.x, 0.37 / theScale.y)
+		$visible.position.x = size.x / 2 * relative_scale.x - size.x / 2
+		$visible.position.y = size.y / 2 * relative_scale.y - size.y / 2
 
 
 # ---- STAT FUNCTIONS ---- #
@@ -650,6 +674,7 @@ func return_stats_from_resource(resource_path:String) -> Dictionary:
 	"Is Human" : stats_resource.is_human,
 	"Has Hands" : stats_resource.has_hands
 	}
+	
 	return daExport
 
 func return_stats_from_export(cardExport:Dictionary) -> Dictionary:

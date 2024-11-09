@@ -12,6 +12,9 @@ var cards:Array = []
 
 func _ready():
 	_create_cards()
+	
+	#for snap in $snap_container.get_children():
+	#	snap.locked.connect(_on_card_locked)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("back"):
@@ -24,7 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _create_cards():
 	
 	var card_count:int = 0
-	for i in range(156):
+	for i in range(157):
 		var numbString = str(card_count)
 		if numbString.length() == 1:
 			numbString = "00" + numbString
@@ -39,9 +42,23 @@ func _create_cards():
 			var file_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + num + ".tres"
 			if FileAccess.file_exists(file_path):
 				var card = draggable_card.instantiate()
-				card.stats = load(file_path)
+				var stats = load(file_path)
+				
+				card.stats["Card Name"] = stats.card_name
+				card.stats["Card Series"] = stats.card_series
+				card.stats["Card Number"] = stats.card_number
+				card.stats["Base Attack"] = stats.base_attack
+				card.stats["Base Defense"] = stats.base_defense
+				card.stats["Can Get Bonuses"] = stats.can_get_bonuses
+				card.stats["Ability Name"] = stats.ability_name
+				card.stats["Ability Description"] = stats.ability_description
+				card.stats["One Use Ability"] = stats.one_use_ability
+				card.stats["Should Remove"] = stats.should_remove
+				card.stats["Hide Stats"] = stats.hide_stats
+				card.stats["Is Human"] = stats.is_human
+				card.stats["Has Hands"] = stats.has_hands
 				card.let_go.connect(_on_held_card_let_go)
-				card.taken_out.connect(_on_held_card_let_go)
+				#card.taken_out.connect(_on_held_card_let_go)
 				%card_container.add_child(card)
 				cards.append(card)
 				
@@ -51,6 +68,9 @@ func _create_cards():
 						for snap in $snap_container.get_children():
 							if snap.deck_index == i + 1:
 								snap.lock_card(card)
+				card._recalculate_attack()
+				card._recalculate_defense()
+				card._on_stats_changed()
 	_on_held_card_let_go()
 
 func set_held(card):
@@ -69,12 +89,14 @@ func clear_held():
 func _on_held_card_let_go():
 	var row = 0
 	for card in cards:
-		var pos = int(card.stats.card_number)
+		var pos = int(card.stats["Card Number"])
 		if pos % 3 == 0:
 			row += 1
 		if card.snap == null:
-			card.position.x = (20 + card.size.x) * (pos % 3)
-			card.position.y = (18 + card.size.y) * (row - 1)
+			var card_size = Vector2(149, 216)
+			card.position.x = (20 + card_size.x) * (pos % 3)
+			card.position.y = (18 + card_size.y) * (row - 1)
+	$swipe.play()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("click"):
@@ -95,6 +117,7 @@ func generate_preview(num):
 		is_in_preview = true
 		card.get_node("visible").scale = Vector2(1, 1)
 		card.set_custom_minimum_size(Vector2(397, 584)) 
+		card.get_node("anims").play('fade_in')
 		$CenterContainer.visible = true
 		$CenterContainer.add_child(card)
 
@@ -106,6 +129,16 @@ func _on_clear_pressed() -> void:
 		if snap.card != null:
 			snap.card.clear_snap()
 	_on_held_card_let_go()
+
+func _on_shuffle_pressed() -> void:
+	_on_clear_pressed()
+	
+	var all_cards = %card_container.get_children()
+	all_cards.shuffle()
+	
+	for i in range($snap_container.get_children().size()):
+		$snap_container.get_children()[i].lock_card(all_cards[i])
+
 
 func add_blank(daPos):
 	var blank = Control.new()

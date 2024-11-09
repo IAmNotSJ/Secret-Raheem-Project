@@ -7,6 +7,7 @@ func _ready():
 	global.mouse.make_visible()
 	DiscordSDKLoader.run_preset("Menu")
 	$fade.visible = true
+	%version.text = "Version " + ProjectSettings.get_setting("application/config/version")
 func _process(delta):
 	posThingy += delta
 	if $fade.modulate.a > 0:
@@ -27,3 +28,7 @@ func _on_audio_stream_player_finished():
 
 func _on_games_pressed():
 	$Games.visible = true
+
+
+func _on_debug_pressed() -> void:
+	Transition.change_scene_to_preset("Debug")

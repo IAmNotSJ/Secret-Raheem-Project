@@ -1,0 +1,309 @@
+[gd_scene load_steps=15 format=3 uid="uid://bf2r28chhri6s"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/deck_builder/draggable_card/draggable_card.gd" id="1_6dpia"]
+[ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="2_weo8m"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="3_hdtv7"]
+[ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="4_xk7py"]
+[ext_resource type="Texture2D" uid="uid://cd3pn6q8ksn0h" path="res://minigames/raheem_battle/cards/assets/card_border.png" id="5_26ols"]
+[ext_resource type="Texture2D" uid="uid://dhnlmx76e6qhr" path="res://minigames/raheem_battle/cards/assets/icons/hand.png" id="6_lkfb6"]
+[ext_resource type="Texture2D" uid="uid://bxa6wkm5v5hdf" path="res://minigames/raheem_battle/cards/assets/icons/fire.png" id="7_tr0mw"]
+[ext_resource type="Texture2D" uid="uid://eliiob1uv4qb" path="res://minigames/raheem_battle/cards/assets/icons/human.png" id="8_wwy68"]
+[ext_resource type="Texture2D" uid="uid://cn3u0qi15q8k" path="res://minigames/raheem_battle/cards/assets/icons/one_use.png" id="9_dgcmp"]
+[ext_resource type="Texture2D" uid="uid://e3bje7jro8o2" path="res://minigames/raheem_battle/cards/assets/icons/upgrades.png" id="10_n0dqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
+size = Vector2(147, 216)
+
+[sub_resource type="Animation" id="Animation_olhia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visible:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.37, 0.37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visible:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqp4i"]
+resource_name = "place"
+length = 0.133337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visible:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.37, 0.37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visible:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eweb5"]
+_data = {
+"RESET": SubResource("Animation_olhia"),
+"place": SubResource("Animation_kqp4i")
+}
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(149, 216)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 149.0
+offset_bottom = 216.0
+script = ExtResource("1_6dpia")
+is_preview = null
+selectable = null
+do_offset_bullshit = null
+
+[node name="visible" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 397.0
+offset_bottom = 584.0
+scale = Vector2(0.37, 0.37)
+
+[node name="Base" type="TextureRect" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+layout_mode = 0
+offset_right = 398.0
+offset_bottom = 585.0
+texture = ExtResource("2_weo8m")
+
+[node name="Ability_Holder" type="ColorRect" parent="visible"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 376.0
+offset_right = 368.0
+offset_bottom = 527.0
+color = Color(0.756863, 0.756863, 0.756863, 1)
+
+[node name="Ability_Name" type="Label" parent="visible/Ability_Holder"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_top = 2.0
+offset_right = 338.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Ability_Description" type="Label" parent="visible/Ability_Holder/Ability_Name"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.931
+anchor_right = 0.5
+anchor_bottom = 0.931
+offset_left = -167.0
+offset_top = -0.516003
+offset_right = 166.0
+offset_bottom = 112.484
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="icon" type="Sprite2D" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(196, 176)
+texture = ExtResource("4_xk7py")
+
+[node name="border" type="Sprite2D" parent="visible"]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(197.297, 175.676)
+texture = ExtResource("5_26ols")
+
+[node name="Info" type="Control" parent="visible"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Series" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+use_parent_material = true
+layout_mode = 0
+offset_left = 15.4054
+offset_top = 6.7027
+offset_right = 122.405
+offset_bottom = 34.7027
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 20
+text = "Test Series"
+
+[node name="Number" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 288.0
+offset_top = 8.0
+offset_right = 380.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 2
+
+[node name="Name" type="Label" parent="visible/Info"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 314.703
+offset_right = 332.0
+offset_bottom = 371.703
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 41
+text = "Hampter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="visible"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 305.0
+offset_right = 397.0
+offset_bottom = 367.0
+
+[node name="Attack" type="Label" parent="visible/Stats"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 8.405
+offset_right = 88.405
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 51
+text = "1"
+
+[node name="Defense" type="Label" parent="visible/Stats"]
+unique_name_in_owner = true
+modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 0
+offset_left = 326.0
+offset_right = 390.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_hdtv7")
+theme_override_font_sizes/font_size = 51
+text = "1"
+horizontal_alignment = 2
+
+[node name="icons" type="HBoxContainer" parent="visible"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 532.594
+offset_right = 383.0
+offset_bottom = 577.594
+alignment = 2
+
+[node name="hand" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_lkfb6")
+stretch_mode = 5
+
+[node name="fire" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("7_tr0mw")
+stretch_mode = 5
+
+[node name="chest" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+stretch_mode = 5
+
+[node name="human" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("8_wwy68")
+stretch_mode = 5
+
+[node name="one_use" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("9_dgcmp")
+stretch_mode = 5
+
+[node name="upgrades" type="TextureRect" parent="visible/icons"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("10_n0dqn")
+stretch_mode = 5
+
+[node name="mouse_detection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 536870976
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detection"]
+position = Vector2(73.5, 108)
+shape = SubResource("RectangleShape2D_odvew")
+
+[node name="snap_detection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 536870914
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="snap_detection"]
+position = Vector2(73.5, 108)
+shape = SubResource("RectangleShape2D_odvew")
+
+[node name="anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eweb5")
+}

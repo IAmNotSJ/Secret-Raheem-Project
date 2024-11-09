@@ -8,28 +8,9 @@ func _ready():
 	$emotions.visible = false
 
 func _on_button_pressed(button):
-	var emotion:String
-	match button.text:
-		"o_o":
-			emotion = "wut"
-		":)":
-			emotion = "happy"
-		":[":
-			emotion = "pout"
-		":o":
-			emotion = "shocked"
-		"'_'":
-			emotion = "neutral"
-		"|:)":
-			emotion = "smug"
-		":(":
-			emotion = "sad"
-		"?_?":
-			emotion = "confused"
-		">:(":
-			emotion = "angry"
+	var emotion:String = button.name
 	cur_emotion = emotion
-	text = button.text
+	icon = button.icon
 	$emotions.visible = false
 
 

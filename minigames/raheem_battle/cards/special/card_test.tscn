@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dn8an0glse864"]
 
-[ext_resource type="Shader" path="res://minigames/raheem_battle/cards/holographic.gdshader" id="1_poedb"]
-[ext_resource type="Texture2D" uid="uid://cnhxyrdbcgyqa" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="2_5fsfj"]
+[ext_resource type="Shader" path="res://minigames/raheem_battle/shaders/holographic.gdshader" id="1_poedb"]
+[ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="2_5fsfj"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_yojrh"]
 

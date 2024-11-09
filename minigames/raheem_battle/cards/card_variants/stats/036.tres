@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_clqjj")
 card_name = "Dough Roll"
+censored_name = "Smiley Roll"
 card_series = "SJ"
 card_number = "036"
 base_attack = 2.0

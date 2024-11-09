@@ -16,6 +16,7 @@ var removed_cards = []
 var focused:bool = false
 
 var x_offset:int = 0
+var y_offset:int = 0
 
 func _ready():
 	%DayNightCycle.visible = Saves.battle_settings["DayNight"]
@@ -27,6 +28,7 @@ func _process(delta):
 		if card_offset < 0:
 			card_offset = 0
 		%offset.position.x = lerpf(%offset.position.x, (150 * card_offset) * distance_from_center - x_offset, 20 * delta)
+		%offset.position.y = lerpf(%offset.position.y, y_offset , 15 * delta)
 
 func generate_cards(cards_to_generate):
 	for i in range(cards_to_generate.size()):
@@ -216,11 +218,11 @@ func return_random_card(exclude:int):
 
 func _on_mouse_detection_area_entered(_area: Area2D) -> void:
 	if !ui.is_in_preview && !focused:
-		$card_hide.play("show")
+		y_offset = -160
 		focused = true
 
 
 func _on_mouse_detection_area_exited(_area: Area2D) -> void:
 	if !ui.is_in_preview && focused:
-		$card_hide.play("hide")
+		y_offset = 0
 		focused = false

@@ -12,7 +12,8 @@ var sceneTransitions:Dictionary = {
 	"Fishing": "res://minigames/fishing/fishing_minigame.tscn",
 	"Paint": "res://minigames/paint/main/raheem_paint.tscn",
 	"Main Menu": "res://menus/main/main_menu.tscn",
-	"Battle": "res://minigames/raheem_battle/manager/raheem_battle.tscn"
+	"Battle": "res://minigames/raheem_battle/manager/raheem_battle.tscn",
+	"Debug" : "res://minigames/debug/debug_room.tscn"
 }
 func change_scene_to_file(target: String, money:int = 0) -> void:
 	animationPlayer.play('trans')
