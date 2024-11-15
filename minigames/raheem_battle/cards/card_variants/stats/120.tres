@@ -5,7 +5,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ttqcb")
-card_name = "Ark Survival Evolved"
+card_name = "Microphone Scream"
+censored_name = ""
 card_series = "Luna"
 card_number = "120"
 base_attack = 4.0

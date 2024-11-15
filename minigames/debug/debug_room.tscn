@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://yjje1740jo2c"]
+[gd_scene load_steps=4 format=3 uid="uid://yjje1740jo2c"]
 
 [ext_resource type="Script" path="res://minigames/debug/debug_room.gd" id="1_pmtbq"]
 [ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="2_u0h3d"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="3_ur6eq"]
 
 [node name="debug" type="Node2D"]
 script = ExtResource("1_pmtbq")
@@ -40,6 +41,7 @@ offset_left = 12.0
 offset_top = 427.0
 offset_right = 179.0
 offset_bottom = 458.0
+max_value = 24.0
 
 [node name="Label" type="Label" parent="time_control/HOUR"]
 layout_mode = 0
@@ -56,6 +58,7 @@ offset_left = 12.0
 offset_top = 467.0
 offset_right = 179.0
 offset_bottom = 498.0
+max_value = 59.0
 
 [node name="Label" type="Label" parent="time_control/MINUTES"]
 layout_mode = 0
@@ -65,5 +68,44 @@ offset_right = -16.0
 offset_bottom = 29.0
 text = "MINUTES"
 
+[node name="time_rate" type="SpinBox" parent="time_control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -784.0
+offset_top = 481.0
+offset_right = -653.0
+offset_bottom = 525.0
+max_value = 1e+07
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="time_control/time_rate"]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 8.0
+offset_right = -9.0
+offset_bottom = 42.0
+text = "1 real life second is equal to"
+
+[node name="Label3" type="Label" parent="time_control/time_rate"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 7.0
+offset_right = 266.0
+offset_bottom = 41.0
+text = "in-game seconds"
+
+[node name="Weclome" type="Label" parent="."]
+offset_left = 67.0
+offset_top = 35.0
+offset_right = 777.0
+offset_bottom = 302.0
+theme_override_fonts/font = ExtResource("3_ur6eq")
+theme_override_font_sizes/font_size = 21
+text = "Welcome to the debug room! This is a small console to help you change certain aspects of the game for playtesting. "
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [connection signal="value_changed" from="time_control/HOUR" to="." method="_on_hour_value_changed"]
 [connection signal="value_changed" from="time_control/MINUTES" to="." method="_on_minutes_value_changed"]
+[connection signal="value_changed" from="time_control/time_rate" to="." method="_on_time_rate_value_changed"]

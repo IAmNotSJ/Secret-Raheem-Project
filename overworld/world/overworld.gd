@@ -15,7 +15,7 @@ var last_hour:int
 var initial_hour
 var initial_minute
 
-const INGAME_SPEED:float = 1.0 / 60.0
+var INGAME_SPEED:float = 1.0 / 60.0
 
 func _ready():
 	initial_hour = int(Time.get_time_dict_from_system()["hour"])
@@ -83,6 +83,7 @@ func set_time(seconds:int):
 	last_hour = initial_hour
 	
 	time = INGAME_TO_REAL_MINUTE_DURATION * initial_hour * MINUTES_PER_HOUR + INGAME_TO_REAL_MINUTE_DURATION * initial_minute 
+	time_tick.emit(get_current_hour(), get_current_minutes())
 
 var positions:Dictionary = {
 	"Main World" : Vector2(0, 0),

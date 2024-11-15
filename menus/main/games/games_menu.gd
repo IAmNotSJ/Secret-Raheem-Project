@@ -26,3 +26,7 @@ func _on_paint_pressed():
 func _on_battle_pressed():
 	global.enteredMiniGameFromMenu = true
 	Transition.change_scene_to_preset("Battle")
+
+
+func _on_button_pressed() -> void:
+	visible = false

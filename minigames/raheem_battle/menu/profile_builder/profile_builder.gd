@@ -31,4 +31,3 @@ func _on_color_picker_color_changed(color: Color) -> void:
 	%color_picker_color.modulate = Color(saved_color[0], saved_color[1], saved_color[2])
 	%character_name.add_theme_color_override("font_color", Color(saved_color[0], saved_color[1], saved_color[2]))
 	Saves.save(Saves.SaveTypes.BATTLE)
-	#print(Saves.battle_info["Color"])

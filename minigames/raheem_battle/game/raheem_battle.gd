@@ -2,10 +2,17 @@ extends Node2D
 
 signal game_started
 
+signal match_rules_received
+
 @onready var manager = get_parent()
 @onready var players = %players
 
 @onready var turn_decider = %turn_decider
+@onready var music_player = $music_player
+
+@onready var pixelate = %Pixelate
+@onready var glitch = %Glitch
+@onready var blur = %Blur
 
 enum Sides {
 	ATTACKING,
@@ -19,6 +26,11 @@ var players_joined:int = 1
 var playing_peer_ids:Array = []
 
 @onready var ui = %UI
+
+var match_rules:Dictionary : 
+	set(value):
+		match_rules = value
+		match_rules_received.emit()
 
 var game_info:Dictionary = {
 	"Messages Sent" : 0,
@@ -48,13 +60,24 @@ var pixel_size:float = 1 :
 var glitch_timer:int = 0
 var blur_timer:int = 0
 
+# TODO: Think of music for this
+var music_paths = [
+	"res://minigames/raheem_battle/music/in_game/A. Rene.ogg",
+	"res://minigames/raheem_battle/music/in_game/Who Was I.ogg"
+]
+
 func _ready():
+	get_viewport().get_camera_2d().offset = Vector2(0, 0)
+	get_viewport().get_camera_2d().position = Vector2(0, 0)
 	%DayNightCycle.visible = Saves.battle_settings["DayNight"]
 	if Overworld.is_time_between(12 + 8, 0, 6, 0):
 		%lights.visible = true
 	else:
 		%lights.visible = false
 	Overworld.time_tick.connect(_on_time_tick)
+
+func _input(_event):
+	%flashlight.global_position = get_global_mouse_position()
 
 func _on_time_tick(hour, minute):
 	if hour == 12+8 && minute == 0:
@@ -92,8 +115,8 @@ func add_player(player_name, peer_id):
 	
 	#Add the UI for the player
 	
-	var deck = Saves.battle_deck.values()
-	ui.card_hand.generate_cards(deck)
+	#var deck = Saves.battle_deck[match_rules["Deck Size"]]
+	ui.card_hand.generate_cards()
 func add_opponent(opponent_id, opponent_info):
 	playing_peer_ids.append(opponent_id)
 	
@@ -108,6 +131,7 @@ func add_opponent(opponent_id, opponent_info):
 	players.add_child(player)
 	#Add the opponent graphic
 	opponent = load("res://minigames/raheem_battle/opponents/" + opponent_info["Character"] + "/opponent_scene.tscn").instantiate()
+	opponent.cards_left = match_rules["Deck Size"]
 	%opponent_position.add_child(opponent)
 
 #Returns the player node that is currently linked to the PLAYER
@@ -151,5 +175,14 @@ func start_game(side:Sides):
 			get_opponent().side = Sides.ATTACKING
 	
 	game_started.emit()
+	_on_music_player_finished()
 	
 	ui.start_game()
+
+func randomize_music():
+	music_player.stream = load(music_paths[randi_range(0, music_paths.size() - 1)])
+
+
+func _on_music_player_finished() -> void:
+	randomize_music()
+	music_player.play()

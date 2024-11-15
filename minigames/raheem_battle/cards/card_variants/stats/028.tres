@@ -6,8 +6,9 @@
 resource_local_to_scene = true
 script = ExtResource("1_cth8c")
 card_name = "Status Message"
+censored_name = ""
 card_series = "Wibr"
-card_number = "025"
+card_number = "028"
 base_attack = 4.0
 base_defense = 3.0
 can_get_bonuses = true

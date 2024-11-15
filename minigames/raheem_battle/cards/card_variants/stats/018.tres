@@ -6,13 +6,14 @@
 resource_local_to_scene = true
 script = ExtResource("1_5bv0y")
 card_name = "Reanimated Collab"
+censored_name = ""
 card_series = "Raheem"
 card_number = "018"
 base_attack = 1.0
 base_defense = 1.0
 can_get_bonuses = true
 ability_name = "Deadline"
-ability_description = "This card will get +2 to both stats if your opponent has two cards left."
+ability_description = "This card will get +4 to both stats if your opponent needs one more card to win."
 one_use_ability = false
 should_remove = true
 hide_stats = false

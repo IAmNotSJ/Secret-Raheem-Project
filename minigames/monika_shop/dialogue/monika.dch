@@ -4,8 +4,19 @@
 "_translation_id": "",
 "color": Color(1, 1, 1, 1),
 "custom_info": {
-"sound_mood_default": "",
-"sound_moods": {},
+"sound_mood_default": "happy",
+"sound_moods": {
+"happy": {
+"mode": 0,
+"name": "happy",
+"pitch_base": 1.0,
+"pitch_variance": 0.0,
+"skip_characters": 0.0,
+"sound_path": "res://minigames/monika_shop/dialogue/sound_effects/monikaHappy.ogg",
+"volume_base": 0.0,
+"volume_variance": 0.0
+}
+},
 "style": "Shop"
 },
 "default_portrait": "New portrait",

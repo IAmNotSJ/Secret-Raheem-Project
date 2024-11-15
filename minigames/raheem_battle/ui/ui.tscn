@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bulnfxumppdej"]
+[gd_scene load_steps=12 format=3 uid="uid://bulnfxumppdej"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/ui.gd" id="1_m2ygg"]
 [ext_resource type="PackedScene" uid="uid://du2gx7mogli7y" path="res://minigames/raheem_battle/cards/hand/card_hand.tscn" id="2_pw22s"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://y3pdhwpfalx2" path="res://minigames/raheem_battle/ui/status_text/status_text.tscn" id="6_whm06"]
 [ext_resource type="PackedScene" uid="uid://be3gmc7kis6ma" path="res://minigames/raheem_battle/ui/victory chest/victory_chest.tscn" id="7_big0j"]
 [ext_resource type="AudioStream" uid="uid://br2c0ge4xbgxc" path="res://minigames/raheem_battle/sound_effects/selected.ogg" id="9_rq2fw"]
+[ext_resource type="AudioStream" uid="uid://breqclk6nwn5b" path="res://minigames/raheem_battle/sound_effects/bonus_added.ogg" id="10_bek6q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbwyp"]
+resource_local_to_scene = true
 shader = ExtResource("5_6218r")
 shader_parameter/lod = 3.0
 shader_parameter/mix_percentage = 0.3
@@ -47,8 +49,6 @@ z_index = 2
 [node name="locked_text" parent="." instance=ExtResource("6_whm06")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_top = 0.0
-offset_bottom = 26.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_otu6l")
@@ -56,3 +56,7 @@ theme_override_fonts/font = ExtResource("6_otu6l")
 [node name="selected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_rq2fw")
 volume_db = -7.494
+
+[node name="card_bonus" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_bek6q")
+volume_db = -15.0

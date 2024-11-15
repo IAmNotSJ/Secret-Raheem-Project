@@ -21,14 +21,3 @@ func give_random_vector2() -> Vector2:
 
 func _on_timer_timeout() -> void:
 	offset_final = give_random_vector2()
-
-func _input(event: InputEvent) -> void:
-	if can_scroll:
-		if event.is_action_pressed("scroll_up"):
-			position.y -= scroll_magnitude
-		if event.is_action_pressed("scroll_down"):
-			position.y += scroll_magnitude
-
-func set_scrollable(scrollable:bool):
-	can_scroll = scrollable
-	print('set scroll!')

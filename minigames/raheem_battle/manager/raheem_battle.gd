@@ -13,7 +13,7 @@ var multiplayer_peer = ENetMultiplayerPeer.new()
 
 var waiting_to_join:bool = false
 
-const PORT = 7890
+const PORT = 215
 
 #Array of all the peer ids connected to the server. Will be a STRING
 var connected_peer_ids = []
@@ -29,6 +29,14 @@ var room_address :
 		room_address = value
 		if game != null:
 			game.ui.turn_info.set_address(room_address)
+
+var match_rules:Dictionary = {
+	"Deck Size" : "8 Cards",
+	"Cards To Win": 2,
+}
+
+func _ready():
+	match_rules = Saves.battle_rules
 
 func _unhandled_input(event):
 	if event.is_action_pressed("hyena"):
@@ -80,10 +88,10 @@ func add_opponent(daPeer, opponent_info):
 # ---- Miscellaneous ---- #
 
 func on_host_pressed():
-	make_game()
 	
 	# Ima keep it a buck fifty with you i have no clue why I need to do it like this, but it works
 	# replacing multiplayer_peer with multiplayer.multiplayer_peer messes everythinnnggg up
+	close_peer()
 	multiplayer_peer = ENetMultiplayerPeer.new()
 	multiplayer_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = multiplayer_peer
@@ -91,12 +99,17 @@ func on_host_pressed():
 	var address
 	if Saves.battle_settings["UPNP"]:
 		address = upnp_setup()
+		if address == "-1":
+			return
 	else:
 		address = "localhost"
+	
+	make_game()
 	
 	game_type = SERVER
 	peer_id = multiplayer.get_unique_id()
 	room_address = str(address)
+	game.match_rules = match_rules
 	
 	#Adds the PLAYER for the host
 	add_player(peer_id)
@@ -131,7 +144,7 @@ func on_join_pressed(ADDRESS):
 	if ADDRESS == "localhost":
 		multiplayer_peer.create_client(ADDRESS, PORT)
 	else:
-		multiplayer_peer.create_client(decrypt_address(ADDRESS), PORT)
+		multiplayer_peer.create_client(Encryption.decrypt_address(ADDRESS), PORT)
 	multiplayer.multiplayer_peer = multiplayer_peer
 	
 	if multiplayer.connected_to_server.is_connected(_on_join_connected):
@@ -139,7 +152,7 @@ func on_join_pressed(ADDRESS):
 	multiplayer.connected_to_server.connect(_on_join_connected.bind(ADDRESS))
 	
 	waiting_to_join = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(5).timeout
 	if waiting_to_join:
 		waiting_to_join = false
 		print("FAIL!")
@@ -150,7 +163,8 @@ func _on_join_connected(ADDRESS):
 	var id = multiplayer.get_unique_id()
 	var data:Dictionary = {
 		"Address" : ADDRESS,
-		"Game Version" : ProjectSettings.get_setting("application/config/version")
+		"Game Version" : ProjectSettings.get_setting("application/config/version"),
+		"Deck" : Saves.battle_deck
 	}
 	_receive_join_request.rpc(id, data)
 
@@ -160,18 +174,31 @@ func _receive_join_request(id, data):
 	if data["Game Version"] == ProjectSettings.get_setting("application/config/version"):
 		if connected_peer_ids.size() != 1:
 			#BAD
-			print(connected_peer_ids.size())
 			close_peer.rpc_id(id)
 			current_scene.make_popup.rpc_id(id, "005")
 		else:
-			#GOOD
-			join_game.rpc_id(id, data["Address"])
+			var can_join:bool = true
+			for card in data["Deck"][match_rules["Deck Size"]]:
+				if card == "-1":
+					can_join = false
+			if can_join:
+				#GOOD
+				var host_data:Dictionary = {
+					"Address" : data["Address"],
+					"Game Version" : ProjectSettings.get_setting("application/config/version"),
+					"Match Rules" : match_rules
+				}
+				join_game.rpc_id(id, host_data)
+			else:
+				var num_string = match_rules["Deck Size"].replace(" Cards", "")
+				close_peer.rpc_id(id)
+				menu.make_popup.rpc_id(id, "004-" + num_string)
 	else:
 		close_peer.rpc_id(id)
 		current_scene.make_popup.rpc_id(id, "007")
 
 @rpc("authority")
-func join_game(ADDRESS):
+func join_game(data):
 	if waiting_to_join:
 		if multiplayer.multiplayer_peer.peer_disconnected.is_connected(_on_peer_disconnect):
 			multiplayer.multiplayer_peer.peer_disconnected.disconnect(_on_peer_disconnect)
@@ -184,16 +211,17 @@ func join_game(ADDRESS):
 		
 		peer_id = multiplayer.get_unique_id()
 		game_type = CLIENT
-		room_address = str(ADDRESS)
+		room_address = str(data["Address"])
 		
 		current_scene.queue_free()
 		current_scene = game
+		
+		game.match_rules = data["Match Rules"]
 		
 		send_join_notification.rpc_id(1, peer_id)
 
 @rpc("any_peer")
 func send_join_notification(id):
-	print('what about this')
 	player_joined.emit(id)
 
 #Internet stuff
@@ -202,18 +230,20 @@ func upnp_setup():
 	
 	var discover_result = upnp.discover()
 	
-	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \
-		"UPNP Discover Failed! Error %s" % discover_result)
+	if discover_result != UPNP.UPNP_RESULT_SUCCESS:
+		current_scene.make_popup("008")
+		return "-1"
 
-	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \
-		"UPNP Invalid Gateway!")
+	if !upnp.get_gateway() || !upnp.get_gateway().is_valid_gateway():
+		current_scene.make_popup("009")
+		return "-1"
 
 	upnp.add_port_mapping(PORT, 0, "godot_udp", "UDP", 0)
 	var map_result_tcp = upnp.add_port_mapping(PORT, 0, "godot_tcp", "TCP", 0)
 	assert(map_result_tcp == UPNP.UPNP_RESULT_SUCCESS, \
 		"UPNP Port Mapping Failed! Error %s" % map_result_tcp)
 	
-	var daAddress = encrypt_address(upnp.query_external_address())
+	var daAddress = Encryption.encrypt_address(upnp.query_external_address())
 	
 	print("Success! Join Address: %s" % daAddress)
 	
@@ -244,27 +274,3 @@ func _on_peer_disconnect(id):
 	if connected_peer_ids.find(id) != -1:
 		print("PLAYER WITH ID " + str(id) + " DISCONNECTED")
 		disconnect_from_game("0")
-
-func encrypt_address(address):
-	var address_array = address.split(".")
-	
-	var encrypted_address_array:Array = []
-	
-	for i in range(address_array.size()):
-		var number = int(address_array[i])
-		encrypted_address_array.append(str(number))
-	
-	
-	var encrypted_address:String = ".".join(encrypted_address_array)
-	return encrypted_address
-func decrypt_address(address):
-	var address_array = address.split(".")
-	var encrypted_address_array:Array = []
-	
-	for i in range(address_array.size()):
-		var number = int(address_array[i])
-		encrypted_address_array.append(str(number))
-	
-	
-	var encrypted_address:String = ".".join(encrypted_address_array)
-	return encrypted_address

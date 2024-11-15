@@ -159,4 +159,3 @@ func _on_meta_clicked(_meta:Variant) -> void:
 ## Handle mouse input
 func on_gui_input(event:InputEvent) -> void:
 	DialogicUtil.autoload().Inputs.handle_node_gui_input(event)
-

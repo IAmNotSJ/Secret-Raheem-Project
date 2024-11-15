@@ -36,6 +36,8 @@ enum Stages {
 var cur_stage:Stages = Stages.NOT_STARTED :
 	set(value):
 		cur_stage = value
+		# Mainly a precaution, hopefully won't break everything?
+		card_hand.reindex_deck()
 
 @onready var game = get_parent().get_parent()
 
@@ -51,12 +53,16 @@ var cur_stage:Stages = Stages.NOT_STARTED :
 @onready var turn_info = $info
 @onready var locked_text = $locked_text
 
+@onready var chat_box = $chat_box
+
+var cards_played = []
+
 var card_to_play
 
 var override_index:int = -1
 var set_override_with_card_selection:bool = false
 
-var opponent_ready:bool = true
+var opponent_ready:bool = false
 
 var game_log:String
 
@@ -64,11 +70,14 @@ var is_in_preview:bool :
 	set(value):
 		is_in_preview = value
 		if is_in_preview:
-			%darken.visible = true
+			if game.pixelate.visible == false and game.glitch.visible == false and game.blur.visible == false:
+				%darken.visible = true
 			entered_preview.emit()
 		else:
-			%darken.visible = false
+			if game.pixelate.visible == false and game.glitch.visible == false and game.blur.visible == false:
+				%darken.visible = false
 			exited_preview.emit()
+var block_starting:bool = false
 
 var pixel_timer:int = 0
 var kromer:bool = false
@@ -97,7 +106,7 @@ var future_events:Dictionary = {
 	"Office GIF" : [FutureEvents.NEXT_CARD_BONUS_MULTIPLIER, [0, 0]]
 }
 var turn_history:Dictionary = {
-	"First Used Card" : [0, 0],
+	"First Used Card" : [],
 	"Last Used Card" : [0, 0]
 }
 
@@ -121,10 +130,12 @@ func generate_deck_preview(card_ref, exclude:Array = [-1], reason:String = ""):
 					exported_array.append(card_hand.cards_in_hand[i].export())
 		deck_preview.generate_deck(exported_array, reason, card_ref)
 		extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW, true)
+		if reason == "Extra Space" || reason == "Brands":
+			extra_screens.start_showing_screens()
 
 func play_card(card):
 	if game.started && cur_stage == Stages.TURN:
-		if card_hand.cards_in_hand.size() > 2:
+		if card_hand.cards_in_hand.size() == game.match_rules["Cards To Win"] + 1:
 			if card.stats["Ability Name"] == "Tears" and game.last_decision != game.get_player().side:
 				return
 		
@@ -158,7 +169,8 @@ func play_card(card):
 			
 			var card_export = card.export()
 			
-			turn_history["First Used Card"] = [card_export["True Attack"], card_export["True Defense"]]
+			if turn_history["First Used Card"] == []:
+				turn_history["First Used Card"] = [card_export["True Attack"], card_export["True Defense"]]
 			$selected.play()
 			activate_locked_text.rpc(card_export)
 		extra_screens.decision_holder.cancelled = false
@@ -277,11 +289,6 @@ func receive_card(exported_card:Dictionary, exported_future:Dictionary, exported
 	apply_next_card_bonus_multiplier(pre_attacking, attacking_info["Future"])
 	apply_next_card_bonus_multiplier(pre_defending, defending_info["Future"])
 	
-	#print("ATTACKING: ")
-	#print(pre_attacking)
-	#print("DEFENDING: ")
-	#print(pre_defending)
-	
 	decision = game.turn_decider.decide_outcome(pre_attacking, pre_defending, attacking_info, defending_info)
 	
 	clear_future_events()
@@ -317,15 +324,33 @@ func process_turn(decision, attacking_card, defending_card, attacking):
 	
 	if attacking:
 		card_matchup.start(decision, attacking_card, defending_card)
+		if cards_played.size() == 0:
+			cards_played.append(attacking_card)
+		else:
+			var append_card:bool = true
+			for card in cards_played:
+				if attacking_card["Card Number"] == card["Card Number"]:
+					append_card = false
+			if append_card:
+				cards_played.append(attacking_card)
 	else:
 		card_matchup.start(decision, defending_card, attacking_card)
+		if cards_played.size() == 0:
+			cards_played.append(defending_card)
+		else:
+			var append_card:bool = true
+			for card in cards_played:
+				if defending_card["Card Number"] == card["Card Number"]:
+					append_card = false
+			if append_card:
+				cards_played.append(defending_card)
 	
 	set_ready(false)
 	end_turn(decision)
 
 @rpc("authority")
 func end_turn(decision:Sides):
-	var player = game.get_player()
+	var _player = game.get_player()
 	var _opponent = game.get_opponent()
 	
 	game.last_decision = decision
@@ -337,19 +362,20 @@ func end_turn(decision:Sides):
 	cur_stage = Stages.PRE_TURN
 	
 	if decision != Sides.TIE:
-		if decision == player.side:
-			if card_to_play.stats["Should Remove"] and !override_chest:
-				card_hand.remove_card(card_to_play.index)
-			else:
-				match card_to_play.stats["Ability Name"]:
-					"Other Priorities":
-						var bonus_attack = card_to_play.stats["True Attack"]
-						var bonus_defense = card_to_play.stats["True Attack"]
-						card_to_play.clear_bonuses()
-						card_to_play.set_penalty_attack(card_to_play.stats["Base Attack"], "Other Priorities")
-						card_to_play.set_penalty_defense(card_to_play.stats["Base Attack"], "Other Priorities")
-						deck_preview.bonuses_to_add = [bonus_attack, bonus_defense]
-						generate_deck_preview(card_to_play, [card_to_play.index], "Other Priorities")
+		if decision == game.get_player().side:
+			if !override_chest:
+				if card_to_play.stats["Should Remove"] or card_hand.cards_in_hand.size() == 1:
+					card_hand.remove_card(card_to_play.index)
+				else:
+					match card_to_play.stats["Ability Name"]:
+						"Other Priorities":
+							var bonus_attack = card_to_play.stats["True Attack"]
+							var bonus_defense = card_to_play.stats["True Attack"]
+							card_to_play.clear_bonuses()
+							card_to_play.set_penalty_attack(card_to_play.stats["Base Attack"], "Other Priorities")
+							card_to_play.set_penalty_defense(card_to_play.stats["Base Attack"], "Other Priorities")
+							deck_preview.bonuses_to_add = [bonus_attack, bonus_defense]
+							generate_deck_preview(card_to_play, [card_to_play.index], "Other Priorities")
 	
 	turn_history["Last Used Card"] = [card_to_play.stats["True Attack"], card_to_play.stats["True Defense"]]
 	
@@ -365,7 +391,8 @@ func end_turn(decision:Sides):
 	if game.manager.connected_peer_ids != []:
 		game.get_player().cards_left = card_hand.cards_in_hand.size()
 	
-	set_ready_call.rpc(opponent_ready)
+	if !opponent_ready:
+		set_ready_call.rpc()
 	locked_text.set_status("WAITING ON OPPONENT")
 	
 	await sync
@@ -380,12 +407,14 @@ func start_game():
 @rpc("any_peer")
 func start_turn():
 	set_ready(false)
-	$chat_box.message_sent_in_turn = false
+	chat_box.message_sent_in_turn = false
 	var player = game.get_player()
 	var _opponent = game.get_opponent()
 	
 	for card in card_hand.cards_in_hand:
 		card.selected = false
+	
+	disabled_softlock_check()
 	
 	locked_text.clear()
 	
@@ -397,28 +426,37 @@ func start_turn():
 	player.unlock()
 	_opponent.unlock()
 	
-	game.turn_count += 1
+	if !block_starting:
+		game.turn_count += 1
 	
 	starting_card_effects()
 	
+	if !extra_screens.showing_screens:
+		extra_screens.start_showing_screens()
+	
 	turn_started.emit()
 	cur_stage = Stages.TURN
-	
-	for card in card_hand.cards_in_hand:
-		card.apply_bonuses()
-		card.apply_penalties()
 	
 	
 	if game.glitch_timer > 0:
 		game.glitch_timer -= 1
 		if game.glitch_timer <= 0:
-			game.get_node("non-light-affected/Glitch").visible = false
+			game.glitch.visible = false
 	if game.blur_timer > 0:
 		game.blur_timer -= 1
 		if game.blur_timer <= 0:
-			game.get_node("non-light-affected/Blur").visible = false
+			game.blur.visible = false
 	
 	#card_to_play = null
+
+func disabled_softlock_check():
+	if card_hand.disabled_cards.size() > 0:
+		print('softlock check')
+		if card_hand.cards_in_hand.size() - card_hand.disabled_cards.size() <= game.match_rules["Cards To Win"] + 1:
+			var card_index = randi_range(0, card_hand.disabled_cards.size() - 1)
+			print('attemping to reenable a card!')
+			card_hand.disabled_cards[card_index].disabled_time = 0
+			card_hand.disabled_cards[card_index].disabled = false
 
 @rpc("any_peer")
 func update_opponent(cards_left):
@@ -429,12 +467,13 @@ func _on_card_removed():
 		if card.stats["Ability Name"] == "Post-Mortem":
 			card.add_bonus_attack(1, "Post-Mortem")
 			card.add_bonus_defense(1, "Post-Mortem")
+			card.apply_bonuses()
 	
 	update_opponent.rpc(card_hand.cards_in_hand.size())
 	
 	turn_info.play()
 	
-	if card_hand.cards_in_hand.size() == 1:
+	if card_hand.cards_in_hand.size() == game.match_rules["Cards To Win"]:
 		announce_winner.rpc(false)
 		announce_winner(true)
 
@@ -445,7 +484,6 @@ func starting_game_card_effects(specific_cards = []):
 	if specific_cards == []:
 		for card in card_hand.cards_in_hand:
 				specific_cards.append(card)
-	print(specific_cards)
 	for card in specific_cards:
 		if !card.ability_used:
 			match card.stats["Ability Name"]:
@@ -476,7 +514,6 @@ func starting_game_card_effects(specific_cards = []):
 					else:
 						card.add_bonus_attack(2, "Debt")
 				"Ambush Predator":
-					print("Ambush preadtor: " + str(card.stats["Bonuses"]["Ambush Predator"]))
 					if card.stats["Bonuses"]["Ambush Predator"] == [0, 0]:
 						card.add_bonus_attack(2, "Ambush Predator")
 						card.add_bonus_defense(2, "Ambush Predator")
@@ -542,13 +579,14 @@ func starting_card_effects():
 					if random == 7:
 						card_hand.remove_card(card.index)
 				"Deadline":
-					if game.get_opponent().cards_left == 2:
-						card.add_bonus_attack(2, "Deadline")
-						card.add_bonus_defense(2, "Deadline")
+					if game.get_opponent().cards_left == game.match_rules["Cards To Win"] + 1:
+						card.add_bonus_attack(4, "Deadline")
+						card.add_bonus_defense(4, "Deadline")
 					card.ability_check()
 				"Reminiscing":
-					card.set_bonus_attack(turn_history["First Used Card"][0], "Reminiscing")
-					card.set_bonus_defense(turn_history["First Used Card"][1], "Reminiscing")
+					if turn_history["First Used Card"] != []:
+						card.set_bonus_attack(turn_history["First Used Card"][0], "Reminiscing")
+						card.set_bonus_defense(turn_history["First Used Card"][1], "Reminiscing")
 				"What Day Is It?":
 					if Time.get_date_dict_from_system()["weekday"] == Time.Weekday.WEEKDAY_WEDNESDAY:
 						card.set_bonus_attack(1, "What Day Is It?")
@@ -654,7 +692,7 @@ func starting_card_effects():
 						card.stats["Base Defense"] = 3
 				"Fangirl":
 					for leCard in card_hand.cards_in_hand:
-						if leCard.stats["Card Number"] == "135":
+						if leCard.stats["Card Number"] == "134":
 							if card.stats["Bonuses"]["Fangirl"] == [0, 0]:
 								card.add_bonus_attack(2, "Fangirl")
 								card.add_bonus_defense(2, "Fangirl")
@@ -675,8 +713,14 @@ func starting_card_effects():
 							card.stats["Base Defense"] = 1
 				"Fronting":
 					if randi_range(1, 4) == 1:
-						var new_card_num = str(randi_range(154, 156))
+						var new_card_num = str(randi_range(153, 155))
+						if randi_range(1, 100) == 1:
+							new_card_num = 156
 						card_hand.replace_card(card.index, new_card_num, true)
+	for card in card_hand.cards_in_hand:
+		card.apply_bonuses()
+		card.apply_penalties()
+		card.recalculate_stats()
 
 # Called before a turn is decided. 
 # This will only be called on the host, so can't do anything really permanent
@@ -725,7 +769,7 @@ func pre_card_effects(card, affecting_card, info, affecting_info):
 				
 					card["Bonuses"]["Walk"] = [0, 2]
 			"Bathroom Break":
-				if $chat_box.message_sent_in_turn:
+				if chat_box.message_sent_in_turn:
 					card["True Attack"] -= 1
 					card["Penalty Attack"] += 1
 					card["Penalties"]["Bathroom Break"][0] += 1
@@ -839,8 +883,6 @@ func pre_card_effects(card, affecting_card, info, affecting_info):
 					card["Bonus Defense"] += 2
 					card["Bonuses"]["Dance"][1] += 2
 			"Denmark":
-				print(affecting_info["Quiz"]["Country"])
-				print(info["Quiz"]["Country"])
 				if affecting_info["Quiz"]["Country"] != info["Quiz"]["Country"]:
 					card["True Attack"] += 2
 					card["Bonus Attack"] += 2
@@ -863,7 +905,6 @@ func pre_card_effects_per_card(attacking_card, defending_card, attacking_info, d
 	#You gotta add the code for the abilities TWICE!!!!!!
 	match attacking_card["Ability Name"]:
 		"Wrong Terminal":
-			print('is this atleast working')
 			var attacking_attack = attacking_card["True Attack"]
 			var attacking_defense = attacking_card["True Defense"]
 			var attacking_base_attack = attacking_card["Base Attack"]
@@ -899,7 +940,6 @@ func pre_card_effects_per_card(attacking_card, defending_card, attacking_info, d
 	
 	match defending_card["Ability Name"]:
 		"Wrong Terminal":
-			print('is this atleast working')
 			var defending_attack = defending_card["True Attack"]
 			var defending_defense = defending_card["True Defense"]
 			var defending_base_attack = defending_card["Base Attack"]
@@ -1018,18 +1058,21 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					func (correct):
 						if !correct:
 							var rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-							while rand1 == card_to_play.index:
-								rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-								card_hand.disable_card(rand1, 2)
-							if card_hand.cards_in_hand.size() > 2:
+							if card_hand.cards_in_hand.size() > 1:
+								while rand1 == card_to_play.index:
+									rand1 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+							card_hand.disable_card(rand1, 2)
+							if card_hand.cards_in_hand.size() > 1:
 								var rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-								while rand2 == rand1 or rand2 == card_to_play.index:
-									rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+								if card_hand.cards_in_hand.size() > 2:
+									while rand2 == rand1 or rand2 == card_to_play.index:
+										rand2 = randi_range(0, card_hand.cards_in_hand.size() - 1)
 								card_hand.disable_card(rand2, 2)
-								if card_hand.cards_in_hand.size() > 3:
+								if card_hand.cards_in_hand.size() > 2:
 									var rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
-									while rand3 == rand1 or rand3 == rand2 or rand1 == card_to_play.index:
-										rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
+									if card_hand.cards_in_hand.size() > 3:
+										while rand3 == rand1 or rand3 == rand2 or rand1 == card_to_play.index:
+											rand3 = randi_range(0, card_hand.cards_in_hand.size() - 1)
 									card_hand.disable_card(rand3, 2)
 				)
 				ability_check.rpc(opposing_card["Index"])
@@ -1044,7 +1087,12 @@ func post_card_effects(opposing_card, decision, opposing_info):
 			".":
 				await turn_started
 				opposing_card["Ability Used"] = true
-				card_hand.add_card(opposing_card, false, false)
+				if game.match_rules["Cards To Win"] == 0:
+					opposing_card["Base Attack"] = 2
+					opposing_card["Base Defense"] = 2
+					card_hand.add_card(opposing_card, false)
+				else:
+					card_hand.add_card(opposing_card, false, false)
 			"Insults":
 				if decision == opposing_card["Side"]:
 					card_to_play.add_penalty_attack(2, "Insults")
@@ -1052,7 +1100,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 			"Thief":
 				await turn_started
 				if decision == opposing_card["Side"]:
-					card_hand.replace_card(card_to_play.index, "-1", false)
+					card_hand.replace_card(card_to_play.index, "-123", false)
 			"Null Reference":
 				await turn_started
 				game.get_node("non-light-affected/Glitch").visible = true
@@ -1115,6 +1163,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 							string_num = str(num)
 						string_cards.append(string_num)
 					
+					card_hand.reindex_deck()
 					for i in range(card_hand.cards_in_hand.size()):
 						card_hand.replace_card(i, string_cards[i], true)
 				update_opponent.rpc(card_hand.cards_in_hand.size())
@@ -1151,7 +1200,6 @@ func post_card_effects(opposing_card, decision, opposing_info):
 						card.add_bonus_defense(3, "Generic Response")
 				card_to_play.ability_check()
 			"Cash Out":
-				print('is crypto really being activated')
 				for card in card_hand.cards_in_hand:
 					if card.stats["True Attack"] <= 3:
 						card.add_bonus_attack(2, "Cash Out")
@@ -1177,6 +1225,8 @@ func post_card_effects(opposing_card, decision, opposing_info):
 					card_hand.remove_all_cards()
 				else:
 					card_hand.remove_all_cards.rpc()
+				block_start()
+				block_start.rpc()
 			"Nectar of the Gods":
 				for card in card_hand.cards_in_hand:
 					if randi_range(0, 1) == 0:
@@ -1216,16 +1266,12 @@ func post_card_effects(opposing_card, decision, opposing_info):
 				if opposing_info["Quiz"]["Server Member"] == "Wibr" or opposing_info["Quiz"]["Server Member"] == "SJ" or opposing_info["Quiz"]["Server Member"] == "Cleft" or opposing_info["Quiz"]["Server Member"] == "Luna" or opposing_info["Quiz"]["Server Member"] == "Cost":
 					participated = true
 				if participated:
-					print("PARTICIPATED: " + str(participated))
 					if card_to_play.stats["Bonuses"]["Awareness"] == [0, 0]:
 						card_to_play.add_bonus_attack(2, "Awareness")
 						card_to_play.ability_check()
 			"Top 100":
 				var own = Saves.battle_quiz["Subscribers"]
 				var opposing = opposing_info["Quiz"]["Subscribers"]
-				print(own)
-				print(opposing)
-				# I am going to SHIT MYSELF why does this ONLY WORK when I print out the variables
 				if own > opposing:
 					card_to_play.add_bonus_attack(2, "Top 100")
 					card_to_play.add_bonus_defense(2, "Top 100")
@@ -1233,6 +1279,9 @@ func post_card_effects(opposing_card, decision, opposing_info):
 			'Office GIF':
 				future_events["Office GIF"] = [FutureEvents.NEXT_CARD_BONUS_MULTIPLIER, [2, 2]]
 				card_to_play.ability_check()
+			".":
+				await turn_started
+				card_hand.remove_card(card_to_play.index, false, true, false)
 			"Charity":
 				for card in card_hand.cards_in_hand:
 					if card != card_to_play:
@@ -1260,7 +1309,6 @@ func post_card_effects(opposing_card, decision, opposing_info):
 				await turn_started
 				if decision == opposing_card["Side"]:
 					var half_of_deck:int = floor(float(card_hand.cards_in_hand.size()) / 2)
-					print("HALF OF DECK:" + str(half_of_deck))
 					var indexes_to_disable = []
 					for i in range(half_of_deck):
 						var index = randi_range(0, card_hand.cards_in_hand.size() - 1)
@@ -1303,6 +1351,7 @@ func post_card_effects(opposing_card, decision, opposing_info):
 							string_num = str(num)
 						string_cards.append(string_num)
 					
+					card_hand.reindex_deck()
 					for i in range(card_hand.cards_in_hand.size()):
 						card_hand.replace_card(i, string_cards[i], true)
 					update_opponent.rpc(card_hand.cards_in_hand.size())
@@ -1406,21 +1455,19 @@ func get_info():
 
 @rpc("any_peer")
 func add_bonus_attack(index, amount, reason):
-	print("Adding bonus attack to " + card_hand.get_card_from_index(index).stats["Card Name"])
 	card_hand.get_card_from_index(index).add_bonus_attack(amount, reason)
 
 @rpc("any_peer")
 func add_bonus_defense(index, amount, reason):
-	print("Adding bonus defense to " + card_hand.get_card_from_index(index).stats["Card Name"])
 	card_hand.get_card_from_index(index).add_bonus_defense(amount, reason)
 
 @rpc("any_peer")
-func set_ready_call(curStatus):
-	#print(game.get_opponent().player_name + "IS READY!!")
+func set_ready_call():
+	if extra_screens.showing_screens:
+		await extra_screens.finished
 	opponent_ready = true
-	if curStatus == true:
-		sync.emit()
-		emit_sync.rpc()
+	set_ready.rpc(true)
+	emit_sync.rpc()
 @rpc("any_peer")
 func set_ready(val):
 	opponent_ready = val
@@ -1437,6 +1484,10 @@ func announce_winner(has_won:bool):
 	else:
 		print(game.get_opponent().player_name + " HAS WON THE GAME!")
 	
+	block_start()
+	block_start.rpc()
+	
+	game.music_player.stop()
 	extra_screens.results.create(has_won)
 
 func set_pixel_effect(pixels, duration):
@@ -1480,3 +1531,7 @@ func add_to_log(attacking_card:Dictionary, defending_card:Dictionary, decision:S
 	
 	var file = FileAccess.open(LOG_PATH, FileAccess.WRITE)
 	file.store_line(game_log)
+
+@rpc("any_peer")
+func block_start():
+	block_starting = true

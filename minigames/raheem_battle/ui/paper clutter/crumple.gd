@@ -7,4 +7,4 @@ func _ready():
 
 
 func _on_sleeping_state_changed():
-	print('guh')
+	print('Paper sleeping state Changed')

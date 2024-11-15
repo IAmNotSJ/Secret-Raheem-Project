@@ -11,7 +11,10 @@ var play_audio = false
 
 func _ready():
 	_remake_answers()
-	selected = answers.find(Saves.battle_quiz[answerKey])
+	if Saves.battle_quiz.keys().has(answerKey):
+		selected = answers.find(Saves.battle_quiz[answerKey])
+	else:
+		print("BATTLE QUIZ DOES NOT HAVE KEY " + answerKey)
 	play_audio = true
 
 func _remake_answers():

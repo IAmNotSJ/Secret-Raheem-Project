@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://ocj8cmpvfkv0" path="res://minigames/raheem_battle/menu/assets/check.png" id="1_88bgj"]
 [ext_resource type="Texture2D" uid="uid://c6ljtl3qs6h1d" path="res://minigames/raheem_battle/menu/assets/dropdown.png" id="1_h2a71"]
-[ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/dropdown.gd" id="1_hec30"]
 [ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="1_t013a"]
 [ext_resource type="Texture2D" uid="uid://b4scisrq4ui87" path="res://minigames/raheem_battle/menu/assets/uncheck.png" id="2_7erii"]
 [ext_resource type="Texture2D" uid="uid://dnf8kwblbt8od" path="res://minigames/raheem_battle/menu/assets/droparrow.png" id="3_k0edt"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/quiz/answer_types/dropdown.gd" id="6_ja2bi"]
 [ext_resource type="AudioStream" uid="uid://d3i5k6bwurocu" path="res://minigames/raheem_battle/menu/sounds/quick.ogg" id="7_u6ssn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1uix"]
@@ -29,8 +29,9 @@ PopupMenu/styles/separator = SubResource("StyleBoxLine_y871d")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1a1j2"]
 texture = ExtResource("1_h2a71")
-texture_margin_left = 5.0
+texture_margin_left = 6.0
 texture_margin_top = 2.0
+expand_margin_right = 3.0
 
 [node name="OptionButton" type="OptionButton"]
 offset_right = 105.0
@@ -63,7 +64,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_1a1j2")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_1a1j2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1a1j2")
 theme_override_icons/arrow = ExtResource("3_k0edt")
-script = ExtResource("1_hec30")
+script = ExtResource("6_ja2bi")
 
 [node name="audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_u6ssn")

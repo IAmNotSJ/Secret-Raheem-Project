@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var ui = get_parent().get_parent()
 
-var speed:float = 0.2
+var speed:float = 2
 
 var enabled:bool = false
 var enabled_timer = 3
@@ -17,7 +17,6 @@ func _process(delta):
 
 
 func _on_change_timer_timeout():
-	$FinalPos.global_position = Vector2(randi_range(0, 1280), randi_range(0, 720))
 	$change_timer.start()
 
 func _on_turn_ended():

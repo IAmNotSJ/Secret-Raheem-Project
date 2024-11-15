@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://31a14yhuombe"
+path="res://.godot/imported/A. Rene.ogg-66cb8485fbcda0cab3311bbc6fd03e56.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/raheem_battle/music/in_game/A. Rene.ogg"
+dest_files=["res://.godot/imported/A. Rene.ogg-66cb8485fbcda0cab3311bbc6fd03e56.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

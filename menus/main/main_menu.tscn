@@ -72,18 +72,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -150.61
+offset_left = -127.899
 offset_top = 662.0
-offset_right = 1535.39
+offset_right = 1558.11
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -287.218
+offset_left = -309.861
 offset_top = -10.0
-offset_right = 1398.8
+offset_right = 1376.16
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true
@@ -130,10 +130,10 @@ texture = ExtResource("4_b5egf")
 
 [node name="debug" type="Button" parent="Main"]
 unique_name_in_owner = true
-offset_left = 418.0
-offset_top = 409.0
-offset_right = 844.0
-offset_bottom = 484.0
+offset_left = 1040.0
+offset_top = 75.0
+offset_right = 1274.0
+offset_bottom = 125.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("16_sponl")
@@ -166,6 +166,29 @@ offset_bottom = 2.0
 
 [node name="Games" parent="." instance=ExtResource("13_gp170")]
 visible = false
+
+[node name="Password" type="ColorRect" parent="."]
+visible = false
+offset_left = 233.0
+offset_top = 49.0
+offset_right = 1061.0
+offset_bottom = 653.0
+color = Color(0.45056, 0.723208, 0.957907, 1)
+
+[node name="Label" type="Label" parent="Password"]
+layout_mode = 0
+offset_right = 828.0
+offset_bottom = 140.0
+theme_override_fonts/font = ExtResource("13_ivpwh")
+theme_override_font_sizes/font_size = 56
+text = "gimme da password BITCH!"
+
+[node name="password_line" type="LineEdit" parent="Password"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 283.0
+offset_right = 724.0
+offset_bottom = 359.0
 
 [node name="fade" type="ColorRect" parent="."]
 visible = false
@@ -205,4 +228,5 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Main/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Games" to="." method="_on_games_pressed"]
 [connection signal="pressed" from="Main/debug" to="." method="_on_debug_pressed"]
+[connection signal="text_submitted" from="Password/password_line" to="." method="_on_password_line_text_submitted"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

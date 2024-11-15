@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7gyklj6myx62"]
+[gd_scene load_steps=18 format=3 uid="uid://b7gyklj6myx62"]
 
 [ext_resource type="Script" path="res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/vn_textbox_layer.gd" id="1_a0acx"]
 [ext_resource type="Script" path="res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/animations.gd" id="2_j0pct"]
-[ext_resource type="Texture2D" uid="uid://di7rf4p6yinjr" path="res://dialogue/Styles/Shop/MonikaShop/Assets/box.png" id="3_wspla"]
+[ext_resource type="Texture2D" uid="uid://rp4ivxe518nv" path="res://dialogue/Styles/Shop/MonikaShop/Assets/box.png" id="3_wspla"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="4_vf56n"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="5_lbnm1"]
 [ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_type_sound.gd" id="6_13prg"]
@@ -253,6 +253,12 @@ _data = {
 "textbox_pop_in": SubResource("Animation_uebqa")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y68h"]
+bg_color = Color(0.736091, 0.00203747, 0.918907, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0em7"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="VN_TextboxLayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -264,6 +270,7 @@ mouse_filter = 2
 script = ExtResource("1_a0acx")
 box_panel = "res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/vn_textbox_default_panel.tres"
 name_label_box_panel = "res://overworld/dialogue/styles/RaheemStyle/VisualNovelTextbox/vn_textbox_name_label_panel.tres"
+next_indicator_show_on_autoadvance = true
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -316,23 +323,40 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -489.5
-offset_top = -669.5
-offset_right = 490.5
-offset_bottom = 0.5
+offset_left = -489.0
+offset_top = -131.0
+offset_right = 491.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_wspla")
 metadata/_edit_layout_mode = 1
 
+[node name="AutoAdvanceProgressbar" type="ProgressBar" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+offset_left = 3.0
+offset_top = 171.0
+offset_right = 1279.0
+offset_bottom = 181.0
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_3y68h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m0em7")
+max_value = 1.0
+step = 0.001
+value = 0.5
+show_percentage = false
+script = ExtResource("9_3ux56")
+
 [node name="DialogicNode_DialogText" type="RichTextLabel" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 9.0
-offset_top = 561.0
+offset_top = 25.0
 offset_right = 1274.0
-offset_bottom = 716.0
+offset_bottom = 180.0
 theme_override_colors/default_color = Color(0.0235294, 0.0156863, 0.105882, 1)
 theme_override_fonts/normal_font = ExtResource("4_vf56n")
 theme_override_font_sizes/normal_font_size = 24
@@ -347,10 +371,10 @@ script = ExtResource("6_13prg")
 unique_name_in_owner = true
 layout_mode = 2
 anchors_preset = 0
-offset_left = 1240.0
-offset_top = 696.0
-offset_right = 1240.0
-offset_bottom = 696.0
+offset_left = 1106.0
+offset_top = 62.0
+offset_right = 1145.0
+offset_bottom = 90.0
 scale = Vector2(2, 2)
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -358,19 +382,3 @@ script = ExtResource("7_klgxb")
 animation = 2
 texture = ExtResource("8_lyyh6")
 metadata/_edit_layout_mode = 1
-
-[node name="AutoAdvanceProgressbar" type="ProgressBar" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.188235)
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-offset_left = 3.0
-offset_top = 706.0
-offset_right = 1279.0
-offset_bottom = 716.0
-size_flags_vertical = 8
-max_value = 1.0
-step = 0.001
-value = 0.5
-show_percentage = false
-script = ExtResource("9_3ux56")

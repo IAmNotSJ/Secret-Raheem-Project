@@ -10,6 +10,10 @@ var cards_removed:Array = []
 var every_card:Array = []
 var cards:Array = []
 
+var cur_deck = "8 Cards"
+
+@onready var decks = [%"8 Cards", %"9 Cards", %"10 Cards", %"11 Cards", %"12 Cards"]
+
 func _ready():
 	_create_cards()
 	
@@ -27,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _create_cards():
 	
 	var card_count:int = 0
-	for i in range(157):
+	for i in range(156):
 		var numbString = str(card_count)
 		if numbString.length() == 1:
 			numbString = "00" + numbString
@@ -40,7 +44,7 @@ func _create_cards():
 	
 	for num in every_card:
 			var file_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + num + ".tres"
-			if FileAccess.file_exists(file_path):
+			if ResourceLoader.exists(file_path):
 				var card = draggable_card.instantiate()
 				var stats = load(file_path)
 				
@@ -58,20 +62,31 @@ func _create_cards():
 				card.stats["Is Human"] = stats.is_human
 				card.stats["Has Hands"] = stats.has_hands
 				card.let_go.connect(_on_held_card_let_go)
-				#card.taken_out.connect(_on_held_card_let_go)
+				card.taken_out.connect(_on_held_card_let_go)
 				%card_container.add_child(card)
 				cards.append(card)
 				
-				for i in Saves.battle_deck.keys().size():
-					var card_num = Saves.battle_deck["Card " + str(i + 1)]
-					if num == card_num:
-						for snap in $snap_container.get_children():
-							if snap.deck_index == i + 1:
-								snap.lock_card(card)
 				card._recalculate_attack()
 				card._recalculate_defense()
 				card._on_stats_changed()
+	set_deck()
 	_on_held_card_let_go()
+
+func set_deck():
+	_on_clear_pressed()
+	
+	var cards_number = []
+	for card in cards:
+		cards_number.append(card.stats["Card Number"])
+	var deck_array = []
+	for i in range(Saves.battle_deck[cur_deck].size()):
+		if cards_number.find(Saves.battle_deck[cur_deck][i]) != -1:
+			deck_array.append(cards[cards_number.find(Saves.battle_deck[cur_deck][i])])
+		else:
+			deck_array.append(null)
+	for i in range(deck_array.size()):
+		if deck_array[i] != null:
+			$snap_container.get_node(cur_deck).get_children()[i].lock_card(deck_array[i])
 
 func set_held(card):
 	if !is_in_preview:
@@ -102,7 +117,6 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("click"):
 		clear_held()
 	if held_card != null:
-		#print(held_card.size)
 		held_card.global_position.x = get_global_mouse_position().x - held_card.size.x / 2
 		held_card.global_position.y = get_global_mouse_position().y - held_card.size.y / 2
 
@@ -111,7 +125,7 @@ func generate_preview(num):
 		$dark.visible = true
 		var card = normal_card.instantiate()
 		var file_path = "res://minigames/raheem_battle/cards/card_variants/stats/" + num + ".tres"
-		if FileAccess.file_exists(file_path):
+		if ResourceLoader.exists(file_path):
 			card.stats = card.return_stats_from_resource(file_path)
 		card.is_preview = true
 		is_in_preview = true
@@ -125,9 +139,10 @@ func generate_preview(num):
 func _on_save_pressed() -> void:
 	Saves.save(Saves.SaveTypes.BATTLE)
 func _on_clear_pressed() -> void:
-	for snap in $snap_container.get_children():
-		if snap.card != null:
-			snap.card.clear_snap()
+	for deck in $snap_container.get_children():
+		for snap in deck.get_children():
+			if snap.card != null:
+				snap.card.clear_snap(false)
 	_on_held_card_let_go()
 
 func _on_shuffle_pressed() -> void:
@@ -136,8 +151,8 @@ func _on_shuffle_pressed() -> void:
 	var all_cards = %card_container.get_children()
 	all_cards.shuffle()
 	
-	for i in range($snap_container.get_children().size()):
-		$snap_container.get_children()[i].lock_card(all_cards[i])
+	for i in range($snap_container.get_node(cur_deck).get_children().size()):
+		$snap_container.get_node(cur_deck).get_children()[i].lock_card(all_cards[i])
 
 
 func add_blank(daPos):
@@ -145,3 +160,41 @@ func add_blank(daPos):
 	blank.size = Vector2(149, 216)
 	blank.position = daPos
 	%card_container.add_child(blank)
+
+
+func _on_type_item_selected(index: int) -> void:
+	_on_clear_pressed()
+	match index:
+		0:
+			cur_deck = "8 Cards"
+		1:
+			cur_deck = "9 Cards"
+		2:
+			cur_deck = "10 Cards"
+		3:
+			cur_deck = "11 Cards"
+		4:
+			cur_deck = "12 Cards"
+	for deck in decks:
+		if deck.name != cur_deck:
+			deck.visible = false
+		else:
+			deck.visible = true
+	set_deck()
+
+
+func _on_type_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		global.mouse.make_hidden()
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+	else:
+		global.mouse.make_visible()
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+
+
+func _on_click_detection_pressed() -> void:
+	await get_tree().process_frame
+	$dark.visible = false
+	is_in_preview = false
+	for child in $CenterContainer.get_children():
+		child.queue_free()

@@ -15,21 +15,41 @@ offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Mice" type="GridContainer" parent="."]
+visible = false
 offset_right = 667.0
 offset_bottom = 200.0
 theme_override_constants/h_separation = 190
 theme_override_constants/v_separation = 200
 columns = 3
 
-[node name="shop_item" parent="GridContainer" instance=ExtResource("1_1ygd0")]
+[node name="shop_item" parent="Mice" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
+message = Array[String](["monika: Truthfully, I don't know where I got this.", "monika: I mean, snails don't even have hands."])
 
-[node name="shop_item2" parent="GridContainer" instance=ExtResource("1_1ygd0")]
+[node name="shop_item2" parent="Mice" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
+message = Array[String](["monika: My gloves are highly valued after.", "monika: They're designer, after all."])
 
-[node name="shop_item3" parent="GridContainer" instance=ExtResource("1_1ygd0")]
+[node name="shop_item3" parent="Mice" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
+message = Array[String](["monika: Oh, well I stole this off of some sucker.", "monika: Probably did him a favor."])
 
-[node name="shop_item4" parent="GridContainer" instance=ExtResource("1_1ygd0")]
+[node name="Card Packs" type="GridContainer" parent="."]
+offset_right = 667.0
+offset_bottom = 200.0
+theme_override_constants/h_separation = 190
+theme_override_constants/v_separation = 200
+columns = 3
+
+[node name="shop_item" parent="Card Packs" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
+message = Array[String](["monika: Truthfully, I don't know where I got this.", "monika: I mean, snails don't even have hands."])
+
+[node name="shop_item2" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: My gloves are highly valued after.", "monika: They're designer, after all."])
+
+[node name="shop_item3" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Oh, well I stole this off of some sucker.", "monika: Probably did him a favor."])

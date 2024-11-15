@@ -5,14 +5,15 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ga1be")
-card_name = "Guywhoisveryevil"
+card_name = "Jahook"
+censored_name = ""
 card_series = "Third Party"
 card_number = "151"
-base_attack = 4.0
-base_defense = 2.0
+base_attack = 3.0
+base_defense = 6.0
 can_get_bonuses = true
-ability_name = "False Identity"
-ability_description = "After this card is played, all of your cards will be hidden in the matchup preview for the rest of the game."
+ability_name = "Donkey Kong"
+ability_description = "This card receives -1 to both stats for the turn if the opposing card is a human."
 one_use_ability = false
 should_remove = true
 hide_stats = false

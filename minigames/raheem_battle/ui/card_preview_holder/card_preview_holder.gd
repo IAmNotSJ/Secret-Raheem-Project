@@ -12,6 +12,7 @@ func generate_card_preview(stats, message:String = "", back:bool = false, force:
 		
 		#card.position.y += 50
 		
+		
 		$card_container.add_child(card)
 		
 		screen_container.add_screen_queue(screen_container.CARD_PREVIEW, back)
@@ -27,7 +28,6 @@ func generate_card_preview(stats, message:String = "", back:bool = false, force:
 
 @rpc("any_peer")
 func generate_preview_from_export(export, message:String = "", back:bool = false, force:bool = false):
-	print("Code is being executed for card preview")
 	var card = card_scene.instantiate()
 	card.block_input = true
 	card.set_card_scale(Vector2(1, 1))
@@ -47,8 +47,14 @@ func generate_preview_from_export(export, message:String = "", back:bool = false
 func _unhandled_input(event):
 	if visible:
 		if event.is_action_pressed("back"):
-			#print('card preview is being hidden')
-			if $card_container.get_children() != []:
-				for card in $card_container.get_children():
-					card.queue_free()
-			hide()
+			clear()
+
+
+func _on_click_detection_pressed() -> void:
+	clear()
+
+func clear():
+	if $card_container.get_children() != []:
+		for card in $card_container.get_children():
+			card.queue_free()
+	hide()

@@ -178,6 +178,8 @@ func _ready():
 	hyena.pivot_offset = Vector2(hyena.size.x / 2, hyena.size.y / 2)
 	
 	card_button.left_clicked.connect(_on_card_clicked)
+	card_button.stats = card_button.return_stats_from_resource("res://minigames/raheem_battle/cards/card_variants/stats/021.tres")
+	card_button.changed.emit()
 	
 	if Saves.minigames["Hyena Clicker"] == false:
 		Saves.minigames["Hyena Clicker"] = true

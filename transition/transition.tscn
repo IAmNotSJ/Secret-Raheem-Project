@@ -349,10 +349,10 @@ texture = ExtResource("1_cdt5u")
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="Top" type="ColorRect" parent="Borders"]
-offset_left = 2450.0
-offset_top = 672.0
-offset_right = 2450.0
-offset_bottom = 672.0
+offset_left = -547.0
+offset_top = -1365.0
+offset_right = 1944.0
+offset_bottom = -963.0
 color = Color(0, 0, 0, 1)
 
 [node name="Bottom" type="ColorRect" parent="Borders"]
@@ -363,17 +363,17 @@ offset_bottom = 2005.0
 color = Color(0, 0, 0, 1)
 
 [node name="Right" type="ColorRect" parent="Borders"]
-offset_left = 1646.0
+offset_left = 1641.0
 offset_top = -1051.0
-offset_right = 2290.0
+offset_right = 2285.0
 offset_bottom = 1377.0
 color = Color(0, 0, 0, 1)
 
 [node name="Left" type="ColorRect" parent="Borders"]
-offset_left = -2452.0
-offset_top = -1068.0
-offset_right = -1800.0
-offset_bottom = 1324.0
+offset_left = -1051.0
+offset_top = -1057.0
+offset_right = -399.0
+offset_bottom = 1335.0
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

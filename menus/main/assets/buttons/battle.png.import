@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q3sfcexwd47s"
-path="res://.godot/imported/156.png-6b864dc6156614ce651fb04a220517cd.ctex"
+uid="uid://balfq1y8wfcya"
+path="res://.godot/imported/battle.png-9250040bb6e93ad31b91cd733bb6dc49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/raheem_battle/cards/card_variants/assets/156.png"
-dest_files=["res://.godot/imported/156.png-6b864dc6156614ce651fb04a220517cd.ctex"]
+source_file="res://menus/main/assets/buttons/battle.png"
+dest_files=["res://.godot/imported/battle.png-9250040bb6e93ad31b91cd733bb6dc49.ctex"]
 
 [params]
 

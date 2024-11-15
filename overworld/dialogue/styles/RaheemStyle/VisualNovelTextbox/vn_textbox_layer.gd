@@ -1,5 +1,5 @@
 @tool
-class_name CustomDialogicTextBox
+class_name MonikaTextBox
 extends DialogicLayoutLayer
 
 ## A layer that contains

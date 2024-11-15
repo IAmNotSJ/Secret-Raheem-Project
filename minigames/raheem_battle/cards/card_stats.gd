@@ -256,11 +256,9 @@ func set_penalties(penalty_dict:Dictionary):
 
 func apply_bonuses():
 	var bonuses_added:bool = false
-	#print('APPLYING BONUSES')
 	for bonus in stashed_bonuses.keys():
 		if stashed_bonuses[bonus][1][0] == false:
 			bonuses[bonus][0] += stashed_bonuses[bonus][0][0]
-			#print("Adding +" + stashed_bonuses[bonus][0][0] + " Bonus Attack!")
 			bonus_added.emit(stashed_bonuses[bonus][0][0], "Attack")
 			bonuses_added = true
 		else:
@@ -270,7 +268,6 @@ func apply_bonuses():
 		if stashed_bonuses[bonus][1][1] == false:
 			bonuses[bonus][1] += stashed_bonuses[bonus][0][1]
 			bonus_added.emit(stashed_bonuses[bonus][0][1], "Defense")
-			#print("Adding +" + stashed_bonuses[bonus][0][1] + " Bonus Defense!")
 			bonuses_added = true
 		else:
 			bonuses[bonus][1] = stashed_bonuses[bonus][0][1]
@@ -278,7 +275,6 @@ func apply_bonuses():
 	
 	# Flooring for thrembo
 	if bonuses_added:
-		print("BONUSES HAVE BEEN ADDED")
 		base_attack = floor(base_attack)
 		base_defense = floor(base_defense)
 	

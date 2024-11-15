@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name CardBase
 
 enum Rarity {
 	COMMON,
@@ -15,12 +16,14 @@ signal bonus_added(amount:int, key:String)
 signal penalty_added(amount:int, key:String)
 signal changed
 
+signal disabled_changed(card, value)
+
 @export_category("Resource")
 #@export var stats:CardStats = load("res://minigames/raheem_battle/cards/card_variants/stats/0.tres")
 
 @export var is_preview:bool = false
 @export var selectable:bool = true
-@export var do_offset_bullshit:bool = false
+@export var do_offset_bullshit:bool = true
 
 const holoShader = preload("res://minigames/raheem_battle/shaders/holographic.gdshader")
 @onready var shader_items = [[%Base, 0.2], [%Ability_Holder, 0.2], [%border, 0.2]]
@@ -54,9 +57,13 @@ var disabled:bool = false :
 			can_click = false
 			select_offset = 0
 			$visible.modulate = Color(0.2, 0.2, 0.2)
+			disabled_changed.emit(self, true)
+			print('Card disabled!')
 		else:
 			#$visible.material.set("shader_parameter/darkened", false)
 			$visible.modulate = Color(1, 1, 1)
+			disabled_changed.emit(self, false)
+			print('Card enabled!')
 var disabled_time:int = 0
 
 # True if the card is generated to be seen as a preview
@@ -118,7 +125,8 @@ var stats:Dictionary = {
 		"Generic Response" : [0, 0],
 		"The Grind" : [0, 0],
 		"Denmark" : [0, 0],
-		"Dice Roll" : [0, 0]
+		"Dice Roll" : [0, 0],
+		"Extra Space" : [0, 0]
 		},
 	"Penalties": 
 		{
@@ -195,7 +203,7 @@ func _process(delta):
 				else:
 					$visible.position.y = lerpf($visible.position.y, -50 + select_offset, 15 * delta)
 				if $mouse_detection.has_overlapping_areas():
-					if !is_preview:
+					if !is_preview and do_offset_bullshit:
 						if select_offset != -50:
 							$click.play()
 						select_offset = -50
@@ -258,7 +266,7 @@ func _on_stats_changed():
 		
 		%hand.visible = stats["Has Hands"]
 		%fire.visible = stats["Fire"]
-		%chest.visible = stats["Should Remove"]
+		%chest.visible = !stats["Should Remove"]
 		%human.visible = stats["Is Human"]
 		%one_use.visible = stats["One Use Ability"]
 		%upgrades.visible = !stats["Can Get Bonuses"]
@@ -279,8 +287,10 @@ func _on_penalty_added(amount:int, type:String):
 		send_card_status(status_message)
 
 func send_card_status(message:String):
-	if !stats["Hide Stats"]:
+	if !stats["Hide Stats"] and visible:
 		statuses.push_back(message)
+		if game != null:
+			game.ui.get_node("card_bonus").play()
 
 func _on_turn_ended():
 	if disabled_time > 0 and disabled:
@@ -361,6 +371,18 @@ func change_color(series):
 			color = Color8(17, 168, 70)
 		"BBB":
 			color = Color8(61, 255, 151)
+		"Projects":
+			color = Color8(255, 51, 126)
+		"Third Party":
+			color = Color8(168, 172, 191)
+		"Nova Bloom":
+			color = Color8(15, 29, 97)
+		"Nova Bloom":
+			color = Color8(15, 29, 97)
+		"CWAF JR!!!!!!1":
+			color = Color.WHITE
+		"Hidden":
+			color = Color.WHITE
 	
 	if last_color != color:
 		if rarity == Rarity.HOLO:
@@ -374,7 +396,6 @@ func change_color(series):
 			for array in shader_items:
 				array[0].material.set("shader_parameter/gradient", texture_grad)
 				array[0].material.set("shader_parameter/tint_color", color)
-				print(array[0].material.get("shader_parameter/gradient"))
 		for i in range(base_colored.size()):
 			base_colored[i].modulate = color
 		for lighter in lighter_colored:
@@ -403,15 +424,26 @@ func clear_penalties():
 	for bonus in stats["Penalties"].keys():
 		stats["Penalties"][bonus] = [0, 0]
 
+func recalculate_stats():
+	_recalculate_attack()
+	_recalculate_defense()
+
 func _recalculate_attack():
 	stats["True Attack"] = stats["Base Attack"] + get_bonus_attack() - get_penalty_attack()
 	if stats["True Attack"] < 0:
 		stats["True Attack"] = 0
+	if stats["True Attack"] != 6.5:
+		stats["True Attack"] = floor(stats["True Attack"])
+	changed.emit()
+	
 
 func _recalculate_defense():
 	stats["True Defense"] = stats["Base Defense"] + get_bonus_defense() - get_penalty_defense()
 	if stats["True Defense"] < 0:
 		stats["True Defense"] = 0
+	if stats["True Defense"] != 6.5:
+		stats["True Defense"] = floor(stats["True Defense"])
+	changed.emit()
 
 func get_bonus_attack():
 	var bonus_attack:float = 0
@@ -520,11 +552,9 @@ func set_penalties(penalty_dict:Dictionary):
 
 func apply_bonuses():
 	var bonuses_added:bool = false
-	#print('APPLYING BONUSES')
 	for bonus in stashed_bonuses.keys():
 		if stashed_bonuses[bonus][1][0] == false:
 			stats["Bonuses"][bonus][0] += stashed_bonuses[bonus][0][0]
-			#print("Adding +" + stashed_bonuses[bonus][0][0] + " Bonus Attack!")
 			bonus_added.emit(stashed_bonuses[bonus][0][0], "Attack")
 			bonuses_added = true
 		else:
@@ -534,7 +564,6 @@ func apply_bonuses():
 		if stashed_bonuses[bonus][1][1] == false:
 			stats["Bonuses"][bonus][1] += stashed_bonuses[bonus][0][1]
 			bonus_added.emit(stashed_bonuses[bonus][0][1], "Defense")
-			#print("Adding +" + stashed_bonuses[bonus][0][1] + " Bonus Defense!")
 			bonuses_added = true
 		else:
 			stats["Bonuses"][bonus][1] = stashed_bonuses[bonus][0][1]
@@ -542,13 +571,10 @@ func apply_bonuses():
 	
 	# Flooring for thrembo
 	if bonuses_added:
-		print("BONUSES HAVE BEEN ADDED")
-		stats["Base Attack"] = floor(stats["Base Attack"])
-		stats["Base Defense"] = floor(stats["Base Defense"])
+		_recalculate_defense()
+		_recalculate_attack()
 	
 	stashed_bonuses = {}
-	_recalculate_defense()
-	_recalculate_attack()
 	changed.emit()
 
 func apply_penalties():
@@ -572,110 +598,112 @@ func apply_penalties():
 	
 	# Flooring for thrembo
 	if penalties_added:
-		stats["Base Attack"] = floor(stats["Base Attack"])
-		stats["Base Defense"] = floor(stats["Base Defense"])
+		_recalculate_defense()
+		_recalculate_attack()
 	
 	stashed_penalties = {}
-	_recalculate_defense()
-	_recalculate_attack()
 	changed.emit()
 
 func return_stats_from_resource(resource_path:String) -> Dictionary:
-	var stats_resource = load(resource_path)
-	
-	var daExport = {
-	"Card Name" : stats_resource.card_name,
-	"Card Series" : stats_resource.card_series,
-	"Card Number" : stats_resource.card_number,
-	"Base Attack" : stats_resource.base_attack,
-	"Base Defense" : stats_resource.base_defense,
-	"Bonus Attack" : 0,
-	"Bonus Defense" : 0,
-	"Penalty Attack" : 0,
-	"Penalty Defense" : 0,
-	"Fire" : false,
-	"Bonuses" : 
-		{
-		"Revenge Shot" : [0, 0],
-		"Boost" : [0, 0],
-		"Kindness" : [0, 0],
-		"Price Goes Up Yearly" : [0, 0],
-		"Gamer Rage" : [0, 0],
-		"Up and Coming" : [0, 0],
-		"Speeding" : [0, 0],
-		"Deadline" : [0, 0],
-		"Other Priorities" : [0, 0],
-		"Cash Out": [0, 0],
-		"Rising" : [0, 0],
-		"Post-Mortem" : [0, 0],
-		"Winter Scavenging" : [0, 0],
-		"Nectar of the Gods" : [0, 0],
-		"Reminiscing" : [0, 0],
-		"Paranoia" : [0, 0],
-		"What Day Is It?" : [0, 0],
-		"Editing" : [0, 0],
-		"Categorical Knowledge" : [0, 0],
-		"Transform" : [0, 0],
-		"Walk" : [0, 0],
-		"Grazing" : [0, 0],
-		"Chincanery" : [0, 0],
-		"Take Batteries" : [0, 0],
-		"Ambush Predator" : [0, 0],
-		"Employment" : [0, 0],
-		"Anrgry and Senile" : [0, 0],
-		"Debt" : [0, 0],
-		"Awareness" : [0, 0],
-		"Speedrun" : [0, 0],
-		"Top 100" : [0, 0],
-		"Leaderboard" : [0, 0],
-		"Spreadsheet" : [0, 0],
-		"Charity" : [0, 0],
-		"Truest Nemo" : [0, 0],
-		"Sensitive" : [0, 0],
-		"Three Handed" : [0, 0],
-		"Fangirl" : [0, 0],
-		"Dance" : [0, 0],
-		"Hosting" : [0, 0],
-		"Awesome Ogre" : [0, 0],
-		"Generic Response" : [0, 0],
-		"The Grind" : [0, 0],
-		"Denmark" : [0, 0],
-		"Dice Roll" : [0, 0]
-		},
-	"Penalties": 
-		{
-		"Fire" : [0, 0],
-		"Unfunny Tag" : [0, 0],
-		"Speeding" : [0, 0],
-		"Other Priorities" : [0, 0],
-		"All Powerful" : [0, 0],
-		"Acidic" : [0, 0],
-		"Bathroom Break" : [0, 0],
-		"Haunt" : [0, 0],
-		"Take Batteries" : [0, 0],
-		"Brainrot" : [0, 0],
-		"Anrgry and Senile" : [0, 0],
-		"Debt" : [0, 0],
-		"Last Live: 3 Months Ago" : [0, 0],
-		"Effort Tag" : [0, 0],
-		"Insults" : [0, 0],
-		"Crack" : [0, 0],
-		"Comments" : [0, 0],
-		"Donkey Kong" : [0, 0]
-		},
-	"True Attack": stats_resource.base_attack,
-	"True Defense": stats_resource.base_defense,
-	"Can Get Bonuses" : stats_resource.can_get_bonuses,
-	"Ability Name" : stats_resource.ability_name,
-	"Ability Description" : stats_resource.ability_description,
-	"One Use Ability" : stats_resource.one_use_ability,
-	"Should Remove" : stats_resource.should_remove,
-	"Hide Stats" : stats_resource.hide_stats,
-	"Is Human" : stats_resource.is_human,
-	"Has Hands" : stats_resource.has_hands
-	}
-	
-	return daExport
+	var stats_resource
+	if ResourceLoader.exists(resource_path):
+		stats_resource = load(resource_path)
+		var daExport = {
+		"Card Name" : stats_resource.card_name,
+		"Card Series" : stats_resource.card_series,
+		"Card Number" : stats_resource.card_number,
+		"Base Attack" : stats_resource.base_attack,
+		"Base Defense" : stats_resource.base_defense,
+		"Bonus Attack" : 0,
+		"Bonus Defense" : 0,
+		"Penalty Attack" : 0,
+		"Penalty Defense" : 0,
+		"Fire" : false,
+		"Bonuses" : 
+			{
+			"Revenge Shot" : [0, 0],
+			"Boost" : [0, 0],
+			"Kindness" : [0, 0],
+			"Price Goes Up Yearly" : [0, 0],
+			"Gamer Rage" : [0, 0],
+			"Up and Coming" : [0, 0],
+			"Speeding" : [0, 0],
+			"Deadline" : [0, 0],
+			"Other Priorities" : [0, 0],
+			"Cash Out": [0, 0],
+			"Rising" : [0, 0],
+			"Post-Mortem" : [0, 0],
+			"Winter Scavenging" : [0, 0],
+			"Nectar of the Gods" : [0, 0],
+			"Reminiscing" : [0, 0],
+			"Paranoia" : [0, 0],
+			"What Day Is It?" : [0, 0],
+			"Editing" : [0, 0],
+			"Categorical Knowledge" : [0, 0],
+			"Transform" : [0, 0],
+			"Walk" : [0, 0],
+			"Grazing" : [0, 0],
+			"Chincanery" : [0, 0],
+			"Take Batteries" : [0, 0],
+			"Ambush Predator" : [0, 0],
+			"Employment" : [0, 0],
+			"Anrgry and Senile" : [0, 0],
+			"Debt" : [0, 0],
+			"Awareness" : [0, 0],
+			"Speedrun" : [0, 0],
+			"Top 100" : [0, 0],
+			"Leaderboard" : [0, 0],
+			"Spreadsheet" : [0, 0],
+			"Charity" : [0, 0],
+			"Truest Nemo" : [0, 0],
+			"Sensitive" : [0, 0],
+			"Three Handed" : [0, 0],
+			"Fangirl" : [0, 0],
+			"Dance" : [0, 0],
+			"Hosting" : [0, 0],
+			"Awesome Ogre" : [0, 0],
+			"Generic Response" : [0, 0],
+			"The Grind" : [0, 0],
+			"Denmark" : [0, 0],
+			"Dice Roll" : [0, 0],
+			"Extra Space" : [0, 0]
+			},
+		"Penalties": 
+			{
+			"Fire" : [0, 0],
+			"Unfunny Tag" : [0, 0],
+			"Speeding" : [0, 0],
+			"Other Priorities" : [0, 0],
+			"All Powerful" : [0, 0],
+			"Acidic" : [0, 0],
+			"Bathroom Break" : [0, 0],
+			"Haunt" : [0, 0],
+			"Take Batteries" : [0, 0],
+			"Brainrot" : [0, 0],
+			"Anrgry and Senile" : [0, 0],
+			"Debt" : [0, 0],
+			"Last Live: 3 Months Ago" : [0, 0],
+			"Effort Tag" : [0, 0],
+			"Insults" : [0, 0],
+			"Crack" : [0, 0],
+			"Comments" : [0, 0],
+			"Donkey Kong" : [0, 0]
+			},
+		"True Attack": stats_resource.base_attack,
+		"True Defense": stats_resource.base_defense,
+		"Can Get Bonuses" : stats_resource.can_get_bonuses,
+		"Ability Name" : stats_resource.ability_name,
+		"Ability Description" : stats_resource.ability_description,
+		"One Use Ability" : stats_resource.one_use_ability,
+		"Should Remove" : stats_resource.should_remove,
+		"Hide Stats" : stats_resource.hide_stats,
+		"Is Human" : stats_resource.is_human,
+		"Has Hands" : stats_resource.has_hands
+		}
+		
+		return daExport
+	else:
+		return stats.duplicate(true)
 
 func return_stats_from_export(cardExport:Dictionary) -> Dictionary:
 	var daExport = {

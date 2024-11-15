@@ -17,4 +17,3 @@ func _on_time_tick(hour, minute):
 	var minute_ratio = minutes / MINUTES_PER_DAY
 	
 	offset.y = -height * minute_ratio
-	#print(offset.y)

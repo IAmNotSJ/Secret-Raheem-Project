@@ -1,7 +1,7 @@
 set {Monika Shop.randomness} = range(0,6).pick_random()
-#set {Monika Shop.randomness} = 6
+set {Monika Shop.randomness} = 6
 if {Monika Shop.first_time} == true:
-	monika: HI-
+	monika: Hello E-
 	monika: <Empty Text Event>
 	monika: Oh. It's one of you.
 	monika: Welcome to my shop! What can I get you?
@@ -16,7 +16,8 @@ else:
 	elif {Monika Shop.randomness} == 3:
 		monika: What do I need the money for? Well aren't you awfully nosey?
 	elif {Monika Shop.randomness} == 4:
-		monika: Some kid ran up to me trying to sing. I wonder if he ever got out of that tree stump I shoved him into.
+		monika: Some kid ran up to me trying to sing the other day.
+		monika: I wonder if he ever got out of that tree stump I shoved him into..
 	elif {Monika Shop.randomness} == 5:
 		monika: The sun distribution in this forest is awful. I need to move to a new neighborhood.
 	elif {Monika Shop.randomness} == 6:

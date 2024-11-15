@@ -12,11 +12,34 @@ var affecting_card
 #Needs an array of every exported card to display
 func generate_deck(export_array, reason, ref_card):
 	affecting_card = ref_card
-	#print('----------------DECK PREVIEW MADE!!-----------------')
+	var card_scale:Vector2 = Vector2(0.5, 0.5)
+	var cards_per_row:int = 4
+	var seperation:Vector2 = Vector2(100, 100)
+	match ui.game.match_rules["Deck Size"]:
+		"8 Cards":
+			card_scale = Vector2(0.5, 0.5)
+			cards_per_row = 4
+		"9 Cards":
+			card_scale = Vector2(0.4, 0.4)
+			cards_per_row = 5
+		"10 Cards":
+			card_scale = Vector2(0.4, 0.4)
+			cards_per_row = 5
+		"11 Cards":
+			card_scale = Vector2(0.35, 0.35)
+			cards_per_row = 6
+			seperation = Vector2(50, 100)
+		"12 Cards":
+			card_scale = Vector2(0.35, 0.35)
+			cards_per_row = 6
+			seperation = Vector2(50, 50)
+	$Row1.add_theme_constant_override("separation", seperation.x)
+	$Row2.add_theme_constant_override("separation", seperation.y)
 	for i in range(export_array.size()):
 		var card = card_scene.instantiate()
-		card.set_card_scale(Vector2(0.5, 0.5))
 		card.do_offset_bullshit = false
+		
+		card.set_card_scale(card_scale)
 		
 		#Change the stats
 		
@@ -39,7 +62,7 @@ func generate_deck(export_array, reason, ref_card):
 				message.text = "Pick a card to remove"
 				card.left_clicked.connect(_card_selected_annoying)
 		
-		if i < 4:
+		if i < cards_per_row:
 			$Row1.add_child(card)
 		else:
 			$Row2.add_child(card)
@@ -54,12 +77,10 @@ func _card_selected_extra_space(daCard):
 	var index = daCard.index
 	if index >= affecting_card.index:
 		index += 1
-	var card = ui.card_hand.get_card_from_index(daCard.index)
-	affecting_card.add_bonus_attack(card.stats["True Attack"], "Extra Space")
-	affecting_card.add_bonus_defense(card.stats["True Defense"], "Extra Space")
-	ui.card_hand.replace_card(daCard.index, "-1", false)
-	
-	card.apply_bonuses()
+	affecting_card.add_bonus_attack(daCard.stats["True Attack"], "Extra Space")
+	affecting_card.add_bonus_defense(daCard.stats["True Defense"], "Extra Space")
+	affecting_card.apply_bonuses()
+	ui.card_hand.replace_card(daCard.index, "-127", false)
 	clear()
 
 func _card_selected_catalyst(card):
@@ -69,8 +90,12 @@ func _card_selected_catalyst(card):
 	clear()
 
 func _card_selected_other_priorities(card):
-	ui.card_hand.get_card_from_index(card.index).add_bonus_attack(bonuses_to_add[0], "Other Priorities")
-	ui.card_hand.get_card_from_index(card.index).add_bonus_defense(bonuses_to_add[0], "Other Priorities")
+	var chosen_card = ui.card_hand.get_card_from_index(card.index)
+	chosen_card.add_bonus_attack(bonuses_to_add[0], "Other Priorities")
+	chosen_card.add_bonus_defense(bonuses_to_add[0], "Other Priorities")
+	chosen_card.apply_bonuses()
+	
+	
 	bonuses_to_add = [0, 0]
 	card_chosen.emit()
 	
@@ -90,8 +115,6 @@ func _card_selected_brands(card):
 		affecting_card.apply_penalties()
 		affecting_card.changed.emit()
 		card_chosen.emit()
-	else:
-		print('ERM!! CARD IS NULL IN THE DECK PREVIEW HOLDER!!')
 	clear()
 
 func _card_selected_annoying(daCard):
@@ -99,10 +122,14 @@ func _card_selected_annoying(daCard):
 	clear()
 
 func clear():
-	#print('deck preview cleared!')
 	for child in $Row1.get_children():
 		child.queue_free()
 	for child in $Row2.get_children():
 		child.queue_free()
 	hide()
 	message.text = ""
+
+
+func _on_click_detection_pressed() -> void:
+	if $Cancel.visible:
+		clear()

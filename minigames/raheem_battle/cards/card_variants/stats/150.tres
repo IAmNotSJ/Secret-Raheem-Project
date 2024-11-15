@@ -1,19 +1,20 @@
-[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://dvgscd3hiisve"]
+[gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://bjuq5t1lo5gkw"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_ngv5j"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ngv5j")
-card_name = "Darkwolf"
+card_name = "Guywhoisveryevil"
+censored_name = ""
 card_series = "Third Party"
 card_number = "150"
 base_attack = 4.0
-base_defense = 4.0
+base_defense = 2.0
 can_get_bonuses = true
-ability_name = "Comments"
-ability_description = "After being played, -1 to all stats of your opponent's cards that are over 3."
-one_use_ability = true
+ability_name = "False Identity"
+ability_description = "After this card is played, all of your cards will be hidden in the matchup preview for the rest of the game."
+one_use_ability = false
 should_remove = true
 hide_stats = false
 is_human = true

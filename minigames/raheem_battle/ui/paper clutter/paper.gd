@@ -16,8 +16,6 @@ func _input(_event):
 	$Mouse.global_position = get_global_mouse_position()
 
 func generate_crumple():
-	#await get_parent().finished
-	#print('guh?')
 	await ui.turn_started
 	for i in range(10):
 		var crumple = crumple_scene.instantiate()

@@ -7,39 +7,58 @@ const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
 @onready var ui = get_parent()
 
-@onready var victory_chest = $victory_chest
+@onready var victory_chest = %victory_chest
 
 
 var cards_in_hand = []
 var removed_cards = []
+var disabled_cards = []
 
 var focused:bool = false
 
 var x_offset:int = 0
 var y_offset:int = 0
 
+var victory_seperation:int = -80
+var victory_position:int = 977
+
 func _ready():
 	%DayNightCycle.visible = Saves.battle_settings["DayNight"]
 
 func _process(delta):
 	if global.isWindowFocused:
-		var distance_from_center:float = (get_global_mouse_position().x - 720) / 720 * -1
+		var distance_from_center:float = (get_global_mouse_position().x - (1280 / 2)) / ((1280 / 2)) * -1
+		distance_from_center = clamp(distance_from_center, -1, 1)
 		var card_offset = cards_in_hand.size() - 8
 		if card_offset < 0:
 			card_offset = 0
-		%offset.position.x = lerpf(%offset.position.x, (150 * card_offset) * distance_from_center - x_offset, 20 * delta)
-		%offset.position.y = lerpf(%offset.position.y, y_offset , 15 * delta)
+		if !ui.is_in_preview:
+			#%offset.position.x = lerpf(%offset.position.x, (150 * cards_in_hand.size()) * distance_from_center - %held_cards.size.x / 2, 20 * delta)
+			if card_offset > 0:
+				%offset.position.x = lerpf(%offset.position.x, ((150 * card_offset)) * (distance_from_center), 20 * delta)
+			else:
+				%offset.position.x = lerpf(%offset.position.x, 0, 20 * delta)
+			%offset.position.y = lerpf(%offset.position.y, y_offset , 15 * delta)
+		
+		victory_chest.add_theme_constant_override("separation", lerpf(float(victory_chest.get_theme_constant("separation")), victory_seperation, 10 * delta))
+		victory_chest.position.x = lerpf(victory_chest.position.x, victory_position, 10 * delta)
 
-func generate_cards(cards_to_generate):
+func generate_cards():
+	if ui.game.match_rules == {}:
+		await ui.game.match_rules_received
+	var cards_to_generate = Saves.battle_deck[ui.game.match_rules["Deck Size"]]
 	for i in range(cards_to_generate.size()):
 		var card = card_scene.instantiate()
 		card.stats = card.return_stats_from_resource("res://minigames/raheem_battle/cards/card_variants/stats/" + cards_to_generate[i] + ".tres")
 		card.index = i
 		cards_in_hand.append(card)
 		card.left_clicked.connect(ui.play_card)
+		card.disabled_changed.connect(_on_card_disabled)
 		card.right_clicked.connect(ui.card_preview.generate_card_preview)
 		ui.turn_ended.connect(card._on_turn_ended)
 		%held_cards.add_child(card)
+		if cards_in_hand.size() > 8:
+			x_offset += card.size.x
 
 @rpc("any_peer")
 func add_card(export:Dictionary, wait:bool = false, playable:bool = true):
@@ -61,7 +80,7 @@ func add_card(export:Dictionary, wait:bool = false, playable:bool = true):
 			card.index = i
 	
 	if cards_in_hand.size() > 8:
-		x_offset += card.size.x / 2
+		x_offset += card.size.x
 	
 	if !playable:
 		disable_card(card.index, 100000)
@@ -97,6 +116,8 @@ func add_card_from_resource(number:String, forced_index:int = -1):
 	else:
 		%held_cards.move_child(card, forced_index)
 	reindex_deck()
+	if cards_in_hand.size() > 8:
+		x_offset += card.size.x
 	
 	return card
 
@@ -108,7 +129,7 @@ func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true, w
 		var card_destination:Variant
 		
 		if put_in_victory_chest:
-			card_destination = $victory_chest
+			card_destination = victory_chest
 		else:
 			card_destination = $whatever_chest
 		for card in %held_cards.get_children():
@@ -116,11 +137,12 @@ func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true, w
 				cards_in_hand.erase(card)
 				card.reparent(card_destination)
 				removed_cards.append(card)
+				card.set_card_scale(Vector2(0.15, 0.15))
 				
 				card.visible = false
-				
-				card.disabled = true
-				card.disabled_time = 0
+				card.left_clicked.disconnect(ui.play_card)
+				card.do_offset_bullshit = false
+				card.select_offset = 0
 				
 				#Redo the index
 				for i in range(card_destination.get_children().size()):
@@ -132,10 +154,12 @@ func remove_card(index, put_in_victory_chest:bool = true, reindex:bool = true, w
 					for i in range(%held_cards.get_children().size()):
 						if card == %held_cards.get_children()[i]:
 							card.index = i
+				if x_offset > 0:
+					x_offset -= card.size.x
 		card_removed.emit()
 
 func readd_card(index):
-	print('Card readded?')
+	print('Card readded')
 	for card in victory_chest.get_children():
 		if card.index == index:
 			removed_cards.erase(card)
@@ -143,6 +167,9 @@ func readd_card(index):
 			cards_in_hand.erase(card)
 			
 			card.disabled = false
+			card.left_clicked.connect(ui.play_card)
+			card.do_offset_bullshit = true
+			card.set_card_scale(Vector2(0.37, 0.37))
 			
 			#Redo the index
 			for i in range(%held_cards.get_children().size()):
@@ -215,6 +242,14 @@ func return_random_card(exclude:int):
 	var card_to_return:Dictionary = cards_in_hand[index].export()
 	return card_to_return
 
+func _on_card_disabled(card, value):
+	print("on card disabled")
+	if value == true:
+		disabled_cards.append(card)
+	if value == false:
+		disabled_cards.erase(card)
+		if card.statuses.has("Disabled!"):
+			card.statuses.erase("Disabled!")
 
 func _on_mouse_detection_area_entered(_area: Area2D) -> void:
 	if !ui.is_in_preview && !focused:
@@ -226,3 +261,18 @@ func _on_mouse_detection_area_exited(_area: Area2D) -> void:
 	if !ui.is_in_preview && focused:
 		y_offset = 0
 		focused = false
+
+func show_victory_chest_cards(from:Vector2):
+	victory_chest.global_position.x = from.x - victory_chest.size.x
+	if victory_chest.get_children() != []:
+		victory_position = from.x - victory_chest.size.x - (victory_chest.get_children()[0].size.x * 1.4)
+	
+	victory_chest.visible = true
+	for card in victory_chest.get_children():
+		card.visible = true
+	victory_chest.add_theme_constant_override("separation", -80)
+	victory_seperation = 15
+
+func hide_victory_chest_cards(to:Vector2):
+	victory_seperation = -80
+	victory_position = to.x - victory_chest.size.x

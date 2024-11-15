@@ -1,18 +1,19 @@
 [gd_resource type="Resource" script_class="CardStats" load_steps=2 format=3 uid="uid://cs3tvid0ua2ai"]
 
-[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_d1ro1"]
+[ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_stats.gd" id="1_sqewa"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_d1ro1")
-card_name = "Jahook"
+script = ExtResource("1_sqewa")
+card_name = "Bubins"
+censored_name = ""
 card_series = "Third Party"
 card_number = "152"
-base_attack = 3.0
-base_defense = 6.0
+base_attack = 1.0
+base_defense = 1.0
 can_get_bonuses = true
-ability_name = "Donkey Kong"
-ability_description = "This card receives -1 to both stats for the turn if the opposing card is a human."
+ability_name = "Dice Roll"
+ability_description = "Each stat of this card has a 2/5 chance to double every turn, but also a 1/5 chance to reset to 1."
 one_use_ability = false
 should_remove = true
 hide_stats = false

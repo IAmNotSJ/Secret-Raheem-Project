@@ -1,20 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmk0pvnookhar"]
+[gd_scene load_steps=12 format=3 uid="uid://dmk0pvnookhar"]
 
 [ext_resource type="Script" path="res://menus/main/games/games_menu.gd" id="1_yj7na"]
 [ext_resource type="Texture2D" uid="uid://bebj26ta8pck6" path="res://menus/main/assets/buttons/hyena.png" id="2_238f5"]
 [ext_resource type="Texture2D" uid="uid://bqk0mr8llghen" path="res://menus/main/assets/buttons/hyena-select.png" id="3_7wdc0"]
 [ext_resource type="Texture2D" uid="uid://bhgabmxek0jvw" path="res://menus/main/assets/buttons/karl.png" id="4_mjd6l"]
 [ext_resource type="Texture2D" uid="uid://dnaf0su4shk35" path="res://menus/main/assets/buttons/karl-select.png" id="5_bucjh"]
+[ext_resource type="Texture2D" uid="uid://balfq1y8wfcya" path="res://menus/main/assets/buttons/battle.png" id="6_o0h5h"]
+[ext_resource type="Texture2D" uid="uid://key8s8mmfbyf" path="res://menus/main/assets/buttons/battle-select.png" id="7_a7u0q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aq80t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ab0k"]
+bg_color = Color(0.614667, 0.835012, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_siwqw"]
+bg_color = Color(0.082392, 0.547359, 0.796173, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kv6h"]
+bg_color = Color(0.129412, 1, 0.929412, 1)
 
 [node name="Games" type="Node2D"]
 script = ExtResource("1_yj7na")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 31.0
-offset_top = 34.0
-offset_right = 1224.0
+offset_left = 20.0
+offset_top = 52.0
+offset_right = 1260.0
 offset_bottom = 693.0
 color = Color(0.129412, 1, 0.929412, 1)
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_top = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 31
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aq80t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ab0k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_siwqw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4kv6h")
+text = "X"
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = 145.0
@@ -41,16 +70,18 @@ stretch_mode = 0
 [node name="Battle" type="TextureButton" parent="GridContainer"]
 custom_minimum_size = Vector2(147, 147)
 layout_mode = 2
-texture_normal = ExtResource("4_mjd6l")
-texture_hover = ExtResource("5_bucjh")
+texture_normal = ExtResource("6_o0h5h")
+texture_hover = ExtResource("7_a7u0q")
 stretch_mode = 0
 
 [node name="Paint" type="TextureButton" parent="GridContainer"]
+visible = false
 custom_minimum_size = Vector2(147, 147)
 layout_mode = 2
 texture_normal = ExtResource("2_238f5")
 stretch_mode = 0
 
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="GridContainer/Hyena" to="." method="_on_hyena_pressed"]
 [connection signal="pressed" from="GridContainer/Karl" to="." method="_on_karl_pressed"]
 [connection signal="pressed" from="GridContainer/Battle" to="." method="_on_battle_pressed"]

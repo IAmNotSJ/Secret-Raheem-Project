@@ -123,7 +123,6 @@ func _factor_tie(card, opposing_card, decision):
 	match card["Ability Name"]:
 		"Sand Veil":
 			if decision == opposing_card["Side"] and randi_range(0, 1) == 0:
-				#print("Tie should be occuring!")
 				return true
 		"Freddy Mask":
 			if decision == opposing_card["Side"] and game.turn_count <= 3:

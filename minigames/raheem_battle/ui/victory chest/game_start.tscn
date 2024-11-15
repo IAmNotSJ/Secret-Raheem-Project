@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://p00r5p8yhre4"]
+
+[sub_resource type="Animation" id="Animation_ivwa8"]
+resource_name = "start"
+length = 1.66667
+step = 0.0416667
+
+[sub_resource type="Animation" id="Animation_2xyly"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2kea"]
+_data = {
+"RESET": SubResource("Animation_2xyly"),
+"start": SubResource("Animation_ivwa8")
+}
+
+[node name="game_start" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b2kea")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+color = Color(0, 0, 0, 0.313726)

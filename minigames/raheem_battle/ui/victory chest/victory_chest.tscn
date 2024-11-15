@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://be3gmc7kis6ma"]
+[gd_scene load_steps=16 format=3 uid="uid://be3gmc7kis6ma"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/ui/victory chest/victory_chest.gd" id="1_8u4e4"]
-[ext_resource type="Texture2D" uid="uid://c4rpyqs8545g6" path="res://minigames/raheem_battle/ui/victory chest/spritesheet.png" id="1_55w7w"]
+[ext_resource type="Texture2D" uid="uid://c4rpyqs8545g6" path="res://minigames/raheem_battle/ui/victory chest/spritesheet-old.png" id="1_55w7w"]
 [ext_resource type="FontFile" uid="uid://w3y7ctlsee70" path="res://fonts/SuperMario256.ttf" id="3_b0ko3"]
+[ext_resource type="PackedScene" uid="uid://p00r5p8yhre4" path="res://minigames/raheem_battle/ui/victory chest/game_start.tscn" id="4_yi57j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ncrq0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sg2ld"]
 
 [sub_resource type="Animation" id="Animation_cstir"]
 length = 0.001
@@ -35,7 +38,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xi5yl"]
 resource_name = "close"
-length = 1.25
+length = 0.625005
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -49,17 +52,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [3, 2, 1, 0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.833334, 0.958334, 1.04167, 1.16667, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+
+[sub_resource type="Animation" id="Animation_gh1u8"]
+resource_name = "down"
+length = 0.583338
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.458333, 0.583333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(1183, 94), Vector2(1183, 96), Vector2(1183, 48), Vector2(1183, -32), Vector2(1185, -71), Vector2(1185, -76)]
+"values": [Vector2(1183, -76), Vector2(1183, -61), Vector2(1183, -11), Vector2(1183, 85), Vector2(1183, 91), Vector2(1183, 93), Vector2(1183, 94)]
 }
 
 [sub_resource type="Animation" id="Animation_w58ni"]
@@ -73,29 +81,36 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.916667, 1.125, 1.25),
+"times": PackedFloat32Array(0, 0.125, 0.333333, 0.458333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.458333, 0.583333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+
+[sub_resource type="Animation" id="Animation_qtaxj"]
+resource_name = "up"
+length = 0.375004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.55651e-07, 0.125001, 0.208337, 0.333337, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(1183, -76), Vector2(1183, -61), Vector2(1183, -11), Vector2(1183, 85), Vector2(1183, 91), Vector2(1183, 93), Vector2(1183, 94)]
+"values": [Vector2(1183, 96), Vector2(1183, 48), Vector2(1183, -32), Vector2(1185, -71), Vector2(1185, -76)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvrgl"]
 _data = {
 "RESET": SubResource("Animation_cstir"),
 "close": SubResource("Animation_xi5yl"),
-"open": SubResource("Animation_w58ni")
+"down": SubResource("Animation_gh1u8"),
+"open": SubResource("Animation_w58ni"),
+"up": SubResource("Animation_qtaxj")
 }
 
 [sub_resource type="Animation" id="Animation_eydr3"]
@@ -185,7 +200,7 @@ anchor_left = 0.5
 anchor_top = 1.52
 anchor_right = 0.5
 anchor_bottom = 1.52
-offset_left = -354.0
+offset_left = -501.0
 offset_top = -73.96
 offset_right = -4.0
 offset_bottom = -49.96
@@ -204,7 +219,7 @@ anchor_left = 1.0
 anchor_top = 0.354
 anchor_right = 1.0
 anchor_bottom = 0.354
-offset_left = -367.0
+offset_left = -488.0
 offset_top = -23.496
 offset_bottom = 23.504
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ncrq0")
@@ -218,6 +233,34 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ncrq0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ncrq0")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ncrq0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ncrq0")
+
+[node name="Dropdown" type="Button" parent="chest"]
+unique_name_in_owner = true
+offset_left = -90.0
+offset_top = 184.0
+offset_right = 69.0
+offset_bottom = 215.0
+text = "v"
+
+[node name="chest_detection" type="Button" parent="chest"]
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 72.0
+offset_bottom = 65.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_sg2ld")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sg2ld")
+toggle_mode = true
+
+[node name="game_start" parent="." instance=ExtResource("4_yi57j")]
 
 [node name="chest_animations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../chest")
@@ -235,3 +278,5 @@ libraries = {
 [connection signal="mouse_entered" from="chest/Code/press" to="." method="_on_code_mouse_entered"]
 [connection signal="mouse_exited" from="chest/Code/press" to="." method="_on_code_mouse_exited"]
 [connection signal="pressed" from="chest/Code/press" to="." method="_on_press_pressed"]
+[connection signal="pressed" from="chest/Dropdown" to="." method="_on_dropdown_pressed"]
+[connection signal="toggled" from="chest/chest_detection" to="." method="_on_chest_detection_toggled"]

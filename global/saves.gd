@@ -6,12 +6,13 @@ enum SaveTypes {
 	HYENA,
 	PILKINGTON,
 	PAINT,
-	BATTLE
+	BATTLE,
+	SHOP
 }
 const PATH_OVERWORLD:String = "user://overworld.save"
 const PATH_SETTINGS:String = "user://settings.hellopersonlookingatthefiles"
 const PATH_HYENA:String = "user://hyena.save"
-const PATH_BATTLE:String = "user://raheem_battle.save"
+const PATH_BATTLE:String = "user://raheem_battle_demo.save"
 
 # SETTINGS
 var audioSettings:Dictionary = {
@@ -98,14 +99,11 @@ var battle_stats = {
 	"Losses" : 0,
 	"Hyena Upgrades" : 0}
 var battle_deck = {
-	"Card 1": "-1",
-	"Card 2": "-1",
-	"Card 3": "-1",
-	"Card 4": "-1",
-	"Card 5": "-1",
-	"Card 6": "-1",
-	"Card 7": "-1",
-	"Card 8": "-1",
+	"8 Cards" : ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"],
+	"9 Cards" : ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"],
+	"10 Cards" : ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"],
+	"11 Cards" : ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"],
+	"12 Cards" : ["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1"],
 }
 var battle_unlocks = {
 	"000" : 1,
@@ -271,8 +269,20 @@ var battle_settings = {
 	"DayNight" : true,
 	"Censor Food" : false,
 }
+var battle_rules = {
+	"Deck Size" : "8 Cards",
+	"Cards To Win" : 2
+}
+var battle_diary = {}
 # KARL PILKINGTON
 
+# MONIKA SHOP
+var cursors = {
+	"Default" : true,
+	"Raheem" : false,
+	"Wibr" : false,
+	"Monika" : false
+}
 
 func _ready():
 	load_save(SaveTypes.OVERWORLD)
@@ -337,7 +347,8 @@ func save(type:SaveTypes):
 				"Battle Stats" : battle_stats,
 				"Battle Deck" : battle_deck,
 				"Battle Info" : battle_info,
-				"Battle Settings" : battle_settings
+				"Battle Settings" : battle_settings,
+				"Battle Rules" : battle_rules
 			}
 	var jstr = JSON.stringify(data)
 	#print('saved!')
@@ -381,6 +392,8 @@ func load_save(type:SaveTypes):
 					load_specific_setting(minigames, current_line, "Minigames")
 				if keys.has("Battle Quiz"):
 					load_specific_setting(battle_quiz, current_line, "Battle Quiz")
+				if keys.has("Battle Rules"):
+					load_specific_setting(battle_rules, current_line, "Battle Rules")
 				if keys.has("Battle Stats"):
 					load_specific_setting(battle_stats, current_line, "Battle Stats")
 				if keys.has("Battle Deck"):

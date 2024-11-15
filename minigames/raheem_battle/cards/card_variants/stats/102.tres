@@ -6,13 +6,14 @@
 resource_local_to_scene = true
 script = ExtResource("1_d0ib1")
 card_name = "Existy"
+censored_name = ""
 card_series = "Composty"
 card_number = "102"
 base_attack = 0.0
 base_defense = 0.0
 can_get_bonuses = true
 ability_name = "."
-ability_description = "When played, add this card into your opponent's deck. The match will tie, but your opponent cannot get rid of the new card."
+ability_description = "When played, add this card into your opponent's deck. The match will tie, but your opponent cannot get rid of the new card. If the match rule, cards to win, is zero, the card given to your opponent will be a 2-2 card."
 one_use_ability = true
 should_remove = true
 hide_stats = false

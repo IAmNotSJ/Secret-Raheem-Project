@@ -54,5 +54,6 @@ wait_time = 0.2
 libraries = {
 "": SubResource("AnimationLibrary_1acnr")
 }
+autoplay = "poo"
 
 [connection signal="timeout" from="change_timer" to="." method="_on_change_timer_timeout"]

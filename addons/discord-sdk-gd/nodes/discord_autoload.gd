@@ -14,6 +14,7 @@ var presets:Dictionary = {
 	"Apartment" : ["EXPLORING THE APARTMENT", "main", "Just like the episode showed!"],
 	"Karl" : ["PLAYING AN ARCADE MACHINE", "pilkington", "This isn't scratch"],
 	"Hyena" : ["ROUNDING UP THE CREATURES", "hyena", "THE FOLDER CALLS"],
+	"Battle" : ["BATTLING CARDS", "battle", "So Cool!"],
 	"Art" : ["mind your business maybe", "main", "Mama Mia!"]
 }
 

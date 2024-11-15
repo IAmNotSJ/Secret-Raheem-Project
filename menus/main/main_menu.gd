@@ -16,7 +16,11 @@ func _process(delta):
 	$Parallax2.position.y = -10 + 10 * sin(posThingy)
 
 func _on_begin_pressed():
-	$no.play()
+	#$no.play()
+	if $Password.visible:
+		$Password.visible = false
+	else:
+		$Password.visible = true
 	#Transition.change_scene_to_preset("Overworld")
 
 func _on_settings_pressed():
@@ -32,3 +36,10 @@ func _on_games_pressed():
 
 func _on_debug_pressed() -> void:
 	Transition.change_scene_to_preset("Debug")
+
+
+func _on_password_line_text_submitted(new_text: String) -> void:
+	if new_text == "hellothisismypassword":
+		Transition.change_scene_to_preset("Overworld")
+	else:
+		$Password.visible = false

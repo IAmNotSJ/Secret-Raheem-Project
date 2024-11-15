@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Raheem Birthday"
-config/version="2.0.0 BETA"
+config/version="2.0.0 BETA 24-10a-C"
 run/main_scene="res://SceneManager/scene_manager.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="IamSJ/Raheem Birthday"
@@ -102,7 +102,7 @@ project/assembly_name="Raheem Birthday"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleTODO/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/discord-sdk-gd/plugin.cfg")
 
 [filesystem]
 
@@ -265,5 +265,6 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 0)
 viewport/transparent_background=true

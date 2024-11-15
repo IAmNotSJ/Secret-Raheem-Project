@@ -1,4 +1,3 @@
-@tool
 class_name DraggableCard
 extends Control
 
@@ -23,6 +22,9 @@ signal snap_locked
 @export var do_offset_bullshit:bool = false
 
 const holoShader = preload("res://minigames/raheem_battle/shaders/holographic.gdshader")
+
+var menu
+var deck_builder
 
 var can_click:bool = false
 
@@ -87,7 +89,8 @@ var stats:Dictionary = {
 		"Generic Response" : [0, 0],
 		"The Grind" : [0, 0],
 		"Denmark" : [0, 0],
-		"Dice Roll" : [0, 0]
+		"Dice Roll" : [0, 0],
+		"Extra Space" : [0, 0]
 		},
 	"Penalties": 
 		{
@@ -136,19 +139,21 @@ func _ready():
 	
 	await get_tree().process_frame
 	original_position = position
+	menu = get_tree().get_root().get_node("SceneManager").get_node("battle-manager").current_scene
+	deck_builder = get_tree().get_root().get_node("SceneManager").get_node("battle-manager").current_scene.get_node("ALL").get_node("deck_builder")
 
 func _input(_event: InputEvent) -> void:
 	# i GENUINELY have no idea what the fuck was wrong with this
 	if $mouse_detection.get_overlapping_areas() != []:
-		if Input.is_action_just_pressed("click") and get_parent().get_parent().get_parent().get_parent().get_parent().current_screen == get_parent().get_parent().get_parent().get_parent().get_parent().DECK:
-			if !get_parent().get_parent().get_parent().is_in_preview:
-				get_parent().get_parent().get_parent().set_held(self)
+		if Input.is_action_just_pressed("click") and menu.current_screen == menu.DECK:
+			if !deck_builder.is_in_preview:
+				deck_builder.set_held(self)
 				picked_up.emit()
 				set_card_scale(Vector2(0.4, 0.4), true)
 				if snap != null:
 					clear_snap()
 		if Input.is_action_just_pressed("right_click"):
-			get_parent().get_parent().get_parent().generate_preview(stats["Card Number"])
+			deck_builder.generate_preview(stats["Card Number"])
 
 func _on_stats_changed():
 	if stats != null:
@@ -257,6 +262,16 @@ func change_color(series):
 			color = Color8(17, 168, 70)
 		"BBB":
 			color = Color8(61, 255, 151)
+		"Projects":
+			color = Color8(255, 51, 126)
+		"Third Party":
+			color = Color8(168, 172, 191)
+		"Nova Bloom":
+			color = Color8(15, 29, 97)
+		"Nova Bloom":
+			color = Color8(15, 29, 97)
+		"CWAF JR!!!!!!1":
+			color = Color.WHITE
 	
 	var base_colored = [%Base, %border, %hand, %fire, %chest, %human, %one_use, %upgrades]
 	var lighter_colored = [%Ability_Holder]
@@ -291,12 +306,12 @@ func set_card_scale(theScale:Vector2, offset_card:bool = false):
 		$visible.position.x = size.x / 2 * relative_scale.x - size.x / 2
 		$visible.position.y = size.y / 2 * relative_scale.y - size.y / 2
 
-func clear_snap():
+func clear_snap(change_deck:bool = false):
 	if snap != null:
-		print('snap cleared')
-		reparent(get_parent().get_parent().get_parent().get_node("ScrollContainer/card_container"))
+		reparent(deck_builder.get_node("ScrollContainer/card_container"))
 		snap.card = null
-		Saves.battle_deck["Card " + str(snap.deck_index)] = "-1"
+		if change_deck == true:
+			Saves.battle_deck[deck_builder.cur_deck][snap.deck_index - 1] = "-1"
 		snap = null
 		taken_out.emit()
 
@@ -307,7 +322,7 @@ func _on_let_go():
 	if $snap_detection.has_overlapping_areas():
 		for area in $snap_detection.get_overlapping_areas():
 			if area.owner is CardSnap:
-				if area.owner.card == null:
+				if area.owner.card == null and area.owner.get_parent().visible == true:
 					snaps.append(area.owner)
 	
 	if snaps != []:
@@ -324,13 +339,11 @@ func _on_let_go():
 			if snap_distance < lowest_snap_distance:
 				lowest_snap_distance = snap_distance
 				daIndex = i
-			#print("SNAP INDEX " + str(snaps[i].deck_index) + " DISTANCE :" + str(snap_distance))
-		#print("LOWEST SNAP DISTANCE: " + str(lowest_snap_distance))
 		if snaps[daIndex].card == null:
 			snaps[daIndex].lock_card(self)
 			snap_locked.emit()
 	else:
-		reparent(get_parent().get_parent().get_parent().get_node("ScrollContainer/card_container"))
+		reparent(deck_builder.get_node("ScrollContainer/card_container"))
 		if snap != null:
 			snap = null
 		taken_out.emit()

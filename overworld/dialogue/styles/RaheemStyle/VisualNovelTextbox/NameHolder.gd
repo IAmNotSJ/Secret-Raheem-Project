@@ -1,6 +1,6 @@
 extends TextureRect
 
-class_name DialogicNode_NameLabelHolder
+class_name RaheemNode_NameLabelHolder
 
 # If true, the label will be hidden if no character speaks.
 @export var hide_when_empty := true

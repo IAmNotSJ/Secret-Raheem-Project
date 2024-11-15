@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_6d2xi")
 card_name = "Hampter"
+censored_name = ""
 card_series = "Test Series"
 card_number = "0"
 base_attack = 1.0

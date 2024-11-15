@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://edx2tlubwxi4"]
+[gd_scene load_steps=18 format=3 uid="uid://edx2tlubwxi4"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_base.gd" id="1_8jnna"]
 [ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="3_311j2"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="6_8mybx"]
 [ext_resource type="Texture2D" uid="uid://dhnlmx76e6qhr" path="res://minigames/raheem_battle/cards/assets/icons/hand.png" id="7_73unf"]
 [ext_resource type="Texture2D" uid="uid://bxa6wkm5v5hdf" path="res://minigames/raheem_battle/cards/assets/icons/fire.png" id="8_7nwrc"]
+[ext_resource type="Texture2D" uid="uid://dosdwmuakx121" path="res://minigames/raheem_battle/cards/assets/icons/chest_lock.png" id="8_ykmjm"]
 [ext_resource type="Texture2D" uid="uid://eliiob1uv4qb" path="res://minigames/raheem_battle/cards/assets/icons/human.png" id="9_m04fh"]
 [ext_resource type="Texture2D" uid="uid://cn3u0qi15q8k" path="res://minigames/raheem_battle/cards/assets/icons/one_use.png" id="10_x1ylh"]
 [ext_resource type="AudioStream" uid="uid://cpvlajawxawsl" path="res://minigames/raheem_battle/sound_effects/click.ogg" id="11_pvkx2"]
@@ -284,7 +285,9 @@ stretch_mode = 5
 
 [node name="chest" type="TextureRect" parent="visible/icons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
+texture = ExtResource("8_ykmjm")
 stretch_mode = 5
 
 [node name="human" type="TextureRect" parent="visible/icons"]

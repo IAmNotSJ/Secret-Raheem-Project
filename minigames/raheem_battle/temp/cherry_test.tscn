@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ux6lbblf68g"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/temp/cherry_test.gd" id="1_y7bqw"]
+
+[node name="CherryTest" type="Node2D"]
+script = ExtResource("1_y7bqw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -96.0
+offset_top = -76.0
+offset_right = 1306.0
+offset_bottom = 732.0
+
+[node name="held_cards" type="HBoxContainer" parent="."]
+offset_top = 532.0
+offset_right = 1284.0
+offset_bottom = 731.0
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 321.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "if you see cards, yay!
+
+if you don't, D:"
+horizontal_alignment = 1
+vertical_alignment = 1

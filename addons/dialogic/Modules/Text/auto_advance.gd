@@ -23,7 +23,7 @@ var fixed_delay: float = 1.0
 var delay_modifier: float = 1.0
 
 var per_word_delay: float = 0.0
-var per_character_delay: float = 0.1
+var per_character_delay: float = 0.05
 
 var ignored_characters_enabled := false
 var ignored_characters := {}
@@ -69,7 +69,6 @@ var enabled_until_user_input := false :
 		enabled_until_user_input = enabled
 		_try_emit_toggled()
 
-
 func _init() -> void:
 	DialogicUtil.autoload().Inputs.add_child(autoadvance_timer)
 	autoadvance_timer.one_shot = false
@@ -113,7 +112,6 @@ func start() -> void:
 func _calculate_autoadvance_delay(text: String = "") -> float:
 	var delay := 0.0
 
-	# Check for temporary time override
 	if override_delay_for_current_event >= 0:
 		delay = override_delay_for_current_event
 	else:

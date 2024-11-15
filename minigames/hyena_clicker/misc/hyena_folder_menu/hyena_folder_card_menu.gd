@@ -15,12 +15,12 @@ func generate_card():
 	if is_instance_valid(card):
 		card.queue_free()
 	card = card_scene.instantiate()
-	card.stats = load("res://minigames/raheem_battle/cards/card_variants/stats/021.tres")
+	card.stats = card.return_stats_from_resource("res://minigames/raheem_battle/cards/card_variants/stats/021.tres")
 	card.is_preview = true
 	var upgradeAttack = ceil(float(cur_upgrade) / 2)
 	var upgradeDefense = floor(float(cur_upgrade) / 2)
 	
 	card.stats["Base Attack"] = upgradeAttack
-	card.stats["Base Attack"] = upgradeDefense
+	card.stats["Base Defense"] = upgradeDefense
 	
 	$card.add_child(card)

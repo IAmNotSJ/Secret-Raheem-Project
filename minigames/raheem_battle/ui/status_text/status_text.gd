@@ -25,9 +25,9 @@ func _on_turn_finished():
 func activate_text(exported_card):
 	if show_stats:
 		if show_ability:
-			set_status(ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["Attack"]) + " ATTACK and " + str(exported_card["Defense"]) + " DEFENSE and the ability " + exported_card["Ability Name"])
+			set_status(ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["True Attack"]) + " ATTACK and " + str(exported_card["True Defense"]) + " DEFENSE and the ability " + exported_card["Ability Name"])
 		else:
-			set_status(ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["Attack"]) + " ATTACK and " + str(exported_card["Defense"]) + " DEFENSE")
+			set_status(ui.game.get_opponent().player_name + " has chosen a card with " + str(exported_card["True Attack"]) + " ATTACK and " + str(exported_card["True Defense"]) + " DEFENSE")
 	else:
 		if show_ability:
 			if exported_card["Ability Name"] == "":

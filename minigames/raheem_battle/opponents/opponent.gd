@@ -18,6 +18,10 @@ var cards_left:int = 8 :
 	set(value):
 		cards_left = value
 		make_cards()
+		var card_offset = 0
+		if cards_left > 8:
+			card_offset = cards_left - 8
+		card_container.add_theme_constant_override("seperation", -37 + 15 * card_offset)
 
 
 @export var animation_player:AnimationPlayer

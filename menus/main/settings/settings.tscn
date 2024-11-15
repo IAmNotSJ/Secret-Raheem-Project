@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnd1doq4yac7c"]
+[gd_scene load_steps=17 format=3 uid="uid://dnd1doq4yac7c"]
 
 [ext_resource type="Script" path="res://menus/main/settings/settings.gd" id="1_do1st"]
 [ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="2_78org"]
 [ext_resource type="PackedScene" uid="uid://bbfjt7eeiihnp" path="res://menus/main/settings/Objects/sliders/volume_slider.tscn" id="2_g6f6b"]
 [ext_resource type="PackedScene" uid="uid://vrudn4iuu20u" path="res://menus/main/settings/Objects/windowModePopup/window_mode.tscn" id="3_msle7"]
+[ext_resource type="Texture2D" uid="uid://knvvvjdp4uin" path="res://menus/main/settings/Objects/binary/check.png" id="4_li7cf"]
+[ext_resource type="Texture2D" uid="uid://b7u4665rk0x0t" path="res://menus/main/settings/Objects/binary/uncheck.png" id="5_vno28"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d2rp2"]
 
@@ -26,6 +28,8 @@ content_margin_right = 10.0
 bg_color = Color(0.054902, 0.254902, 0.478431, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7tl8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjy1e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysnul"]
 bg_color = Color(0.309833, 0.470148, 0.796025, 1)
@@ -76,7 +80,7 @@ metadata/_tab_index = 0
 layout_mode = 0
 offset_left = 256.0
 offset_top = 35.0
-offset_right = 551.0
+offset_right = 600.0
 offset_bottom = 609.0
 theme_override_constants/separation = 17
 
@@ -87,6 +91,8 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g7tl8")
+theme_override_icons/checked = ExtResource("4_li7cf")
+theme_override_icons/unchecked = ExtResource("5_vno28")
 
 [node name="Label" type="Label" parent="TabContainer/Video/VBoxContainer/VSync"]
 layout_mode = 1
@@ -135,9 +141,12 @@ offset_left = 1206.0
 offset_top = 23.0
 offset_right = 1250.0
 offset_bottom = 67.0
+theme_override_font_sizes/font_size = 31
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hjy1e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ysnul")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8y5nt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_m0i3d")
+text = "X"
 
 [connection signal="toggled" from="TabContainer/Video/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

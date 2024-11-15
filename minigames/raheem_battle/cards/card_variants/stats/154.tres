@@ -5,14 +5,15 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_wbuff")
-card_name = "Nova"
-card_series = "Third Party"
+card_name = "Byrd"
+censored_name = ""
+card_series = "Nova Bloom"
 card_number = "154"
-base_attack = 5.0
-base_defense = 2.0
+base_attack = 3.0
+base_defense = 4.0
 can_get_bonuses = true
-ability_name = "Shadows"
-ability_description = "After this card is played, make your opponent's game turn to 10PM. "
+ability_name = "Goggles"
+ability_description = "After this card is played, blur your opponent's screen for 3 turns."
 one_use_ability = false
 should_remove = true
 hide_stats = false

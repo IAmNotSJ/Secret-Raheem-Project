@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://cko05u2gcfxbu"]
+
+[ext_resource type="Script" path="res://minigames/raheem_battle/menu/match_rules/match_rules.gd" id="1_1clj1"]
+[ext_resource type="Texture2D" uid="uid://bkifl60rireni" path="res://minigames/raheem_battle/menu/assets/paper.png" id="1_ft8v2"]
+[ext_resource type="FontFile" uid="uid://by5ru6ytpunev" path="res://fonts/pencilpete-font.regular.ttf" id="2_fdxej"]
+[ext_resource type="PackedScene" uid="uid://c5moxdb3txolj" path="res://minigames/raheem_battle/menu/match_rules/dropdown.tscn" id="4_jlsgy"]
+[ext_resource type="PackedScene" uid="uid://cot60p3nxxvhu" path="res://minigames/raheem_battle/menu/match_rules/number.tscn" id="7_wk6hv"]
+
+[node name="Match Rules" type="Node2D"]
+rotation = 0.0349066
+skew = -0.0383972
+script = ExtResource("1_1clj1")
+
+[node name="paper" type="Sprite2D" parent="."]
+position = Vector2(256, 336)
+texture = ExtResource("1_ft8v2")
+
+[node name="Label" type="Label" parent="paper"]
+offset_left = -160.196
+offset_top = -263.343
+offset_right = 232.804
+offset_bottom = -158.343
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fdxej")
+theme_override_font_sizes/font_size = 68
+text = "MATCH RULES"
+
+[node name="Card Num" parent="paper" instance=ExtResource("4_jlsgy")]
+unique_name_in_owner = true
+offset_left = -35.0
+offset_top = -132.0
+offset_right = 189.0
+offset_bottom = -92.0
+answers = Array[String](["8 Cards", "9 Cards", "10 Cards", "11 Cards", "12 Cards"])
+
+[node name="Label" type="Label" parent="paper/Card Num"]
+layout_mode = 0
+offset_left = -135.0
+offset_top = 1.0
+offset_right = -12.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fdxej")
+theme_override_font_sizes/font_size = 26
+text = "Deck Size"
+
+[node name="CardsToWin" parent="paper" instance=ExtResource("7_wk6hv")]
+unique_name_in_owner = true
+offset_left = -34.0
+offset_top = -78.0
+offset_right = 205.0
+offset_bottom = -37.0
+max_value = 8.0
+value = 2.0
+
+[node name="Label2" type="Label" parent="paper/CardsToWin"]
+layout_mode = 0
+offset_left = -136.884
+offset_top = 10.031
+offset_right = -11.8841
+offset_bottom = 46.031
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fdxej")
+theme_override_font_sizes/font_size = 26
+text = "Cards to Win"
+
+[connection signal="value_changed" from="paper/CardsToWin" to="." method="_on_cards_to_win_value_changed"]

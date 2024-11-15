@@ -7,7 +7,8 @@ enum {
 	ADVANCED,
 	QUIZ,
 	DECK,
-	PROFILE
+	PROFILE,
+	RULES
 }
 var current_screen = INITIAL
 
@@ -26,6 +27,7 @@ var in_popup:bool = false
 @onready var quiz = $ALL/Quiz
 @onready var deck = $ALL/deck_builder
 @onready var profile = $ALL/Profile
+@onready var rules = $"ALL/Match Rules"
 
 @onready var animation = $animation
 @onready var camera = $camera
@@ -54,6 +56,7 @@ func _ready():
 		%UPNP.button_pressed = Saves.battle_settings["UPNP"]
 		%DayNight.button_pressed = Saves.battle_settings["DayNight"]
 		%Food.button_pressed = Saves.battle_settings["Censor Food"]
+	DiscordSDKLoader.run_preset("Battle")
 	
 	if Overworld.is_time_between(12 + 6, 0, 5, 0):
 		$ambience.stream = load("res://minigames/raheem_battle/music/night-ambience.ogg")
@@ -67,7 +70,7 @@ func _unhandled_input(event):
 		if !in_popup:
 			match current_screen:
 				INITIAL:
-					pass
+					Transition.change_scene_to_preset("Main Menu")
 				HOST:
 					_switch_screen(INITIAL)
 				JOIN:
@@ -81,6 +84,8 @@ func _unhandled_input(event):
 						_switch_screen(INITIAL)
 				PROFILE:
 					_switch_screen(INITIAL)
+				RULES:
+					_switch_screen(HOST)
 
 func _switch_screen(screen):
 	match screen:
@@ -99,7 +104,10 @@ func _switch_screen(screen):
 				PROFILE:
 					animation.play('profile-initial')
 		HOST:
-			animation.play('initial-host')
+			if current_screen == INITIAL:
+				animation.play('initial-host')
+			elif current_screen == RULES:
+				animation.play('rules-host')
 		JOIN:
 			animation.play('initial-join')
 		ADVANCED:
@@ -110,6 +118,8 @@ func _switch_screen(screen):
 			animation.play('initial-deck')
 		PROFILE:
 			animation.play('initial-profile')
+		RULES:
+			animation.play('host-rules')
 	if screen != INITIAL:
 		for button in initial_buttons:
 			button.disabled = true
@@ -121,12 +131,6 @@ func _switch_screen(screen):
 		%Host.grab_focus()
 	current_screen = screen
 	$paper_flip.play()
-	
-	if screen == QUIZ:
-		await animation.animation_finished
-		camera.can_scroll = true
-	else:
-		camera.can_scroll = false
 
 func _on_button_entered(button):
 	if button.get_focus_mode() == Control.FocusMode.FOCUS_ALL:
@@ -137,7 +141,6 @@ func _on_button_exited(_button):
 	pass
 
 func _on_button_focused(button):
-	#print('focused')
 	$Pointer.visible = true
 	$Pointer.global_position = button.global_position
 	$Pointer.global_position.x -= 20
@@ -161,24 +164,27 @@ func _on_deck_pressed():
 func _on_profile_pressed():
 	if !in_popup:
 		_switch_screen(PROFILE)
+func _on_match_rules_pressed() -> void:
+	if !in_popup:
+		_switch_screen(RULES)
+
 
 
 func _on_join_room_pressed():
-	if check_playability() == false:
-		make_popup("004")
-		return
 	if !Saves.battle_settings["UPNP"]:
 		manager.on_join_pressed("localhost")
 	elif %address_bar.text != "":
 		manager.on_join_pressed(%address_bar.text)
 func _on_create_room_pressed():
-	if check_playability() == false:
-		make_popup("004")
+	if !check_hostability():
+		var num_string = manager.match_rules["Deck Size"].replace(" Cards", "")
+		make_popup("004-" + num_string)
 		return
 	manager.on_host_pressed()
 
-func check_playability() -> bool:
-	for card in Saves.battle_deck.values():
+func check_hostability() -> bool:
+	var match_rules = manager.match_rules
+	for card in Saves.battle_deck[match_rules["Deck Size"]]:
 		if card == "-1":
 			return false
 	return true
@@ -197,7 +203,7 @@ func _on_food_toggled(toggled_on: bool) -> void:
 	Saves.battle_settings["Censor Food"] = toggled_on
 	Saves.save(Saves.SaveTypes.BATTLE)
 	
-	for card in deck.get_node("ScrollContainer/card_container").get_children():
+	for card in deck.cards:
 		card._on_stats_changed()
 
 

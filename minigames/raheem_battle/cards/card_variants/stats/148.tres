@@ -5,16 +5,17 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_sf18t")
-card_name = "Purplefly"
+card_name = "Carlbot"
+censored_name = ""
 card_series = "Third Party"
 card_number = "148"
-base_attack = 0.0
-base_defense = 0.0
+base_attack = 4.0
+base_defense = 5.0
 can_get_bonuses = true
-ability_name = "Troll"
-ability_description = "This card has a 75% chance to lose the interaction, or a 25% chance to win it."
+ability_name = ""
+ability_description = ""
 one_use_ability = false
 should_remove = true
 hide_stats = false
-is_human = true
-has_hands = true
+is_human = false
+has_hands = false
