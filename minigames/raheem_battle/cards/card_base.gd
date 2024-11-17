@@ -6,7 +6,7 @@ enum Rarity {
 	COMMON,
 	HOLO
 }
-var rarity:Rarity = Rarity.COMMON
+var rarity:Rarity = Rarity.HOLO
 
 
 signal left_clicked(card)
@@ -179,6 +179,8 @@ func _ready():
 			noise.color_ramp = GradientTexture1D.new()
 			noise.noise = FastNoiseLite.new()
 			array[0].material.set("shader_parameter/noise", noise)
+	
+	change_color(stats["Card Series"])
 	
 	changed.connect(_on_stats_changed)
 	bonus_added.connect(_on_bonus_added)

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c72a5wbvct5yl" path="res://minigames/raheem_battle/music/Exciting Collection.ogg" id="6_pt1c1"]
 
 [node name="results" type="Node2D"]
+z_index = 10
 script = ExtResource("1_c6nnt")
 
 [node name="bg" type="ColorRect" parent="."]
@@ -18,23 +19,22 @@ offset_bottom = 745.0
 color = Color(0.584314, 0.737255, 1, 1)
 
 [node name="stripes" parent="." instance=ExtResource("2_6hb5a")]
-offset_left = -1140.77
+offset_left = -1093.58
 offset_top = 0.0
-offset_right = 2478.23
+offset_right = 2525.42
 offset_bottom = 731.0
 texture = ExtResource("3_vphu7")
 speed = Vector2(150, 0)
 crossingPoint = 50.0
 
 [node name="Parallax" parent="." instance=ExtResource("2_6hb5a")]
-offset_left = -86.9137
-offset_top = -177.467
-offset_right = 1593.1
-offset_bottom = 1058.54
+offset_left = -126.451
+offset_top = -216.704
+offset_right = 1553.56
+offset_bottom = 1019.3
 texture = ExtResource("3_8iigy")
 
 [node name="Result" type="Label" parent="."]
-visible = false
 offset_right = 1280.0
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(0.111282, 0.160207, 0.558594, 1)
@@ -46,7 +46,6 @@ text = "Congratulations!"
 horizontal_alignment = 1
 
 [node name="Turns" type="Label" parent="."]
-visible = false
 offset_top = 192.0
 offset_right = 410.0
 offset_bottom = 263.0
@@ -57,8 +56,20 @@ theme_override_fonts/font = ExtResource("2_cb3ko")
 theme_override_font_sizes/font_size = 51
 text = "Turns:"
 
+[node name="Strongest" type="Label" parent="."]
+offset_left = 829.0
+offset_top = 192.0
+offset_right = 1239.0
+offset_bottom = 263.0
+theme_override_colors/font_color = Color(0.111282, 0.160207, 0.558594, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_cb3ko")
+theme_override_font_sizes/font_size = 51
+text = "Strongest Card"
+horizontal_alignment = 1
+
 [node name="Cards" type="Label" parent="."]
-visible = false
 offset_top = 294.0
 offset_right = 410.0
 offset_bottom = 365.0
@@ -70,7 +81,6 @@ theme_override_font_sizes/font_size = 51
 text = "Cards Played:"
 
 [node name="Money" type="Label" parent="."]
-visible = false
 offset_top = 400.0
 offset_right = 410.0
 offset_bottom = 471.0
@@ -79,10 +89,9 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("2_cb3ko")
 theme_override_font_sizes/font_size = 51
-text = "Coins Earned: 0"
+text = "Copper Coins Earned: 0"
 
 [node name="Continue" type="Label" parent="."]
-visible = false
 offset_top = 665.0
 offset_right = 1280.0
 offset_bottom = 711.0

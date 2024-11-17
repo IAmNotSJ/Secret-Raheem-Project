@@ -22,9 +22,11 @@ var settings:Dictionary = {
 var characterInteractions:Dictionary = {
 	"Cherry": 0,
 	"SJ": 0,
-	"Dapper Composty": 0,
+	"Dapper": 0,
+	"Composty": 0,
 	"Dile": 0,
-	"Atlas Slime": 0,
+	"Atlas": 0,
+	"Slime": 0,
 	"Cleft": 0,
 	"Dizzy": 0,
 	"Luna": 0,
@@ -60,8 +62,6 @@ var time_end = 0
 func _ready():
 	time_start = Time.get_unix_time_from_system()
 	
-	
-	
 
 func _input(_event: InputEvent) -> void:
 	if get_viewport().get_camera_2d() != null:
@@ -92,29 +92,6 @@ func update_save_file_time():
 	time_start = Time.get_unix_time_from_system()
 	Saves.playerInfo["Time"] += time_elapsed
 	Saves.save(Saves.SaveTypes.SETTINGS)
-
-func can_remove_coins(amount:int):
-	if Saves.playerInfo["Copper Coins"] >= amount:
-		return true
-	else:
-		return false
-	
-
-#Returns the amount of coins left after the transaction
-func remove_coins(amount:int):
-	if Saves.playerInfo["Copper Coins"] >= amount:
-		Saves.playerInfo["Copper Coins"] -= amount
-		Saves.save(Saves.SaveTypes.SETTINGS)
-		print("Remaining Copper Coins: " + str(Saves.playerInfo["Copper Coins"]))
-		return Saves.playerInfo["Copper Coins"]
-	else:
-		return -1
-
-#Returns the amount of coins left after the addition
-func add_coins(amount:int):
-	Saves.playerInfo["Copper Coins"] += amount
-	Saves.save(Saves.SaveTypes.SETTINGS)
-	return Saves.playerInfo["Copper Coins"]
 
 func _notification(what):
 	match what:

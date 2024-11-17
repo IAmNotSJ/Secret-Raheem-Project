@@ -46,8 +46,8 @@ func add_new_message(message, message_color, player_name, player_emotion):
 	scroll_c.scroll_vertical = scroll_b.max_value
 
 @rpc("any_peer")
-func add_sent_message(message, message_color, player_name, player_emotion):
-	add_new_message(message, message_color, player_name, player_emotion)
+func add_sent_message(message, message_color, _player_name, player_emotion):
+	add_new_message(message, message_color, ui.game.get_opponent().player_name, player_emotion)
 
 
 func _on_send_button_pressed():

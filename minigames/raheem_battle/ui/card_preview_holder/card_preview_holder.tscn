@@ -50,4 +50,8 @@ horizontal_alignment = 1
 stream = ExtResource("3_gkbki")
 volume_db = -31.856
 
+[node name="auto_leave" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="pressed" from="click_detection" to="." method="_on_click_detection_pressed"]
+[connection signal="timeout" from="auto_leave" to="." method="_on_auto_leave_timeout"]

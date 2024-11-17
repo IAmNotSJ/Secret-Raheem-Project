@@ -142,9 +142,15 @@ ending_hour = 3
 
 [node name="non-light-affected" type="CanvasLayer" parent="."]
 
+[node name="UI" parent="non-light-affected" instance=ExtResource("3_ycrce")]
+unique_name_in_owner = true
+offset_top = -4.0
+offset_bottom = 716.0
+
 [node name="Pixelate" type="ColorRect" parent="non-light-affected"]
 unique_name_in_owner = true
 visible = false
+z_index = 510
 z_as_relative = false
 material = SubResource("ShaderMaterial_gdvnn")
 offset_right = 1284.0
@@ -155,7 +161,7 @@ color = Color(1, 1, 1, 0)
 [node name="Glitch" type="ColorRect" parent="non-light-affected"]
 unique_name_in_owner = true
 visible = false
-z_index = 5
+z_index = 510
 z_as_relative = false
 material = SubResource("ShaderMaterial_v3l71")
 offset_right = 1284.0
@@ -166,17 +172,12 @@ color = Color(1, 1, 1, 0)
 [node name="Blur" type="ColorRect" parent="non-light-affected"]
 unique_name_in_owner = true
 visible = false
-z_index = 15
+z_index = 510
 material = SubResource("ShaderMaterial_eoekl")
 offset_right = 1284.0
 offset_bottom = 727.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
-
-[node name="UI" parent="non-light-affected" instance=ExtResource("3_ycrce")]
-unique_name_in_owner = true
-offset_top = -4.0
-offset_bottom = 716.0
 
 [node name="players" type="Node" parent="non-light-affected"]
 unique_name_in_owner = true

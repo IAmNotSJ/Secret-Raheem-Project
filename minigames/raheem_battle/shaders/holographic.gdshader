@@ -30,30 +30,7 @@ vec4 overlay(vec4 bottom, vec4 top){
 	return result;
 }
 
-float get_saturation(vec4 c) {
-	float result;
-	
-	float ma = 0.0;
-	float mi = 1.0;
-	for (int i = 0; i < 3; i++) {
-		ma = max(c[i], ma);
-		mi = min(c[i], mi);
-	}
-	
-	float l = ma-mi;
-	
-	if (l < 0.5) result = (ma - mi)/(ma + mi);
-	if (l > 0.5) result = (ma - mi)/(2.0-ma-mi);
-	
-	return result;
-}
-vec4 change_saturation(vec4 c, float amount) {
-	vec4 result = c;
-	for (int i = 0; i<3; i++) {
-		result[i] += amount;
-	}
-	return result;
-}
+
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);

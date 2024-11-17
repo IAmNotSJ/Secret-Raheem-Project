@@ -1,5 +1,5 @@
 set {Monika Shop.randomness} = range(0,6).pick_random()
-set {Monika Shop.randomness} = 6
+#set {Monika Shop.randomness} = 6
 if {Monika Shop.first_time} == true:
 	monika: Hello E-
 	monika: <Empty Text Event>

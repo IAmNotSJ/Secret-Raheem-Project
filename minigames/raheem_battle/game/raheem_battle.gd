@@ -60,6 +60,9 @@ var pixel_size:float = 1 :
 var glitch_timer:int = 0
 var blur_timer:int = 0
 
+var strongest_card_self:Dictionary
+var strongest_card_opponent:Dictionary
+
 # TODO: Think of music for this
 var music_paths = [
 	"res://minigames/raheem_battle/music/in_game/A. Rene.ogg",
@@ -121,6 +124,7 @@ func add_opponent(opponent_id, opponent_info):
 	playing_peer_ids.append(opponent_id)
 	
 	#Add the second player Node
+	
 	
 	var player = player_path.instantiate()
 	player.player_name = opponent_info["Name"]

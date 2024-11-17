@@ -350,8 +350,8 @@ script = ExtResource("1_fnnwu")
 z_index = -5
 offset_left = -2051.0
 offset_top = -1288.0
-offset_right = 3314.0
-offset_bottom = 2059.0
+offset_right = 4175.0
+offset_bottom = 3367.0
 texture = ExtResource("2_ujqw1")
 stretch_mode = 1
 

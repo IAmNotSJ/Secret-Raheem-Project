@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://edx2tlubwxi4"]
+[gd_scene load_steps=30 format=3 uid="uid://edx2tlubwxi4"]
 
 [ext_resource type="Script" path="res://minigames/raheem_battle/cards/card_base.gd" id="1_8jnna"]
+[ext_resource type="Shader" path="res://minigames/raheem_battle/shaders/holographic.gdshader" id="2_0hosn"]
 [ext_resource type="Texture2D" uid="uid://b3v8ej1t07b0a" path="res://minigames/raheem_battle/cards/card_variants/assets/0.png" id="3_311j2"]
 [ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="3_ik8au"]
 [ext_resource type="Texture2D" uid="uid://cd3pn6q8ksn0h" path="res://minigames/raheem_battle/cards/assets/card_border.png" id="5_ui7cc"]
@@ -12,6 +13,59 @@
 [ext_resource type="Texture2D" uid="uid://cn3u0qi15q8k" path="res://minigames/raheem_battle/cards/assets/icons/one_use.png" id="10_x1ylh"]
 [ext_resource type="AudioStream" uid="uid://cpvlajawxawsl" path="res://minigames/raheem_battle/sound_effects/click.ogg" id="11_pvkx2"]
 [ext_resource type="Texture2D" uid="uid://e3bje7jro8o2" path="res://minigames/raheem_battle/cards/assets/icons/upgrades.png" id="11_s5n0j"]
+
+[sub_resource type="Gradient" id="Gradient_0ejv0"]
+offsets = PackedFloat32Array(0, 0.217105, 0.388158, 0.506579, 0.736842, 1)
+colors = PackedColorArray(0.929922, 0.5125, 1, 1, 0.2625, 0.834062, 1, 1, 0.388158, 0.388158, 0.388158, 1, 0.506579, 0.506579, 0.506579, 1, 0.736842, 0.736842, 0.736842, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_id7i2"]
+gradient = SubResource("Gradient_0ejv0")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_64np8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t3l4i"]
+noise = SubResource("FastNoiseLite_64np8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5j8qa"]
+shader = ExtResource("2_0hosn")
+shader_parameter/active = true
+shader_parameter/darkened = false
+shader_parameter/tint_color = null
+shader_parameter/direction = 0.5
+shader_parameter/minimum = 0.2
+shader_parameter/effect_alpha_mult = 1.0
+shader_parameter/gradient = SubResource("GradientTexture1D_id7i2")
+shader_parameter/noise = SubResource("NoiseTexture2D_t3l4i")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r6uiw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ltlwk"]
+noise = SubResource("FastNoiseLite_r6uiw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lwvf"]
+shader = ExtResource("2_0hosn")
+shader_parameter/active = true
+shader_parameter/darkened = false
+shader_parameter/tint_color = null
+shader_parameter/direction = 0.5
+shader_parameter/minimum = 0.2
+shader_parameter/effect_alpha_mult = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_ltlwk")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lpvr5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y3lyy"]
+noise = SubResource("FastNoiseLite_lpvr5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pn84y"]
+shader = ExtResource("2_0hosn")
+shader_parameter/active = true
+shader_parameter/darkened = false
+shader_parameter/tint_color = null
+shader_parameter/direction = 0.5
+shader_parameter/minimum = 0.2
+shader_parameter/effect_alpha_mult = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_y3lyy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odvew"]
 size = Vector2(147, 216)
@@ -124,6 +178,7 @@ scale = Vector2(0.37, 0.37)
 
 [node name="Base" type="TextureRect" parent="visible"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5j8qa")
 layout_mode = 0
 offset_right = 398.0
 offset_bottom = 585.0
@@ -132,6 +187,7 @@ texture = ExtResource("3_ik8au")
 [node name="Ability_Holder" type="ColorRect" parent="visible"]
 unique_name_in_owner = true
 visible = false
+material = SubResource("ShaderMaterial_0lwvf")
 layout_mode = 0
 offset_left = 30.0
 offset_top = 376.0
@@ -178,6 +234,7 @@ texture = ExtResource("3_311j2")
 
 [node name="border" type="Sprite2D" parent="visible"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pn84y")
 position = Vector2(197.297, 175.676)
 texture = ExtResource("5_ui7cc")
 

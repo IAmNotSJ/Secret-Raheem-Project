@@ -1,21 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj5vri4pyykkn"]
+[gd_scene load_steps=4 format=3 uid="uid://dj5vri4pyykkn"]
 
-[ext_resource type="Shader" path="res://minigames/raheem_battle/shaders/holographic_v2_norm.gdshader" id="1_yks1s"]
+[ext_resource type="Texture2D" uid="uid://bq2t5po1etak6" path="res://minigames/raheem_battle/cards/assets/card_base.png" id="1_pjk7u"]
+[ext_resource type="Texture2D" uid="uid://bcj3rohj0g7nk" path="res://minigames/raheem_battle/cards/assets/ability_holder.png" id="2_yqebr"]
+[ext_resource type="FontFile" uid="uid://civq6m1ieh0f7" path="res://fonts/CookieRun Bold.ttf" id="3_j521m"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aix3v"]
-render_priority = 0
-shader = ExtResource("1_yks1s")
-shader_parameter/hue_color = Color(0.136719, 1, 0.959534, 1)
-shader_parameter/color_density = null
-shader_parameter/shift = null
+[node name="3D Card" type="Node3D"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytc84"]
-next_pass = SubResource("ShaderMaterial_aix3v")
+[node name="Base" type="Sprite3D" parent="."]
+texture = ExtResource("1_pjk7u")
 
-[sub_resource type="QuadMesh" id="QuadMesh_h8y4g"]
-material = SubResource("StandardMaterial3D_ytc84")
-size = Vector2(1, 1.48)
+[node name="AbilityHolder" type="Sprite3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, -1.587, 0)
+render_priority = 1
+texture = ExtResource("2_yqebr")
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.742081, 0.519944, -0.203643)
-mesh = SubResource("QuadMesh_h8y4g")
+[node name="Info" type="Node3D" parent="Base"]
+
+[node name="Series" type="Label3D" parent="Base/Info"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87889, 2.62704, -0.00026989)
+render_priority = 2
+outline_render_priority = 1
+text = "Card Series"
+font = ExtResource("3_j521m")
+font_size = 42
+horizontal_alignment = 0
+
+[node name="Number" type="Label3D" parent="Base/Info"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81096, 2.62704, -0.000464916)
+render_priority = 2
+outline_render_priority = 1
+text = "Card Number"
+font = ExtResource("3_j521m")
+font_size = 42
+horizontal_alignment = 2

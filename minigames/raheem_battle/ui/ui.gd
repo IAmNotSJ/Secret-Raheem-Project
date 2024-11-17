@@ -128,15 +128,16 @@ func generate_deck_preview(card_ref, exclude:Array = [-1], reason:String = ""):
 			for excluded_i in exclude:
 				if i != excluded_i:
 					exported_array.append(card_hand.cards_in_hand[i].export())
-		deck_preview.generate_deck(exported_array, reason, card_ref)
-		extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW, true)
-		if reason == "Extra Space" || reason == "Brands":
-			extra_screens.start_showing_screens()
+		if card_hand.cards_in_hand.size() - exclude.size() > 0:
+			deck_preview.generate_deck(exported_array, reason, card_ref)
+			extra_screens.add_screen_queue(extra_screens.DECK_PREVIEW, true)
+			if reason == "Extra Space" || reason == "Brands":
+				extra_screens.start_showing_screens()
 
 func play_card(card):
 	if game.started && cur_stage == Stages.TURN:
-		if card_hand.cards_in_hand.size() == game.match_rules["Cards To Win"] + 1:
-			if card.stats["Ability Name"] == "Tears" and game.last_decision != game.get_player().side:
+		if card.stats["Ability Name"] == "Tears":
+			if card_hand.cards_in_hand.size() != game.match_rules["Cards To Win"] + 1 and game.last_decision != game.get_player().side:
 				return
 		
 		
@@ -324,6 +325,16 @@ func process_turn(decision, attacking_card, defending_card, attacking):
 	
 	if attacking:
 		card_matchup.start(decision, attacking_card, defending_card)
+		if game.strongest_card_self == {}:
+			game.strongest_card_self = attacking_card
+		else:
+			if game.strongest_card_self["True Attack"] < attacking_card["True Attack"]:
+				game.strongest_card_self = attacking_card
+		if game.strongest_card_opponent == {}:
+			game.strongest_card_opponent = defending_card
+		else:
+			if game.strongest_card_opponent["True Attack"] < defending_card["True Attack"]:
+				game.strongest_card_opponent = defending_card
 		if cards_played.size() == 0:
 			cards_played.append(attacking_card)
 		else:
@@ -335,6 +346,16 @@ func process_turn(decision, attacking_card, defending_card, attacking):
 				cards_played.append(attacking_card)
 	else:
 		card_matchup.start(decision, defending_card, attacking_card)
+		if game.strongest_card_self == {}:
+			game.strongest_card_self = defending_card
+		else:
+			if game.strongest_card_self["True Attack"] < defending_card["True Attack"]:
+				game.strongest_card_self = defending_card
+		if game.strongest_card_opponent == {}:
+			game.strongest_card_opponent = attacking_card
+		else:
+			if game.strongest_card_opponent["True Attack"] < attacking_card["True Attack"]:
+				game.strongest_card_opponent = attacking_card
 		if cards_played.size() == 0:
 			cards_played.append(defending_card)
 		else:
@@ -995,6 +1016,8 @@ func post_card_effects(opposing_card, decision, opposing_info):
 				while random_card == card_to_play:
 					random_card = card_hand.cards_in_hand[randi_range(0, card_hand.cards_in_hand.size() - 1)]
 				card_preview.generate_preview_from_export.rpc(random_card.export(), "Atlas's Preview of your opponent's card!", true)
+				await turn_started
+				card_preview.timer.start()
 			"Kindness":
 				if decision == opposing_card["Side"]:
 					card_to_play.add_bonus_attack(2, "Kindness")

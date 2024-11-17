@@ -55,8 +55,8 @@ func _on_decision_categorical_knowledge(decision, card):
 
 func _on_decision_legal_fees(decision, _card):
 	if decision == true:
-		if global.can_remove_coins(200):
-			global.remove_coins(200)
+		if Saves.can_remove_coins(200):
+			Saves.remove_coins(200)
 			decision_made.emit()
 			clear()
 		else:

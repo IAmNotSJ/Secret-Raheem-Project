@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Raheem Birthday"
-config/version="2.0.0 BETA 24-10a-C"
+config/version="2.0.0 BETA 24-10a"
 run/main_scene="res://SceneManager/scene_manager.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="IamSJ/Raheem Birthday"

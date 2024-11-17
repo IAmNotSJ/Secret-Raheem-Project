@@ -310,6 +310,35 @@ func _ready():
 	
 	print(battle_info["Color"])
 
+# Copper Coin Jazz #
+
+func can_remove_coins(amount:int):
+	if playerInfo["Copper Coins"] >= amount:
+		return true
+	else:
+		return false
+
+#Returns the amount of coins left after the transaction
+func remove_coins(amount:int):
+	if playerInfo["Copper Coins"] >= amount:
+		playerInfo["Copper Coins"] -= amount
+		save(Saves.SaveTypes.SETTINGS)
+		print("Remaining Copper Coins: " + str(playerInfo["Copper Coins"]))
+		return playerInfo["Copper Coins"]
+	else:
+		return -1
+
+#Returns the amount of coins left after the addition
+func add_coins(amount:int):
+	playerInfo["Copper Coins"] += amount
+	save(SaveTypes.SETTINGS)
+	return playerInfo["Copper Coins"]
+
+func get_coins():
+	return playerInfo["Copper Coins"]
+
+# Saving / Loading #
+
 func save(type:SaveTypes):
 	var PATH:String = ""
 	match type:

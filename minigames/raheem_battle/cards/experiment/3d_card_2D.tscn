@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7pa4lthdcski"]
+
+[ext_resource type="PackedScene" uid="uid://dj5vri4pyykkn" path="res://minigames/raheem_battle/cards/experiment/3d_card.tscn" id="1_psxyq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aemwt"]
+viewport_path = NodePath("SubViewport")
+
+[node name="3D Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 410.0
+offset_bottom = 304.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -90.0
+offset_top = -1.0
+offset_right = 422.0
+offset_bottom = 511.0
+scale = Vector2(0.996587, 0.99302)
+texture = SubResource("ViewportTexture_aemwt")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="MeshInstance3D" parent="SubViewport" instance=ExtResource("1_psxyq")]
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.845)

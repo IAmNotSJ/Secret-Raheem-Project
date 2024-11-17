@@ -19,7 +19,8 @@ var focused:bool = false
 var x_offset:int = 0
 var y_offset:int = 0
 
-var victory_seperation:int = -80
+var cur_seperation:float = -59.55
+var victory_seperation:float = -59.55
 var victory_position:int = 977
 
 func _ready():
@@ -40,7 +41,8 @@ func _process(delta):
 				%offset.position.x = lerpf(%offset.position.x, 0, 20 * delta)
 			%offset.position.y = lerpf(%offset.position.y, y_offset , 15 * delta)
 		
-		victory_chest.add_theme_constant_override("separation", lerpf(float(victory_chest.get_theme_constant("separation")), victory_seperation, 10 * delta))
+		cur_seperation = lerpf(cur_seperation, victory_seperation, 10 * delta)
+		victory_chest.add_theme_constant_override("separation", cur_seperation)
 		victory_chest.position.x = lerpf(victory_chest.position.x, victory_position, 10 * delta)
 
 func generate_cards():
@@ -270,9 +272,9 @@ func show_victory_chest_cards(from:Vector2):
 	victory_chest.visible = true
 	for card in victory_chest.get_children():
 		card.visible = true
-	victory_chest.add_theme_constant_override("separation", -80)
+	victory_chest.add_theme_constant_override("separation", -59.55)
 	victory_seperation = 15
 
 func hide_victory_chest_cards(to:Vector2):
-	victory_seperation = -80
+	victory_seperation = -59.55
 	victory_position = to.x - victory_chest.size.x

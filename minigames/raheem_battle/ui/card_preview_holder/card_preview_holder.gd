@@ -2,6 +2,8 @@ extends ExtraScreen
 
 const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
 
+@onready var timer = $auto_leave
+
 func generate_card_preview(stats, message:String = "", back:bool = false, force:bool = true):
 		var card = card_scene.instantiate()
 		card.stats = stats
@@ -57,4 +59,11 @@ func clear():
 	if $card_container.get_children() != []:
 		for card in $card_container.get_children():
 			card.queue_free()
+	if timer.time_left != 0:
+		timer.stop()
 	hide()
+
+
+func _on_auto_leave_timeout() -> void:
+	timer.wait_time = 10
+	clear()

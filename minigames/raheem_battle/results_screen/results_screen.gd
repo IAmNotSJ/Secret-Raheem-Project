@@ -3,6 +3,9 @@ extends Node2D
 @onready var ui = get_parent().get_parent()
 @onready var screen_container = get_parent()
 
+const card_position = Vector2(855, 125)
+const card_scene = preload("res://minigames/raheem_battle/cards/card.tscn")
+
 var started:bool = false
 var money:int = 0
 
@@ -10,12 +13,22 @@ var win:bool
 
 func create(won:bool):
 	win = won
-	if ui.game.manager.peer_id == 1:
+	if ui.game.manager.peer_id == 1 and ui.game.get_player().player_name != ui.game.get_opponent().player_name:
 		post_webhook()
 	ui.game.manager.clear_peer_ids()
 	ui.game.manager.clear_peer_ids.rpc()
 	ui.card_hand.block_input()
 	screen_container.add_screen_queue(screen_container.RESULTS, false, true)
+	
+	var card = card_scene.instantiate()
+	if ui.game.strongest_card_self:
+		card.stats = ui.game.strongest_card_self
+		card.is_preview = true
+		card.set_card_scale(Vector2(0.75, 0.75))
+		card.position.x = ($Strongest.size.x / 2) - card.size.x
+		card.position.y = $Strongest.size.y + 20
+		card.visible = false
+		$Strongest.add_child(card)
 	
 	Saves.battle_stats["Games Played"] += 1
 	if won:
@@ -33,7 +46,7 @@ func create(won:bool):
 		$Result.text = "Congratulations!"
 	else:
 		$Result.text = "oooh you suck"
-	$Money.text = "Money Earned: " + str(money)
+	$Money.text = "Coppper Coins Earned: " + str(money)
 	$Turns.text = "Turns: " + str(ui.game.turn_count)
 	$Cards.text = "Cards Played: " + str(ui.cards_played.size())
 	
@@ -45,6 +58,9 @@ func create(won:bool):
 	$Cards.visible = true
 	await get_tree().create_timer(0.3).timeout
 	$Money.visible = true
+	if ui.game.strongest_card_self:
+		await get_tree().create_timer(0.5).timeout
+		card.visible = true
 	await get_tree().create_timer(1).timeout
 	$Continue.visible = true
 
@@ -73,7 +89,7 @@ func post_webhook():
 	embed.add_field("Messages Sent", str(ui.chat_box.chat_log.size()), true)
 	embed.add_field("Turns", str(ui.game.turn_count), true)
 	
-	webhook.post()
+	#webhook.post()
 
 func _input(event: InputEvent) -> void:
 	if started:

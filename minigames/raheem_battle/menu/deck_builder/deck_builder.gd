@@ -84,9 +84,15 @@ func set_deck():
 			deck_array.append(cards[cards_number.find(Saves.battle_deck[cur_deck][i])])
 		else:
 			deck_array.append(null)
+	var previous_cards = []
 	for i in range(deck_array.size()):
 		if deck_array[i] != null:
-			$snap_container.get_node(cur_deck).get_children()[i].lock_card(deck_array[i])
+			if !previous_cards.has(deck_array[i]):
+				$snap_container.get_node(cur_deck).get_children()[i].lock_card(deck_array[i])
+			else:
+				Saves.battle_deck[cur_deck][i] = "-1"
+				#print(Saves.battle_deck[cur_deck][i])
+			previous_cards.append(deck_array[i])
 
 func set_held(card):
 	if !is_in_preview:

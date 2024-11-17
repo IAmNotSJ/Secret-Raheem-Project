@@ -18,8 +18,7 @@ var sceneTransitions:Dictionary = {
 func change_scene_to_file(target: String, money:int = 0) -> void:
 	animationPlayer.play('trans')
 	if money != 0:
-		Saves.playerInfo["Copper Coins"] += money
-		Saves.save(Saves.SaveTypes.SETTINGS)
+		Saves.add_coins(money)
 	await(animationPlayer.animation_finished)
 	global.sceneManager.changeScene(target)
 	animationPlayer.play('trans_back')
@@ -30,13 +29,11 @@ func change_scene_to_preset(target: String, useTrans:bool = true, money:int = 0)
 		await(animationPlayer.animation_finished)
 		global.sceneManager.changeScene(sceneTransitions[target])
 		if money != 0:
-			Saves.playerInfo["Copper Coins"] += money
-			Saves.save(Saves.SaveTypes.SETTINGS)
+			Saves.add_coins(money)
 			%coin_animations.play("add_coin")
 			await %coin_animations.animation_finished
 		animationPlayer.play('trans_back')
 	else:
 		global.sceneManager.changeScene(sceneTransitions[target])
 		if money != 0:
-			Saves.playerInfo["Copper Coins"] += money
-			Saves.save(Saves.SaveTypes.SETTINGS)
+			Saves.add_coins(money)

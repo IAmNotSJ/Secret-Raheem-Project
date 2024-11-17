@@ -78,10 +78,11 @@ func add_player(daPeer):
 @rpc("any_peer")
 func add_opponent(daPeer, opponent_info):
 	var opponent_name = opponent_info["Name"]
-	if opponent_name.is_empty:
+	if opponent_name == "":
 		opponent_name = "Random Player"
-	if opponent_name == Saves.battle_info["Name"]:
+	if opponent_name == game.get_player().player_name:
 		opponent_name = opponent_name + " #2"
+	opponent_info["Name"] = opponent_name
 	connected_peer_ids.append(daPeer)
 	game.add_opponent(daPeer, opponent_info)
 
