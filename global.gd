@@ -106,7 +106,13 @@ func _notification(what):
 
 func toggle_mouse_visibility():
 	var daMouse = $Mouse.get_node("Mouse")
+	
 	if daMouse.mouse_mode == daMouse.MouseMode.VISIBLE:
 		daMouse.mouse_mode = daMouse.MouseMode.HIDDEN
 	if daMouse.mouse_mode == daMouse.MouseMode.HIDDEN:
 		daMouse.mouse_mode = daMouse.MouseMode.VISIBLE
+
+func show_mouse():
+	var daMouse = $Mouse.get_node("Mouse")
+	
+	daMouse.mouse_mode = daMouse.MouseMode.VISIBLE

@@ -13,9 +13,9 @@ func _on_hyena_pressed():
 
 
 func _on_karl_pressed():
-	menu.get_node("no").play()
-	#global.enteredMiniGameFromMenu = true
-	#Transition.change_scene_to_preset("Pilkington")
+	#menu.get_node("no").play()
+	global.enteredMiniGameFromMenu = true
+	Transition.change_scene_to_preset("Pilkington")
 
 
 func _on_paint_pressed():

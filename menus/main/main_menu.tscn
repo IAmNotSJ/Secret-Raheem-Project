@@ -72,18 +72,18 @@ texture = ExtResource("5_e2yv8")
 centered = false
 
 [node name="Parallax" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -127.899
+offset_left = -45.3495
 offset_top = 662.0
-offset_right = 1558.11
+offset_right = 1640.66
 offset_bottom = 731.0
 texture = ExtResource("3_6s5sv")
 speed = Vector2(-50, 0)
 crossingPoint = -276.0
 
 [node name="Parallax2" parent="." instance=ExtResource("2_3g75t")]
-offset_left = -309.861
+offset_left = -114.408
 offset_top = -10.0
-offset_right = 1376.16
+offset_right = 1571.61
 offset_bottom = 59.0
 texture = ExtResource("3_6s5sv")
 flip_v = true

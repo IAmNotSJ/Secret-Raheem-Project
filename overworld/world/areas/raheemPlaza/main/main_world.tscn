@@ -519,6 +519,7 @@ color = Color(1, 1, 1, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -25.0
+bus = &"Music"
 
 [connection signal="interacted" from="Chars/Key" to="." method="_on_key_interacted"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

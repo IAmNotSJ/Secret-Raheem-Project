@@ -3,10 +3,10 @@ extends Node2D
 @onready var parent = global.sceneManager.get_node("Pilkington")
 
 func _ready():
-	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	if !global.minigames["Karl Pilkington"]:
-		global.minigames["Karl Pilkington"] = true
-		global.save()
+	global.toggle_mouse_visibility()
+	if !Saves.minigames["Karl Pilkington"]:
+		Saves.minigames["Karl Pilkington"] = true
+		Saves.save(Saves.SaveTypes.OVERWORLD)
 	DiscordSDKLoader.run_preset("Karl")
 	
 	if !parent.usesDebug:
@@ -28,4 +28,3 @@ func _on_debug_button_pressed():
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
-

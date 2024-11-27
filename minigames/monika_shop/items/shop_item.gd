@@ -69,6 +69,7 @@ func _on_click_detection_pressed() -> void:
 				current_state = States.SALE
 				decay_timer.start()
 				price_label.text = "Too Expensive!"
+				
 
 func _on_current_state_changed(state):
 	match state:
@@ -78,3 +79,6 @@ func _on_current_state_changed(state):
 			price_label.text = "Confirm?"
 		States.BOUGHT:
 			price_label.text = "Sold Out!"
+
+func change_state():
+	pass

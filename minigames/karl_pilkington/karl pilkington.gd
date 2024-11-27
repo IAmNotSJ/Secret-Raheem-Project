@@ -42,6 +42,3 @@ func spawn_pilkington():
 	pilkington.hurt.connect(healthbar.update_health.bind(pilkington))
 	global.sceneManager.get_node("Pilkington").get_node("KarlPilkington").call_deferred("add_child", daPilk)
 	pilkington.initialize()
-
-
-
