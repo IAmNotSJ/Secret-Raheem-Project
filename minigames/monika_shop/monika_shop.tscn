@@ -17,28 +17,53 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Card Packs" type="GridContainer" parent="."]
-visible = false
 modulate = Color(0.524766, 0.51875, 1, 1)
+offset_top = 88.0
 offset_right = 667.0
-offset_bottom = 200.0
+offset_bottom = 888.0
 theme_override_constants/h_separation = 190
 theme_override_constants/v_separation = 200
 columns = 3
 
-[node name="Raheem Cursor" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+[node name="Raheem Pack" parent="Card Packs" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
 price = 10000000
 message = Array[String](["monika: Truthfully, I don't know where I got this.", "monika: I mean, snails don't even have hands."])
 
-[node name="Monika Cursor" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+[node name="Wibr Pack" parent="Card Packs" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
 message = Array[String](["monika: My gloves are highly valued after.", "monika: They're designer, after all."])
 
-[node name="Deformed Cursor" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+[node name="SJ Pack" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack2" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack3" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack4" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack5" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack6" parent="Card Packs" instance=ExtResource("1_1ygd0")]
+layout_mode = 2
+message = Array[String](["monika: Cool cards, right? "])
+
+[node name="SJ Pack7" parent="Card Packs" instance=ExtResource("1_1ygd0")]
 layout_mode = 2
 message = Array[String](["monika: Cool cards, right? "])
 
 [node name="Mice" type="GridContainer" parent="."]
+visible = false
 modulate = Color(1, 0.0595067, 0.803136, 1)
 offset_top = 88.0
 offset_right = 667.0
